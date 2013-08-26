@@ -1,34 +1,32 @@
 //
-//  FDSecondViewController.m
+//  FDFifthViewController.m
 //  find
 //
 //  Created by zhangbin on 8/26/13.
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "FDSecondViewController.h"
+#import "FDFifthViewController.h"
 
-@interface FDSecondViewController ()
+@interface FDFifthViewController ()
 
 @end
 
-@implementation FDSecondViewController
+@implementation FDFifthViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		self.title = @"Second";
-		//		[self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabAccountActive"] withFinishedUnselectedImage:[UIImage imageNamed:@"tabAccount"]];
+        self.title = @"Fifth";
     }
     return self;
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning

@@ -7,13 +7,46 @@
 //
 
 #import "FDAppDelegate.h"
+#import "RSTabBarViewController.h"
+#import "FDFirstViewController.h"
+#import "FDSecondViewController.h"
+#import "FDThirdViewController.h"
+#import "FDForthViewController.h"
+#import "FDFifthViewController.h"
 
 @implementation FDAppDelegate
+{
+	RSTabBarViewController *tabBarController;
+	UINavigationController *rootViewController;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+	rootViewController = [[UINavigationController alloc] init];
+	rootViewController.navigationBarHidden = YES;
+	self.window.rootViewController = rootViewController;
+	
+	
+	[self showMainViewAnimated:YES];
+	
+	[self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)showMainViewAnimated:(BOOL)animated
+{
+	UINavigationController *firstViewController = [[UINavigationController alloc] initWithRootViewController:[[FDFirstViewController alloc] init]];
+	UINavigationController *secondViewController = [[UINavigationController alloc] initWithRootViewController:[[FDSecondViewController alloc] init]];
+	UINavigationController *thirdViewController = [[UINavigationController alloc] initWithRootViewController:[[FDThirdViewController alloc] init]];
+	UINavigationController *forthViewController = [[UINavigationController alloc] initWithRootViewController:[[FDForthViewController alloc] init]];
+	UINavigationController *fifthViewController = [[UINavigationController alloc] initWithRootViewController:[[FDFifthViewController alloc] init]];
+	
+	tabBarController = [[RSTabBarViewController alloc] init];
+	tabBarController.viewControllers = @[firstViewController, secondViewController, thirdViewController, forthViewController, fifthViewController];
+	[rootViewController setViewControllers:@[tabBarController] animated:animated];
+	tabBarController.selectedIndex = 0;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

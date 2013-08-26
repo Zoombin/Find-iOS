@@ -1,34 +1,33 @@
 //
-//  FDSecondViewController.m
+//  FDThirdViewController.m
 //  find
 //
 //  Created by zhangbin on 8/26/13.
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "FDSecondViewController.h"
+#import "FDThirdViewController.h"
 
-@interface FDSecondViewController ()
+@interface FDThirdViewController ()
 
 @end
 
-@implementation FDSecondViewController
+@implementation FDThirdViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		self.title = @"Second";
-		//		[self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabAccountActive"] withFinishedUnselectedImage:[UIImage imageNamed:@"tabAccount"]];
+		self.title = @"Third";
+        // Custom initialization
     }
     return self;
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning

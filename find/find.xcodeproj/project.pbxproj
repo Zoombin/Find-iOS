@@ -23,6 +23,14 @@
 		77A5F7CA17CB22960073E7F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A617CB22960073E7F9 /* UIKit.framework */; };
 		77A5F7D217CB22960073E7F9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77A5F7D017CB22960073E7F9 /* InfoPlist.strings */; };
 		77A5F7D417CB22960073E7F9 /* findTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7D317CB22960073E7F9 /* findTests.m */; };
+		77A5F7E517CB2AB00073E7F9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 77A5F7DF17CB2AB00073E7F9 /* LICENSE */; };
+		77A5F7E617CB2AB00073E7F9 /* RSTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7E117CB2AB00073E7F9 /* RSTabBar.m */; };
+		77A5F7E717CB2AB00073E7F9 /* RSTabBarController.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 77A5F7E217CB2AB00073E7F9 /* RSTabBarController.podspec */; };
+		77A5F7E817CB2AB00073E7F9 /* RSTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7E417CB2AB00073E7F9 /* RSTabBarViewController.m */; };
+		77A5F7EE17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7ED17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m */; };
+		77A5F7F117CB2F410073E7F9 /* FDThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F017CB2F410073E7F9 /* FDThirdViewController.m */; };
+		77A5F7F417CB2F760073E7F9 /* FDForthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F317CB2F760073E7F9 /* FDForthViewController.m */; };
+		77A5F7F717CB30400073E7F9 /* FDFifthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F617CB30400073E7F9 /* FDFifthViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +66,20 @@
 		77A5F7CF17CB22960073E7F9 /* findTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "findTests-Info.plist"; sourceTree = "<group>"; };
 		77A5F7D117CB22960073E7F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		77A5F7D317CB22960073E7F9 /* findTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = findTests.m; sourceTree = "<group>"; };
+		77A5F7DF17CB2AB00073E7F9 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		77A5F7E017CB2AB00073E7F9 /* RSTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTabBar.h; sourceTree = "<group>"; };
+		77A5F7E117CB2AB00073E7F9 /* RSTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTabBar.m; sourceTree = "<group>"; };
+		77A5F7E217CB2AB00073E7F9 /* RSTabBarController.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RSTabBarController.podspec; sourceTree = "<group>"; };
+		77A5F7E317CB2AB00073E7F9 /* RSTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTabBarViewController.h; sourceTree = "<group>"; };
+		77A5F7E417CB2AB00073E7F9 /* RSTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTabBarViewController.m; sourceTree = "<group>"; };
+		77A5F7EC17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FDAppDelegate+Appearance.h"; sourceTree = "<group>"; };
+		77A5F7ED17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FDAppDelegate+Appearance.m"; sourceTree = "<group>"; };
+		77A5F7EF17CB2F410073E7F9 /* FDThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDThirdViewController.h; sourceTree = "<group>"; };
+		77A5F7F017CB2F410073E7F9 /* FDThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDThirdViewController.m; sourceTree = "<group>"; };
+		77A5F7F217CB2F760073E7F9 /* FDForthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDForthViewController.h; sourceTree = "<group>"; };
+		77A5F7F317CB2F760073E7F9 /* FDForthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDForthViewController.m; sourceTree = "<group>"; };
+		77A5F7F517CB30400073E7F9 /* FDFifthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDFifthViewController.h; sourceTree = "<group>"; };
+		77A5F7F617CB30400073E7F9 /* FDFifthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDFifthViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				77A5F7A817CB22960073E7F9 /* find */,
+				77A5F7DD17CB2AB00073E7F9 /* Libraries */,
 				77A5F7CD17CB22960073E7F9 /* findTests */,
 				77A5F7A117CB22960073E7F9 /* Frameworks */,
 				77A5F7A017CB22960073E7F9 /* Products */,
@@ -117,14 +140,22 @@
 		77A5F7A817CB22960073E7F9 /* find */ = {
 			isa = PBXGroup;
 			children = (
-				77A5F7B117CB22960073E7F9 /* FDAppDelegate.h */,
-				77A5F7B217CB22960073E7F9 /* FDAppDelegate.m */,
 				77A5F7B417CB22960073E7F9 /* Main_iPhone.storyboard */,
 				77A5F7B717CB22960073E7F9 /* Main_iPad.storyboard */,
+				77A5F7B117CB22960073E7F9 /* FDAppDelegate.h */,
+				77A5F7B217CB22960073E7F9 /* FDAppDelegate.m */,
+				77A5F7EC17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.h */,
+				77A5F7ED17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m */,
 				77A5F7BA17CB22960073E7F9 /* FDFirstViewController.h */,
 				77A5F7BB17CB22960073E7F9 /* FDFirstViewController.m */,
 				77A5F7BD17CB22960073E7F9 /* FDSecondViewController.h */,
 				77A5F7BE17CB22960073E7F9 /* FDSecondViewController.m */,
+				77A5F7EF17CB2F410073E7F9 /* FDThirdViewController.h */,
+				77A5F7F017CB2F410073E7F9 /* FDThirdViewController.m */,
+				77A5F7F217CB2F760073E7F9 /* FDForthViewController.h */,
+				77A5F7F317CB2F760073E7F9 /* FDForthViewController.m */,
+				77A5F7F517CB30400073E7F9 /* FDFifthViewController.h */,
+				77A5F7F617CB30400073E7F9 /* FDFifthViewController.m */,
 				77A5F7C017CB22960073E7F9 /* Images.xcassets */,
 				77A5F7A917CB22960073E7F9 /* Supporting Files */,
 			);
@@ -158,6 +189,27 @@
 				77A5F7D017CB22960073E7F9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		77A5F7DD17CB2AB00073E7F9 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				77A5F7DE17CB2AB00073E7F9 /* RSTabBarController */,
+			);
+			path = Libraries;
+			sourceTree = SOURCE_ROOT;
+		};
+		77A5F7DE17CB2AB00073E7F9 /* RSTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				77A5F7DF17CB2AB00073E7F9 /* LICENSE */,
+				77A5F7E017CB2AB00073E7F9 /* RSTabBar.h */,
+				77A5F7E117CB2AB00073E7F9 /* RSTabBar.m */,
+				77A5F7E217CB2AB00073E7F9 /* RSTabBarController.podspec */,
+				77A5F7E317CB2AB00073E7F9 /* RSTabBarViewController.h */,
+				77A5F7E417CB2AB00073E7F9 /* RSTabBarViewController.m */,
+			);
+			path = RSTabBarController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,9 +293,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				77A5F7B917CB22960073E7F9 /* Main_iPad.storyboard in Resources */,
+				77A5F7E717CB2AB00073E7F9 /* RSTabBarController.podspec in Resources */,
 				77A5F7C117CB22960073E7F9 /* Images.xcassets in Resources */,
 				77A5F7B617CB22960073E7F9 /* Main_iPhone.storyboard in Resources */,
 				77A5F7AD17CB22960073E7F9 /* InfoPlist.strings in Resources */,
+				77A5F7E517CB2AB00073E7F9 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,9 +317,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				77A5F7BF17CB22960073E7F9 /* FDSecondViewController.m in Sources */,
+				77A5F7F417CB2F760073E7F9 /* FDForthViewController.m in Sources */,
 				77A5F7BC17CB22960073E7F9 /* FDFirstViewController.m in Sources */,
+				77A5F7EE17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m in Sources */,
+				77A5F7F717CB30400073E7F9 /* FDFifthViewController.m in Sources */,
 				77A5F7B317CB22960073E7F9 /* FDAppDelegate.m in Sources */,
 				77A5F7AF17CB22960073E7F9 /* main.m in Sources */,
+				77A5F7E617CB2AB00073E7F9 /* RSTabBar.m in Sources */,
+				77A5F7F117CB2F410073E7F9 /* FDThirdViewController.m in Sources */,
+				77A5F7E817CB2AB00073E7F9 /* RSTabBarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
