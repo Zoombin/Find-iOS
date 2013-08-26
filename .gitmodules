@@ -1,0 +1,3 @@
+[submodule "find/Libraries"]
+	path = find/Libraries
+	url = https://qq30135878@github.com/b051/RSTabBarController.git
