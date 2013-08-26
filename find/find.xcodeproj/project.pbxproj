@@ -13,8 +13,6 @@
 		77A5F7AD17CB22960073E7F9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77A5F7AB17CB22960073E7F9 /* InfoPlist.strings */; };
 		77A5F7AF17CB22960073E7F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7AE17CB22960073E7F9 /* main.m */; };
 		77A5F7B317CB22960073E7F9 /* FDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7B217CB22960073E7F9 /* FDAppDelegate.m */; };
-		77A5F7B617CB22960073E7F9 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77A5F7B417CB22960073E7F9 /* Main_iPhone.storyboard */; };
-		77A5F7B917CB22960073E7F9 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77A5F7B717CB22960073E7F9 /* Main_iPad.storyboard */; };
 		77A5F7BC17CB22960073E7F9 /* FDFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7BB17CB22960073E7F9 /* FDFirstViewController.m */; };
 		77A5F7BF17CB22960073E7F9 /* FDSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7BE17CB22960073E7F9 /* FDSecondViewController.m */; };
 		77A5F7C117CB22960073E7F9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77A5F7C017CB22960073E7F9 /* Images.xcassets */; };
@@ -54,8 +52,6 @@
 		77A5F7B017CB22960073E7F9 /* find-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "find-Prefix.pch"; sourceTree = "<group>"; };
 		77A5F7B117CB22960073E7F9 /* FDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FDAppDelegate.h; sourceTree = "<group>"; };
 		77A5F7B217CB22960073E7F9 /* FDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FDAppDelegate.m; sourceTree = "<group>"; };
-		77A5F7B517CB22960073E7F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		77A5F7B817CB22960073E7F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		77A5F7BA17CB22960073E7F9 /* FDFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FDFirstViewController.h; sourceTree = "<group>"; };
 		77A5F7BB17CB22960073E7F9 /* FDFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FDFirstViewController.m; sourceTree = "<group>"; };
 		77A5F7BD17CB22960073E7F9 /* FDSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FDSecondViewController.h; sourceTree = "<group>"; };
@@ -140,8 +136,6 @@
 		77A5F7A817CB22960073E7F9 /* find */ = {
 			isa = PBXGroup;
 			children = (
-				77A5F7B417CB22960073E7F9 /* Main_iPhone.storyboard */,
-				77A5F7B717CB22960073E7F9 /* Main_iPad.storyboard */,
 				77A5F7B117CB22960073E7F9 /* FDAppDelegate.h */,
 				77A5F7B217CB22960073E7F9 /* FDAppDelegate.m */,
 				77A5F7EC17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.h */,
@@ -292,10 +286,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77A5F7B917CB22960073E7F9 /* Main_iPad.storyboard in Resources */,
 				77A5F7E717CB2AB00073E7F9 /* RSTabBarController.podspec in Resources */,
 				77A5F7C117CB22960073E7F9 /* Images.xcassets in Resources */,
-				77A5F7B617CB22960073E7F9 /* Main_iPhone.storyboard in Resources */,
 				77A5F7AD17CB22960073E7F9 /* InfoPlist.strings in Resources */,
 				77A5F7E517CB2AB00073E7F9 /* LICENSE in Resources */,
 			);
@@ -354,22 +346,6 @@
 				77A5F7AC17CB22960073E7F9 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		77A5F7B417CB22960073E7F9 /* Main_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				77A5F7B517CB22960073E7F9 /* Base */,
-			);
-			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		77A5F7B717CB22960073E7F9 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				77A5F7B817CB22960073E7F9 /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		77A5F7D017CB22960073E7F9 /* InfoPlist.strings */ = {
