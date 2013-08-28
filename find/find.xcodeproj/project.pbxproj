@@ -48,6 +48,7 @@
 		77C0C8C917CDD4B8008C7FC7 /* UIDevice+ZBUtilites.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8BE17CDD4B8008C7FC7 /* UIDevice+ZBUtilites.m */; };
 		77C0C8CA17CDD4B8008C7FC7 /* ZBTextValidate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8C017CDD4B8008C7FC7 /* ZBTextValidate.m */; };
 		77C0C8CB17CDD4B8008C7FC7 /* ZBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8C217CDD4B8008C7FC7 /* ZBViewController.m */; };
+		77C0C8D917CDDBA8008C7FC7 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8D717CDDBA8008C7FC7 /* GTMBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,9 @@
 		77C0C8C017CDD4B8008C7FC7 /* ZBTextValidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBTextValidate.m; sourceTree = "<group>"; };
 		77C0C8C117CDD4B8008C7FC7 /* ZBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBViewController.h; sourceTree = "<group>"; };
 		77C0C8C217CDD4B8008C7FC7 /* ZBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBViewController.m; sourceTree = "<group>"; };
+		77C0C8D617CDDBA8008C7FC7 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		77C0C8D717CDDBA8008C7FC7 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		77C0C8D817CDDBA8008C7FC7 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +249,7 @@
 		77A5F7DD17CB2AB00073E7F9 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				77C0C8D517CDDBA8008C7FC7 /* GTMBase64 */,
 				77C0C8B217CDD4B8008C7FC7 /* ZBUtilities */,
 				77C0C89117CDBA8F008C7FC7 /* AFNetworking */,
 				77A5F7DE17CB2AB00073E7F9 /* RSTabBarController */,
@@ -313,6 +318,17 @@
 				77C0C8C217CDD4B8008C7FC7 /* ZBViewController.m */,
 			);
 			path = ZBUtilities;
+			sourceTree = "<group>";
+		};
+		77C0C8D517CDDBA8008C7FC7 /* GTMBase64 */ = {
+			isa = PBXGroup;
+			children = (
+				77C0C8D617CDDBA8008C7FC7 /* GTMBase64.h */,
+				77C0C8D717CDDBA8008C7FC7 /* GTMBase64.m */,
+				77C0C8D817CDDBA8008C7FC7 /* GTMDefines.h */,
+			);
+			name = GTMBase64;
+			path = GTMBase64/GTMBase64;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -444,6 +460,7 @@
 				77A5F7F117CB2F410073E7F9 /* FDThirdViewController.m in Sources */,
 				77C0C8A517CDBA8F008C7FC7 /* AFHTTPClient.m in Sources */,
 				77A5F7E817CB2AB00073E7F9 /* RSTabBarViewController.m in Sources */,
+				77C0C8D917CDDBA8008C7FC7 /* GTMBase64.m in Sources */,
 				77C0C8A917CDBA8F008C7FC7 /* AFNetworkActivityIndicatorManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
