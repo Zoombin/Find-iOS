@@ -81,9 +81,6 @@
 	}
 	
 	return jsonString;
-	
-    //NSString *json = [dic JSONString];
-    //return json;
 }
 
 @end

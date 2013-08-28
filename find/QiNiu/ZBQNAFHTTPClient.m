@@ -35,6 +35,13 @@ static NSString *_token;
     return _instance;
 }
 
+- (void)uploadData:(NSData *)data name:(NSString *)name completionBlockWithSuccess:(dispatch_block_t)success
+{
+	[self uploadData:data name:name progressBlock:nil completionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+		if (success) success();
+	} failure:nil];
+}
+
 - (void)uploadData:(NSData *)data name:(NSString *)name progressBlock:(void (^)(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite))progress completionBlockWithSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
 	NSMutableURLRequest *request = [_instance multipartFormRequestWithMethod:@"POST" path:nil parameters:@{@"token" : _token, @"key" : name} constructingBodyWithBlock: ^(id <AFMultipartFormData>formData) {
@@ -53,13 +60,6 @@ static NSString *_token;
 		if (failure) failure(operation, error);
 	}];
 	[_instance enqueueHTTPRequestOperation:operation];
-}
-
-- (void)uploadData:(NSData *)data name:(NSString *)name completionBlockWithSuccess:(dispatch_block_t)success
-{
-	[self uploadData:data name:name progressBlock:nil completionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-		if (success) success();
-	} failure:nil];
 }
 
 @end
