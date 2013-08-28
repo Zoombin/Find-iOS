@@ -39,6 +39,7 @@
 		77C0C8AB17CDBA8F008C7FC7 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8A017CDBA8F008C7FC7 /* AFURLConnectionOperation.m */; };
 		77C0C8AC17CDBA8F008C7FC7 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8A217CDBA8F008C7FC7 /* AFXMLRequestOperation.m */; };
 		77C0C8AD17CDBA8F008C7FC7 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8A417CDBA8F008C7FC7 /* UIImageView+AFNetworking.m */; };
+		77C0C8B117CDBB2C008C7FC7 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8B017CDBB2C008C7FC7 /* Base64.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,8 @@
 		77C0C8A217CDBA8F008C7FC7 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		77C0C8A317CDBA8F008C7FC7 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		77C0C8A417CDBA8F008C7FC7 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		77C0C8AF17CDBB2C008C7FC7 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		77C0C8B017CDBB2C008C7FC7 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +223,7 @@
 		77A5F7DD17CB2AB00073E7F9 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				77C0C8AE17CDBB2C008C7FC7 /* Base64 */,
 				77C0C89117CDBA8F008C7FC7 /* AFNetworking */,
 				77A5F7DE17CB2AB00073E7F9 /* RSTabBarController */,
 			);
@@ -264,6 +268,16 @@
 			);
 			name = AFNetworking;
 			path = AFNetworking/AFNetworking;
+			sourceTree = "<group>";
+		};
+		77C0C8AE17CDBB2C008C7FC7 /* Base64 */ = {
+			isa = PBXGroup;
+			children = (
+				77C0C8AF17CDBB2C008C7FC7 /* Base64.h */,
+				77C0C8B017CDBB2C008C7FC7 /* Base64.m */,
+			);
+			name = Base64;
+			path = Base64/Base64;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -384,6 +398,7 @@
 				77C0C8AA17CDBA8F008C7FC7 /* AFPropertyListRequestOperation.m in Sources */,
 				77C0C8A817CDBA8F008C7FC7 /* AFJSONRequestOperation.m in Sources */,
 				77A5F7F117CB2F410073E7F9 /* FDThirdViewController.m in Sources */,
+				77C0C8B117CDBB2C008C7FC7 /* Base64.m in Sources */,
 				77C0C8A517CDBA8F008C7FC7 /* AFHTTPClient.m in Sources */,
 				77A5F7E817CB2AB00073E7F9 /* RSTabBarViewController.m in Sources */,
 				77C0C8A917CDBA8F008C7FC7 /* AFNetworkActivityIndicatorManager.m in Sources */,
