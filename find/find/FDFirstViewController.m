@@ -32,7 +32,7 @@
 	[button setTitle:@"submit" forState:UIControlStateNormal];
 	[button setBackgroundColor:[UIColor greenColor]];
 	[button addTarget:self action:@selector(sumbit) forControlEvents:UIControlEventTouchUpInside];
-	button.frame = CGRectMake(0, 0, 100, 100);
+	button.frame = CGRectMake(0, 100, 100, 100);
 	[self.view addSubview:button];
 }
 
@@ -40,14 +40,6 @@
 {
 	NSString *fileName = @"3.jpg";
 	NSData *imageData = UIImageJPEGRepresentation([UIImage imageNamed:fileName], 1);
-	
-//	[[ZBQNAFHTTPClient shared] uploadData:imageData name:fileName progressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite){
-//		NSLog(@"bytesWritten: %d, totalBytesWritten:%lld totalBytesExpectedToWrite:%lld", bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
-//	} completionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//		NSLog(@"upload successful");
-//	} failure:^(AFHTTPRequestOperation *operation, NSError *error){
-//		NSLog(@"upload failed");
-//	}];
 	
 	[[ZBQNAFHTTPClient shared] uploadData:imageData name:fileName completionBlockWithSuccess:^(void) {
 		NSLog(@"success");

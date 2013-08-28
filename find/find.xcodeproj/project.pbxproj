@@ -160,6 +160,7 @@
 		77C0C90717CDEAE2008C7FC7 /* 10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.jpg; sourceTree = "<group>"; };
 		77C0C90817CDEAE2008C7FC7 /* 11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 11.jpg; sourceTree = "<group>"; };
 		77C0C90917CDEAE2008C7FC7 /* 12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 12.jpg; sourceTree = "<group>"; };
+		77C0C91717CDF4DF008C7FC7 /* SIPP.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SIPP.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +247,7 @@
 		77A5F7A917CB22960073E7F9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				77C0C91617CDF4A8008C7FC7 /* TestLocations */,
 				77C0C8E117CDEA3F008C7FC7 /* TestPhotos */,
 				77A5F7AA17CB22960073E7F9 /* find-Info.plist */,
 				77A5F7AB17CB22960073E7F9 /* InfoPlist.strings */,
@@ -383,6 +385,14 @@
 				77C0C90917CDEAE2008C7FC7 /* 12.jpg */,
 			);
 			path = TestPhotos;
+			sourceTree = SOURCE_ROOT;
+		};
+		77C0C91617CDF4A8008C7FC7 /* TestLocations */ = {
+			isa = PBXGroup;
+			children = (
+				77C0C91717CDF4DF008C7FC7 /* SIPP.gpx */,
+			);
+			path = TestLocations;
 			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
