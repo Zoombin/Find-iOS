@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define APP_DELEGATE ( (FDAppDelegate *)[[UIApplication sharedApplication] delegate] )
+
 @interface FDAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
