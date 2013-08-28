@@ -40,6 +40,15 @@
 		77C0C8AC17CDBA8F008C7FC7 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8A217CDBA8F008C7FC7 /* AFXMLRequestOperation.m */; };
 		77C0C8AD17CDBA8F008C7FC7 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8A417CDBA8F008C7FC7 /* UIImageView+AFNetworking.m */; };
 		77C0C8B117CDBB2C008C7FC7 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8B017CDBB2C008C7FC7 /* Base64.m */; };
+		77C0C8C317CDD4B8008C7FC7 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C8B317CDD4B8008C7FC7 /* .gitignore */; };
+		77C0C8C417CDD4B8008C7FC7 /* AppDelegate+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8B517CDD4B8008C7FC7 /* AppDelegate+Setup.m */; };
+		77C0C8C517CDD4B8008C7FC7 /* NSString+BundleExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8B717CDD4B8008C7FC7 /* NSString+BundleExtensions.m */; };
+		77C0C8C617CDD4B8008C7FC7 /* NSString+ZBUtilites.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8B917CDD4B8008C7FC7 /* NSString+ZBUtilites.m */; };
+		77C0C8C717CDD4B8008C7FC7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C8BA17CDD4B8008C7FC7 /* README.md */; };
+		77C0C8C817CDD4B8008C7FC7 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8BC17CDD4B8008C7FC7 /* UIColor+Hex.m */; };
+		77C0C8C917CDD4B8008C7FC7 /* UIDevice+ZBUtilites.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8BE17CDD4B8008C7FC7 /* UIDevice+ZBUtilites.m */; };
+		77C0C8CA17CDD4B8008C7FC7 /* ZBTextValidate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8C017CDD4B8008C7FC7 /* ZBTextValidate.m */; };
+		77C0C8CB17CDD4B8008C7FC7 /* ZBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8C217CDD4B8008C7FC7 /* ZBViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +118,22 @@
 		77C0C8A417CDBA8F008C7FC7 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		77C0C8AF17CDBB2C008C7FC7 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		77C0C8B017CDBB2C008C7FC7 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		77C0C8B317CDD4B8008C7FC7 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		77C0C8B417CDD4B8008C7FC7 /* AppDelegate+Setup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Setup.h"; sourceTree = "<group>"; };
+		77C0C8B517CDD4B8008C7FC7 /* AppDelegate+Setup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Setup.m"; sourceTree = "<group>"; };
+		77C0C8B617CDD4B8008C7FC7 /* NSString+BundleExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BundleExtensions.h"; sourceTree = "<group>"; };
+		77C0C8B717CDD4B8008C7FC7 /* NSString+BundleExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BundleExtensions.m"; sourceTree = "<group>"; };
+		77C0C8B817CDD4B8008C7FC7 /* NSString+ZBUtilites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ZBUtilites.h"; sourceTree = "<group>"; };
+		77C0C8B917CDD4B8008C7FC7 /* NSString+ZBUtilites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZBUtilites.m"; sourceTree = "<group>"; };
+		77C0C8BA17CDD4B8008C7FC7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		77C0C8BB17CDD4B8008C7FC7 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		77C0C8BC17CDD4B8008C7FC7 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		77C0C8BD17CDD4B8008C7FC7 /* UIDevice+ZBUtilites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+ZBUtilites.h"; sourceTree = "<group>"; };
+		77C0C8BE17CDD4B8008C7FC7 /* UIDevice+ZBUtilites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+ZBUtilites.m"; sourceTree = "<group>"; };
+		77C0C8BF17CDD4B8008C7FC7 /* ZBTextValidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBTextValidate.h; sourceTree = "<group>"; };
+		77C0C8C017CDD4B8008C7FC7 /* ZBTextValidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBTextValidate.m; sourceTree = "<group>"; };
+		77C0C8C117CDD4B8008C7FC7 /* ZBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBViewController.h; sourceTree = "<group>"; };
+		77C0C8C217CDD4B8008C7FC7 /* ZBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +248,7 @@
 		77A5F7DD17CB2AB00073E7F9 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				77C0C8B217CDD4B8008C7FC7 /* ZBUtilities */,
 				77C0C8AE17CDBB2C008C7FC7 /* Base64 */,
 				77C0C89117CDBA8F008C7FC7 /* AFNetworking */,
 				77A5F7DE17CB2AB00073E7F9 /* RSTabBarController */,
@@ -278,6 +304,29 @@
 			);
 			name = Base64;
 			path = Base64/Base64;
+			sourceTree = "<group>";
+		};
+		77C0C8B217CDD4B8008C7FC7 /* ZBUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				77C0C8B317CDD4B8008C7FC7 /* .gitignore */,
+				77C0C8B417CDD4B8008C7FC7 /* AppDelegate+Setup.h */,
+				77C0C8B517CDD4B8008C7FC7 /* AppDelegate+Setup.m */,
+				77C0C8B617CDD4B8008C7FC7 /* NSString+BundleExtensions.h */,
+				77C0C8B717CDD4B8008C7FC7 /* NSString+BundleExtensions.m */,
+				77C0C8B817CDD4B8008C7FC7 /* NSString+ZBUtilites.h */,
+				77C0C8B917CDD4B8008C7FC7 /* NSString+ZBUtilites.m */,
+				77C0C8BA17CDD4B8008C7FC7 /* README.md */,
+				77C0C8BB17CDD4B8008C7FC7 /* UIColor+Hex.h */,
+				77C0C8BC17CDD4B8008C7FC7 /* UIColor+Hex.m */,
+				77C0C8BD17CDD4B8008C7FC7 /* UIDevice+ZBUtilites.h */,
+				77C0C8BE17CDD4B8008C7FC7 /* UIDevice+ZBUtilites.m */,
+				77C0C8BF17CDD4B8008C7FC7 /* ZBTextValidate.h */,
+				77C0C8C017CDD4B8008C7FC7 /* ZBTextValidate.m */,
+				77C0C8C117CDD4B8008C7FC7 /* ZBViewController.h */,
+				77C0C8C217CDD4B8008C7FC7 /* ZBViewController.m */,
+			);
+			path = ZBUtilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,6 +409,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77C0C8C717CDD4B8008C7FC7 /* README.md in Resources */,
+				77C0C8C317CDD4B8008C7FC7 /* .gitignore in Resources */,
 				77A5F7E717CB2AB00073E7F9 /* RSTabBarController.podspec in Resources */,
 				77A5F7C117CB22960073E7F9 /* Images.xcassets in Resources */,
 				77A5F7AD17CB22960073E7F9 /* InfoPlist.strings in Resources */,
@@ -390,12 +441,19 @@
 				77A5F7F717CB30400073E7F9 /* FDFifthViewController.m in Sources */,
 				77A5F7B317CB22960073E7F9 /* FDAppDelegate.m in Sources */,
 				77A5F7AF17CB22960073E7F9 /* main.m in Sources */,
+				77C0C8C617CDD4B8008C7FC7 /* NSString+ZBUtilites.m in Sources */,
+				77C0C8CB17CDD4B8008C7FC7 /* ZBViewController.m in Sources */,
+				77C0C8C917CDD4B8008C7FC7 /* UIDevice+ZBUtilites.m in Sources */,
 				77A5F7E617CB2AB00073E7F9 /* RSTabBar.m in Sources */,
 				77C0C8AD17CDBA8F008C7FC7 /* UIImageView+AFNetworking.m in Sources */,
+				77C0C8CA17CDD4B8008C7FC7 /* ZBTextValidate.m in Sources */,
+				77C0C8C417CDD4B8008C7FC7 /* AppDelegate+Setup.m in Sources */,
 				77C0C8AB17CDBA8F008C7FC7 /* AFURLConnectionOperation.m in Sources */,
+				77C0C8C817CDD4B8008C7FC7 /* UIColor+Hex.m in Sources */,
 				77C0C8AC17CDBA8F008C7FC7 /* AFXMLRequestOperation.m in Sources */,
 				77C0C8A717CDBA8F008C7FC7 /* AFImageRequestOperation.m in Sources */,
 				77C0C8AA17CDBA8F008C7FC7 /* AFPropertyListRequestOperation.m in Sources */,
+				77C0C8C517CDD4B8008C7FC7 /* NSString+BundleExtensions.m in Sources */,
 				77C0C8A817CDBA8F008C7FC7 /* AFJSONRequestOperation.m in Sources */,
 				77A5F7F117CB2F410073E7F9 /* FDThirdViewController.m in Sources */,
 				77C0C8B117CDBB2C008C7FC7 /* Base64.m in Sources */,
