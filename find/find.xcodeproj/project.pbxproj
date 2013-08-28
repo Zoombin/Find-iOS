@@ -39,8 +39,6 @@
 		77C0C8AB17CDBA8F008C7FC7 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8A017CDBA8F008C7FC7 /* AFURLConnectionOperation.m */; };
 		77C0C8AC17CDBA8F008C7FC7 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8A217CDBA8F008C7FC7 /* AFXMLRequestOperation.m */; };
 		77C0C8AD17CDBA8F008C7FC7 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8A417CDBA8F008C7FC7 /* UIImageView+AFNetworking.m */; };
-		77C0C8C317CDD4B8008C7FC7 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C8B317CDD4B8008C7FC7 /* .gitignore */; };
-		77C0C8C417CDD4B8008C7FC7 /* AppDelegate+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8B517CDD4B8008C7FC7 /* AppDelegate+Setup.m */; };
 		77C0C8C517CDD4B8008C7FC7 /* NSString+BundleExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8B717CDD4B8008C7FC7 /* NSString+BundleExtensions.m */; };
 		77C0C8C617CDD4B8008C7FC7 /* NSString+ZBUtilites.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8B917CDD4B8008C7FC7 /* NSString+ZBUtilites.m */; };
 		77C0C8C717CDD4B8008C7FC7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C8BA17CDD4B8008C7FC7 /* README.md */; };
@@ -116,9 +114,6 @@
 		77C0C8A217CDBA8F008C7FC7 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		77C0C8A317CDBA8F008C7FC7 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		77C0C8A417CDBA8F008C7FC7 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
-		77C0C8B317CDD4B8008C7FC7 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		77C0C8B417CDD4B8008C7FC7 /* AppDelegate+Setup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Setup.h"; sourceTree = "<group>"; };
-		77C0C8B517CDD4B8008C7FC7 /* AppDelegate+Setup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Setup.m"; sourceTree = "<group>"; };
 		77C0C8B617CDD4B8008C7FC7 /* NSString+BundleExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BundleExtensions.h"; sourceTree = "<group>"; };
 		77C0C8B717CDD4B8008C7FC7 /* NSString+BundleExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BundleExtensions.m"; sourceTree = "<group>"; };
 		77C0C8B817CDD4B8008C7FC7 /* NSString+ZBUtilites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ZBUtilites.h"; sourceTree = "<group>"; };
@@ -300,9 +295,6 @@
 		77C0C8B217CDD4B8008C7FC7 /* ZBUtilities */ = {
 			isa = PBXGroup;
 			children = (
-				77C0C8B317CDD4B8008C7FC7 /* .gitignore */,
-				77C0C8B417CDD4B8008C7FC7 /* AppDelegate+Setup.h */,
-				77C0C8B517CDD4B8008C7FC7 /* AppDelegate+Setup.m */,
 				77C0C8B617CDD4B8008C7FC7 /* NSString+BundleExtensions.h */,
 				77C0C8B717CDD4B8008C7FC7 /* NSString+BundleExtensions.m */,
 				77C0C8B817CDD4B8008C7FC7 /* NSString+ZBUtilites.h */,
@@ -412,7 +404,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				77C0C8C717CDD4B8008C7FC7 /* README.md in Resources */,
-				77C0C8C317CDD4B8008C7FC7 /* .gitignore in Resources */,
 				77A5F7E717CB2AB00073E7F9 /* RSTabBarController.podspec in Resources */,
 				77A5F7C117CB22960073E7F9 /* Images.xcassets in Resources */,
 				77A5F7AD17CB22960073E7F9 /* InfoPlist.strings in Resources */,
@@ -449,7 +440,6 @@
 				77A5F7E617CB2AB00073E7F9 /* RSTabBar.m in Sources */,
 				77C0C8AD17CDBA8F008C7FC7 /* UIImageView+AFNetworking.m in Sources */,
 				77C0C8CA17CDD4B8008C7FC7 /* ZBTextValidate.m in Sources */,
-				77C0C8C417CDD4B8008C7FC7 /* AppDelegate+Setup.m in Sources */,
 				77C0C8AB17CDBA8F008C7FC7 /* AFURLConnectionOperation.m in Sources */,
 				77C0C8C817CDD4B8008C7FC7 /* UIColor+Hex.m in Sources */,
 				77C0C8AC17CDBA8F008C7FC7 /* AFXMLRequestOperation.m in Sources */,
