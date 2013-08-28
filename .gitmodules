@@ -4,9 +4,6 @@
 [submodule "find/Libraries/AFNetworking"]
 	path = find/Libraries/AFNetworking
 	url = https://qq30135878@github.com/qq30135878/AFNetworking.git
-[submodule "find/Libraries/Base64"]
-	path = find/Libraries/Base64
-	url = https://qq30135878@github.com/nicklockwood/Base64.git
 [submodule "find/Libraries/ZBUtilities"]
 	path = find/Libraries/ZBUtilities
 	url = https://qq30135878@github.com/qq30135878/ZBUtilities.git
