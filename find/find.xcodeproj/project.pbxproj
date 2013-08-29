@@ -64,6 +64,8 @@
 		77C0C91D17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C91C17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m */; };
 		77C0C92617CED779008C7FC7 /* CLLocation+NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C92517CED779008C7FC7 /* CLLocation+NSString.m */; };
 		77C0C92A17CEE60C008C7FC7 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C92917CEE60C008C7FC7 /* MBProgressHUD.m */; };
+		77C0C92F17CEF57F008C7FC7 /* MBProgressHUD+Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C92C17CEF57E008C7FC7 /* MBProgressHUD+Appearance.m */; };
+		77C0C93017CEF57F008C7FC7 /* UIViewController+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C92E17CEF57E008C7FC7 /* UIViewController+HUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +173,10 @@
 		77C0C92517CED779008C7FC7 /* CLLocation+NSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+NSString.m"; sourceTree = "<group>"; };
 		77C0C92817CEE60C008C7FC7 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		77C0C92917CEE60C008C7FC7 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
+		77C0C92B17CEF57E008C7FC7 /* MBProgressHUD+Appearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Appearance.h"; sourceTree = "<group>"; };
+		77C0C92C17CEF57E008C7FC7 /* MBProgressHUD+Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Appearance.m"; sourceTree = "<group>"; };
+		77C0C92D17CEF57E008C7FC7 /* UIViewController+HUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HUD.h"; sourceTree = "<group>"; };
+		77C0C92E17CEF57E008C7FC7 /* UIViewController+HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HUD.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,6 +347,10 @@
 		77C0C8B217CDD4B8008C7FC7 /* ZBUtilities */ = {
 			isa = PBXGroup;
 			children = (
+				77C0C92B17CEF57E008C7FC7 /* MBProgressHUD+Appearance.h */,
+				77C0C92C17CEF57E008C7FC7 /* MBProgressHUD+Appearance.m */,
+				77C0C92D17CEF57E008C7FC7 /* UIViewController+HUD.h */,
+				77C0C92E17CEF57E008C7FC7 /* UIViewController+HUD.m */,
 				77C0C92417CED779008C7FC7 /* CLLocation+NSString.h */,
 				77C0C92517CED779008C7FC7 /* CLLocation+NSString.m */,
 				77C0C8B617CDD4B8008C7FC7 /* NSString+BundleExtensions.h */,
@@ -549,6 +559,7 @@
 				77A5F7F417CB2F760073E7F9 /* FDForthViewController.m in Sources */,
 				77A5F7BC17CB22960073E7F9 /* FDFirstViewController.m in Sources */,
 				77A5F7EE17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m in Sources */,
+				77C0C93017CEF57F008C7FC7 /* UIViewController+HUD.m in Sources */,
 				77A5F7F717CB30400073E7F9 /* FDFifthViewController.m in Sources */,
 				77A5F7B317CB22960073E7F9 /* FDAppDelegate.m in Sources */,
 				77A5F7AF17CB22960073E7F9 /* main.m in Sources */,
@@ -564,6 +575,7 @@
 				77C0C8AB17CDBA8F008C7FC7 /* AFURLConnectionOperation.m in Sources */,
 				77C0C8C817CDD4B8008C7FC7 /* UIColor+Hex.m in Sources */,
 				77C0C8AC17CDBA8F008C7FC7 /* AFXMLRequestOperation.m in Sources */,
+				77C0C92F17CEF57F008C7FC7 /* MBProgressHUD+Appearance.m in Sources */,
 				77C0C8A717CDBA8F008C7FC7 /* AFImageRequestOperation.m in Sources */,
 				77C0C92A17CEE60C008C7FC7 /* MBProgressHUD.m in Sources */,
 				77C0C8AA17CDBA8F008C7FC7 /* AFPropertyListRequestOperation.m in Sources */,
