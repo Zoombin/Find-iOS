@@ -61,6 +61,7 @@
 		77C0C91317CDEAE2008C7FC7 /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C90717CDEAE2008C7FC7 /* 10.jpg */; };
 		77C0C91417CDEAE2008C7FC7 /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C90817CDEAE2008C7FC7 /* 11.jpg */; };
 		77C0C91517CDEAE2008C7FC7 /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C90917CDEAE2008C7FC7 /* 12.jpg */; };
+		77C0C91D17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C91C17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +162,9 @@
 		77C0C90817CDEAE2008C7FC7 /* 11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 11.jpg; sourceTree = "<group>"; };
 		77C0C90917CDEAE2008C7FC7 /* 12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 12.jpg; sourceTree = "<group>"; };
 		77C0C91717CDF4DF008C7FC7 /* SIPP.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SIPP.gpx; sourceTree = "<group>"; };
+		77C0C91B17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDTestPhotoUploadViewController.h; path = Test/FDTestPhotoUploadViewController.h; sourceTree = "<group>"; };
+		77C0C91C17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDTestPhotoUploadViewController.m; path = Test/FDTestPhotoUploadViewController.m; sourceTree = "<group>"; };
+		77C0C91E17CE1A51008C7FC7 /* FDTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDTest.h; path = Test/FDTest.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +195,7 @@
 		77A5F79617CB22960073E7F9 = {
 			isa = PBXGroup;
 			children = (
+				77C0C91A17CE1966008C7FC7 /* Test */,
 				77C0C8DA17CDDE1A008C7FC7 /* QiNiu */,
 				77A5F7A817CB22960073E7F9 /* find */,
 				77A5F7DD17CB2AB00073E7F9 /* Libraries */,
@@ -395,6 +400,16 @@
 			path = TestLocations;
 			sourceTree = SOURCE_ROOT;
 		};
+		77C0C91A17CE1966008C7FC7 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				77C0C91B17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.h */,
+				77C0C91C17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m */,
+				77C0C91E17CE1A51008C7FC7 /* FDTest.h */,
+			);
+			name = Test;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -512,6 +527,7 @@
 			files = (
 				77C0C8A617CDBA8F008C7FC7 /* AFHTTPRequestOperation.m in Sources */,
 				77A5F7BF17CB22960073E7F9 /* FDSecondViewController.m in Sources */,
+				77C0C91D17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m in Sources */,
 				77A5F7F417CB2F760073E7F9 /* FDForthViewController.m in Sources */,
 				77A5F7BC17CB22960073E7F9 /* FDFirstViewController.m in Sources */,
 				77A5F7EE17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m in Sources */,

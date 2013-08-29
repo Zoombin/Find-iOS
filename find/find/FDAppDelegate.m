@@ -38,7 +38,11 @@
 - (void)showMainViewAnimated:(BOOL)animated
 {
 	UINavigationController *firstViewController = [[UINavigationController alloc] initWithRootViewController:[[FDFirstViewController alloc] init]];
+#ifdef FDDEBUG
+	UINavigationController *secondViewController = [[UINavigationController alloc] initWithRootViewController:[[FDTestPhotoUploadViewController alloc] init]];
+#else
 	UINavigationController *secondViewController = [[UINavigationController alloc] initWithRootViewController:[[FDSecondViewController alloc] init]];
+#endif
 	UINavigationController *thirdViewController = [[UINavigationController alloc] initWithRootViewController:[[FDThirdViewController alloc] init]];
 	UINavigationController *forthViewController = [[UINavigationController alloc] initWithRootViewController:[[FDForthViewController alloc] init]];
 	UINavigationController *fifthViewController = [[UINavigationController alloc] initWithRootViewController:[[FDFifthViewController alloc] init]];

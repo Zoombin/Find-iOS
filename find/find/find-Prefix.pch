@@ -11,10 +11,16 @@
 #endif
 
 #ifdef __OBJC__
-	#import <UIKit/UIKit.h>
-	#import <Foundation/Foundation.h>
 
-	#import "ZBQNAFHTTPClient.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "ZBQNAFHTTPClient.h"
+
+//TEST
+#import "FDTest.h"
+
+
+#define FDDEBUG 1
 
 
 #endif
