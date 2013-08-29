@@ -20,6 +20,7 @@
 	CLLocation *trueLocation;
 	
 	UILabel *trueLocationLabel;
+	UILabel *distanceLabel;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -47,10 +48,10 @@
 	CGSize fullSize = self.view.bounds.size;
 	
 	CGFloat margin = 10;
-	CGFloat startY = 0;
+	CGFloat startY = 64;
 	CGFloat height = 30;
 	
-	trueLocationLabel = [[UILabel alloc] initWithFrame:CGRectMake(margin, 0, fullSize.width, height)];
+	trueLocationLabel = [[UILabel alloc] initWithFrame:CGRectMake(margin, startY, fullSize.width, height)];
 	trueLocationLabel.text = @"True Location";
 	trueLocationLabel.adjustsFontSizeToFitWidth = YES;
 	[self.view addSubview:trueLocationLabel];
@@ -120,6 +121,20 @@
 	randomIn10000meters.tag = 10000;
 	[randomIn10000meters addTarget:self action:@selector(randomLocation:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:randomIn10000meters];
+	
+	startY = CGRectGetMaxY(randomIn10000meters.frame) + margin;
+	
+	distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(margin, startY, fullSize.width - 2 * margin, height)];
+	distanceLabel.adjustsFontSizeToFitWidth = YES;
+	distanceLabel.text = [NSString stringWithFormat:@"distance between true and fake is: %f", [fakeLocation distanceFromLocation:trueLocation]];
+	[self.view addSubview:distanceLabel];
+	
+	fakeLat += 1;
+	fakeLon += 1;
+	CLLocation *testLocation = [[CLLocation alloc] initWithLatitude:fakeLat longitude:fakeLon];
+	NSLog(@"distance: %f", [testLocation distanceFromLocation:fakeLocation]);
+	
+	//10556616015
 }
 
 - (void)randomLocation:(UIButton *)sender
@@ -140,7 +155,9 @@
 {
 	if (locations.count) {
 		trueLocation = [locations lastObject];
-		trueLocationLabel.text = [trueLocation localizedCoordinateString];
+		trueLocationLabel.text = [NSString stringWithFormat:@"True Location: %@", [trueLocation localizedCoordinateString]];
+		distanceLabel.text = [NSString stringWithFormat:@"distance between true and fake is: %f", [fakeLocation distanceFromLocation:trueLocation]];
+		[manager stopUpdatingLocation];
 	}
 }
 

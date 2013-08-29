@@ -63,6 +63,7 @@
 		77C0C91517CDEAE2008C7FC7 /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C90917CDEAE2008C7FC7 /* 12.jpg */; };
 		77C0C91D17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C91C17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m */; };
 		77C0C92617CED779008C7FC7 /* CLLocation+NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C92517CED779008C7FC7 /* CLLocation+NSString.m */; };
+		77C0C92A17CEE60C008C7FC7 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C92917CEE60C008C7FC7 /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +169,8 @@
 		77C0C91E17CE1A51008C7FC7 /* FDTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDTest.h; path = Test/FDTest.h; sourceTree = "<group>"; };
 		77C0C92417CED779008C7FC7 /* CLLocation+NSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+NSString.h"; sourceTree = "<group>"; };
 		77C0C92517CED779008C7FC7 /* CLLocation+NSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+NSString.m"; sourceTree = "<group>"; };
+		77C0C92817CEE60C008C7FC7 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
+		77C0C92917CEE60C008C7FC7 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +289,7 @@
 		77A5F7DD17CB2AB00073E7F9 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				77C0C92717CEE600008C7FC7 /* MBProgressHUD */,
 				77C0C8D517CDDBA8008C7FC7 /* GTMBase64 */,
 				77C0C8B217CDD4B8008C7FC7 /* ZBUtilities */,
 				77C0C89117CDBA8F008C7FC7 /* AFNetworking */,
@@ -413,6 +417,15 @@
 				77C0C91E17CE1A51008C7FC7 /* FDTest.h */,
 			);
 			name = Test;
+			sourceTree = "<group>";
+		};
+		77C0C92717CEE600008C7FC7 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				77C0C92817CEE60C008C7FC7 /* MBProgressHUD.h */,
+				77C0C92917CEE60C008C7FC7 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -552,6 +565,7 @@
 				77C0C8C817CDD4B8008C7FC7 /* UIColor+Hex.m in Sources */,
 				77C0C8AC17CDBA8F008C7FC7 /* AFXMLRequestOperation.m in Sources */,
 				77C0C8A717CDBA8F008C7FC7 /* AFImageRequestOperation.m in Sources */,
+				77C0C92A17CEE60C008C7FC7 /* MBProgressHUD.m in Sources */,
 				77C0C8AA17CDBA8F008C7FC7 /* AFPropertyListRequestOperation.m in Sources */,
 				77C0C8C517CDD4B8008C7FC7 /* NSString+BundleExtensions.m in Sources */,
 				77C0C8A817CDBA8F008C7FC7 /* AFJSONRequestOperation.m in Sources */,
