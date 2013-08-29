@@ -140,7 +140,7 @@
 {
 	if (locations.count) {
 		trueLocation = [locations lastObject];
-		trueLocationLabel.text = trueLocation.description;
+		trueLocationLabel.text = [trueLocation localizedCoordinateString];
 	}
 }
 

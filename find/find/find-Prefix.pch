@@ -15,6 +15,7 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "ZBQNAFHTTPClient.h"
+#import "CLLocation+NSString.h"
 
 //TEST
 #import "FDTest.h"
