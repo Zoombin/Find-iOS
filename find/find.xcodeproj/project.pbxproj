@@ -49,18 +49,6 @@
 		77C0C8D917CDDBA8008C7FC7 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8D717CDDBA8008C7FC7 /* GTMBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		77C0C8DD17CDDE6A008C7FC7 /* ZBQNPutPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8DC17CDDE6A008C7FC7 /* ZBQNPutPolicy.m */; };
 		77C0C8E017CDE32C008C7FC7 /* ZBQNAFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8DF17CDE32C008C7FC7 /* ZBQNAFHTTPClient.m */; };
-		77C0C90A17CDEAE2008C7FC7 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C8FE17CDEAE2008C7FC7 /* 1.jpg */; };
-		77C0C90B17CDEAE2008C7FC7 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C8FF17CDEAE2008C7FC7 /* 2.jpg */; };
-		77C0C90C17CDEAE2008C7FC7 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C90017CDEAE2008C7FC7 /* 3.jpg */; };
-		77C0C90D17CDEAE2008C7FC7 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C90117CDEAE2008C7FC7 /* 4.jpg */; };
-		77C0C90E17CDEAE2008C7FC7 /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C90217CDEAE2008C7FC7 /* 5.jpg */; };
-		77C0C90F17CDEAE2008C7FC7 /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C90317CDEAE2008C7FC7 /* 6.jpg */; };
-		77C0C91017CDEAE2008C7FC7 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C90417CDEAE2008C7FC7 /* 7.jpg */; };
-		77C0C91117CDEAE2008C7FC7 /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C90517CDEAE2008C7FC7 /* 8.jpg */; };
-		77C0C91217CDEAE2008C7FC7 /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C90617CDEAE2008C7FC7 /* 9.jpg */; };
-		77C0C91317CDEAE2008C7FC7 /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C90717CDEAE2008C7FC7 /* 10.jpg */; };
-		77C0C91417CDEAE2008C7FC7 /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C90817CDEAE2008C7FC7 /* 11.jpg */; };
-		77C0C91517CDEAE2008C7FC7 /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C90917CDEAE2008C7FC7 /* 12.jpg */; };
 		77C0C91D17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C91C17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m */; };
 		77C0C92A17CEE60C008C7FC7 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C92917CEE60C008C7FC7 /* MBProgressHUD.m */; };
 		77C0C92F17CEF57F008C7FC7 /* MBProgressHUD+Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C92C17CEF57E008C7FC7 /* MBProgressHUD+Appearance.m */; };
@@ -80,6 +68,9 @@
 		77C0C95F17D18148008C7FC7 /* PSTGridLayoutItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C95017D18148008C7FC7 /* PSTGridLayoutItem.m */; };
 		77C0C96017D18148008C7FC7 /* PSTGridLayoutRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C95217D18148008C7FC7 /* PSTGridLayoutRow.m */; };
 		77C0C96117D18148008C7FC7 /* PSTGridLayoutSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C95417D18148008C7FC7 /* PSTGridLayoutSection.m */; };
+		77C0C96417D18D7C008C7FC7 /* FDPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */; };
+		77C0C96717D198F6008C7FC7 /* FDPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C96617D198F6008C7FC7 /* FDPhoto.m */; };
+		77C0C96A17D19B43008C7FC7 /* FDPhoto+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C96917D19B43008C7FC7 /* FDPhoto+Test.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,18 +158,6 @@
 		77C0C8DC17CDDE6A008C7FC7 /* ZBQNPutPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZBQNPutPolicy.m; path = QiNiu/ZBQNPutPolicy.m; sourceTree = "<group>"; };
 		77C0C8DE17CDE32C008C7FC7 /* ZBQNAFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZBQNAFHTTPClient.h; path = QiNiu/ZBQNAFHTTPClient.h; sourceTree = "<group>"; };
 		77C0C8DF17CDE32C008C7FC7 /* ZBQNAFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZBQNAFHTTPClient.m; path = QiNiu/ZBQNAFHTTPClient.m; sourceTree = "<group>"; };
-		77C0C8FE17CDEAE2008C7FC7 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
-		77C0C8FF17CDEAE2008C7FC7 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
-		77C0C90017CDEAE2008C7FC7 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
-		77C0C90117CDEAE2008C7FC7 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
-		77C0C90217CDEAE2008C7FC7 /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
-		77C0C90317CDEAE2008C7FC7 /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
-		77C0C90417CDEAE2008C7FC7 /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
-		77C0C90517CDEAE2008C7FC7 /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
-		77C0C90617CDEAE2008C7FC7 /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.jpg; sourceTree = "<group>"; };
-		77C0C90717CDEAE2008C7FC7 /* 10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.jpg; sourceTree = "<group>"; };
-		77C0C90817CDEAE2008C7FC7 /* 11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 11.jpg; sourceTree = "<group>"; };
-		77C0C90917CDEAE2008C7FC7 /* 12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 12.jpg; sourceTree = "<group>"; };
 		77C0C91717CDF4DF008C7FC7 /* SIPP.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SIPP.gpx; sourceTree = "<group>"; };
 		77C0C91B17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDTestPhotoUploadViewController.h; path = Test/FDTestPhotoUploadViewController.h; sourceTree = "<group>"; };
 		77C0C91C17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDTestPhotoUploadViewController.m; path = Test/FDTestPhotoUploadViewController.m; sourceTree = "<group>"; };
@@ -221,6 +200,12 @@
 		77C0C95217D18148008C7FC7 /* PSTGridLayoutRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutRow.m; sourceTree = "<group>"; };
 		77C0C95317D18148008C7FC7 /* PSTGridLayoutSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutSection.h; sourceTree = "<group>"; };
 		77C0C95417D18148008C7FC7 /* PSTGridLayoutSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutSection.m; sourceTree = "<group>"; };
+		77C0C96217D18D7C008C7FC7 /* FDPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDPhotoCell.h; sourceTree = "<group>"; };
+		77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPhotoCell.m; sourceTree = "<group>"; };
+		77C0C96517D198F6008C7FC7 /* FDPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDPhoto.h; sourceTree = "<group>"; };
+		77C0C96617D198F6008C7FC7 /* FDPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPhoto.m; sourceTree = "<group>"; };
+		77C0C96817D19B43008C7FC7 /* FDPhoto+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FDPhoto+Test.h"; path = "find/FDPhoto+Test.h"; sourceTree = "<group>"; };
+		77C0C96917D19B43008C7FC7 /* FDPhoto+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FDPhoto+Test.m"; path = "find/FDPhoto+Test.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +285,10 @@
 				77A5F7F317CB2F760073E7F9 /* FDForthViewController.m */,
 				77A5F7F517CB30400073E7F9 /* FDFifthViewController.h */,
 				77A5F7F617CB30400073E7F9 /* FDFifthViewController.m */,
+				77C0C96217D18D7C008C7FC7 /* FDPhotoCell.h */,
+				77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */,
+				77C0C96517D198F6008C7FC7 /* FDPhoto.h */,
+				77C0C96617D198F6008C7FC7 /* FDPhoto.m */,
 				77A5F7C017CB22960073E7F9 /* Images.xcassets */,
 				77A5F7A917CB22960073E7F9 /* Supporting Files */,
 			);
@@ -310,7 +299,6 @@
 			isa = PBXGroup;
 			children = (
 				77C0C91617CDF4A8008C7FC7 /* TestLocations */,
-				77C0C8E117CDEA3F008C7FC7 /* TestPhotos */,
 				77A5F7AA17CB22960073E7F9 /* find-Info.plist */,
 				77A5F7AB17CB22960073E7F9 /* InfoPlist.strings */,
 				77A5F7AE17CB22960073E7F9 /* main.m */,
@@ -436,25 +424,6 @@
 			name = QiNiu;
 			sourceTree = "<group>";
 		};
-		77C0C8E117CDEA3F008C7FC7 /* TestPhotos */ = {
-			isa = PBXGroup;
-			children = (
-				77C0C8FE17CDEAE2008C7FC7 /* 1.jpg */,
-				77C0C8FF17CDEAE2008C7FC7 /* 2.jpg */,
-				77C0C90017CDEAE2008C7FC7 /* 3.jpg */,
-				77C0C90117CDEAE2008C7FC7 /* 4.jpg */,
-				77C0C90217CDEAE2008C7FC7 /* 5.jpg */,
-				77C0C90317CDEAE2008C7FC7 /* 6.jpg */,
-				77C0C90417CDEAE2008C7FC7 /* 7.jpg */,
-				77C0C90517CDEAE2008C7FC7 /* 8.jpg */,
-				77C0C90617CDEAE2008C7FC7 /* 9.jpg */,
-				77C0C90717CDEAE2008C7FC7 /* 10.jpg */,
-				77C0C90817CDEAE2008C7FC7 /* 11.jpg */,
-				77C0C90917CDEAE2008C7FC7 /* 12.jpg */,
-			);
-			path = TestPhotos;
-			sourceTree = SOURCE_ROOT;
-		};
 		77C0C91617CDF4A8008C7FC7 /* TestLocations */ = {
 			isa = PBXGroup;
 			children = (
@@ -466,9 +435,11 @@
 		77C0C91A17CE1966008C7FC7 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				77C0C91E17CE1A51008C7FC7 /* FDTest.h */,
 				77C0C91B17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.h */,
 				77C0C91C17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m */,
-				77C0C91E17CE1A51008C7FC7 /* FDTest.h */,
+				77C0C96817D19B43008C7FC7 /* FDPhoto+Test.h */,
+				77C0C96917D19B43008C7FC7 /* FDPhoto+Test.m */,
 			);
 			name = Test;
 			sourceTree = "<group>";
@@ -609,23 +580,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77C0C90F17CDEAE2008C7FC7 /* 6.jpg in Resources */,
 				77C0C8C717CDD4B8008C7FC7 /* README.md in Resources */,
-				77C0C91517CDEAE2008C7FC7 /* 12.jpg in Resources */,
-				77C0C90E17CDEAE2008C7FC7 /* 5.jpg in Resources */,
-				77C0C91017CDEAE2008C7FC7 /* 7.jpg in Resources */,
 				77A5F7E717CB2AB00073E7F9 /* RSTabBarController.podspec in Resources */,
-				77C0C91117CDEAE2008C7FC7 /* 8.jpg in Resources */,
-				77C0C90B17CDEAE2008C7FC7 /* 2.jpg in Resources */,
-				77C0C91417CDEAE2008C7FC7 /* 11.jpg in Resources */,
 				77A5F7C117CB22960073E7F9 /* Images.xcassets in Resources */,
-				77C0C90A17CDEAE2008C7FC7 /* 1.jpg in Resources */,
-				77C0C91217CDEAE2008C7FC7 /* 9.jpg in Resources */,
-				77C0C91317CDEAE2008C7FC7 /* 10.jpg in Resources */,
 				77A5F7AD17CB22960073E7F9 /* InfoPlist.strings in Resources */,
-				77C0C90D17CDEAE2008C7FC7 /* 4.jpg in Resources */,
 				77A5F7E517CB2AB00073E7F9 /* LICENSE in Resources */,
-				77C0C90C17CDEAE2008C7FC7 /* 3.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,8 +647,11 @@
 				77A5F7E817CB2AB00073E7F9 /* RSTabBarViewController.m in Sources */,
 				77C0C8D917CDDBA8008C7FC7 /* GTMBase64.m in Sources */,
 				77C0C95A17D18148008C7FC7 /* PSTCollectionViewFlowLayout.m in Sources */,
+				77C0C96717D198F6008C7FC7 /* FDPhoto.m in Sources */,
+				77C0C96417D18D7C008C7FC7 /* FDPhotoCell.m in Sources */,
 				77C0C8A917CDBA8F008C7FC7 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				77C0C95817D18148008C7FC7 /* PSTCollectionViewController.m in Sources */,
+				77C0C96A17D19B43008C7FC7 /* FDPhoto+Test.m in Sources */,
 				77C0C95517D18148008C7FC7 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
