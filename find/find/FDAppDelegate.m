@@ -8,7 +8,7 @@
 
 #import "FDAppDelegate.h"
 #import "RSTabBarViewController.h"
-#import "FDFirstViewController.h"
+#import "FDNearbyViewController.h"
 #import "FDSecondViewController.h"
 #import "FDThirdViewController.h"
 #import "FDForthViewController.h"
@@ -37,7 +37,7 @@
 
 - (void)showMainViewAnimated:(BOOL)animated
 {
-	UINavigationController *firstViewController = [[UINavigationController alloc] initWithRootViewController:[[FDFirstViewController alloc] init]];
+	UINavigationController *nearbyViewController = [[UINavigationController alloc] initWithRootViewController:[[FDNearbyViewController alloc] init]];
 #ifdef FDDEBUG
 	UINavigationController *secondViewController = [[UINavigationController alloc] initWithRootViewController:[[FDTestPhotoUploadViewController alloc] init]];
 #else
@@ -48,7 +48,7 @@
 	UINavigationController *fifthViewController = [[UINavigationController alloc] initWithRootViewController:[[FDFifthViewController alloc] init]];
 	
 	tabBarController = [[RSTabBarViewController alloc] init];
-	tabBarController.viewControllers = @[firstViewController, secondViewController, thirdViewController, forthViewController, fifthViewController];
+	tabBarController.viewControllers = @[nearbyViewController, secondViewController, thirdViewController, forthViewController, fifthViewController];
 	[rootViewController setViewControllers:@[tabBarController] animated:animated];
 	tabBarController.selectedIndex = 0;
 }

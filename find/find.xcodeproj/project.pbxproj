@@ -13,7 +13,7 @@
 		77A5F7AD17CB22960073E7F9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77A5F7AB17CB22960073E7F9 /* InfoPlist.strings */; };
 		77A5F7AF17CB22960073E7F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7AE17CB22960073E7F9 /* main.m */; };
 		77A5F7B317CB22960073E7F9 /* FDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7B217CB22960073E7F9 /* FDAppDelegate.m */; };
-		77A5F7BC17CB22960073E7F9 /* FDFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7BB17CB22960073E7F9 /* FDFirstViewController.m */; };
+		77A5F7BC17CB22960073E7F9 /* FDNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7BB17CB22960073E7F9 /* FDNearbyViewController.m */; };
 		77A5F7BF17CB22960073E7F9 /* FDSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7BE17CB22960073E7F9 /* FDSecondViewController.m */; };
 		77A5F7C117CB22960073E7F9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77A5F7C017CB22960073E7F9 /* Images.xcassets */; };
 		77A5F7C817CB22960073E7F9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7C717CB22960073E7F9 /* XCTest.framework */; };
@@ -103,8 +103,8 @@
 		77A5F7B017CB22960073E7F9 /* find-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "find-Prefix.pch"; sourceTree = "<group>"; };
 		77A5F7B117CB22960073E7F9 /* FDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FDAppDelegate.h; sourceTree = "<group>"; };
 		77A5F7B217CB22960073E7F9 /* FDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FDAppDelegate.m; sourceTree = "<group>"; };
-		77A5F7BA17CB22960073E7F9 /* FDFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FDFirstViewController.h; sourceTree = "<group>"; };
-		77A5F7BB17CB22960073E7F9 /* FDFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FDFirstViewController.m; sourceTree = "<group>"; };
+		77A5F7BA17CB22960073E7F9 /* FDNearbyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FDNearbyViewController.h; sourceTree = "<group>"; };
+		77A5F7BB17CB22960073E7F9 /* FDNearbyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FDNearbyViewController.m; sourceTree = "<group>"; };
 		77A5F7BD17CB22960073E7F9 /* FDSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FDSecondViewController.h; sourceTree = "<group>"; };
 		77A5F7BE17CB22960073E7F9 /* FDSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FDSecondViewController.m; sourceTree = "<group>"; };
 		77A5F7C017CB22960073E7F9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -290,8 +290,8 @@
 				77A5F7B217CB22960073E7F9 /* FDAppDelegate.m */,
 				77A5F7EC17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.h */,
 				77A5F7ED17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m */,
-				77A5F7BA17CB22960073E7F9 /* FDFirstViewController.h */,
-				77A5F7BB17CB22960073E7F9 /* FDFirstViewController.m */,
+				77A5F7BA17CB22960073E7F9 /* FDNearbyViewController.h */,
+				77A5F7BB17CB22960073E7F9 /* FDNearbyViewController.m */,
 				77A5F7BD17CB22960073E7F9 /* FDSecondViewController.h */,
 				77A5F7BE17CB22960073E7F9 /* FDSecondViewController.m */,
 				77A5F7EF17CB2F410073E7F9 /* FDThirdViewController.h */,
@@ -651,7 +651,7 @@
 				77C0C91D17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m in Sources */,
 				77A5F7F417CB2F760073E7F9 /* FDForthViewController.m in Sources */,
 				77C0C95717D18148008C7FC7 /* PSTCollectionViewCell.m in Sources */,
-				77A5F7BC17CB22960073E7F9 /* FDFirstViewController.m in Sources */,
+				77A5F7BC17CB22960073E7F9 /* FDNearbyViewController.m in Sources */,
 				77A5F7EE17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m in Sources */,
 				77C0C93017CEF57F008C7FC7 /* UIViewController+HUD.m in Sources */,
 				77A5F7F717CB30400073E7F9 /* FDFifthViewController.m in Sources */,

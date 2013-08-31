@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "FDFirstViewController.h"
+#import "FDNearbyViewController.h"
 
-@interface FDFirstViewController ()
+@interface FDNearbyViewController ()
 
 @end
 
-@implementation FDFirstViewController
+@implementation FDNearbyViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
