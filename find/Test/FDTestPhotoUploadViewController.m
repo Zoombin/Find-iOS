@@ -19,6 +19,9 @@
 	CLLocation *fakeLocation;
 	CLLocation *trueLocation;
 	
+	UITextField *fakeLatField;
+	UITextField *fakeLonField;
+	
 	UILabel *trueLocationLabel;
 	UILabel *distanceLabel;
 }
@@ -35,15 +38,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	self.view.backgroundColor = [UIColor whiteColor];
 	
-	locationManager = [[CLLocationManager alloc] init];
-	locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-	[locationManager startUpdatingLocation];
+	//locationManager = [[CLLocationManager alloc] init];
+	//locationManager.delegate = self;
+    //locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+	//[locationManager startUpdatingLocation];
 	
-	CLLocationDegrees fakeLat = 31.298026;
-	CLLocationDegrees fakeLon = 120.666564;
-	fakeLocation = [[CLLocation alloc] initWithLatitude:fakeLat longitude:fakeLon];
+	CLLocationDegrees baseLat = 31.298026;
+	CLLocationDegrees baseLon = 120.666564;
+	trueLocation = [[CLLocation alloc] initWithLatitude:baseLat longitude:baseLon];
+	fakeLocation = [[CLLocation alloc] initWithLatitude:baseLat longitude:baseLon];
 	
 	CGSize fullSize = self.view.bounds.size;
 	
@@ -52,11 +57,11 @@
 	CGFloat height = 30;
 	
 	trueLocationLabel = [[UILabel alloc] initWithFrame:CGRectMake(margin, startY, fullSize.width, height)];
-	trueLocationLabel.text = @"True Location";
+	trueLocationLabel.text = @"Base Location";
 	trueLocationLabel.adjustsFontSizeToFitWidth = YES;
 	[self.view addSubview:trueLocationLabel];
 	
-	startY = CGRectGetMaxY(trueLocationLabel.frame) + margin;
+	startY = CGRectGetMaxY(trueLocationLabel.frame);
 	
 	UILabel *fakeLocationLabel = [[UILabel alloc] initWithFrame:CGRectMake(margin, startY, fullSize.width, height)];
 	fakeLocationLabel.text = @"Fake Location:";
@@ -64,83 +69,181 @@
 	
 	startY = CGRectGetMaxY(fakeLocationLabel.frame);
 	
-	UILabel *latLabel = [[UILabel alloc] initWithFrame:CGRectMake(margin, startY, 40, height)];
-	latLabel.text = @"lat:";
-	[self.view addSubview:latLabel];
+	UILabel *fakeLatLabel = [[UILabel alloc] initWithFrame:CGRectMake(margin, startY, 40, height)];
+	fakeLatLabel.text = @"lat:";
+	[self.view addSubview:fakeLatLabel];
 	
-	UITextField *latField = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(latLabel.frame), startY, 200, height)];
-	latField.backgroundColor = [UIColor grayColor];
-	latField.placeholder = @"lat";
-	latField.text = [@(fakeLocation.coordinate.latitude) stringValue];
-	[self.view addSubview:latField];
+	fakeLatField = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(fakeLatLabel.frame), startY, 200, height)];
+	fakeLatField.backgroundColor = [UIColor grayColor];
+	fakeLatField.placeholder = @"lat";
+	[self.view addSubview:fakeLatField];
 	
-	startY = CGRectGetMaxY(latLabel.frame) + margin;
+	startY = CGRectGetMaxY(fakeLatLabel.frame) + margin;
 	
-	UILabel *lonLabel = [[UILabel alloc] initWithFrame:CGRectMake(margin, startY, 40, height)];
-	lonLabel.text = @"log:";
-	[self.view addSubview:lonLabel];
+	UILabel *fakeLonLabel = [[UILabel alloc] initWithFrame:CGRectMake(margin, startY, 40, height)];
+	fakeLonLabel.text = @"log:";
+	[self.view addSubview:fakeLonLabel];
 	
-	UITextField *lonField = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(lonLabel.frame), startY, 200, height)];
-	lonField.backgroundColor = [UIColor grayColor];
-	lonField.placeholder = @"log";
-	lonField.text = [@(fakeLocation.coordinate.longitude) stringValue];
-	[self.view addSubview:lonField];
+	fakeLonField = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(fakeLonLabel.frame), startY, 200, height)];
+	fakeLonField.backgroundColor = [UIColor grayColor];
+	fakeLonField.placeholder = @"log";
+	[self.view addSubview:fakeLonField];
 	
-	startY = CGRectGetMaxY(lonField.frame) + margin;
+	startY = CGRectGetMaxY(fakeLonField.frame) + margin;
+	
+	CGFloat locationButtonWidth = fullSize.width - 2 * margin;
 	
 	UIButton *sameWithTrueLocation = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	[sameWithTrueLocation setTitle:@"sameWithTrueLocation" forState:UIControlStateNormal];
-	sameWithTrueLocation.frame = CGRectMake(margin, startY, fullSize.width - 2 * margin, height);
+	sameWithTrueLocation.frame = CGRectMake(margin, startY, locationButtonWidth, height);
 	sameWithTrueLocation.tag = 0;
+	[sameWithTrueLocation setBackgroundColor:[UIColor yellowColor]];
 	[sameWithTrueLocation addTarget:self action:@selector(randomLocation:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:sameWithTrueLocation];
 	
 	startY = CGRectGetMaxY(sameWithTrueLocation.frame) + margin;
 	
-	UIButton *randomIn500meters = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	[randomIn500meters setTitle:@"randomIn500meters" forState:UIControlStateNormal];
-	randomIn500meters.frame = CGRectMake(margin, startY, fullSize.width - 2 * margin, height);
-	randomIn500meters.tag = 500;
-	[randomIn500meters addTarget:self action:@selector(randomLocation:) forControlEvents:UIControlEventTouchUpInside];
-	[self.view addSubview:randomIn500meters];
+	UIButton *random100meters = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[random100meters setTitle:@"near 100 meters" forState:UIControlStateNormal];
+	random100meters.frame = CGRectMake(margin, startY, locationButtonWidth, height);
+	random100meters.tag = 100;
+	[random100meters setBackgroundColor:[UIColor greenColor]];
+	[random100meters addTarget:self action:@selector(randomLocation:) forControlEvents:UIControlEventTouchUpInside];
+	[self.view addSubview:random100meters];
 	
-	startY = CGRectGetMaxY(randomIn500meters.frame) + margin;
+	startY = CGRectGetMaxY(random100meters.frame) + margin;
 	
-	UIButton *randomIn1000meters = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	[randomIn1000meters setTitle:@"randomIn1000meters" forState:UIControlStateNormal];
-	randomIn1000meters.frame = CGRectMake(margin, startY, fullSize.width - 2 * margin, height);
-	randomIn1000meters.tag = 1000;
-	[randomIn1000meters addTarget:self action:@selector(randomLocation:) forControlEvents:UIControlEventTouchUpInside];
-	[self.view addSubview:randomIn1000meters];
+	UIButton *random1000meters = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[random1000meters setTitle:@"near 1000 meters" forState:UIControlStateNormal];
+	random1000meters.frame = CGRectMake(margin, startY, locationButtonWidth, height);
+	random1000meters.tag = 1000;
+	[random1000meters setBackgroundColor:[UIColor blueColor]];
+	[random1000meters addTarget:self action:@selector(randomLocation:) forControlEvents:UIControlEventTouchUpInside];
+	[self.view addSubview:random1000meters];
 	
-	startY = CGRectGetMaxY(randomIn1000meters.frame) + margin;
+	startY = CGRectGetMaxY(random1000meters.frame) + margin;
 	
-	UIButton *randomIn10000meters = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	[randomIn10000meters setTitle:@"randomIn10000meters" forState:UIControlStateNormal];
-	randomIn10000meters.frame = CGRectMake(margin, startY, fullSize.width - 2 * margin, height);
-	randomIn10000meters.tag = 10000;
-	[randomIn10000meters addTarget:self action:@selector(randomLocation:) forControlEvents:UIControlEventTouchUpInside];
-	[self.view addSubview:randomIn10000meters];
+	UIButton *random10000meters = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[random10000meters setTitle:@"near 10000 meters" forState:UIControlStateNormal];
+	random10000meters.frame = CGRectMake(margin, startY, locationButtonWidth, height);
+	random10000meters.tag = 10000;
+	[random10000meters setBackgroundColor:[UIColor redColor]];
+	[random10000meters addTarget:self action:@selector(randomLocation:) forControlEvents:UIControlEventTouchUpInside];
+	[self.view addSubview:random10000meters];
 	
-	startY = CGRectGetMaxY(randomIn10000meters.frame) + margin;
+	startY = CGRectGetMaxY(random10000meters.frame);
 	
 	distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(margin, startY, fullSize.width - 2 * margin, height)];
 	distanceLabel.adjustsFontSizeToFitWidth = YES;
-	distanceLabel.text = [NSString stringWithFormat:@"distance between true and fake is: %f", [fakeLocation distanceFromLocation:trueLocation]];
+	distanceLabel.text = [NSString stringWithFormat:@"distance between base and fake is: %f", [fakeLocation distanceFromLocation:trueLocation]];
 	[self.view addSubview:distanceLabel];
 	
-	fakeLat += 1;
-	fakeLon += 1;
-	CLLocation *testLocation = [[CLLocation alloc] initWithLatitude:fakeLat longitude:fakeLon];
-	NSLog(@"distance: %f", [testLocation distanceFromLocation:fakeLocation]);
+	startY = CGRectGetMaxY(distanceLabel.frame) + margin;
 	
-	//10556616015
+	UIButton *uploadButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	[uploadButton setTitle:@"upload" forState:UIControlStateNormal];
+	uploadButton.frame = CGRectMake(margin, startY, 100, height);
+	[uploadButton setBackgroundColor:[UIColor blackColor]];
+	[uploadButton addTarget:self action:@selector(upload) forControlEvents:UIControlEventTouchUpInside];
+	[self.view addSubview:uploadButton];
+	
+	[self updateTrueLocation:trueLocation];
+	[self updateFakeLocation:fakeLocation];
+}
+
+- (void)upload
+{
+	UIImage *screenshot = [self captureView:self.view];
+	NSData *imageData = UIImageJPEGRepresentation(screenshot, 1);
+	
+	
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	[formatter setDateFormat:@"yyyy-MM-dd-hh-mm-ss"];
+	NSDate *now = [NSDate date];
+	
+	NSString *fileName = [NSString stringWithFormat:@"%@.jpg", [formatter stringFromDate:now]];
+	[self displayHUD:@"uploading..."];
+	[[ZBQNAFHTTPClient shared] uploadData:imageData name:fileName completionBlock:^(void) {
+		[self hideHUD:YES];
+	}];
+}
+
+- (UIImage *)captureView:(UIView *)view {
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+	
+    UIGraphicsBeginImageContext(screenRect.size);
+	
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    [[UIColor blackColor] set];
+    CGContextFillRect(ctx, screenRect);
+	
+    [view.layer renderInContext:ctx];
+	
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+	
+    UIGraphicsEndImageContext();
+	
+    return newImage;
 }
 
 - (void)randomLocation:(UIButton *)sender
 {
-	//CGFloat distance = (CGFloat)sender.tag;
-		
+	if (!trueLocation) {
+		NSLog(@"cant get current location");
+		return;
+	}
+	CGFloat distanceDesire = (CGFloat)sender.tag;
+	
+	CGFloat factor = 0;
+	
+	CGPoint point = CGPointZero;
+	if (distanceDesire == 0) {
+		point.x = 0;
+		point.y = 0;
+		factor = 0;
+	} else if (distanceDesire == 100) {
+		point.x = 0;
+		point.y = 100;
+		factor = 0.0001;
+	} else if (distanceDesire == 1000) {
+		point.x = 100;
+		point.y = 900;
+		factor = 0.001;
+	} else if (distanceDesire == 10000) {
+		point.x = 1000;
+		point.y = 9000;
+		factor = 0.01;
+	}
+	
+	CLLocationDegrees lat = trueLocation.coordinate.latitude;
+	CLLocationDegrees lon = trueLocation.coordinate.longitude;
+	
+	NSInteger random = arc4random() % 20 - 10;
+	if (random == 0) {
+		random = 1;
+	}
+	lat += factor * random;
+	lon += factor * random;
+	CLLocation *locationTry = [[CLLocation alloc] initWithLatitude:lat longitude:lon];
+	
+	[self updateFakeLocation:locationTry];
+}
+
+- (void)updateFakeLocation:(CLLocation *)location
+{
+	fakeLocation = location;
+	fakeLatField.text = [@(fakeLocation.coordinate.latitude) stringValue];
+	fakeLonField.text = [@(fakeLocation.coordinate.longitude) stringValue];
+	
+	distanceLabel.text = [NSString stringWithFormat:@"distance between true and fake is: %f", [fakeLocation distanceFromLocation:trueLocation]];
+	
+	self.view.backgroundColor = [UIColor randomColor];
+}
+
+- (void)updateTrueLocation:(CLLocation *)location
+{
+	trueLocation = location;
+	trueLocationLabel.text = [NSString stringWithFormat:@"Base Location: %@", [trueLocation coordinateString]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -155,8 +258,8 @@
 {
 	if (locations.count) {
 		trueLocation = [locations lastObject];
-		trueLocationLabel.text = [NSString stringWithFormat:@"True Location: %@", [trueLocation localizedCoordinateString]];
-		distanceLabel.text = [NSString stringWithFormat:@"distance between true and fake is: %f", [fakeLocation distanceFromLocation:trueLocation]];
+		[self updateTrueLocation:trueLocation];
+		[self updateFakeLocation:trueLocation];
 		[manager stopUpdatingLocation];
 	}
 }

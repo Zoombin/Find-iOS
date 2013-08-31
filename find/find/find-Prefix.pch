@@ -16,6 +16,9 @@
 #import <Foundation/Foundation.h>
 #import "ZBQNAFHTTPClient.h"
 #import "CLLocation+NSString.h"
+#import "UIViewController+HUD.h"
+#import "UIColor+Random.h"
+
 
 //TEST
 #import "FDTest.h"

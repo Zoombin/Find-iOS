@@ -62,10 +62,11 @@
 		77C0C91417CDEAE2008C7FC7 /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C90817CDEAE2008C7FC7 /* 11.jpg */; };
 		77C0C91517CDEAE2008C7FC7 /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77C0C90917CDEAE2008C7FC7 /* 12.jpg */; };
 		77C0C91D17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C91C17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m */; };
-		77C0C92617CED779008C7FC7 /* CLLocation+NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C92517CED779008C7FC7 /* CLLocation+NSString.m */; };
 		77C0C92A17CEE60C008C7FC7 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C92917CEE60C008C7FC7 /* MBProgressHUD.m */; };
 		77C0C92F17CEF57F008C7FC7 /* MBProgressHUD+Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C92C17CEF57E008C7FC7 /* MBProgressHUD+Appearance.m */; };
 		77C0C93017CEF57F008C7FC7 /* UIViewController+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C92E17CEF57E008C7FC7 /* UIViewController+HUD.m */; };
+		77C0C93417D172CA008C7FC7 /* CLLocation+NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C93317D172CA008C7FC7 /* CLLocation+NSString.m */; };
+		77C0C93717D17E8F008C7FC7 /* UIColor+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C93617D17E8F008C7FC7 /* UIColor+Random.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,14 +170,16 @@
 		77C0C91B17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDTestPhotoUploadViewController.h; path = Test/FDTestPhotoUploadViewController.h; sourceTree = "<group>"; };
 		77C0C91C17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDTestPhotoUploadViewController.m; path = Test/FDTestPhotoUploadViewController.m; sourceTree = "<group>"; };
 		77C0C91E17CE1A51008C7FC7 /* FDTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDTest.h; path = Test/FDTest.h; sourceTree = "<group>"; };
-		77C0C92417CED779008C7FC7 /* CLLocation+NSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+NSString.h"; sourceTree = "<group>"; };
-		77C0C92517CED779008C7FC7 /* CLLocation+NSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+NSString.m"; sourceTree = "<group>"; };
 		77C0C92817CEE60C008C7FC7 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		77C0C92917CEE60C008C7FC7 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		77C0C92B17CEF57E008C7FC7 /* MBProgressHUD+Appearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Appearance.h"; sourceTree = "<group>"; };
 		77C0C92C17CEF57E008C7FC7 /* MBProgressHUD+Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Appearance.m"; sourceTree = "<group>"; };
 		77C0C92D17CEF57E008C7FC7 /* UIViewController+HUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HUD.h"; sourceTree = "<group>"; };
 		77C0C92E17CEF57E008C7FC7 /* UIViewController+HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HUD.m"; sourceTree = "<group>"; };
+		77C0C93217D172CA008C7FC7 /* CLLocation+NSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CLLocation+NSString.h"; path = "find/CLLocation+NSString.h"; sourceTree = "<group>"; };
+		77C0C93317D172CA008C7FC7 /* CLLocation+NSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CLLocation+NSString.m"; path = "find/CLLocation+NSString.m"; sourceTree = "<group>"; };
+		77C0C93517D17E8F008C7FC7 /* UIColor+Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Random.h"; path = "find/UIColor+Random.h"; sourceTree = "<group>"; };
+		77C0C93617D17E8F008C7FC7 /* UIColor+Random.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Random.m"; path = "find/UIColor+Random.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +210,7 @@
 		77A5F79617CB22960073E7F9 = {
 			isa = PBXGroup;
 			children = (
+				77C0C93117D172C1008C7FC7 /* Categories */,
 				77C0C91A17CE1966008C7FC7 /* Test */,
 				77C0C8DA17CDDE1A008C7FC7 /* QiNiu */,
 				77A5F7A817CB22960073E7F9 /* find */,
@@ -351,8 +355,6 @@
 				77C0C92C17CEF57E008C7FC7 /* MBProgressHUD+Appearance.m */,
 				77C0C92D17CEF57E008C7FC7 /* UIViewController+HUD.h */,
 				77C0C92E17CEF57E008C7FC7 /* UIViewController+HUD.m */,
-				77C0C92417CED779008C7FC7 /* CLLocation+NSString.h */,
-				77C0C92517CED779008C7FC7 /* CLLocation+NSString.m */,
 				77C0C8B617CDD4B8008C7FC7 /* NSString+BundleExtensions.h */,
 				77C0C8B717CDD4B8008C7FC7 /* NSString+BundleExtensions.m */,
 				77C0C8B817CDD4B8008C7FC7 /* NSString+ZBUtilites.h */,
@@ -436,6 +438,17 @@
 				77C0C92917CEE60C008C7FC7 /* MBProgressHUD.m */,
 			);
 			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		77C0C93117D172C1008C7FC7 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				77C0C93217D172CA008C7FC7 /* CLLocation+NSString.h */,
+				77C0C93317D172CA008C7FC7 /* CLLocation+NSString.m */,
+				77C0C93517D17E8F008C7FC7 /* UIColor+Random.h */,
+				77C0C93617D17E8F008C7FC7 /* UIColor+Random.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -555,6 +568,7 @@
 			files = (
 				77C0C8A617CDBA8F008C7FC7 /* AFHTTPRequestOperation.m in Sources */,
 				77A5F7BF17CB22960073E7F9 /* FDSecondViewController.m in Sources */,
+				77C0C93717D17E8F008C7FC7 /* UIColor+Random.m in Sources */,
 				77C0C91D17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m in Sources */,
 				77A5F7F417CB2F760073E7F9 /* FDForthViewController.m in Sources */,
 				77A5F7BC17CB22960073E7F9 /* FDFirstViewController.m in Sources */,
@@ -565,12 +579,12 @@
 				77A5F7AF17CB22960073E7F9 /* main.m in Sources */,
 				77C0C8C617CDD4B8008C7FC7 /* NSString+ZBUtilites.m in Sources */,
 				77C0C8CB17CDD4B8008C7FC7 /* ZBViewController.m in Sources */,
-				77C0C92617CED779008C7FC7 /* CLLocation+NSString.m in Sources */,
 				77C0C8E017CDE32C008C7FC7 /* ZBQNAFHTTPClient.m in Sources */,
 				77C0C8C917CDD4B8008C7FC7 /* UIDevice+ZBUtilites.m in Sources */,
 				77A5F7E617CB2AB00073E7F9 /* RSTabBar.m in Sources */,
 				77C0C8AD17CDBA8F008C7FC7 /* UIImageView+AFNetworking.m in Sources */,
 				77C0C8CA17CDD4B8008C7FC7 /* ZBTextValidate.m in Sources */,
+				77C0C93417D172CA008C7FC7 /* CLLocation+NSString.m in Sources */,
 				77C0C8DD17CDDE6A008C7FC7 /* ZBQNPutPolicy.m in Sources */,
 				77C0C8AB17CDBA8F008C7FC7 /* AFURLConnectionOperation.m in Sources */,
 				77C0C8C817CDD4B8008C7FC7 /* UIColor+Hex.m in Sources */,

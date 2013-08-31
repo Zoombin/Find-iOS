@@ -35,11 +35,13 @@ static NSString *_token;
     return _instance;
 }
 
-- (void)uploadData:(NSData *)data name:(NSString *)name completionBlockWithSuccess:(dispatch_block_t)success
+- (void)uploadData:(NSData *)data name:(NSString *)name completionBlock:(dispatch_block_t)block;
 {
 	[self uploadData:data name:name progressBlock:nil completionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-		if (success) success();
-	} failure:nil];
+		if (block) block();
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		if (block) block();
+	}];
 }
 
 - (void)uploadData:(NSData *)data name:(NSString *)name progressBlock:(void (^)(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite))progress completionBlockWithSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
@@ -50,8 +52,8 @@ static NSString *_token;
 	
 	AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 	[operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+		NSLog(@"sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
 		if (progress) progress(bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
-		
 	}];
 
 	[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {

@@ -41,8 +41,8 @@
 	NSString *fileName = @"3.jpg";
 	NSData *imageData = UIImageJPEGRepresentation([UIImage imageNamed:fileName], 1);
 	
-	[[ZBQNAFHTTPClient shared] uploadData:imageData name:fileName completionBlockWithSuccess:^(void) {
-		NSLog(@"success");
+	[[ZBQNAFHTTPClient shared] uploadData:imageData name:fileName completionBlock:^(void) {
+		NSLog(@"complete");
 	}];
 }
 
