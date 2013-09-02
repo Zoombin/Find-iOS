@@ -94,7 +94,7 @@
 	CGFloat locationButtonWidth = fullSize.width - 2 * margin;
 	
 	UIButton *sameWithTrueLocation = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	[sameWithTrueLocation setTitle:@"sameWithTrueLocation" forState:UIControlStateNormal];
+	[sameWithTrueLocation setTitle:@"sameWithBaseLocation" forState:UIControlStateNormal];
 	sameWithTrueLocation.frame = CGRectMake(margin, startY, locationButtonWidth, height);
 	sameWithTrueLocation.tag = 0;
 	[sameWithTrueLocation setBackgroundColor:[UIColor yellowColor]];
@@ -135,7 +135,6 @@
 	
 	distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(margin, startY, fullSize.width - 2 * margin, height)];
 	distanceLabel.adjustsFontSizeToFitWidth = YES;
-	distanceLabel.text = [NSString stringWithFormat:@"distance between base and fake is: %f", [fakeLocation distanceFromLocation:trueLocation]];
 	[self.view addSubview:distanceLabel];
 	
 	startY = CGRectGetMaxY(distanceLabel.frame) + margin;
@@ -235,7 +234,7 @@
 	fakeLatField.text = [@(fakeLocation.coordinate.latitude) stringValue];
 	fakeLonField.text = [@(fakeLocation.coordinate.longitude) stringValue];
 	
-	distanceLabel.text = [NSString stringWithFormat:@"distance between true and fake is: %f", [fakeLocation distanceFromLocation:trueLocation]];
+	distanceLabel.text = [NSString stringWithFormat:@"distance between base and fake is: %f", [fakeLocation distanceFromLocation:trueLocation]];
 	
 	self.view.backgroundColor = [UIColor randomColor];
 }
