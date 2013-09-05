@@ -19,4 +19,6 @@
 @property (nonatomic, strong) FDUser *user;
 @property (nonatomic, strong) FDPhoto *photo;
 
+- (void)setPhoto:(FDPhoto *)photo scaleFitWidth:(CGFloat)width;
+
 @end

@@ -36,6 +36,10 @@
 	photosCollectionView.delegate = self;
 	photosCollectionView.dataSource = self;
 	[self.view addSubview:photosCollectionView];
+	
+	[_photo fetchInfoWithCompletionBlock:^(void) {
+		[photosCollectionView reloadData];
+	}];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,11 +52,10 @@
 
 - (CGSize)collectionView:(PSTCollectionView *)collectionView layout:(PSTCollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.section == 0) {
-		return kBigSquareSize;
-	} else {
-		return kThumbnailSmallSquareSize;
+	if (_photo.info) {
+		return CGSizeMake(kBigSquareSize.width, _photo.info.height.intValue / 2);
 	}
+	return kBigSquareSize;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(PSTCollectionView *)collectionView
@@ -68,31 +71,13 @@
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (PSTCollectionViewCell *)collectionView:(PSTCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.section == 0) {
-		FDPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDMainPhotoCellIdentifier forIndexPath:indexPath];
-		cell.user = _user;
-		FDPhoto *photo = [_user mainPhoto];
-//		cell.size = //CGSizeMake(self.view.bounds.size.width, )
-		cell.photo = photo;
-		return cell;
-	}
-	else {
-		FDPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDPhotoCellIdentifier forIndexPath:indexPath];
-		cell.user = _user;
-		FDPhoto *photo = _user.photos[indexPath.row];
-		cell.photo = photo;
-		return cell;
-	}
+	FDPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDMainPhotoCellIdentifier forIndexPath:indexPath];
+	[cell setPhoto:_photo scaleFitWidth:collectionView.bounds.size.width];
+	return cell;
 }
 
 - (void)collectionView:(PSTCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//	if (indexPath.section == 1) {
-//		FDPhotoViewController *photoViewController = [[FDPhotoViewController alloc] init];
-//		photoViewController.user = _user;
-//		photoViewController.photo = _user.photos[indexPath.row];
-//		[self.navigationController pushViewController:photoViewController animated:YES];
-//	}
 }
 
 @end

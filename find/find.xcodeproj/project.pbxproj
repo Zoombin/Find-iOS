@@ -14,6 +14,7 @@
 		7734ACDA17D86A2B003E7BB6 /* PSTCollectionViewFlowLayout+FDLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACD917D86A2B003E7BB6 /* PSTCollectionViewFlowLayout+FDLayout.m */; };
 		7734ACE317D8893F003E7BB6 /* FDPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE217D8893F003E7BB6 /* FDPhotoViewController.m */; };
 		7734ACE617D895D1003E7BB6 /* FDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE517D895D1003E7BB6 /* FDViewController.m */; };
+		7734ACE917D8A6C1003E7BB6 /* FDPhotoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE817D8A6C1003E7BB6 /* FDPhotoInfo.m */; };
 		77A5F7A317CB22960073E7F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A217CB22960073E7F9 /* Foundation.framework */; };
 		77A5F7A517CB22960073E7F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A417CB22960073E7F9 /* CoreGraphics.framework */; };
 		77A5F7A717CB22960073E7F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A617CB22960073E7F9 /* UIKit.framework */; };
@@ -104,6 +105,8 @@
 		7734ACE217D8893F003E7BB6 /* FDPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPhotoViewController.m; sourceTree = "<group>"; };
 		7734ACE417D895D1003E7BB6 /* FDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDViewController.h; sourceTree = "<group>"; };
 		7734ACE517D895D1003E7BB6 /* FDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDViewController.m; sourceTree = "<group>"; };
+		7734ACE717D8A6C1003E7BB6 /* FDPhotoInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDPhotoInfo.h; sourceTree = "<group>"; };
+		7734ACE817D8A6C1003E7BB6 /* FDPhotoInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPhotoInfo.m; sourceTree = "<group>"; };
 		77A5F79F17CB22960073E7F9 /* find.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = find.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77A5F7A217CB22960073E7F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		77A5F7A417CB22960073E7F9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -315,6 +318,8 @@
 				77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */,
 				77C0C96517D198F6008C7FC7 /* FDPhoto.h */,
 				77C0C96617D198F6008C7FC7 /* FDPhoto.m */,
+				7734ACE717D8A6C1003E7BB6 /* FDPhotoInfo.h */,
+				7734ACE817D8A6C1003E7BB6 /* FDPhotoInfo.m */,
 				77A5F7C017CB22960073E7F9 /* Images.xcassets */,
 				77A5F7A917CB22960073E7F9 /* Supporting Files */,
 			);
@@ -671,6 +676,7 @@
 				77C0C8C517CDD4B8008C7FC7 /* NSString+BundleExtensions.m in Sources */,
 				77C0C95917D18148008C7FC7 /* PSTCollectionViewData.m in Sources */,
 				77C0C95617D18148008C7FC7 /* PSTCollectionView.m in Sources */,
+				7734ACE917D8A6C1003E7BB6 /* FDPhotoInfo.m in Sources */,
 				77C0C95C17D18148008C7FC7 /* PSTCollectionViewLayout.m in Sources */,
 				7734ACD417D8562F003E7BB6 /* FDPhoto+Test.m in Sources */,
 				7734ACCE17D85368003E7BB6 /* FDUser.m in Sources */,

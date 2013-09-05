@@ -40,6 +40,20 @@
 	[photoView setImageWithURL:[NSURL URLWithString:[_photo urlStringScaleAspectFit:_size]]];
 }
 
+- (void)setPhoto:(FDPhoto *)photo scaleFitWidth:(CGFloat)width
+{
+	if (_photo == photo) return;
+	_photo = photo;
+	UIImageView *iView = [[UIImageView alloc] init];
+	
+	NSURL *url = [NSURL URLWithString:[_photo urlStringScaleFitWidth:width]];
+	[iView setImageWithURLRequest:[NSURLRequest requestWithURL:url] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+		photoView.image = image;
+	} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+		;
+	}];
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

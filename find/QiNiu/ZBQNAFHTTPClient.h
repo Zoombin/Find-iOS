@@ -7,10 +7,14 @@
 //
 
 #import "AFHTTPClient.h"
+#import "FDPhoto.h"
+#import "FDPhotoInfo.h"
 
 @interface ZBQNAFHTTPClient : AFHTTPClient
 
 +(ZBQNAFHTTPClient *)shared;
+
+- (void)infoOfPhoto:(FDPhoto *)photo completionBlockWithSuccess:(void (^)(FDPhotoInfo *info))success;
 
 - (void)uploadData:(NSData *)data name:(NSString *)name completionBlock:(dispatch_block_t)block;
 
