@@ -9,6 +9,8 @@
 #import "FDNearbyViewController.h"
 #import "PSTCollectionView.h"
 #import "FDPhotoCell.h"
+#import "FDUserProfileViewController.h"
+#import "FDUser.h"
 
 @interface FDNearbyViewController () <PSTCollectionViewDelegate, PSTCollectionViewDataSource>
 
@@ -16,6 +18,7 @@
 
 @implementation FDNearbyViewController
 {
+	NSArray *users;
 	NSArray *photos;
 }
 
@@ -34,13 +37,7 @@
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor whiteColor];
 	
-	PSTCollectionViewFlowLayout *layout = [[PSTCollectionViewFlowLayout alloc] init];
-	layout.itemSize = CGSizeMake(144, 175);
-	layout.minimumInteritemSpacing = 12;
-	layout.minimumLineSpacing = 10;
-	layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
-	
-	PSTCollectionView *photosCollectionView = [[PSTCollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
+	PSTCollectionView *photosCollectionView = [[PSTCollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSTCollectionViewFlowLayout squaresLayout]];
 	
 	photosCollectionView.showsVerticalScrollIndicator = NO;
 	photosCollectionView.backgroundColor = [UIColor clearColor];
@@ -49,20 +46,9 @@
 	photosCollectionView.dataSource = self;
 	[self.view addSubview:photosCollectionView];
 	
-	photos = [FDPhoto creatTest:1000];
-}
-
-- (NSInteger)collectionView:(PSTCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-	return photos.count;
-}
-
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
-- (PSTCollectionViewCell *)collectionView:(PSTCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-	FDPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDPhotoCellIdentifier forIndexPath:indexPath];
-	[cell setPhoto:photos[indexPath.row]];
-	return cell;
+	
+	users = [FDUser createTest:1000];
+//	photos = [FDPhoto createTest:1000];
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,5 +56,39 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - PSTCollectionViewDelegate
+
+- (CGSize)collectionView:(PSTCollectionView *)collectionView layout:(PSTCollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+	return kThumbnailSquareSize;
+}
+
+- (NSInteger)collectionView:(PSTCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+	return users.count;
+}
+
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (PSTCollectionViewCell *)collectionView:(PSTCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+	FDPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDPhotoCellIdentifier forIndexPath:indexPath];
+	FDUser *user = users[indexPath.row];
+	cell.user = user;
+	FDPhoto *photo = [user mainPhoto];
+	cell.photo = photo;
+	return cell;
+}
+
+- (void)collectionView:(PSTCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+	FDUserProfileViewController *userProfileViewController = [[FDUserProfileViewController alloc] init];
+	userProfileViewController.user = users[indexPath.row];
+	[self.navigationController pushViewController:userProfileViewController animated:YES];
+}
+
+
+
+
 
 @end

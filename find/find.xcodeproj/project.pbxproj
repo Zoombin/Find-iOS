@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7734ACCB17D8520B003E7BB6 /* FDUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACCA17D8520B003E7BB6 /* FDUserProfileViewController.m */; };
+		7734ACCE17D85368003E7BB6 /* FDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACCD17D85368003E7BB6 /* FDUser.m */; };
+		7734ACD117D85605003E7BB6 /* FDUser+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACD017D85605003E7BB6 /* FDUser+Test.m */; };
+		7734ACD417D8562F003E7BB6 /* FDPhoto+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACD317D8562F003E7BB6 /* FDPhoto+Test.m */; };
+		7734ACDA17D86A2B003E7BB6 /* PSTCollectionViewFlowLayout+FDLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACD917D86A2B003E7BB6 /* PSTCollectionViewFlowLayout+FDLayout.m */; };
+		77610F4A17D83D6E00B9BA10 /* NSString+ZBQNUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 77610F4917D83D6E00B9BA10 /* NSString+ZBQNUtilities.m */; };
 		77A5F7A317CB22960073E7F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A217CB22960073E7F9 /* Foundation.framework */; };
 		77A5F7A517CB22960073E7F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A417CB22960073E7F9 /* CoreGraphics.framework */; };
 		77A5F7A717CB22960073E7F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A617CB22960073E7F9 /* UIKit.framework */; };
@@ -70,7 +76,6 @@
 		77C0C96117D18148008C7FC7 /* PSTGridLayoutSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C95417D18148008C7FC7 /* PSTGridLayoutSection.m */; };
 		77C0C96417D18D7C008C7FC7 /* FDPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */; };
 		77C0C96717D198F6008C7FC7 /* FDPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C96617D198F6008C7FC7 /* FDPhoto.m */; };
-		77C0C96A17D19B43008C7FC7 /* FDPhoto+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C96917D19B43008C7FC7 /* FDPhoto+Test.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +89,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7734ACC917D8520B003E7BB6 /* FDUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDUserProfileViewController.h; sourceTree = "<group>"; };
+		7734ACCA17D8520B003E7BB6 /* FDUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDUserProfileViewController.m; sourceTree = "<group>"; };
+		7734ACCC17D85368003E7BB6 /* FDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDUser.h; sourceTree = "<group>"; };
+		7734ACCD17D85368003E7BB6 /* FDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDUser.m; sourceTree = "<group>"; };
+		7734ACCF17D85605003E7BB6 /* FDUser+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FDUser+Test.h"; path = "Test/FDUser+Test.h"; sourceTree = "<group>"; };
+		7734ACD017D85605003E7BB6 /* FDUser+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FDUser+Test.m"; path = "Test/FDUser+Test.m"; sourceTree = "<group>"; };
+		7734ACD217D8562F003E7BB6 /* FDPhoto+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FDPhoto+Test.h"; path = "Test/FDPhoto+Test.h"; sourceTree = "<group>"; };
+		7734ACD317D8562F003E7BB6 /* FDPhoto+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FDPhoto+Test.m"; path = "Test/FDPhoto+Test.m"; sourceTree = "<group>"; };
+		7734ACD817D86A2B003E7BB6 /* PSTCollectionViewFlowLayout+FDLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PSTCollectionViewFlowLayout+FDLayout.h"; path = "find/PSTCollectionViewFlowLayout+FDLayout.h"; sourceTree = "<group>"; };
+		7734ACD917D86A2B003E7BB6 /* PSTCollectionViewFlowLayout+FDLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PSTCollectionViewFlowLayout+FDLayout.m"; path = "find/PSTCollectionViewFlowLayout+FDLayout.m"; sourceTree = "<group>"; };
+		77610F4817D83D6E00B9BA10 /* NSString+ZBQNUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+ZBQNUtilities.h"; path = "QiNiu/NSString+ZBQNUtilities.h"; sourceTree = "<group>"; };
+		77610F4917D83D6E00B9BA10 /* NSString+ZBQNUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+ZBQNUtilities.m"; path = "QiNiu/NSString+ZBQNUtilities.m"; sourceTree = "<group>"; };
 		77A5F79F17CB22960073E7F9 /* find.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = find.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77A5F7A217CB22960073E7F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		77A5F7A417CB22960073E7F9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -204,8 +221,6 @@
 		77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPhotoCell.m; sourceTree = "<group>"; };
 		77C0C96517D198F6008C7FC7 /* FDPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDPhoto.h; sourceTree = "<group>"; };
 		77C0C96617D198F6008C7FC7 /* FDPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPhoto.m; sourceTree = "<group>"; };
-		77C0C96817D19B43008C7FC7 /* FDPhoto+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FDPhoto+Test.h"; path = "find/FDPhoto+Test.h"; sourceTree = "<group>"; };
-		77C0C96917D19B43008C7FC7 /* FDPhoto+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FDPhoto+Test.m"; path = "find/FDPhoto+Test.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +300,10 @@
 				77A5F7F317CB2F760073E7F9 /* FDForthViewController.m */,
 				77A5F7F517CB30400073E7F9 /* FDFifthViewController.h */,
 				77A5F7F617CB30400073E7F9 /* FDFifthViewController.m */,
+				7734ACC917D8520B003E7BB6 /* FDUserProfileViewController.h */,
+				7734ACCA17D8520B003E7BB6 /* FDUserProfileViewController.m */,
+				7734ACCC17D85368003E7BB6 /* FDUser.h */,
+				7734ACCD17D85368003E7BB6 /* FDUser.m */,
 				77C0C96217D18D7C008C7FC7 /* FDPhotoCell.h */,
 				77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */,
 				77C0C96517D198F6008C7FC7 /* FDPhoto.h */,
@@ -420,6 +439,8 @@
 				77C0C8DC17CDDE6A008C7FC7 /* ZBQNPutPolicy.m */,
 				77C0C8DE17CDE32C008C7FC7 /* ZBQNAFHTTPClient.h */,
 				77C0C8DF17CDE32C008C7FC7 /* ZBQNAFHTTPClient.m */,
+				77610F4817D83D6E00B9BA10 /* NSString+ZBQNUtilities.h */,
+				77610F4917D83D6E00B9BA10 /* NSString+ZBQNUtilities.m */,
 			);
 			name = QiNiu;
 			sourceTree = "<group>";
@@ -438,8 +459,10 @@
 				77C0C91E17CE1A51008C7FC7 /* FDTest.h */,
 				77C0C91B17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.h */,
 				77C0C91C17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m */,
-				77C0C96817D19B43008C7FC7 /* FDPhoto+Test.h */,
-				77C0C96917D19B43008C7FC7 /* FDPhoto+Test.m */,
+				7734ACCF17D85605003E7BB6 /* FDUser+Test.h */,
+				7734ACD017D85605003E7BB6 /* FDUser+Test.m */,
+				7734ACD217D8562F003E7BB6 /* FDPhoto+Test.h */,
+				7734ACD317D8562F003E7BB6 /* FDPhoto+Test.m */,
 			);
 			name = Test;
 			sourceTree = "<group>";
@@ -460,6 +483,8 @@
 				77C0C93317D172CA008C7FC7 /* CLLocation+NSString.m */,
 				77C0C93517D17E8F008C7FC7 /* UIColor+Random.h */,
 				77C0C93617D17E8F008C7FC7 /* UIColor+Random.m */,
+				7734ACD817D86A2B003E7BB6 /* PSTCollectionViewFlowLayout+FDLayout.h */,
+				7734ACD917D86A2B003E7BB6 /* PSTCollectionViewFlowLayout+FDLayout.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -633,6 +658,7 @@
 				77C0C95E17D18148008C7FC7 /* PSTGridLayoutInfo.m in Sources */,
 				77C0C95B17D18148008C7FC7 /* PSTCollectionViewItemKey.m in Sources */,
 				77C0C92F17CEF57F008C7FC7 /* MBProgressHUD+Appearance.m in Sources */,
+				7734ACD117D85605003E7BB6 /* FDUser+Test.m in Sources */,
 				77C0C8A717CDBA8F008C7FC7 /* AFImageRequestOperation.m in Sources */,
 				77C0C92A17CEE60C008C7FC7 /* MBProgressHUD.m in Sources */,
 				77C0C8AA17CDBA8F008C7FC7 /* AFPropertyListRequestOperation.m in Sources */,
@@ -640,18 +666,22 @@
 				77C0C95917D18148008C7FC7 /* PSTCollectionViewData.m in Sources */,
 				77C0C95617D18148008C7FC7 /* PSTCollectionView.m in Sources */,
 				77C0C95C17D18148008C7FC7 /* PSTCollectionViewLayout.m in Sources */,
+				7734ACD417D8562F003E7BB6 /* FDPhoto+Test.m in Sources */,
+				77610F4A17D83D6E00B9BA10 /* NSString+ZBQNUtilities.m in Sources */,
+				7734ACCE17D85368003E7BB6 /* FDUser.m in Sources */,
 				77C0C96017D18148008C7FC7 /* PSTGridLayoutRow.m in Sources */,
 				77C0C8A817CDBA8F008C7FC7 /* AFJSONRequestOperation.m in Sources */,
 				77A5F7F117CB2F410073E7F9 /* FDThirdViewController.m in Sources */,
 				77C0C8A517CDBA8F008C7FC7 /* AFHTTPClient.m in Sources */,
 				77A5F7E817CB2AB00073E7F9 /* RSTabBarViewController.m in Sources */,
 				77C0C8D917CDDBA8008C7FC7 /* GTMBase64.m in Sources */,
+				7734ACDA17D86A2B003E7BB6 /* PSTCollectionViewFlowLayout+FDLayout.m in Sources */,
 				77C0C95A17D18148008C7FC7 /* PSTCollectionViewFlowLayout.m in Sources */,
 				77C0C96717D198F6008C7FC7 /* FDPhoto.m in Sources */,
 				77C0C96417D18D7C008C7FC7 /* FDPhotoCell.m in Sources */,
 				77C0C8A917CDBA8F008C7FC7 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				77C0C95817D18148008C7FC7 /* PSTCollectionViewController.m in Sources */,
-				77C0C96A17D19B43008C7FC7 /* FDPhoto+Test.m in Sources */,
+				7734ACCB17D8520B003E7BB6 /* FDUserProfileViewController.m in Sources */,
 				77C0C95517D18148008C7FC7 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

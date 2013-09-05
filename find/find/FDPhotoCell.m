@@ -26,11 +26,18 @@
     return self;
 }
 
+- (void)setUser:(FDUser *)user
+{
+	if (_user == user) return;
+	_user = user;
+}
+
 - (void)setPhoto:(FDPhoto *)photo
 {
 	if (_photo == photo) return;
 	_photo = photo;
-	[photoView setImageWithURL:[NSURL URLWithString:_photo.urlString]];
+	//NSLog(@"urlStringScaleToFit: %@", [_photo urlStringScaleToFit:kThumbnailSquareSize]);
+	[photoView setImageWithURL:[NSURL URLWithString:[_photo urlStringScaleToFit:self.bounds.size]]];
 }
 
 /*

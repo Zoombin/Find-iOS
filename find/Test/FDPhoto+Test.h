@@ -10,6 +10,7 @@
 
 @interface FDPhoto (Test)
 
-+ (NSArray *)creatTest:(NSUInteger)count;
++ (NSArray *)createTest:(NSUInteger)count;
+
 
 @end

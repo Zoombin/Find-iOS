@@ -10,4 +10,9 @@
 
 @implementation FDPhoto
 
+- (NSString *)urlStringScaleToFit:(CGSize)size
+{
+	return [_urlString scaleToFit:size];
+}
+
 @end

@@ -12,16 +12,16 @@
 
 @implementation FDPhoto (Test)
 
-+ (NSArray *)creatTest:(NSUInteger)count
++ (NSArray *)createTest:(NSUInteger)count
 {
 	NSMutableArray *photos = [NSMutableArray array];
 	for (int i = 0; i < count; i++) {
-		[photos addObject:[self createOne]];
+		[photos addObject:[self createTestOne]];
 	}
 	return photos;
 }
 
-+ (FDPhoto *)createOne
++ (FDPhoto *)createTestOne
 {
 	NSUInteger random = arc4random() % kCountOfTestPhoto + 1;
 	FDPhoto *photo = [[FDPhoto alloc] init];
