@@ -15,6 +15,7 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "FDAppDelegate.h"
+#import	"FDViewController.h"
 #import "ZBQNAFHTTPClient.h"
 #import "CLLocation+NSString.h"
 #import "UIViewController+HUD.h"

@@ -36,10 +36,8 @@
 {
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor whiteColor];
-	
+
 	PSTCollectionView *photosCollectionView = [[PSTCollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSTCollectionViewFlowLayout squaresLayout]];
-	
-	photosCollectionView.showsVerticalScrollIndicator = NO;
 	photosCollectionView.backgroundColor = [UIColor clearColor];
 	[photosCollectionView registerClass:[FDPhotoCell class] forCellWithReuseIdentifier:kFDPhotoCellIdentifier];
 	photosCollectionView.delegate = self;
@@ -47,8 +45,7 @@
 	[self.view addSubview:photosCollectionView];
 	
 	
-	users = [FDUser createTest:1000];
-//	photos = [FDPhoto createTest:1000];
+	users = [FDUser createTest:100];
 }
 
 - (void)didReceiveMemoryWarning

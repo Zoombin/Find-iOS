@@ -16,7 +16,7 @@
 
 @implementation FDAppDelegate
 {
-	RSTabBarViewController *tabBarController;
+	UITabBarController *tabBarController;
 	UINavigationController *rootViewController;
 }
 
@@ -47,7 +47,7 @@
 	UINavigationController *forthViewController = [[UINavigationController alloc] initWithRootViewController:[[FDForthViewController alloc] init]];
 	UINavigationController *fifthViewController = [[UINavigationController alloc] initWithRootViewController:[[FDFifthViewController alloc] init]];
 	
-	tabBarController = [[RSTabBarViewController alloc] init];
+	tabBarController = [[UITabBarController alloc] init];
 	tabBarController.viewControllers = @[nearbyViewController, secondViewController, thirdViewController, forthViewController, fifthViewController];
 	[rootViewController setViewControllers:@[tabBarController] animated:animated];
 	tabBarController.selectedIndex = 0;

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FDForthViewController : UIViewController
+@interface FDForthViewController : FDViewController
 
 @end

@@ -9,6 +9,7 @@
 #import "FDUserProfileViewController.h"
 #import "PSTCollectionView.h"
 #import "FDPhotoCell.h"
+#import "FDPhotoViewController.h"
 
 @interface FDUserProfileViewController () <PSTCollectionViewDelegate, PSTCollectionViewDataSource>
 
@@ -30,8 +31,6 @@
     [super viewDidLoad];
 	
 	PSTCollectionView *photosCollectionView = [[PSTCollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSTCollectionViewFlowLayout smallSquaresLayout]];
-	
-	photosCollectionView.showsVerticalScrollIndicator = NO;
 	photosCollectionView.backgroundColor = [UIColor clearColor];
 	[photosCollectionView registerClass:[FDPhotoCell class] forCellWithReuseIdentifier:kFDPhotoCellIdentifier];
 	[photosCollectionView registerClass:[FDPhotoCell class] forCellWithReuseIdentifier:kFDMainPhotoCellIdentifier];
@@ -93,6 +92,8 @@
 
 - (void)collectionView:(PSTCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+	FDPhotoViewController *photoViewController = [[FDPhotoViewController alloc] init];
+	
 //	FDUserProfileViewController *userProfileViewController = [[FDUserProfileViewController alloc] init];
 //	userProfileViewController.user = users[indexPath.row];
 //	[self.navigationController pushViewController:userProfileViewController animated:YES];

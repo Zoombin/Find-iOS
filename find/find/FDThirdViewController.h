@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FDThirdViewController : UIViewController
+@interface FDThirdViewController : FDViewController
 
 @end

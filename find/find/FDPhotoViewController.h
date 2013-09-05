@@ -1,5 +1,5 @@
 //
-//  FDUserProfileViewController.h
+//  FDPhotoViewController.h
 //  find
 //
 //  Created by zhangbin on 9/5/13.
@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "FDUser.h"
+#import "FDPhoto.h"
 
-@interface FDUserProfileViewController : FDViewController
+@interface FDPhotoViewController : FDViewController
 
 @property (nonatomic, strong) FDUser *user;
 
