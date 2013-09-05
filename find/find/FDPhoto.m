@@ -10,12 +10,6 @@
 
 @implementation FDPhoto
 
-- (void)setUrlString:(NSString *)urlString
-{
-	if ([_urlString isEqualToString:urlString]) return;
-	_urlString = urlString;
-}
-
 - (NSString *)urlStringInfo
 {
 	return [NSString stringWithFormat:@"%@?imageInfo", _urlString];
