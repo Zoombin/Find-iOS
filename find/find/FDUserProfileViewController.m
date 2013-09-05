@@ -92,11 +92,12 @@
 
 - (void)collectionView:(PSTCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	FDPhotoViewController *photoViewController = [[FDPhotoViewController alloc] init];
-	
-//	FDUserProfileViewController *userProfileViewController = [[FDUserProfileViewController alloc] init];
-//	userProfileViewController.user = users[indexPath.row];
-//	[self.navigationController pushViewController:userProfileViewController animated:YES];
+	if (indexPath.section == 1) {
+		FDPhotoViewController *photoViewController = [[FDPhotoViewController alloc] init];
+		photoViewController.user = _user;
+		photoViewController.photo = _user.photos[indexPath.row];
+		[self.navigationController pushViewController:photoViewController animated:YES];
+	}
 }
 
 @end

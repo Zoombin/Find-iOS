@@ -13,5 +13,6 @@
 @interface FDPhotoViewController : FDViewController
 
 @property (nonatomic, strong) FDUser *user;
+@property (nonatomic, strong) FDPhoto *photo;
 
 @end

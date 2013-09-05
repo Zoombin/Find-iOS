@@ -12,6 +12,6 @@
 
 @property (nonatomic, strong) NSString *urlString;
 
-- (NSString *)urlStringScaleToFit:(CGSize)size;
+- (NSString *)urlStringScaleAspectFit:(CGSize)size;
 
 @end

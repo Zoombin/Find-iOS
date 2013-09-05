@@ -10,9 +10,9 @@
 
 @implementation FDPhoto
 
-- (NSString *)urlStringScaleToFit:(CGSize)size
+- (NSString *)urlStringScaleAspectFit:(CGSize)size
 {
-	return [_urlString scaleToFit:size];
+	return [NSString stringWithFormat:@"%@?imageView/1/w/%d/h/%d", _urlString, (NSUInteger)size.width, (NSUInteger)size.height];
 }
 
 @end

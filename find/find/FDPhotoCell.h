@@ -15,6 +15,7 @@
 
 @interface FDPhotoCell : PSTCollectionViewCell
 
+@property (nonatomic, assign) CGSize size;
 @property (nonatomic, strong) FDUser *user;
 @property (nonatomic, strong) FDPhoto *photo;
 

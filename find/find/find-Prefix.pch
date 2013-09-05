@@ -20,7 +20,6 @@
 #import "CLLocation+NSString.h"
 #import "UIViewController+HUD.h"
 #import "UIColor+Random.h"
-#import "NSString+ZBQNUtilities.h"
 #import "PSTCollectionViewFlowLayout+FDLayout.h"
 
 //#define FDDEBUG 1

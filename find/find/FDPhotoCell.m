@@ -20,6 +20,7 @@
     if (self) {
 		self.backgroundColor = [UIColor blueColor];
 		photoView = [[UIImageView alloc] initWithFrame:self.bounds];
+		_size = self.bounds.size;
 		photoView.contentMode = UIViewContentModeScaleAspectFit;
 		[self addSubview:photoView];
     }
@@ -36,8 +37,7 @@
 {
 	if (_photo == photo) return;
 	_photo = photo;
-	//NSLog(@"urlStringScaleToFit: %@", [_photo urlStringScaleToFit:kThumbnailSquareSize]);
-	[photoView setImageWithURL:[NSURL URLWithString:[_photo urlStringScaleToFit:self.bounds.size]]];
+	[photoView setImageWithURL:[NSURL URLWithString:[_photo urlStringScaleAspectFit:_size]]];
 }
 
 /*

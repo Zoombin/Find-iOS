@@ -14,7 +14,6 @@
 		7734ACDA17D86A2B003E7BB6 /* PSTCollectionViewFlowLayout+FDLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACD917D86A2B003E7BB6 /* PSTCollectionViewFlowLayout+FDLayout.m */; };
 		7734ACE317D8893F003E7BB6 /* FDPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE217D8893F003E7BB6 /* FDPhotoViewController.m */; };
 		7734ACE617D895D1003E7BB6 /* FDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE517D895D1003E7BB6 /* FDViewController.m */; };
-		77610F4A17D83D6E00B9BA10 /* NSString+ZBQNUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 77610F4917D83D6E00B9BA10 /* NSString+ZBQNUtilities.m */; };
 		77A5F7A317CB22960073E7F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A217CB22960073E7F9 /* Foundation.framework */; };
 		77A5F7A517CB22960073E7F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A417CB22960073E7F9 /* CoreGraphics.framework */; };
 		77A5F7A717CB22960073E7F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A617CB22960073E7F9 /* UIKit.framework */; };
@@ -105,8 +104,6 @@
 		7734ACE217D8893F003E7BB6 /* FDPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPhotoViewController.m; sourceTree = "<group>"; };
 		7734ACE417D895D1003E7BB6 /* FDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDViewController.h; sourceTree = "<group>"; };
 		7734ACE517D895D1003E7BB6 /* FDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDViewController.m; sourceTree = "<group>"; };
-		77610F4817D83D6E00B9BA10 /* NSString+ZBQNUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+ZBQNUtilities.h"; path = "QiNiu/NSString+ZBQNUtilities.h"; sourceTree = "<group>"; };
-		77610F4917D83D6E00B9BA10 /* NSString+ZBQNUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+ZBQNUtilities.m"; path = "QiNiu/NSString+ZBQNUtilities.m"; sourceTree = "<group>"; };
 		77A5F79F17CB22960073E7F9 /* find.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = find.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77A5F7A217CB22960073E7F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		77A5F7A417CB22960073E7F9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -449,8 +446,6 @@
 				77C0C8DC17CDDE6A008C7FC7 /* ZBQNPutPolicy.m */,
 				77C0C8DE17CDE32C008C7FC7 /* ZBQNAFHTTPClient.h */,
 				77C0C8DF17CDE32C008C7FC7 /* ZBQNAFHTTPClient.m */,
-				77610F4817D83D6E00B9BA10 /* NSString+ZBQNUtilities.h */,
-				77610F4917D83D6E00B9BA10 /* NSString+ZBQNUtilities.m */,
 			);
 			name = QiNiu;
 			sourceTree = "<group>";
@@ -678,7 +673,6 @@
 				77C0C95617D18148008C7FC7 /* PSTCollectionView.m in Sources */,
 				77C0C95C17D18148008C7FC7 /* PSTCollectionViewLayout.m in Sources */,
 				7734ACD417D8562F003E7BB6 /* FDPhoto+Test.m in Sources */,
-				77610F4A17D83D6E00B9BA10 /* NSString+ZBQNUtilities.m in Sources */,
 				7734ACCE17D85368003E7BB6 /* FDUser.m in Sources */,
 				77C0C96017D18148008C7FC7 /* PSTGridLayoutRow.m in Sources */,
 				77C0C8A817CDBA8F008C7FC7 /* AFJSONRequestOperation.m in Sources */,
