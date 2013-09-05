@@ -15,10 +15,10 @@
 
 @interface FDPhotoCell : PSTCollectionViewCell
 
-@property (nonatomic, assign) CGSize size;
+@property (nonatomic, assign) CGSize displaySize;
 @property (nonatomic, strong) FDUser *user;
 @property (nonatomic, strong) FDPhoto *photo;
 
-- (void)setPhoto:(FDPhoto *)photo scaleFitWidth:(CGFloat)width;
+- (void)setPhoto:(FDPhoto *)photo scaleFitWidth:(CGFloat)width completionBlock:(dispatch_block_t)block;
 
 @end

@@ -31,15 +31,14 @@
 	
 	PSTCollectionView *photosCollectionView = [[PSTCollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSTCollectionViewFlowLayout smallSquaresLayout]];
 	photosCollectionView.backgroundColor = [UIColor clearColor];
-	[photosCollectionView registerClass:[FDPhotoCell class] forCellWithReuseIdentifier:kFDPhotoCellIdentifier];
 	[photosCollectionView registerClass:[FDPhotoCell class] forCellWithReuseIdentifier:kFDMainPhotoCellIdentifier];
 	photosCollectionView.delegate = self;
 	photosCollectionView.dataSource = self;
 	[self.view addSubview:photosCollectionView];
 	
-	[_photo fetchInfoWithCompletionBlock:^(void) {
-		[photosCollectionView reloadData];
-	}];
+//	[_photo fetchInfoWithCompletionBlock:^(void) {
+//		[photosCollectionView reloadData];
+//	}];
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,9 +51,11 @@
 
 - (CGSize)collectionView:(PSTCollectionView *)collectionView layout:(PSTCollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (_photo.info) {
-		return CGSizeMake(kBigSquareSize.width, _photo.info.height.intValue / 2);
-	}
+//	FDPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDMainPhotoCellIdentifier forIndexPath:indexPath];
+//	if (CGSizeEqualToSize(cell.displaySize, CGSizeZero))
+//		return kBigSquareSize;
+//	else
+//		return cell.displaySize;
 	return kBigSquareSize;
 }
 
@@ -72,7 +73,9 @@
 - (PSTCollectionViewCell *)collectionView:(PSTCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	FDPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDMainPhotoCellIdentifier forIndexPath:indexPath];
-	[cell setPhoto:_photo scaleFitWidth:collectionView.bounds.size.width];
+	[cell setPhoto:_photo scaleFitWidth:collectionView.bounds.size.width completionBlock:^(void) {
+		[collectionView reloadData];
+	}];
 	return cell;
 }
 
