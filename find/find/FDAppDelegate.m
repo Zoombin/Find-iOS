@@ -9,10 +9,10 @@
 #import "FDAppDelegate.h"
 #import "RSTabBarViewController.h"
 #import "FDNearbyViewController.h"
-#import "FDSecondViewController.h"
-#import "FDThirdViewController.h"
-#import "FDForthViewController.h"
-#import "FDFifthViewController.h"
+#import "FDDiscoveryViewController.h"
+#import "FDHostViewController.h"
+#import "FDCameraViewController.h"
+#import "FDMeViewController.h"
 
 @implementation FDAppDelegate
 {
@@ -37,18 +37,18 @@
 
 - (void)showMainViewAnimated:(BOOL)animated
 {
-	UINavigationController *nearbyViewController = [[UINavigationController alloc] initWithRootViewController:[[FDNearbyViewController alloc] init]];
+	UINavigationController *firstViewController = [[UINavigationController alloc] initWithRootViewController:[[FDNearbyViewController alloc] init]];
 #ifdef FDDEBUG
 	UINavigationController *secondViewController = [[UINavigationController alloc] initWithRootViewController:[[FDTestPhotoUploadViewController alloc] init]];
 #else
-	UINavigationController *secondViewController = [[UINavigationController alloc] initWithRootViewController:[[FDSecondViewController alloc] init]];
+	UINavigationController *secondViewController = [[UINavigationController alloc] initWithRootViewController:[[FDDiscoveryViewController alloc] init]];
 #endif
-	UINavigationController *thirdViewController = [[UINavigationController alloc] initWithRootViewController:[[FDThirdViewController alloc] init]];
-	UINavigationController *forthViewController = [[UINavigationController alloc] initWithRootViewController:[[FDForthViewController alloc] init]];
-	UINavigationController *fifthViewController = [[UINavigationController alloc] initWithRootViewController:[[FDFifthViewController alloc] init]];
+	UINavigationController *thirdViewController = [[UINavigationController alloc] initWithRootViewController:[[FDHostViewController alloc] init]];
+	UINavigationController *forthViewController = [[UINavigationController alloc] initWithRootViewController:[[FDCameraViewController alloc] init]];
+	UINavigationController *fifthViewController = [[UINavigationController alloc] initWithRootViewController:[[FDMeViewController alloc] init]];
 	
 	tabBarController = [[UITabBarController alloc] init];
-	tabBarController.viewControllers = @[nearbyViewController, secondViewController, thirdViewController, forthViewController, fifthViewController];
+	tabBarController.viewControllers = @[firstViewController, secondViewController, thirdViewController, forthViewController, fifthViewController];
 	[rootViewController setViewControllers:@[tabBarController] animated:animated];
 	tabBarController.selectedIndex = 0;
 }

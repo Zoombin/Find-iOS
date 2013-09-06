@@ -1,5 +1,5 @@
 //
-//  FDFifthViewController.h
+//  FDSecondViewController.h
 //  find
 //
 //  Created by zhangbin on 8/26/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FDFifthViewController : FDViewController
+@interface FDDiscoveryViewController : FDViewController
 
 @end

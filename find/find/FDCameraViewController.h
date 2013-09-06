@@ -1,5 +1,5 @@
 //
-//  FDSecondViewController.h
+//  FDForthViewController.h
 //  find
 //
 //  Created by zhangbin on 8/26/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FDSecondViewController : FDViewController
+@interface FDCameraViewController : FDViewController
 
 @end

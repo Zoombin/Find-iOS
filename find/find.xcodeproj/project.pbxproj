@@ -22,7 +22,7 @@
 		77A5F7AF17CB22960073E7F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7AE17CB22960073E7F9 /* main.m */; };
 		77A5F7B317CB22960073E7F9 /* FDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7B217CB22960073E7F9 /* FDAppDelegate.m */; };
 		77A5F7BC17CB22960073E7F9 /* FDNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7BB17CB22960073E7F9 /* FDNearbyViewController.m */; };
-		77A5F7BF17CB22960073E7F9 /* FDSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7BE17CB22960073E7F9 /* FDSecondViewController.m */; };
+		77A5F7BF17CB22960073E7F9 /* FDDiscoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7BE17CB22960073E7F9 /* FDDiscoveryViewController.m */; };
 		77A5F7C117CB22960073E7F9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77A5F7C017CB22960073E7F9 /* Images.xcassets */; };
 		77A5F7C817CB22960073E7F9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7C717CB22960073E7F9 /* XCTest.framework */; };
 		77A5F7C917CB22960073E7F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A217CB22960073E7F9 /* Foundation.framework */; };
@@ -34,9 +34,9 @@
 		77A5F7E717CB2AB00073E7F9 /* RSTabBarController.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 77A5F7E217CB2AB00073E7F9 /* RSTabBarController.podspec */; };
 		77A5F7E817CB2AB00073E7F9 /* RSTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7E417CB2AB00073E7F9 /* RSTabBarViewController.m */; };
 		77A5F7EE17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7ED17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m */; };
-		77A5F7F117CB2F410073E7F9 /* FDThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F017CB2F410073E7F9 /* FDThirdViewController.m */; };
-		77A5F7F417CB2F760073E7F9 /* FDForthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F317CB2F760073E7F9 /* FDForthViewController.m */; };
-		77A5F7F717CB30400073E7F9 /* FDFifthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F617CB30400073E7F9 /* FDFifthViewController.m */; };
+		77A5F7F117CB2F410073E7F9 /* FDHostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F017CB2F410073E7F9 /* FDHostViewController.m */; };
+		77A5F7F417CB2F760073E7F9 /* FDCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F317CB2F760073E7F9 /* FDCameraViewController.m */; };
+		77A5F7F717CB30400073E7F9 /* FDMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F617CB30400073E7F9 /* FDMeViewController.m */; };
 		77A5F89017CD95E80073E7F9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F88F17CD95E80073E7F9 /* CFNetwork.framework */; };
 		77C0C8A517CDBA8F008C7FC7 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C89317CDBA8F008C7FC7 /* AFHTTPClient.m */; };
 		77C0C8A617CDBA8F008C7FC7 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C89517CDBA8F008C7FC7 /* AFHTTPRequestOperation.m */; };
@@ -119,8 +119,8 @@
 		77A5F7B217CB22960073E7F9 /* FDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FDAppDelegate.m; sourceTree = "<group>"; };
 		77A5F7BA17CB22960073E7F9 /* FDNearbyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FDNearbyViewController.h; sourceTree = "<group>"; };
 		77A5F7BB17CB22960073E7F9 /* FDNearbyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FDNearbyViewController.m; sourceTree = "<group>"; };
-		77A5F7BD17CB22960073E7F9 /* FDSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FDSecondViewController.h; sourceTree = "<group>"; };
-		77A5F7BE17CB22960073E7F9 /* FDSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FDSecondViewController.m; sourceTree = "<group>"; };
+		77A5F7BD17CB22960073E7F9 /* FDDiscoveryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FDDiscoveryViewController.h; sourceTree = "<group>"; };
+		77A5F7BE17CB22960073E7F9 /* FDDiscoveryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FDDiscoveryViewController.m; sourceTree = "<group>"; };
 		77A5F7C017CB22960073E7F9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		77A5F7C617CB22960073E7F9 /* findTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = findTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77A5F7C717CB22960073E7F9 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -135,12 +135,12 @@
 		77A5F7E417CB2AB00073E7F9 /* RSTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTabBarViewController.m; sourceTree = "<group>"; };
 		77A5F7EC17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FDAppDelegate+Appearance.h"; sourceTree = "<group>"; };
 		77A5F7ED17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FDAppDelegate+Appearance.m"; sourceTree = "<group>"; };
-		77A5F7EF17CB2F410073E7F9 /* FDThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDThirdViewController.h; sourceTree = "<group>"; };
-		77A5F7F017CB2F410073E7F9 /* FDThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDThirdViewController.m; sourceTree = "<group>"; };
-		77A5F7F217CB2F760073E7F9 /* FDForthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDForthViewController.h; sourceTree = "<group>"; };
-		77A5F7F317CB2F760073E7F9 /* FDForthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDForthViewController.m; sourceTree = "<group>"; };
-		77A5F7F517CB30400073E7F9 /* FDFifthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDFifthViewController.h; sourceTree = "<group>"; };
-		77A5F7F617CB30400073E7F9 /* FDFifthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDFifthViewController.m; sourceTree = "<group>"; };
+		77A5F7EF17CB2F410073E7F9 /* FDHostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDHostViewController.h; sourceTree = "<group>"; };
+		77A5F7F017CB2F410073E7F9 /* FDHostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDHostViewController.m; sourceTree = "<group>"; };
+		77A5F7F217CB2F760073E7F9 /* FDCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDCameraViewController.h; sourceTree = "<group>"; };
+		77A5F7F317CB2F760073E7F9 /* FDCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDCameraViewController.m; sourceTree = "<group>"; };
+		77A5F7F517CB30400073E7F9 /* FDMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDMeViewController.h; sourceTree = "<group>"; };
+		77A5F7F617CB30400073E7F9 /* FDMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDMeViewController.m; sourceTree = "<group>"; };
 		77A5F88F17CD95E80073E7F9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		77C0C89217CDBA8F008C7FC7 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		77C0C89317CDBA8F008C7FC7 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
@@ -300,14 +300,14 @@
 				7734ACE517D895D1003E7BB6 /* FDViewController.m */,
 				77A5F7BA17CB22960073E7F9 /* FDNearbyViewController.h */,
 				77A5F7BB17CB22960073E7F9 /* FDNearbyViewController.m */,
-				77A5F7BD17CB22960073E7F9 /* FDSecondViewController.h */,
-				77A5F7BE17CB22960073E7F9 /* FDSecondViewController.m */,
-				77A5F7EF17CB2F410073E7F9 /* FDThirdViewController.h */,
-				77A5F7F017CB2F410073E7F9 /* FDThirdViewController.m */,
-				77A5F7F217CB2F760073E7F9 /* FDForthViewController.h */,
-				77A5F7F317CB2F760073E7F9 /* FDForthViewController.m */,
-				77A5F7F517CB30400073E7F9 /* FDFifthViewController.h */,
-				77A5F7F617CB30400073E7F9 /* FDFifthViewController.m */,
+				77A5F7BD17CB22960073E7F9 /* FDDiscoveryViewController.h */,
+				77A5F7BE17CB22960073E7F9 /* FDDiscoveryViewController.m */,
+				77A5F7EF17CB2F410073E7F9 /* FDHostViewController.h */,
+				77A5F7F017CB2F410073E7F9 /* FDHostViewController.m */,
+				77A5F7F217CB2F760073E7F9 /* FDCameraViewController.h */,
+				77A5F7F317CB2F760073E7F9 /* FDCameraViewController.m */,
+				77A5F7F517CB30400073E7F9 /* FDMeViewController.h */,
+				77A5F7F617CB30400073E7F9 /* FDMeViewController.m */,
 				7734ACC917D8520B003E7BB6 /* FDUserProfileViewController.h */,
 				7734ACCA17D8520B003E7BB6 /* FDUserProfileViewController.m */,
 				7734ACE117D8893F003E7BB6 /* FDPhotoViewController.h */,
@@ -639,17 +639,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				77C0C8A617CDBA8F008C7FC7 /* AFHTTPRequestOperation.m in Sources */,
-				77A5F7BF17CB22960073E7F9 /* FDSecondViewController.m in Sources */,
+				77A5F7BF17CB22960073E7F9 /* FDDiscoveryViewController.m in Sources */,
 				77C0C96117D18148008C7FC7 /* PSTGridLayoutSection.m in Sources */,
 				77C0C93717D17E8F008C7FC7 /* UIColor+Random.m in Sources */,
 				77C0C91D17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m in Sources */,
 				7734ACE317D8893F003E7BB6 /* FDPhotoViewController.m in Sources */,
-				77A5F7F417CB2F760073E7F9 /* FDForthViewController.m in Sources */,
+				77A5F7F417CB2F760073E7F9 /* FDCameraViewController.m in Sources */,
 				77C0C95717D18148008C7FC7 /* PSTCollectionViewCell.m in Sources */,
 				77A5F7BC17CB22960073E7F9 /* FDNearbyViewController.m in Sources */,
 				77A5F7EE17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m in Sources */,
 				77C0C93017CEF57F008C7FC7 /* UIViewController+HUD.m in Sources */,
-				77A5F7F717CB30400073E7F9 /* FDFifthViewController.m in Sources */,
+				77A5F7F717CB30400073E7F9 /* FDMeViewController.m in Sources */,
 				77A5F7B317CB22960073E7F9 /* FDAppDelegate.m in Sources */,
 				77A5F7AF17CB22960073E7F9 /* main.m in Sources */,
 				77C0C8C617CDD4B8008C7FC7 /* NSString+ZBUtilites.m in Sources */,
@@ -683,7 +683,7 @@
 				77C0C96017D18148008C7FC7 /* PSTGridLayoutRow.m in Sources */,
 				77C0C8A817CDBA8F008C7FC7 /* AFJSONRequestOperation.m in Sources */,
 				7734ACE617D895D1003E7BB6 /* FDViewController.m in Sources */,
-				77A5F7F117CB2F410073E7F9 /* FDThirdViewController.m in Sources */,
+				77A5F7F117CB2F410073E7F9 /* FDHostViewController.m in Sources */,
 				77C0C8A517CDBA8F008C7FC7 /* AFHTTPClient.m in Sources */,
 				77A5F7E817CB2AB00073E7F9 /* RSTabBarViewController.m in Sources */,
 				77C0C8D917CDDBA8008C7FC7 /* GTMBase64.m in Sources */,

@@ -1,25 +1,24 @@
 //
-//  FDThirdViewController.m
+//  FDFifthViewController.m
 //  find
 //
 //  Created by zhangbin on 8/26/13.
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "FDThirdViewController.h"
+#import "FDMeViewController.h"
 
-@interface FDThirdViewController ()
+@interface FDMeViewController ()
 
 @end
 
-@implementation FDThirdViewController
+@implementation FDMeViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		self.title = @"Third";
-        // Custom initialization
+        self.title = @"Me";
     }
     return self;
 }

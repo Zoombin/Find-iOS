@@ -1,24 +1,24 @@
 //
-//  FDForthViewController.m
+//  FDThirdViewController.m
 //  find
 //
 //  Created by zhangbin on 8/26/13.
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "FDForthViewController.h"
+#import "FDHostViewController.h"
 
-@interface FDForthViewController ()
+@interface FDHostViewController ()
 
 @end
 
-@implementation FDForthViewController
+@implementation FDHostViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"Forth";
+		self.title = @"Host";
     }
     return self;
 }
