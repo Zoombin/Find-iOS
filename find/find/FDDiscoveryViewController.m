@@ -7,14 +7,17 @@
 //
 
 #import "FDDiscoveryViewController.h"
-#import "PSTCollectionView.h"
 #import "FDThemeCell.h"
+#import "FDThemeItemView.h"
 
-@interface FDDiscoveryViewController () <PSTCollectionViewDelegate, PSTCollectionViewDataSource, PSTCollectionViewDelegateFlowLayout>
+@interface FDDiscoveryViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @end
 
 @implementation FDDiscoveryViewController
+{
+	UITableView *discoveryTableView;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,21 +33,10 @@
 {
     [super viewDidLoad];
 	
-	PSTCollectionViewFlowLayout *layout = [[PSTCollectionViewFlowLayout alloc] init];
-	layout.scrollDirection = PSTCollectionViewScrollDirectionHorizontal;
-	layout.itemSize = kThemeSize;
-	layout.minimumInteritemSpacing = 0;
-	layout.minimumLineSpacing = 0;
-	layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
-	
-	PSTCollectionView *themeCollectionView = [[PSTCollectionView alloc] initWithFrame:CGRectMake(0, 100, kThemeSize.width, kThemeSize.height) collectionViewLayout:layout];
-	themeCollectionView.backgroundColor = [UIColor grayColor];
-	[themeCollectionView registerClass:[FDThemeCell class] forCellWithReuseIdentifier:kFDThemeCellIdentifier];
-	themeCollectionView.delegate = self;
-	themeCollectionView.dataSource = self;
-	themeCollectionView.pagingEnabled = YES;
-	[themeCollectionView setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin];
-	[self.view addSubview:themeCollectionView];
+	discoveryTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+	discoveryTableView.delegate = self;
+	discoveryTableView.dataSource = self;
+	[self.view addSubview:discoveryTableView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -58,38 +50,29 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - PSTCollectionViewDelegate
+#pragma mark - UITableViewDelegate
 
-//- (CGSize)collectionView:(PSTCollectionView *)collectionView layout:(PSTCollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//	return kThemeSize;
-//}
-
-- (NSInteger)collectionView:(PSTCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSLog(@"collectionView's frame: %@", NSStringFromCGRect(collectionView.frame));
-	NSLog(@"collectionView's content size: %@", NSStringFromCGSize(collectionView.contentSize));
-	return 6;
+	return CGRectFromString([FDThemeCell attributesOfSlideADStyle][kThemeCellAttributeKeyBounds]).size.height;
 }
 
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
-- (PSTCollectionViewCell *)collectionView:(PSTCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	FDThemeCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDThemeCellIdentifier forIndexPath:indexPath];
-//	FDUser *user = users[indexPath.row];
-//	cell.user = user;
-//	FDPhoto *photo = [user mainPhoto];
-//	cell.photo = photo;
-	NSLog(@"collectionView's content size: %@", NSStringFromCGSize(collectionView.contentSize));
-	NSLog(@"cell's frame: %@", NSStringFromCGRect(cell.frame));
+	return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	FDThemeCell *cell = [tableView dequeueReusableCellWithIdentifier:kFDThemeCellIdentifier];
+	if (!cell) {
+		cell = [[FDThemeCell alloc] init];
+		cell.attributes = [FDThemeCell attributesOfSlideADStyle];
+		cell.items = @[@"1", @"2", @"3"];
+	}
 	return cell;
 }
 
-- (void)collectionView:(PSTCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-//	FDUserProfileViewController *userProfileViewController = [[FDUserProfileViewController alloc] init];
-//	userProfileViewController.user = users[indexPath.row];
-//	[self.navigationController pushViewController:userProfileViewController animated:YES];
-}
+
 
 @end

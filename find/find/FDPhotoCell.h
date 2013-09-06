@@ -10,8 +10,8 @@
 #import "FDUser.h"
 #import "FDPhoto.h"
 
-#define kFDPhotoCellIdentifier @"fd_photo_cell_identifier"
-#define kFDMainPhotoCellIdentifier @"fd_main_photo_cell_identifier"
+#define kFDPhotoCellIdentifier @"kFDPhotoCellIdentifier"
+#define kFDMainPhotoCellIdentifier @"kFDMainPhotoCellIdentifier"
 
 @interface FDPhotoCell : PSTCollectionViewCell
 

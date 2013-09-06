@@ -8,8 +8,20 @@
 
 #import "PSTCollectionViewCell.h"
 
-#define kFDThemeCellIdentifier @"fd_theme_cell_identifier"
+#define kThemeCellAttributeKeyBounds @"kThemeCellAttributeKeyBounds"
+#define kThemeCellAttributeKeyPagingEnabled @"kThemeCellAttributeKeyPagingEnabled"
+#define kThemeCellAttributeKeyShowsHorizontalScrollIndicator @"kThemeCellAttributeKeyShowsHorizontalScrollIndicator"
+#define kThemeCellAttributeKeyAutoScrollEnabled @"kThemeCellAttributeKeyAutoScrollEnabled"
 
-@interface FDThemeCell : PSTCollectionViewCell
+#define kFDThemeCellIdentifier @"kFDThemeCellIdentifier"
+
+@interface FDThemeCell : UITableViewCell
+
+@property (nonatomic, strong) NSDictionary *attributes;
+@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) NSArray *items;
+
+
++ (NSDictionary *)attributesOfSlideADStyle;
 
 @end

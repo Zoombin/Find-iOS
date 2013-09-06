@@ -25,6 +25,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
 		
 	UINavigationController *firstViewController = [[UINavigationController alloc] initWithRootViewController:[[FDDiscoveryViewController alloc] init]];
+	
+//	FDDiscoveryViewController *firstViewController = [[FDDiscoveryViewController alloc] init];
 #ifdef FDDEBUG
 	UINavigationController *secondViewController = [[UINavigationController alloc] initWithRootViewController:[[FDTestPhotoUploadViewController alloc] init]];
 #else

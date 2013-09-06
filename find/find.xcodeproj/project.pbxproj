@@ -20,6 +20,7 @@
 		777E5EE217D9AB2C005AFB67 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 777E5EDF17D9AB2C005AFB67 /* LICENSE */; };
 		777E5EE317D9AB2C005AFB67 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 777E5EE017D9AB2C005AFB67 /* README.md */; };
 		777E5EE517D9ACB7005AFB67 /* QuietAssertMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = 777E5EE417D9ACB7005AFB67 /* QuietAssertMacros.c */; };
+		777E5EE817D9BBDA005AFB67 /* FDThemeItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */; };
 		77A5F7A317CB22960073E7F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A217CB22960073E7F9 /* Foundation.framework */; };
 		77A5F7A517CB22960073E7F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A417CB22960073E7F9 /* CoreGraphics.framework */; };
 		77A5F7A717CB22960073E7F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A617CB22960073E7F9 /* UIKit.framework */; };
@@ -119,6 +120,8 @@
 		777E5EDF17D9AB2C005AFB67 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		777E5EE017D9AB2C005AFB67 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		777E5EE417D9ACB7005AFB67 /* QuietAssertMacros.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = QuietAssertMacros.c; path = find/QuietAssertMacros.c; sourceTree = "<group>"; };
+		777E5EE617D9BBDA005AFB67 /* FDThemeItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDThemeItemView.h; sourceTree = "<group>"; };
+		777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDThemeItemView.m; sourceTree = "<group>"; };
 		77A5F79F17CB22960073E7F9 /* find.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = find.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77A5F7A217CB22960073E7F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		77A5F7A417CB22960073E7F9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -340,6 +343,8 @@
 				7734ACCD17D85368003E7BB6 /* FDUser.m */,
 				777E5E1C17D97A98005AFB67 /* FDThemeCell.h */,
 				777E5E1D17D97A98005AFB67 /* FDThemeCell.m */,
+				777E5EE617D9BBDA005AFB67 /* FDThemeItemView.h */,
+				777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */,
 				77C0C96217D18D7C008C7FC7 /* FDPhotoCell.h */,
 				77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */,
 				77C0C96517D198F6008C7FC7 /* FDPhoto.h */,
@@ -682,6 +687,7 @@
 				77A5F7B317CB22960073E7F9 /* FDAppDelegate.m in Sources */,
 				77A5F7AF17CB22960073E7F9 /* main.m in Sources */,
 				77C0C8C617CDD4B8008C7FC7 /* NSString+ZBUtilites.m in Sources */,
+				777E5EE817D9BBDA005AFB67 /* FDThemeItemView.m in Sources */,
 				77C0C8CB17CDD4B8008C7FC7 /* ZBViewController.m in Sources */,
 				77C0C8E017CDE32C008C7FC7 /* ZBQNAFHTTPClient.m in Sources */,
 				77C0C8C917CDD4B8008C7FC7 /* UIDevice+ZBUtilites.m in Sources */,
