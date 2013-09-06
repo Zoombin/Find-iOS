@@ -10,6 +10,17 @@
 
 @implementation PSTCollectionViewFlowLayout (FDLayout)
 
++ (PSTCollectionViewFlowLayout *)themeLayout
+{
+	PSTCollectionViewFlowLayout *layout = [[PSTCollectionViewFlowLayout alloc] init];
+	layout.scrollDirection = PSTCollectionViewScrollDirectionHorizontal;
+	layout.itemSize = kThemeSize;
+	layout.minimumInteritemSpacing = 0;
+	layout.minimumLineSpacing = 0;
+	layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
+	return layout;
+}
+
 + (PSTCollectionViewFlowLayout *)squaresLayout
 {
 	PSTCollectionViewFlowLayout *layout = [[PSTCollectionViewFlowLayout alloc] init];

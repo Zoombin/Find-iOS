@@ -16,3 +16,6 @@
 [submodule "find/Libraries/PSTCollectionView"]
 	path = find/Libraries/PSTCollectionView
 	url = https://qq30135878@github.com/qq30135878/PSTCollectionView.git
+[submodule "find/Libraries/fishhook"]
+	path = find/Libraries/fishhook
+	url = https://qq30135878@github.com/qq30135878/fishhook.git

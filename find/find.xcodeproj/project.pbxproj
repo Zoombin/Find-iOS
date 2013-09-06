@@ -15,6 +15,11 @@
 		7734ACE317D8893F003E7BB6 /* FDPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE217D8893F003E7BB6 /* FDPhotoViewController.m */; };
 		7734ACE617D895D1003E7BB6 /* FDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE517D895D1003E7BB6 /* FDViewController.m */; };
 		7734ACE917D8A6C1003E7BB6 /* FDPhotoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE817D8A6C1003E7BB6 /* FDPhotoInfo.m */; };
+		777E5E1E17D97A98005AFB67 /* FDThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 777E5E1D17D97A98005AFB67 /* FDThemeCell.m */; };
+		777E5EE117D9AB2C005AFB67 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 777E5EDD17D9AB2C005AFB67 /* fishhook.c */; };
+		777E5EE217D9AB2C005AFB67 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 777E5EDF17D9AB2C005AFB67 /* LICENSE */; };
+		777E5EE317D9AB2C005AFB67 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 777E5EE017D9AB2C005AFB67 /* README.md */; };
+		777E5EE517D9ACB7005AFB67 /* QuietAssertMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = 777E5EE417D9ACB7005AFB67 /* QuietAssertMacros.c */; };
 		77A5F7A317CB22960073E7F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A217CB22960073E7F9 /* Foundation.framework */; };
 		77A5F7A517CB22960073E7F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A417CB22960073E7F9 /* CoreGraphics.framework */; };
 		77A5F7A717CB22960073E7F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A617CB22960073E7F9 /* UIKit.framework */; };
@@ -107,6 +112,13 @@
 		7734ACE517D895D1003E7BB6 /* FDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDViewController.m; sourceTree = "<group>"; };
 		7734ACE717D8A6C1003E7BB6 /* FDPhotoInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDPhotoInfo.h; sourceTree = "<group>"; };
 		7734ACE817D8A6C1003E7BB6 /* FDPhotoInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPhotoInfo.m; sourceTree = "<group>"; };
+		777E5E1C17D97A98005AFB67 /* FDThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDThemeCell.h; sourceTree = "<group>"; };
+		777E5E1D17D97A98005AFB67 /* FDThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDThemeCell.m; sourceTree = "<group>"; };
+		777E5EDD17D9AB2C005AFB67 /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fishhook.c; sourceTree = "<group>"; };
+		777E5EDE17D9AB2C005AFB67 /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
+		777E5EDF17D9AB2C005AFB67 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		777E5EE017D9AB2C005AFB67 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		777E5EE417D9ACB7005AFB67 /* QuietAssertMacros.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = QuietAssertMacros.c; path = find/QuietAssertMacros.c; sourceTree = "<group>"; };
 		77A5F79F17CB22960073E7F9 /* find.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = find.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77A5F7A217CB22960073E7F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		77A5F7A417CB22960073E7F9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -254,9 +266,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		777E5EDC17D9AB2C005AFB67 /* fishhook */ = {
+			isa = PBXGroup;
+			children = (
+				777E5EDD17D9AB2C005AFB67 /* fishhook.c */,
+				777E5EDE17D9AB2C005AFB67 /* fishhook.h */,
+				777E5EDF17D9AB2C005AFB67 /* LICENSE */,
+				777E5EE017D9AB2C005AFB67 /* README.md */,
+			);
+			path = fishhook;
+			sourceTree = "<group>";
+		};
 		77A5F79617CB22960073E7F9 = {
 			isa = PBXGroup;
 			children = (
+				777E5EE417D9ACB7005AFB67 /* QuietAssertMacros.c */,
 				77C0C93117D172C1008C7FC7 /* Categories */,
 				77C0C91A17CE1966008C7FC7 /* Test */,
 				77C0C8DA17CDDE1A008C7FC7 /* QiNiu */,
@@ -314,6 +338,8 @@
 				7734ACE217D8893F003E7BB6 /* FDPhotoViewController.m */,
 				7734ACCC17D85368003E7BB6 /* FDUser.h */,
 				7734ACCD17D85368003E7BB6 /* FDUser.m */,
+				777E5E1C17D97A98005AFB67 /* FDThemeCell.h */,
+				777E5E1D17D97A98005AFB67 /* FDThemeCell.m */,
 				77C0C96217D18D7C008C7FC7 /* FDPhotoCell.h */,
 				77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */,
 				77C0C96517D198F6008C7FC7 /* FDPhoto.h */,
@@ -359,6 +385,7 @@
 		77A5F7DD17CB2AB00073E7F9 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				777E5EDC17D9AB2C005AFB67 /* fishhook */,
 				77C0C93817D18148008C7FC7 /* PSTCollectionView */,
 				77C0C92717CEE600008C7FC7 /* MBProgressHUD */,
 				77C0C8D517CDDBA8008C7FC7 /* GTMBase64 */,
@@ -615,8 +642,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				777E5EE217D9AB2C005AFB67 /* LICENSE in Resources */,
 				77C0C8C717CDD4B8008C7FC7 /* README.md in Resources */,
 				77A5F7E717CB2AB00073E7F9 /* RSTabBarController.podspec in Resources */,
+				777E5EE317D9AB2C005AFB67 /* README.md in Resources */,
 				77A5F7C117CB22960073E7F9 /* Images.xcassets in Resources */,
 				77A5F7AD17CB22960073E7F9 /* InfoPlist.strings in Resources */,
 				77A5F7E517CB2AB00073E7F9 /* LICENSE in Resources */,
@@ -657,6 +686,7 @@
 				77C0C8E017CDE32C008C7FC7 /* ZBQNAFHTTPClient.m in Sources */,
 				77C0C8C917CDD4B8008C7FC7 /* UIDevice+ZBUtilites.m in Sources */,
 				77A5F7E617CB2AB00073E7F9 /* RSTabBar.m in Sources */,
+				777E5E1E17D97A98005AFB67 /* FDThemeCell.m in Sources */,
 				77C0C8AD17CDBA8F008C7FC7 /* UIImageView+AFNetworking.m in Sources */,
 				77C0C8CA17CDD4B8008C7FC7 /* ZBTextValidate.m in Sources */,
 				77C0C93417D172CA008C7FC7 /* CLLocation+NSString.m in Sources */,
@@ -683,6 +713,8 @@
 				77C0C96017D18148008C7FC7 /* PSTGridLayoutRow.m in Sources */,
 				77C0C8A817CDBA8F008C7FC7 /* AFJSONRequestOperation.m in Sources */,
 				7734ACE617D895D1003E7BB6 /* FDViewController.m in Sources */,
+				777E5EE117D9AB2C005AFB67 /* fishhook.c in Sources */,
+				777E5EE517D9ACB7005AFB67 /* QuietAssertMacros.c in Sources */,
 				77A5F7F117CB2F410073E7F9 /* FDHostViewController.m in Sources */,
 				77C0C8A517CDBA8F008C7FC7 /* AFHTTPClient.m in Sources */,
 				77A5F7E817CB2AB00073E7F9 /* RSTabBarViewController.m in Sources */,

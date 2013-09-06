@@ -17,40 +17,34 @@
 @implementation FDAppDelegate
 {
 	UITabBarController *tabBarController;
-	UINavigationController *rootViewController;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-	rootViewController = [[UINavigationController alloc] init];
-	rootViewController.navigationBarHidden = YES;
-	self.window.rootViewController = rootViewController;
-	
-	
-	[self showMainViewAnimated:YES];
-	
-	[self.window makeKeyAndVisible];
-    return YES;
-}
-
-- (void)showMainViewAnimated:(BOOL)animated
-{
-	UINavigationController *firstViewController = [[UINavigationController alloc] initWithRootViewController:[[FDNearbyViewController alloc] init]];
+		
+	UINavigationController *firstViewController = [[UINavigationController alloc] initWithRootViewController:[[FDDiscoveryViewController alloc] init]];
 #ifdef FDDEBUG
 	UINavigationController *secondViewController = [[UINavigationController alloc] initWithRootViewController:[[FDTestPhotoUploadViewController alloc] init]];
 #else
-	UINavigationController *secondViewController = [[UINavigationController alloc] initWithRootViewController:[[FDDiscoveryViewController alloc] init]];
+	
+	UINavigationController *secondViewController = [[UINavigationController alloc] initWithRootViewController:[[FDNearbyViewController alloc] init]];
 #endif
 	UINavigationController *thirdViewController = [[UINavigationController alloc] initWithRootViewController:[[FDHostViewController alloc] init]];
 	UINavigationController *forthViewController = [[UINavigationController alloc] initWithRootViewController:[[FDCameraViewController alloc] init]];
 	UINavigationController *fifthViewController = [[UINavigationController alloc] initWithRootViewController:[[FDMeViewController alloc] init]];
 	
+	UINavigationController *sixthViewController = [[UINavigationController alloc] initWithRootViewController:[[FDDiscoveryViewController alloc] init]];
+	
 	tabBarController = [[UITabBarController alloc] init];
-	tabBarController.viewControllers = @[firstViewController, secondViewController, thirdViewController, forthViewController, fifthViewController];
-	[rootViewController setViewControllers:@[tabBarController] animated:animated];
+	tabBarController.viewControllers = @[firstViewController, secondViewController, thirdViewController, forthViewController, fifthViewController, sixthViewController];
 	tabBarController.selectedIndex = 0;
+	
+	self.window.rootViewController = tabBarController;
+	
+	[self.window makeKeyAndVisible];
+    return YES;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
