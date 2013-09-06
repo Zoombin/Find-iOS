@@ -21,9 +21,10 @@
 	NSUInteger numberOfPages;
 }
 
-- (id)initWithFrame:(CGRect)frame
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithFrame:frame];
+	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
 		self.backgroundColor = [UIColor clearColor];
 		_scrollView = [[UIScrollView alloc] init];
@@ -38,12 +39,14 @@
 {
 	if (_items == items) return;
 	_items = items;
-	_scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width * items.count, self.frame.size.height);
 	
+	CGFloat itemWidth = [_attributes[kThemeCellAttributeKeyItemWidth] floatValue];
 	for (int i = 0; i < items.count; i++) {
-		FDThemeItemView *itemView = [[FDThemeItemView alloc] initWithFrame:CGRectMake(_scrollView.frame.size.width * i, 0, _scrollView.frame.size.width, _scrollView.frame.size.height)];
+		FDThemeItemView *itemView = [[FDThemeItemView alloc] initWithFrame:CGRectMake(itemWidth * i, 0, itemWidth, _scrollView.frame.size.height)];
 		[_scrollView addSubview:itemView];
 	}
+	
+	_scrollView.contentSize = CGSizeMake(itemWidth * items.count, self.frame.size.height);
 	
 	currentPage = 0;
 	numberOfPages = items.count;
@@ -91,13 +94,29 @@ static NSDictionary *attributesOfSlideADStyle;
 		NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
 		CGRect rect = CGRectMake(0, 0, 320, 130);
 		attributes[kThemeCellAttributeKeyBounds] = NSStringFromCGRect(rect);
+		attributes[kThemeCellAttributeKeyItemWidth] = @(320);
 		attributes[kThemeCellAttributeKeyPagingEnabled] = @(YES);
-		attributes[kThemeCellAttributeKeyShowsHorizontalScrollIndicator] = @(YES);
 		attributes[kThemeCellAttributeKeyAutoScrollEnabled] = @(YES);
 		attributesOfSlideADStyle = [NSDictionary dictionaryWithDictionary:attributes];
 	}
 	return attributesOfSlideADStyle;
 }
+
+static NSDictionary *attributesOfIconStyle;
++ (NSDictionary *)attributesOfIconStyle
+{
+	if (!attributesOfIconStyle) {
+		NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+		CGRect rect = CGRectMake(0, 0, 320, 150);
+		attributes[kThemeCellAttributeKeyBounds] = NSStringFromCGRect(rect);
+		attributes[kThemeCellAttributeKeyItemWidth] = @(95);
+		attributes[kThemeCellAttributeKeyShowsHorizontalScrollIndicator] = @(NO);
+		attributes[kThemeCellAttributeKeyHeaderTitle] = @"hello";
+		attributesOfIconStyle = [NSDictionary dictionaryWithDictionary:attributes];
+	}
+	return attributesOfIconStyle;
+}
+
 
 #pragma mark - UIScrollViewDelegate
 
@@ -105,7 +124,6 @@ static NSDictionary *attributesOfSlideADStyle;
 {
 	CGFloat pageWidth = scrollView.frame.size.width;
 	currentPage = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-	NSLog(@"currentPage = %d", currentPage);
 }
 
 

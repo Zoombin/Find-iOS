@@ -8,8 +8,6 @@
 
 #import "PSTCollectionViewFlowLayout.h"
 
-#define kThemeSize ( CGSizeMake(320, 70) )
-
 #define kBigSquareLength 305
 #define kBigSquareSize ( CGSizeMake(kBigSquareLength, kBigSquareLength) )
 
@@ -21,7 +19,6 @@
 
 @interface PSTCollectionViewFlowLayout (FDLayout)
 
-+ (PSTCollectionViewFlowLayout *)themeLayout;
 + (PSTCollectionViewFlowLayout *)squaresLayout;
 + (PSTCollectionViewFlowLayout *)smallSquaresLayout;
 

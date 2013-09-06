@@ -9,9 +9,11 @@
 #import "PSTCollectionViewCell.h"
 
 #define kThemeCellAttributeKeyBounds @"kThemeCellAttributeKeyBounds"
+#define kThemeCellAttributeKeyItemWidth @"kThemeCellAttributeKeyItemWidth"
 #define kThemeCellAttributeKeyPagingEnabled @"kThemeCellAttributeKeyPagingEnabled"
 #define kThemeCellAttributeKeyShowsHorizontalScrollIndicator @"kThemeCellAttributeKeyShowsHorizontalScrollIndicator"
 #define kThemeCellAttributeKeyAutoScrollEnabled @"kThemeCellAttributeKeyAutoScrollEnabled"
+#define kThemeCellAttributeKeyHeaderTitle @"kThemeCellAttributeKeyHeaderTitle"
 
 #define kFDThemeCellIdentifier @"kFDThemeCellIdentifier"
 
@@ -23,5 +25,6 @@
 
 
 + (NSDictionary *)attributesOfSlideADStyle;
++ (NSDictionary *)attributesOfIconStyle;
 
 @end
