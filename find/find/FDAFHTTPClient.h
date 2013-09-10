@@ -15,6 +15,7 @@
 
 - (void)tweetPhotos:(NSArray *)photos atLocation:(CLLocation *)location address:(NSString *)address withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
 
+- (void)aroundPhotosAtLocation:(CLLocation *)location withCompletionBlock:(dispatch_block_t)block;
 
 
 @end

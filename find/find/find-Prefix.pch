@@ -23,6 +23,7 @@
 #import "UIViewController+HUD.h"
 #import "UIColor+Random.h"
 #import "PSTCollectionViewFlowLayout+FDLayout.h"
+#import "NSNumber+ReadableDistance.h"
 
 
 #define FDDEBUG 1

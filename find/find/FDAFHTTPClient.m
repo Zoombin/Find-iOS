@@ -23,9 +23,16 @@ static FDAFHTTPClient *_instance;
 	return _instance;
 }
 
-- (void)tweet
+- (void)printResponseObject:(id)responseObject
 {
-	;
+	id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+	NSString *type;
+	if ([data isKindOfClass:[NSDictionary class]]) {
+		type = @"dictionary";
+	} else if ([data isKindOfClass:[NSArray class]]) {
+		type = @"array";
+	}
+	NSLog(@"%@-data: %@", type, data);
 }
 
 - (void)tweetPhotos:(NSArray *)photos atLocation:(CLLocation *)location address:(NSString *)address withCompletionBlock:(void (^)(BOOL success, NSString *message))block
@@ -41,7 +48,6 @@ static FDAFHTTPClient *_instance;
 	[self postPath:@"tweet" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
-			NSLog(@"data: %@", data);
 			if (block) block ([data[@"status"] boolValue], [data[@"msg"] stringValue]);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -49,5 +55,15 @@ static FDAFHTTPClient *_instance;
 	}];
 }
 
+- (void)aroundPhotosAtLocation:(CLLocation *)location withCompletionBlock:(dispatch_block_t)block
+{
+	NSMutableDictionary *parameters = [[location parseToDictionary] mutableCopy];
+	[self getPath:@"around/photo" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		[self printResponseObject:responseObject];
+		if (block) block();
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		if (block) block();
+	}];
+}
 
 @end

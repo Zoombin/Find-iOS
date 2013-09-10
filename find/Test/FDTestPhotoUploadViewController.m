@@ -143,37 +143,11 @@
 	[uploadButton setTitle:@"upload" forState:UIControlStateNormal];
 	uploadButton.frame = CGRectMake(margin, startY, 100, height);
 	[uploadButton setBackgroundColor:[UIColor blackColor]];
-	[uploadButton addTarget:self action:@selector(upload) forControlEvents:UIControlEventTouchUpInside];
+	[uploadButton addTarget:self action:@selector(testAPI) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:uploadButton];
 	
 	[self updateTrueLocation:trueLocation];
 	[self updateFakeLocation:fakeLocation];
-}
-
-- (void)upload
-{
-	[self displayHUD:@"Posting..."];
-	[[FDAFHTTPClient shared] tweetPhotos:nil atLocation:fakeLocation address:@"ooxxxx" withCompletionBlock:^(BOOL success, NSString *message) {
-		[self hideHUD:YES];
-		if (!success) {
-			[self displayHUDError:nil message:message];
-		}
-	}];
-	return;
-	
-	UIImage *screenshot = [self captureView:self.view];
-	NSData *imageData = UIImageJPEGRepresentation(screenshot, 1);
-	
-	
-	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	[formatter setDateFormat:@"yyyy-MM-dd-hh-mm-ss"];
-	NSDate *now = [NSDate date];
-	
-	NSString *fileName = [NSString stringWithFormat:@"%@.jpg", [formatter stringFromDate:now]];
-	[self displayHUD:@"uploading..."];
-	[[ZBQNAFHTTPClient shared] uploadData:imageData name:fileName completionBlock:^(void) {
-		[self hideHUD:YES];
-	}];
 }
 
 - (UIImage *)captureView:(UIView *)view {
@@ -270,6 +244,51 @@
 		[self updateFakeLocation:trueLocation];
 		[manager stopUpdatingLocation];
 	}
+}
+
+#pragma mark - Test
+
+- (void)testAPI
+{
+	//[self testAroundPhotos];
+	NSArray *array = @[[@(1) readableDistance],[@(100) readableDistance], [@(123) readableDistance], [@(1237115) readableDistance]];
+	NSLog(@"distance: %@", [@(12) readableDistance]);
+}
+
+- (void)testUpload
+{
+	UIImage *screenshot = [self captureView:self.view];
+	NSData *imageData = UIImageJPEGRepresentation(screenshot, 1);
+	
+	
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	[formatter setDateFormat:@"yyyy-MM-dd-hh-mm-ss"];
+	NSDate *now = [NSDate date];
+	
+	NSString *fileName = [NSString stringWithFormat:@"%@.jpg", [formatter stringFromDate:now]];
+	[self displayHUD:@"uploading..."];
+	[[ZBQNAFHTTPClient shared] uploadData:imageData name:fileName completionBlock:^(void) {
+		[self hideHUD:YES];
+	}];
+}
+
+- (void)testTweet
+{
+	[self displayHUD:@"Posting..."];
+	[[FDAFHTTPClient shared] tweetPhotos:nil atLocation:fakeLocation address:@"ooxxxx" withCompletionBlock:^(BOOL success, NSString *message) {
+		[self hideHUD:YES];
+		if (!success) {
+			[self displayHUDError:nil message:message];
+		}
+	}];
+}
+
+- (void)testAroundPhotos
+{
+	[self displayHUD:@"Fetching around photos"];
+	[[FDAFHTTPClient shared] aroundPhotosAtLocation:fakeLocation withCompletionBlock:^(void) {
+		[self hideHUD:YES];
+	}];
 }
 
 @end

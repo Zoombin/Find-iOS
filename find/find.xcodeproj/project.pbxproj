@@ -86,6 +86,7 @@
 		77C0C96117D18148008C7FC7 /* PSTGridLayoutSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C95417D18148008C7FC7 /* PSTGridLayoutSection.m */; };
 		77C0C96417D18D7C008C7FC7 /* FDPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */; };
 		77C0C96717D198F6008C7FC7 /* FDPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C96617D198F6008C7FC7 /* FDPhoto.m */; };
+		77F436E417DF1AE0006156CC /* NSNumber+ReadableDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F436E317DF1AE0006156CC /* NSNumber+ReadableDistance.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -248,6 +249,8 @@
 		77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPhotoCell.m; sourceTree = "<group>"; };
 		77C0C96517D198F6008C7FC7 /* FDPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDPhoto.h; sourceTree = "<group>"; };
 		77C0C96617D198F6008C7FC7 /* FDPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPhoto.m; sourceTree = "<group>"; };
+		77F436E217DF1AE0006156CC /* NSNumber+ReadableDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+ReadableDistance.h"; sourceTree = "<group>"; };
+		77F436E317DF1AE0006156CC /* NSNumber+ReadableDistance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+ReadableDistance.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -537,6 +540,8 @@
 				7734ACD917D86A2B003E7BB6 /* PSTCollectionViewFlowLayout+FDLayout.m */,
 				77AD927F17DED2D400D2FEBC /* CLLocation+NSDictionary.h */,
 				77AD928017DED2D400D2FEBC /* CLLocation+NSDictionary.m */,
+				77F436E217DF1AE0006156CC /* NSNumber+ReadableDistance.h */,
+				77F436E317DF1AE0006156CC /* NSNumber+ReadableDistance.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -720,6 +725,7 @@
 				7734ACD117D85605003E7BB6 /* FDUser+Test.m in Sources */,
 				77C0C8A717CDBA8F008C7FC7 /* AFImageRequestOperation.m in Sources */,
 				77C0C92A17CEE60C008C7FC7 /* MBProgressHUD.m in Sources */,
+				77F436E417DF1AE0006156CC /* NSNumber+ReadableDistance.m in Sources */,
 				77C0C8AA17CDBA8F008C7FC7 /* AFPropertyListRequestOperation.m in Sources */,
 				77C0C8C517CDD4B8008C7FC7 /* NSString+BundleExtensions.m in Sources */,
 				77C0C95917D18148008C7FC7 /* PSTCollectionViewData.m in Sources */,
