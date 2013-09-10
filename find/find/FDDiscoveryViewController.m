@@ -42,7 +42,7 @@
 	
 	sectionsAttributesMap = [NSMutableDictionary dictionary];
 	sectionsAttributesMap[@(0)] = [FDThemeCell attributesOfSlideADStyle];
-	sectionsAttributesMap[@(1)] = [FDThemeCell attributesOfIconStyle];
+	sectionsAttributesMap[@(1)] = [FDThemeCell attributesOfIconStyle];	
 }
 
 - (void)viewWillAppear:(BOOL)animated

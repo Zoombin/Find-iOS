@@ -152,6 +152,15 @@
 
 - (void)upload
 {
+	[self displayHUD:@"Posting..."];
+	[[FDAFHTTPClient shared] tweetPhotos:nil atLocation:fakeLocation address:@"ooxxxx" withCompletionBlock:^(BOOL success, NSString *message) {
+		[self hideHUD:YES];
+		if (!success) {
+			[self displayHUDError:nil message:message];
+		}
+	}];
+	return;
+	
 	UIImage *screenshot = [self captureView:self.view];
 	NSData *imageData = UIImageJPEGRepresentation(screenshot, 1);
 	

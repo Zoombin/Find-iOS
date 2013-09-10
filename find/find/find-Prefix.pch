@@ -17,12 +17,15 @@
 #import "FDAppDelegate.h"
 #import	"FDViewController.h"
 #import "ZBQNAFHTTPClient.h"
+#import "FDAFHTTPClient.h"
 #import "CLLocation+NSString.h"
+#import "CLLocation+NSDictionary.h"
 #import "UIViewController+HUD.h"
 #import "UIColor+Random.h"
 #import "PSTCollectionViewFlowLayout+FDLayout.h"
 
-//#define FDDEBUG 1
+
+#define FDDEBUG 1
 #define QINIU_HOST @"http://find.qiniudn.com/"
 
 

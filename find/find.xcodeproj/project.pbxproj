@@ -44,6 +44,8 @@
 		77A5F7F417CB2F760073E7F9 /* FDCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F317CB2F760073E7F9 /* FDCameraViewController.m */; };
 		77A5F7F717CB30400073E7F9 /* FDMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F617CB30400073E7F9 /* FDMeViewController.m */; };
 		77A5F89017CD95E80073E7F9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F88F17CD95E80073E7F9 /* CFNetwork.framework */; };
+		77AD927E17DEC88800D2FEBC /* FDAFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AD927D17DEC88800D2FEBC /* FDAFHTTPClient.m */; };
+		77AD928117DED2D400D2FEBC /* CLLocation+NSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AD928017DED2D400D2FEBC /* CLLocation+NSDictionary.m */; };
 		77C0C8A517CDBA8F008C7FC7 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C89317CDBA8F008C7FC7 /* AFHTTPClient.m */; };
 		77C0C8A617CDBA8F008C7FC7 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C89517CDBA8F008C7FC7 /* AFHTTPRequestOperation.m */; };
 		77C0C8A717CDBA8F008C7FC7 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C89717CDBA8F008C7FC7 /* AFImageRequestOperation.m */; };
@@ -119,7 +121,7 @@
 		777E5EDE17D9AB2C005AFB67 /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
 		777E5EDF17D9AB2C005AFB67 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		777E5EE017D9AB2C005AFB67 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		777E5EE417D9ACB7005AFB67 /* QuietAssertMacros.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = QuietAssertMacros.c; path = find/QuietAssertMacros.c; sourceTree = "<group>"; };
+		777E5EE417D9ACB7005AFB67 /* QuietAssertMacros.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = QuietAssertMacros.c; sourceTree = "<group>"; };
 		777E5EE617D9BBDA005AFB67 /* FDThemeItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDThemeItemView.h; sourceTree = "<group>"; };
 		777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDThemeItemView.m; sourceTree = "<group>"; };
 		77A5F79F17CB22960073E7F9 /* find.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = find.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,6 +159,10 @@
 		77A5F7F517CB30400073E7F9 /* FDMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDMeViewController.h; sourceTree = "<group>"; };
 		77A5F7F617CB30400073E7F9 /* FDMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDMeViewController.m; sourceTree = "<group>"; };
 		77A5F88F17CD95E80073E7F9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		77AD927C17DEC88800D2FEBC /* FDAFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDAFHTTPClient.h; sourceTree = "<group>"; };
+		77AD927D17DEC88800D2FEBC /* FDAFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDAFHTTPClient.m; sourceTree = "<group>"; };
+		77AD927F17DED2D400D2FEBC /* CLLocation+NSDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CLLocation+NSDictionary.h"; path = "find/CLLocation+NSDictionary.h"; sourceTree = "<group>"; };
+		77AD928017DED2D400D2FEBC /* CLLocation+NSDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CLLocation+NSDictionary.m"; path = "find/CLLocation+NSDictionary.m"; sourceTree = "<group>"; };
 		77C0C89217CDBA8F008C7FC7 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		77C0C89317CDBA8F008C7FC7 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		77C0C89417CDBA8F008C7FC7 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -283,7 +289,6 @@
 		77A5F79617CB22960073E7F9 = {
 			isa = PBXGroup;
 			children = (
-				777E5EE417D9ACB7005AFB67 /* QuietAssertMacros.c */,
 				77C0C93117D172C1008C7FC7 /* Categories */,
 				77C0C91A17CE1966008C7FC7 /* Test */,
 				77C0C8DA17CDDE1A008C7FC7 /* QiNiu */,
@@ -319,6 +324,9 @@
 		77A5F7A817CB22960073E7F9 /* find */ = {
 			isa = PBXGroup;
 			children = (
+				777E5EE417D9ACB7005AFB67 /* QuietAssertMacros.c */,
+				77AD927C17DEC88800D2FEBC /* FDAFHTTPClient.h */,
+				77AD927D17DEC88800D2FEBC /* FDAFHTTPClient.m */,
 				77A5F7B117CB22960073E7F9 /* FDAppDelegate.h */,
 				77A5F7B217CB22960073E7F9 /* FDAppDelegate.m */,
 				77A5F7EC17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.h */,
@@ -527,6 +535,8 @@
 				77C0C93617D17E8F008C7FC7 /* UIColor+Random.m */,
 				7734ACD817D86A2B003E7BB6 /* PSTCollectionViewFlowLayout+FDLayout.h */,
 				7734ACD917D86A2B003E7BB6 /* PSTCollectionViewFlowLayout+FDLayout.m */,
+				77AD927F17DED2D400D2FEBC /* CLLocation+NSDictionary.h */,
+				77AD928017DED2D400D2FEBC /* CLLocation+NSDictionary.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -701,6 +711,8 @@
 				77C0C8AB17CDBA8F008C7FC7 /* AFURLConnectionOperation.m in Sources */,
 				77C0C8C817CDD4B8008C7FC7 /* UIColor+Hex.m in Sources */,
 				77C0C95F17D18148008C7FC7 /* PSTGridLayoutItem.m in Sources */,
+				77AD928117DED2D400D2FEBC /* CLLocation+NSDictionary.m in Sources */,
+				77AD927E17DEC88800D2FEBC /* FDAFHTTPClient.m in Sources */,
 				77C0C8AC17CDBA8F008C7FC7 /* AFXMLRequestOperation.m in Sources */,
 				77C0C95E17D18148008C7FC7 /* PSTGridLayoutInfo.m in Sources */,
 				77C0C95B17D18148008C7FC7 /* PSTCollectionViewItemKey.m in Sources */,
