@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSNumber (ReadableDistance)
+@interface NSNumber (PrintableMeasurement)
 
 - (NSString *)readableDistance;
 

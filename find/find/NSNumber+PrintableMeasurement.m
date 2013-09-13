@@ -8,7 +8,7 @@
 
 #import "NSNumber+ReadableDistance.h"
 
-@implementation NSNumber (ReadableDistance)
+@implementation NSNumber (PrintableMeasurement)
 
 - (NSString *)readableDistance
 {

@@ -21,6 +21,7 @@
 		777E5EE317D9AB2C005AFB67 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 777E5EE017D9AB2C005AFB67 /* README.md */; };
 		777E5EE517D9ACB7005AFB67 /* QuietAssertMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = 777E5EE417D9ACB7005AFB67 /* QuietAssertMacros.c */; };
 		777E5EE817D9BBDA005AFB67 /* FDThemeItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */; };
+		7786713117E35786001FDB67 /* NSNumber+PrintableMeasurement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786713017E35786001FDB67 /* NSNumber+PrintableMeasurement.m */; };
 		77A5F7A317CB22960073E7F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A217CB22960073E7F9 /* Foundation.framework */; };
 		77A5F7A517CB22960073E7F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A417CB22960073E7F9 /* CoreGraphics.framework */; };
 		77A5F7A717CB22960073E7F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A617CB22960073E7F9 /* UIKit.framework */; };
@@ -86,7 +87,6 @@
 		77C0C96117D18148008C7FC7 /* PSTGridLayoutSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C95417D18148008C7FC7 /* PSTGridLayoutSection.m */; };
 		77C0C96417D18D7C008C7FC7 /* FDPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */; };
 		77C0C96717D198F6008C7FC7 /* FDPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C96617D198F6008C7FC7 /* FDPhoto.m */; };
-		77F436E417DF1AE0006156CC /* NSNumber+ReadableDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F436E317DF1AE0006156CC /* NSNumber+ReadableDistance.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +125,8 @@
 		777E5EE417D9ACB7005AFB67 /* QuietAssertMacros.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = QuietAssertMacros.c; sourceTree = "<group>"; };
 		777E5EE617D9BBDA005AFB67 /* FDThemeItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDThemeItemView.h; sourceTree = "<group>"; };
 		777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDThemeItemView.m; sourceTree = "<group>"; };
+		7786712F17E35786001FDB67 /* NSNumber+PrintableMeasurement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSNumber+PrintableMeasurement.h"; path = "find/NSNumber+PrintableMeasurement.h"; sourceTree = "<group>"; };
+		7786713017E35786001FDB67 /* NSNumber+PrintableMeasurement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSNumber+PrintableMeasurement.m"; path = "find/NSNumber+PrintableMeasurement.m"; sourceTree = "<group>"; };
 		77A5F79F17CB22960073E7F9 /* find.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = find.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77A5F7A217CB22960073E7F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		77A5F7A417CB22960073E7F9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -249,8 +251,6 @@
 		77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPhotoCell.m; sourceTree = "<group>"; };
 		77C0C96517D198F6008C7FC7 /* FDPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDPhoto.h; sourceTree = "<group>"; };
 		77C0C96617D198F6008C7FC7 /* FDPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPhoto.m; sourceTree = "<group>"; };
-		77F436E217DF1AE0006156CC /* NSNumber+ReadableDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+ReadableDistance.h"; sourceTree = "<group>"; };
-		77F436E317DF1AE0006156CC /* NSNumber+ReadableDistance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+ReadableDistance.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -540,8 +540,8 @@
 				7734ACD917D86A2B003E7BB6 /* PSTCollectionViewFlowLayout+FDLayout.m */,
 				77AD927F17DED2D400D2FEBC /* CLLocation+NSDictionary.h */,
 				77AD928017DED2D400D2FEBC /* CLLocation+NSDictionary.m */,
-				77F436E217DF1AE0006156CC /* NSNumber+ReadableDistance.h */,
-				77F436E317DF1AE0006156CC /* NSNumber+ReadableDistance.m */,
+				7786712F17E35786001FDB67 /* NSNumber+PrintableMeasurement.h */,
+				7786713017E35786001FDB67 /* NSNumber+PrintableMeasurement.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -709,6 +709,7 @@
 				77A5F7E617CB2AB00073E7F9 /* RSTabBar.m in Sources */,
 				777E5E1E17D97A98005AFB67 /* FDThemeCell.m in Sources */,
 				77C0C8AD17CDBA8F008C7FC7 /* UIImageView+AFNetworking.m in Sources */,
+				7786713117E35786001FDB67 /* NSNumber+PrintableMeasurement.m in Sources */,
 				77C0C8CA17CDD4B8008C7FC7 /* ZBTextValidate.m in Sources */,
 				77C0C93417D172CA008C7FC7 /* CLLocation+NSString.m in Sources */,
 				77C0C8DD17CDDE6A008C7FC7 /* ZBQNPutPolicy.m in Sources */,
@@ -725,7 +726,6 @@
 				7734ACD117D85605003E7BB6 /* FDUser+Test.m in Sources */,
 				77C0C8A717CDBA8F008C7FC7 /* AFImageRequestOperation.m in Sources */,
 				77C0C92A17CEE60C008C7FC7 /* MBProgressHUD.m in Sources */,
-				77F436E417DF1AE0006156CC /* NSNumber+ReadableDistance.m in Sources */,
 				77C0C8AA17CDBA8F008C7FC7 /* AFPropertyListRequestOperation.m in Sources */,
 				77C0C8C517CDD4B8008C7FC7 /* NSString+BundleExtensions.m in Sources */,
 				77C0C95917D18148008C7FC7 /* PSTCollectionViewData.m in Sources */,
