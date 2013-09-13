@@ -6,17 +6,17 @@
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "FDNearbyViewController.h"
+#import "FDAroundViewController.h"
 #import "PSTCollectionView.h"
 #import "FDPhotoCell.h"
 #import "FDUserProfileViewController.h"
 #import "FDUser.h"
 
-@interface FDNearbyViewController () <PSTCollectionViewDelegate, PSTCollectionViewDataSource>
+@interface FDAroundViewController () <PSTCollectionViewDelegate, PSTCollectionViewDataSource>
 
 @end
 
-@implementation FDNearbyViewController
+@implementation FDAroundViewController
 {
 	NSArray *users;
 	NSArray *photos;
@@ -26,7 +26,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		self.title = @"Nearby";
+		self.title = @"Around";
 //		[self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabAccountActive"] withFinishedUnselectedImage:[UIImage imageNamed:@"tabAccount"]];
     }
     return self;

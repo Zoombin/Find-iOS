@@ -8,7 +8,7 @@
 
 #import "FDAppDelegate.h"
 #import "RSTabBarViewController.h"
-#import "FDNearbyViewController.h"
+#import "FDAroundViewController.h"
 #import "FDDiscoveryViewController.h"
 #import "FDHostViewController.h"
 #import "FDCameraViewController.h"
@@ -24,14 +24,14 @@
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
 		
-	UINavigationController *firstViewController = [[UINavigationController alloc] initWithRootViewController:[[FDDiscoveryViewController alloc] init]];
+	UINavigationController *firstViewController = [[UINavigationController alloc] initWithRootViewController:[[FDAroundViewController alloc] init]];
 	
 //	FDDiscoveryViewController *firstViewController = [[FDDiscoveryViewController alloc] init];
 #ifdef FDDEBUG
 	UINavigationController *secondViewController = [[UINavigationController alloc] initWithRootViewController:[[FDTestPhotoUploadViewController alloc] init]];
 #else
 	
-	UINavigationController *secondViewController = [[UINavigationController alloc] initWithRootViewController:[[FDNearbyViewController alloc] init]];
+	UINavigationController *secondViewController = [[UINavigationController alloc] initWithRootViewController:[[FDAroundViewController alloc] init]];
 #endif
 	UINavigationController *thirdViewController = [[UINavigationController alloc] initWithRootViewController:[[FDHostViewController alloc] init]];
 	UINavigationController *forthViewController = [[UINavigationController alloc] initWithRootViewController:[[FDCameraViewController alloc] init]];
