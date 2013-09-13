@@ -876,10 +876,7 @@
 				GCC_PREFIX_HEADER = "find/find-Prefix.pch";
 				INFOPLIST_FILE = "find/find-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/zhangbin/Documents/Git/find-ios/find/Libraries/Qiniu/QiniuSDK",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -895,10 +892,7 @@
 				GCC_PREFIX_HEADER = "find/find-Prefix.pch";
 				INFOPLIST_FILE = "find/find-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/zhangbin/Documents/Git/find-ios/find/Libraries/Qiniu/QiniuSDK",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
