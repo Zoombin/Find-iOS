@@ -278,7 +278,7 @@
 	[[FDAFHTTPClient shared] tweetPhotos:nil atLocation:fakeLocation address:@"ooxxxx" withCompletionBlock:^(BOOL success, NSString *message) {
 		[self hideHUD:YES];
 		if (!success) {
-			[self displayHUDError:nil message:message];
+			[self displayHUDTitle:nil message:message];
 		}
 	}];
 }
