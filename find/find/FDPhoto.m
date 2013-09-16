@@ -10,6 +10,30 @@
 
 @implementation FDPhoto
 
++ (FDPhoto *)createWithAttributes:(NSDictionary *)attributes
+{
+	NSAssert(attributes[@"id"], @"A photo must have an ID!");
+	FDPhoto *photo = [[FDPhoto alloc] init];
+	photo.ID = attributes[@"id"];
+	photo.userID = attributes[@"mid"];
+	photo.tweetID = attributes[@"ptid"];
+	photo.type = attributes[@"type"];
+	photo.urlString = attributes[@"path"];
+	photo.likes = attributes[@"likes"];
+	photo.views = attributes[@"views"];
+	photo.uploaded = attributes[@"uploaded"];
+	return photo;
+}
+
++ (NSArray *)createMutableWithData:(NSArray *)data
+{
+	NSMutableArray *photos = [NSMutableArray array];
+	for (NSDictionary *attributes in data) {
+		[photos addObject:[self createWithAttributes:attributes]];
+	}
+	return photos;
+}
+
 - (NSString *)urlStringInfo
 {
 	return [NSString stringWithFormat:@"%@?imageInfo", _urlString];

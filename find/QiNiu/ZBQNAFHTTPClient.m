@@ -65,7 +65,7 @@ static NSString *_token;
 	
 	AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 	[operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-		NSLog(@"sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
+		//NSLog(@"sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
 		if (progress) progress(bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
 	}];
 

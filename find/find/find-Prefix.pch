@@ -24,6 +24,9 @@
 #import "UIColor+Random.h"
 #import "PSTCollectionViewFlowLayout+FDLayout.h"
 #import "NSNumber+PrintableMeasurement.h"
+#import "FDUser.h"
+#import "FDPhoto.h"
+#import "FDTweet.h"
 
 
 #define FDDEBUG 1

@@ -41,6 +41,7 @@ static FDAFHTTPClient *_instance;
 	if (address) {
 		parameters[@"address"] = address;
 	}
+	
 	if (photos) {
 		parameters[@"pics"] = photos;
 	}
@@ -48,21 +49,33 @@ static FDAFHTTPClient *_instance;
 	[self postPath:@"tweet" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
-			if (block) block ([data[@"status"] boolValue], [data[@"msg"] stringValue]);
+			//NSLog(@"data: %@",data);
+			if (block) block ([data[@"status"] boolValue], data[@"msg"]);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		if (block) block (NO, error.description);
 	}];
 }
 
-- (void)aroundPhotosAtLocation:(CLLocation *)location withCompletionBlock:(dispatch_block_t)block
+- (void)aroundPhotosAtLocation:(CLLocation *)location limit:(NSNumber *)limit distance:(NSNumber *)distance withCompletionBlock:(void (^)(BOOL success, NSArray *tweets, NSNumber *distance))block
 {
 	NSMutableDictionary *parameters = [[location parseToDictionary] mutableCopy];
+	if (limit) {
+		parameters[@"limit"] = limit;
+	}
+	
+	if (distance) {
+		parameters[@"distance"] = distance;
+	}
+	
 	[self getPath:@"around/photo" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-		[self printResponseObject:responseObject];
-		if (block) block();
+		//[self printResponseObject:responseObject];
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		NSArray *tweets = [FDTweet createMutableWithData:data[@"data"]];
+		NSNumber *distance = data[@"distance"];
+		if (block) block(YES, tweets, distance);
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block();
+		if (block) block(NO, nil, nil);
 	}];
 }
 

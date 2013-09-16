@@ -15,8 +15,8 @@
 
 @implementation FDTestPhotoUploadViewController
 {
-	CLLocationManager *locationManager;
 	CLLocation *fakeLocation;
+	CLLocationManager *locationManager;
 	CLLocation *trueLocation;
 	
 	UITextField *fakeLatField;
@@ -45,10 +45,8 @@
     //locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	//[locationManager startUpdatingLocation];
 	
-	CLLocationDegrees baseLat = 31.298026;
-	CLLocationDegrees baseLon = 120.666564;
-	trueLocation = [[CLLocation alloc] initWithLatitude:baseLat longitude:baseLon];
-	fakeLocation = [[CLLocation alloc] initWithLatitude:baseLat longitude:baseLon];
+	fakeLocation = [CLLocation fakeLocation];
+	trueLocation = [CLLocation fakeLocation];
 	
 	CGSize fullSize = self.view.bounds.size;
 	
@@ -98,7 +96,7 @@
 	sameWithTrueLocation.frame = CGRectMake(margin, startY, locationButtonWidth, height);
 	sameWithTrueLocation.tag = 0;
 	[sameWithTrueLocation setBackgroundColor:[UIColor yellowColor]];
-	[sameWithTrueLocation addTarget:self action:@selector(randomLocation:) forControlEvents:UIControlEventTouchUpInside];
+	[sameWithTrueLocation addTarget:self action:@selector(random:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:sameWithTrueLocation];
 	
 	startY = CGRectGetMaxY(sameWithTrueLocation.frame) + margin;
@@ -108,7 +106,7 @@
 	random100meters.frame = CGRectMake(margin, startY, locationButtonWidth, height);
 	random100meters.tag = 100;
 	[random100meters setBackgroundColor:[UIColor greenColor]];
-	[random100meters addTarget:self action:@selector(randomLocation:) forControlEvents:UIControlEventTouchUpInside];
+	[random100meters addTarget:self action:@selector(random:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:random100meters];
 	
 	startY = CGRectGetMaxY(random100meters.frame) + margin;
@@ -118,7 +116,7 @@
 	random1000meters.frame = CGRectMake(margin, startY, locationButtonWidth, height);
 	random1000meters.tag = 1000;
 	[random1000meters setBackgroundColor:[UIColor blueColor]];
-	[random1000meters addTarget:self action:@selector(randomLocation:) forControlEvents:UIControlEventTouchUpInside];
+	[random1000meters addTarget:self action:@selector(random:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:random1000meters];
 	
 	startY = CGRectGetMaxY(random1000meters.frame) + margin;
@@ -128,7 +126,7 @@
 	random10000meters.frame = CGRectMake(margin, startY, locationButtonWidth, height);
 	random10000meters.tag = 10000;
 	[random10000meters setBackgroundColor:[UIColor redColor]];
-	[random10000meters addTarget:self action:@selector(randomLocation:) forControlEvents:UIControlEventTouchUpInside];
+	[random10000meters addTarget:self action:@selector(random:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:random10000meters];
 	
 	startY = CGRectGetMaxY(random10000meters.frame);
@@ -168,16 +166,18 @@
     return newImage;
 }
 
-- (void)randomLocation:(UIButton *)sender
+- (void)random:(UIButton *)sender
 {
 	if (!trueLocation) {
 		NSLog(@"cant get current location");
 		return;
 	}
-	CGFloat distanceDesire = (CGFloat)sender.tag;
-	
+	[self randomLocation:(CGFloat)sender.tag];
+}
+
+- (void)randomLocation:(CGFloat)distanceDesire
+{
 	CGFloat factor = 0;
-	
 	CGPoint point = CGPointZero;
 	if (distanceDesire == 0) {
 		point.x = 0;
@@ -251,8 +251,7 @@
 - (void)testAPI
 {
 	//[self testAroundPhotos];
-	NSArray *array = @[[@(1) readableDistance],[@(100) readableDistance], [@(123) readableDistance], [@(1237115) readableDistance]];
-	NSLog(@"distance: %@", [@(12) readableDistance]);
+	[self testUpload];
 }
 
 - (void)testUpload
@@ -267,10 +266,25 @@
 	
 	NSString *fileName = [NSString stringWithFormat:@"%@.jpg", [formatter stringFromDate:now]];
 	[self displayHUD:@"uploading..."];
-	[[ZBQNAFHTTPClient shared] uploadData:imageData name:fileName completionBlock:^(void) {
-		[self hideHUD:YES];
+	
+	[[ZBQNAFHTTPClient shared] uploadData:imageData name:fileName progressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+		NSString *print = [NSString stringWithFormat:@"%@/%@", [@(totalBytesWritten) printableBytes], [@(totalBytesExpectedToWrite) printableBytes]];
+		[self displayHUD:print];
+	} completionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+		
+		[[FDAFHTTPClient shared] tweetPhotos:@[fileName] atLocation:fakeLocation address:distanceLabel.text withCompletionBlock:^(BOOL success, NSString *message) {
+			[self displayHUDTitle:@"Upload successfully" message:nil];
+			
+			NSArray *distances = @[@(0), @(100), @(1000), @(10000)];
+			NSNumber *dis = distances[arc4random() % distances.count];
+			[self randomLocation:dis.floatValue];
+		}];
+		
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		[self displayHUDTitle:@"Error" message:error.description];
 	}];
 }
+
 
 - (void)testTweet
 {
@@ -286,9 +300,6 @@
 - (void)testAroundPhotos
 {
 	[self displayHUD:@"Fetching around photos"];
-	[[FDAFHTTPClient shared] aroundPhotosAtLocation:fakeLocation withCompletionBlock:^(void) {
-		[self hideHUD:YES];
-	}];
 }
 
 @end

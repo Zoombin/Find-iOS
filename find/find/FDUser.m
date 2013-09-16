@@ -10,6 +10,24 @@
 
 @implementation FDUser
 
++ (FDPhoto *)createWithAttributes:(NSDictionary *)attributes
+{
+	NSAssert(attributes[@"mid"], @"UserID shouldn't be nil");
+	FDUser *user = [[FDUser alloc] init];
+	user.ID = attributes[@"mid"];
+	user.name = attributes[@"username"];
+	return nil;
+}
+
++ (NSArray *)createMutableWithData:(NSArray *)data
+{
+	NSMutableArray *users = [NSMutableArray array];
+	for (NSDictionary *attributes in data) {
+		[users addObject:[self createWithAttributes:attributes]];
+	}
+	return users;
+}
+
 - (FDPhoto *)mainPhoto
 {
 	if (_photos.count) {

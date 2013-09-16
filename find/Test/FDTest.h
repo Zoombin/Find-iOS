@@ -9,3 +9,4 @@
 #import "FDTestPhotoUploadViewController.h"
 #import "FDPhoto+Test.h"
 #import "FDUser+Test.h"
+#import "CLLocation+Test.h"

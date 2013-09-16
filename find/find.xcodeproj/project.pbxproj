@@ -35,6 +35,8 @@
 		7786716817E35A98001FDB67 /* UIViewController+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786715717E35A98001FDB67 /* UIViewController+HUD.m */; };
 		7786716917E35A98001FDB67 /* ZBTextValidate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786715917E35A98001FDB67 /* ZBTextValidate.m */; };
 		7786716A17E35A98001FDB67 /* ZBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786715B17E35A98001FDB67 /* ZBViewController.m */; };
+		778671BD17E705D6001FDB67 /* CLLocation+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 778671BC17E705D6001FDB67 /* CLLocation+Test.m */; };
+		778671C017E74383001FDB67 /* FDTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 778671BF17E74383001FDB67 /* FDTweet.m */; };
 		77A5F7A317CB22960073E7F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A217CB22960073E7F9 /* Foundation.framework */; };
 		77A5F7A517CB22960073E7F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A417CB22960073E7F9 /* CoreGraphics.framework */; };
 		77A5F7A717CB22960073E7F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A617CB22960073E7F9 /* UIKit.framework */; };
@@ -152,6 +154,10 @@
 		7786715917E35A98001FDB67 /* ZBTextValidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBTextValidate.m; sourceTree = "<group>"; };
 		7786715A17E35A98001FDB67 /* ZBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBViewController.h; sourceTree = "<group>"; };
 		7786715B17E35A98001FDB67 /* ZBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBViewController.m; sourceTree = "<group>"; };
+		778671BB17E705D6001FDB67 /* CLLocation+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CLLocation+Test.h"; path = "Test/CLLocation+Test.h"; sourceTree = "<group>"; };
+		778671BC17E705D6001FDB67 /* CLLocation+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CLLocation+Test.m"; path = "Test/CLLocation+Test.m"; sourceTree = "<group>"; };
+		778671BE17E74383001FDB67 /* FDTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTweet.h; sourceTree = "<group>"; };
+		778671BF17E74383001FDB67 /* FDTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTweet.m; sourceTree = "<group>"; };
 		77A5F79F17CB22960073E7F9 /* find.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = find.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77A5F7A217CB22960073E7F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		77A5F7A417CB22960073E7F9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -385,17 +391,19 @@
 				7734ACCA17D8520B003E7BB6 /* FDUserProfileViewController.m */,
 				7734ACE117D8893F003E7BB6 /* FDPhotoViewController.h */,
 				7734ACE217D8893F003E7BB6 /* FDPhotoViewController.m */,
+				778671BE17E74383001FDB67 /* FDTweet.h */,
+				778671BF17E74383001FDB67 /* FDTweet.m */,
 				7734ACCC17D85368003E7BB6 /* FDUser.h */,
 				7734ACCD17D85368003E7BB6 /* FDUser.m */,
+				77C0C96517D198F6008C7FC7 /* FDPhoto.h */,
+				77C0C96617D198F6008C7FC7 /* FDPhoto.m */,
+				7734ACE717D8A6C1003E7BB6 /* FDPhotoInfo.h */,
 				777E5E1C17D97A98005AFB67 /* FDThemeCell.h */,
 				777E5E1D17D97A98005AFB67 /* FDThemeCell.m */,
 				777E5EE617D9BBDA005AFB67 /* FDThemeItemView.h */,
 				777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */,
 				77C0C96217D18D7C008C7FC7 /* FDPhotoCell.h */,
 				77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */,
-				77C0C96517D198F6008C7FC7 /* FDPhoto.h */,
-				77C0C96617D198F6008C7FC7 /* FDPhoto.m */,
-				7734ACE717D8A6C1003E7BB6 /* FDPhotoInfo.h */,
 				7734ACE817D8A6C1003E7BB6 /* FDPhotoInfo.m */,
 				77A5F7C017CB22960073E7F9 /* Images.xcassets */,
 				77A5F7A917CB22960073E7F9 /* Supporting Files */,
@@ -527,6 +535,8 @@
 				7734ACD017D85605003E7BB6 /* FDUser+Test.m */,
 				7734ACD217D8562F003E7BB6 /* FDPhoto+Test.h */,
 				7734ACD317D8562F003E7BB6 /* FDPhoto+Test.m */,
+				778671BB17E705D6001FDB67 /* CLLocation+Test.h */,
+				778671BC17E705D6001FDB67 /* CLLocation+Test.m */,
 			);
 			name = Test;
 			sourceTree = "<group>";
@@ -741,6 +751,7 @@
 				7734ACE617D895D1003E7BB6 /* FDViewController.m in Sources */,
 				777E5EE117D9AB2C005AFB67 /* fishhook.c in Sources */,
 				77A5F7F117CB2F410073E7F9 /* FDHostViewController.m in Sources */,
+				778671BD17E705D6001FDB67 /* CLLocation+Test.m in Sources */,
 				7786715E17E35A98001FDB67 /* CLLocation+NSString.m in Sources */,
 				7786716217E35A98001FDB67 /* NSString+ZBUtilites.m in Sources */,
 				77C0C8A517CDBA8F008C7FC7 /* AFHTTPClient.m in Sources */,
@@ -755,6 +766,7 @@
 				7734ACCB17D8520B003E7BB6 /* FDUserProfileViewController.m in Sources */,
 				77C0C95517D18148008C7FC7 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				7786716517E35A98001FDB67 /* UIColor+Hex.m in Sources */,
+				778671C017E74383001FDB67 /* FDTweet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -46,7 +46,12 @@
 	
 	
 	users = [FDUser createTest:100];
+	
+//	[[FDAFHTTPClient shared] aroundPhotosAtLocation:[CLLocation fakeLocation] limit:nil distance:nil withCompletionBlock:^{
+//		
+//	}];
 }
+
 
 - (void)didReceiveMemoryWarning
 {

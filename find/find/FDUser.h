@@ -11,8 +11,13 @@
 
 @interface FDUser : NSObject
 
+@property (nonatomic, strong) NSNumber *ID;
+@property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSArray *photos;
 
++ (FDPhoto *)createWithAttributes:(NSDictionary *)attributes;
++ (NSArray *)createMutableWithData:(NSArray *)data;
 - (FDPhoto *)mainPhoto;
+
 
 @end
