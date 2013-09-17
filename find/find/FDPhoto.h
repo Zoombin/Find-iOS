@@ -15,7 +15,7 @@
 @property (nonatomic, strong) NSNumber *userID;
 @property (nonatomic, strong) NSNumber *tweetID;
 @property (nonatomic, strong) NSNumber *type;
-@property (nonatomic, strong) NSString *urlString;
+@property (nonatomic, strong) NSString *path;
 @property (nonatomic, strong) NSNumber *likes;
 @property (nonatomic, strong) NSNumber *views;
 @property (nonatomic, strong) NSNumber *uploaded;//timestamp
@@ -24,6 +24,7 @@
 + (FDPhoto *)createWithAttributes:(NSDictionary *)attributes;
 + (NSArray *)createMutableWithData:(NSArray *)data;
 
+- (NSString *)urlString;
 - (NSString *)urlStringInfo;
 - (NSString *)urlStringScaleAspectFit:(CGSize)size;
 - (NSString *)urlStringScaleFitWidth:(CGFloat)width;

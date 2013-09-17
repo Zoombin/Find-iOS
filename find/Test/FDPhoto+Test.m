@@ -25,7 +25,7 @@
 {
 	NSUInteger random = arc4random() % kCountOfTestPhoto + 1;
 	FDPhoto *photo = [[FDPhoto alloc] init];
-	photo.urlString = [NSString stringWithFormat:@"%@%d.jpg", QINIU_HOST, random];
+	photo.path = [NSString stringWithFormat:@"%d.jpg", random];
 	return photo;
 }
 

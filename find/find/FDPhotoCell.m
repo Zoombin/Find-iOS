@@ -23,6 +23,9 @@
 		_displaySize = self.bounds.size;
 		photoView.contentMode = UIViewContentModeScaleAspectFit;
 		[self addSubview:photoView];
+		
+		_likesView = [[FDLikesView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.bounds) - [FDLikesView size].width, 0, [FDLikesView size].width, [FDLikesView size].height)];
+		[self addSubview:_likesView];
     }
     return self;
 }
@@ -38,6 +41,10 @@
 	if (_photo == photo) return;
 	_photo = photo;
 	[photoView setImageWithURL:[NSURL URLWithString:[_photo urlStringScaleAspectFit:_displaySize]]];
+	
+	if (_photo.likes) {
+		_likesView.likes = _photo.likes;
+	}
 }
 
 - (void)setPhoto:(FDPhoto *)photo scaleFitWidth:(CGFloat)width completionBlock:(dispatch_block_t)block

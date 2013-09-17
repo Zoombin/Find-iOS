@@ -18,7 +18,7 @@
 	photo.userID = attributes[@"mid"];
 	photo.tweetID = attributes[@"ptid"];
 	photo.type = attributes[@"type"];
-	photo.urlString = attributes[@"path"];
+	photo.path = attributes[@"path"];
 	photo.likes = attributes[@"likes"];
 	photo.views = attributes[@"views"];
 	photo.uploaded = attributes[@"uploaded"];
@@ -34,19 +34,24 @@
 	return photos;
 }
 
+- (NSString *)urlString
+{
+	return [NSString stringWithFormat:@"%@%@", QINIU_HOST, _path];
+}
+
 - (NSString *)urlStringInfo
 {
-	return [NSString stringWithFormat:@"%@?imageInfo", _urlString];
+	return [NSString stringWithFormat:@"%@?imageInfo", [self urlString]];
 }
 
 - (NSString *)urlStringScaleAspectFit:(CGSize)size
 {
-	return [NSString stringWithFormat:@"%@?imageView/1/w/%d/h/%d", _urlString, (NSUInteger)size.width, (NSUInteger)size.height];
+	return [NSString stringWithFormat:@"%@?imageView/1/w/%d/h/%d", [self urlString], (NSUInteger)size.width, (NSUInteger)size.height];
 }
 
 - (NSString *)urlStringScaleFitWidth:(CGFloat)width
 {
-	return [NSString stringWithFormat:@"%@?imageView/2/w/%d", _urlString, (NSUInteger)width];
+	return [NSString stringWithFormat:@"%@?imageView/2/w/%d", [self urlString], (NSUInteger)width];
 }
 
 - (void)fetchInfoWithCompletionBlock:(dispatch_block_t)block
@@ -55,6 +60,11 @@
 		_info = info;
 		if (block) block();
 	}];
+}
+
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"<ID: %@, userID: %@, path: %@, likes: %@>", _ID, _userID, _path, _likes];
 }
 
 @end

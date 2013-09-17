@@ -20,6 +20,8 @@
 {
 	NSArray *users;
 	NSArray *photos;
+	NSArray *tweets;
+	PSTCollectionView *photosCollectionView;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,7 +39,7 @@
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor whiteColor];
 
-	PSTCollectionView *photosCollectionView = [[PSTCollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSTCollectionViewFlowLayout squaresLayout]];
+	photosCollectionView = [[PSTCollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSTCollectionViewFlowLayout squaresLayout]];
 	photosCollectionView.backgroundColor = [UIColor clearColor];
 	[photosCollectionView registerClass:[FDPhotoCell class] forCellWithReuseIdentifier:kFDPhotoCellIdentifier];
 	photosCollectionView.delegate = self;
@@ -47,9 +49,12 @@
 	
 	users = [FDUser createTest:100];
 	
-//	[[FDAFHTTPClient shared] aroundPhotosAtLocation:[CLLocation fakeLocation] limit:nil distance:nil withCompletionBlock:^{
-//		
-//	}];
+	[[FDAFHTTPClient shared] aroundPhotosAtLocation:[CLLocation fakeLocation] limit:@(9999) distance:nil withCompletionBlock:^(BOOL success, NSArray *ts, NSNumber *distance) {
+		if (success) {
+			tweets = ts;
+			[photosCollectionView reloadData];
+		}
+	}];
 }
 
 
@@ -68,25 +73,27 @@
 
 - (NSInteger)collectionView:(PSTCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-	return users.count;
+	return tweets.count;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (PSTCollectionViewCell *)collectionView:(PSTCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	FDPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDPhotoCellIdentifier forIndexPath:indexPath];
-	FDUser *user = users[indexPath.row];
-	cell.user = user;
-	FDPhoto *photo = [user mainPhoto];
+	FDTweet *tweet = tweets[indexPath.row];
+	FDPhoto *photo = tweet.photos.firstObject;
+//	FDUser *user = users[indexPath.row];
+//	cell.user = user;
+//	FDPhoto *photo = [user mainPhoto];
 	cell.photo = photo;
 	return cell;
 }
 
 - (void)collectionView:(PSTCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	FDUserProfileViewController *userProfileViewController = [[FDUserProfileViewController alloc] init];
-	userProfileViewController.user = users[indexPath.row];
-	[self.navigationController pushViewController:userProfileViewController animated:YES];
+//	FDUserProfileViewController *userProfileViewController = [[FDUserProfileViewController alloc] init];
+//	userProfileViewController.user = users[indexPath.row];
+//	[self.navigationController pushViewController:userProfileViewController animated:YES];
 }
 
 
