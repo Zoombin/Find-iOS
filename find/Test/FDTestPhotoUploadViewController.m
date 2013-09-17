@@ -275,7 +275,7 @@
 		[[FDAFHTTPClient shared] tweetPhotos:@[fileName] atLocation:fakeLocation address:distanceLabel.text withCompletionBlock:^(BOOL success, NSString *message) {
 			[self displayHUDTitle:@"Upload successfully" message:nil];
 			
-			NSArray *distances = @[@(0), @(100), @(1000), @(10000)];
+			NSArray *distances = @[@(100), @(1000), @(10000)];
 			NSNumber *dis = distances[arc4random() % distances.count];
 			[self randomLocation:dis.floatValue];
 		}];

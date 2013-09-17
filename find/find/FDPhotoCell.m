@@ -12,6 +12,8 @@
 @implementation FDPhotoCell
 {
 	UIImageView *photoView;
+	UILabel *distanceLabel;
+	FDLikesView *likesView;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -24,10 +26,32 @@
 		photoView.contentMode = UIViewContentModeScaleAspectFit;
 		[self addSubview:photoView];
 		
-		_likesView = [[FDLikesView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.bounds) - [FDLikesView size].width, 0, [FDLikesView size].width, [FDLikesView size].height)];
-		[self addSubview:_likesView];
+		likesView = [[FDLikesView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.bounds) - [FDLikesView size].width, 0, [FDLikesView size].width, [FDLikesView size].height)];
+		[self addSubview:likesView];
+		
+		distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.bounds) - 20, frame.size.width, 20)];
+		distanceLabel.backgroundColor = [UIColor clearColor];//[UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
+		distanceLabel.textColor = [UIColor whiteColor];
+		distanceLabel.font = [UIFont boldSystemFontOfSize:12];
+		distanceLabel.adjustsFontSizeToFitWidth = YES;
+		distanceLabel.textAlignment = NSTextAlignmentRight;
+		[self addSubview:distanceLabel];
     }
     return self;
+}
+
+- (void)setTweet:(FDTweet *)tweet
+{
+	if (_tweet == tweet) return;
+	_tweet = tweet;
+	
+	if (_tweet.distance) {
+		distanceLabel.text = [_tweet.distance printableDistance];
+	}
+	
+	if (_tweet.photos.count) {
+		self.photo = _tweet.photos[0];//TODO: take the most likes photo better
+	}
 }
 
 - (void)setUser:(FDUser *)user
@@ -43,8 +67,9 @@
 	[photoView setImageWithURL:[NSURL URLWithString:[_photo urlStringScaleAspectFit:_displaySize]]];
 	
 	if (_photo.likes) {
-		_likesView.likes = _photo.likes;
+		likesView.likes = _photo.likes;
 	}
+	
 }
 
 - (void)setPhoto:(FDPhoto *)photo scaleFitWidth:(CGFloat)width completionBlock:(dispatch_block_t)block

@@ -81,11 +81,7 @@
 {
 	FDPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDPhotoCellIdentifier forIndexPath:indexPath];
 	FDTweet *tweet = tweets[indexPath.row];
-	FDPhoto *photo = tweet.photos.firstObject;
-//	FDUser *user = users[indexPath.row];
-//	cell.user = user;
-//	FDPhoto *photo = [user mainPhoto];
-	cell.photo = photo;
+	cell.tweet = tweet;
 	return cell;
 }
 
