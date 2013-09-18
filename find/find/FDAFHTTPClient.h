@@ -20,4 +20,11 @@
 - (void)likePhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
 
 - (void)unlikePhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
+
+- (void)commentPhoto:(NSNumber *)photoID content:(NSString *)content withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
+
+- (void)commentsOfPhoto:(NSNumber *)photoID limit:(NSNumber *)limit published:(NSNumber *)published withCompletionBlock:(void (^)(BOOL success, NSArray *comments, NSNumber *lastestPublishedTimestamp))block;
+
+
+
 @end

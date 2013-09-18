@@ -14,9 +14,9 @@
 - (void)customizeAppearance
 {
 #pragma mark RSTabBar Appearance
-	id appearance = [RSTabBar appearance];
+	//id appearance = [RSTabBar appearance];
 	
-	[appearance setTabBarHeight:49];
+	//[appearance setTabBarHeight:49];
 	//[appearance setBorderBackgroundColor:[UIColor colorWithHexWhite:0xcf]];
 	//CGSize buttonSize = CGSizeMake(106, 49);
 	//UIImage *gradientImage = [UIImage imageFromColor:[UIColor colorWithHexWhite:0xff] toColor:[UIColor colorWithHexWhite:0xf2] size:buttonSize cornerRadius:0];
@@ -53,13 +53,22 @@
 	//								 } forButtonState:UIControlStateSelected];
 	
 #pragma mark UINavigationBar Appearance
-	appearance = [UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil];
-	[appearance setTitleTextAttributes:@{ UITextAttributeFont : [UIFont systemFontOfSize:16],
-										  UITextAttributeTextColor : [UIColor orangeColor],
-										  } forState:UIControlStateNormal];
-	//[appearance setBackgroundImage:[UIImage imageFromColor:[UIColor clearColor]] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 	
-	appearance = [UINavigationBar appearance];
+	if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+		[[UINavigationBar appearance] setBarTintColor:[UIColor fdThemeRed]];
+	}
+	
+//	[[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor redColor] forKey:UITextAttributeTextColor]];
+	
+	//[[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:244.0/255.0f green:3.0/255.0f blue:133.0/255.0f alpha:1.0f]];
+	
+//	UIAppearance appearance = [UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil];
+//	[appearance setTitleTextAttributes:@{ UITextAttributeFont : [UIFont systemFontOfSize:16],
+//										  UITextAttributeTextColor : [UIColor orangeColor],
+//										  } forState:UIControlStateNormal];
+//	//[appearance setBackgroundImage:[UIImage imageFromColor:[UIColor clearColor]] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+//	
+//	appearance = [UINavigationBar appearance];
 	
 	//[appearance setBackgroundImage:[UIImage imageNamed:@"navigationBar_background"] forBarMetrics:UIBarMetricsDefault];
 	//[appearance setTitleTextAttributes:@{

@@ -12,6 +12,7 @@
 #import "FDUserProfileViewController.h"
 #import "FDUser.h"
 #import "FDLikesView.h"
+#import "FDPhotoViewController.h"
 
 @interface FDAroundViewController () <PSTCollectionViewDelegate, PSTCollectionViewDataSource, FDPhotoCellDelegate>
 
@@ -71,6 +72,7 @@
 {
 	[[FDAFHTTPClient shared] likePhoto:photo.ID withCompletionBlock:^(BOOL success, NSString *message) {
 		if (success) {
+			photoCell.photo.likes = @(photoCell.photo.likes.integerValue + 1);
 			photoCell.likesView.liked = @(YES);
 			photoCell.likesView.likes = @(photoCell.likesView.likes.integerValue + 1);
 		}
@@ -81,6 +83,7 @@
 {
 	[[FDAFHTTPClient shared] unlikePhoto:photo.ID withCompletionBlock:^(BOOL success, NSString *message) {
 		if (success) {
+			photoCell.photo.likes = @(photoCell.photo.likes.integerValue - 1);
 			photoCell.likesView.liked = @(NO);
 			photoCell.likesView.likes = @(photoCell.likesView.likes.integerValue - 1);
 		}
@@ -111,9 +114,13 @@
 
 - (void)collectionView:(PSTCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//	FDUserProfileViewController *userProfileViewController = [[FDUserProfileViewController alloc] init];
-//	userProfileViewController.user = users[indexPath.row];
-//	[self.navigationController pushViewController:userProfileViewController animated:YES];
+	FDPhotoViewController *photoViewController = [[FDPhotoViewController alloc] init];
+	FDTweet *tweet = tweets[indexPath.row];
+	if (tweet.photos.count) {
+		photoViewController.photo = tweet.photos[0];
+	}
+	[self.navigationController pushViewController:photoViewController animated:YES];
+	
 }
 
 

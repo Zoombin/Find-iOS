@@ -13,6 +13,7 @@
 #import "FDHostViewController.h"
 #import "FDCameraViewController.h"
 #import "FDMeViewController.h"
+#import "FDAppDelegate+Appearance.h"
 
 @implementation FDAppDelegate
 {
@@ -21,6 +22,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	[self customizeAppearance];
+	
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
 		

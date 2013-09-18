@@ -1,25 +1,25 @@
 //
-//  FDFifthViewController.m
+//  FDSignupViewController.m
 //  find
 //
-//  Created by zhangbin on 8/26/13.
+//  Created by zhangbin on 9/18/13.
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "FDMeViewController.h"
 #import "FDSignupViewController.h"
+#import "FDSigninViewController.h"
 
-@interface FDMeViewController ()
+@interface FDSignupViewController ()
 
 @end
 
-@implementation FDMeViewController
+@implementation FDSignupViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"Me";
+        self.view.backgroundColor = [UIColor grayColor];
     }
     return self;
 }
@@ -33,11 +33,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	BOOL bSigninValid = NO;
-	if (!bSigninValid) {
-		FDSignupViewController *signupViewController = [[FDSignupViewController alloc] init];
-		[self.navigationController pushViewController:signupViewController animated:YES];
-	}
+	FDSigninViewController *signinViewController = [[FDSigninViewController alloc] init];
+	[self.navigationController pushViewController:signinViewController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

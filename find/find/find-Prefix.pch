@@ -22,12 +22,15 @@
 #import "CLLocation+NSDictionary.h"
 #import "UIViewController+HUD.h"
 #import "UIColor+Random.h"
+#import "UIColor+Find.h"
 #import "PSTCollectionViewFlowLayout+FDLayout.h"
 #import "NSNumber+PrintableMeasurement.h"
 #import "FDUser.h"
 #import "FDPhoto.h"
 #import "FDTweet.h"
+#import "FDComment.h"
 
+#import "UIDevice+ZBUtilites.h"
 
 #define FDDEBUG 1
 #define QINIU_HOST @"http://find.qiniudn.com/"

@@ -91,6 +91,11 @@
 		77C0C96117D18148008C7FC7 /* PSTGridLayoutSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C95417D18148008C7FC7 /* PSTGridLayoutSection.m */; };
 		77C0C96417D18D7C008C7FC7 /* FDPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */; };
 		77C0C96717D198F6008C7FC7 /* FDPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C96617D198F6008C7FC7 /* FDPhoto.m */; };
+		77DA107017E97EB0001F44DF /* FDCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DA106F17E97EB0001F44DF /* FDCommentCell.m */; };
+		77DA107A17E97FA9001F44DF /* FDComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DA107817E97FA9001F44DF /* FDComment.m */; };
+		77F5CD4F17E966BC006D931F /* FDSigninViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5CD4E17E966BC006D931F /* FDSigninViewController.m */; };
+		77F5CD5217E966DB006D931F /* FDSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5CD5117E966DB006D931F /* FDSignupViewController.m */; };
+		77F5CD5817E9771A006D931F /* UIColor+Find.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5CD5717E9771A006D931F /* UIColor+Find.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,8 +111,8 @@
 /* Begin PBXFileReference section */
 		7734ACC917D8520B003E7BB6 /* FDUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDUserProfileViewController.h; sourceTree = "<group>"; };
 		7734ACCA17D8520B003E7BB6 /* FDUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDUserProfileViewController.m; sourceTree = "<group>"; };
-		7734ACCC17D85368003E7BB6 /* FDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDUser.h; sourceTree = "<group>"; };
-		7734ACCD17D85368003E7BB6 /* FDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDUser.m; sourceTree = "<group>"; };
+		7734ACCC17D85368003E7BB6 /* FDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDUser.h; path = find/FDUser.h; sourceTree = "<group>"; };
+		7734ACCD17D85368003E7BB6 /* FDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDUser.m; path = find/FDUser.m; sourceTree = "<group>"; };
 		7734ACCF17D85605003E7BB6 /* FDUser+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FDUser+Test.h"; path = "Test/FDUser+Test.h"; sourceTree = "<group>"; };
 		7734ACD017D85605003E7BB6 /* FDUser+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FDUser+Test.m"; path = "Test/FDUser+Test.m"; sourceTree = "<group>"; };
 		7734ACD217D8562F003E7BB6 /* FDPhoto+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FDPhoto+Test.h"; path = "Test/FDPhoto+Test.h"; sourceTree = "<group>"; };
@@ -118,16 +123,16 @@
 		7734ACE217D8893F003E7BB6 /* FDPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPhotoViewController.m; sourceTree = "<group>"; };
 		7734ACE417D895D1003E7BB6 /* FDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDViewController.h; sourceTree = "<group>"; };
 		7734ACE517D895D1003E7BB6 /* FDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDViewController.m; sourceTree = "<group>"; };
-		7734ACE717D8A6C1003E7BB6 /* FDPhotoInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDPhotoInfo.h; sourceTree = "<group>"; };
-		7734ACE817D8A6C1003E7BB6 /* FDPhotoInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPhotoInfo.m; sourceTree = "<group>"; };
-		777E5E1C17D97A98005AFB67 /* FDThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDThemeCell.h; sourceTree = "<group>"; };
-		777E5E1D17D97A98005AFB67 /* FDThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDThemeCell.m; sourceTree = "<group>"; };
+		7734ACE717D8A6C1003E7BB6 /* FDPhotoInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDPhotoInfo.h; path = find/FDPhotoInfo.h; sourceTree = "<group>"; };
+		7734ACE817D8A6C1003E7BB6 /* FDPhotoInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDPhotoInfo.m; path = find/FDPhotoInfo.m; sourceTree = "<group>"; };
+		777E5E1C17D97A98005AFB67 /* FDThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeCell.h; path = find/FDThemeCell.h; sourceTree = "<group>"; };
+		777E5E1D17D97A98005AFB67 /* FDThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDThemeCell.m; path = find/FDThemeCell.m; sourceTree = "<group>"; };
 		777E5EDD17D9AB2C005AFB67 /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fishhook.c; sourceTree = "<group>"; };
 		777E5EDE17D9AB2C005AFB67 /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
 		777E5EDF17D9AB2C005AFB67 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		777E5EE017D9AB2C005AFB67 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		777E5EE617D9BBDA005AFB67 /* FDThemeItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDThemeItemView.h; sourceTree = "<group>"; };
-		777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDThemeItemView.m; sourceTree = "<group>"; };
+		777E5EE617D9BBDA005AFB67 /* FDThemeItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeItemView.h; path = find/FDThemeItemView.h; sourceTree = "<group>"; };
+		777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDThemeItemView.m; path = find/FDThemeItemView.m; sourceTree = "<group>"; };
 		7786714117E35A98001FDB67 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		7786714217E35A98001FDB67 /* CLLocation+NSDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+NSDictionary.h"; sourceTree = "<group>"; };
 		7786714317E35A98001FDB67 /* CLLocation+NSDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+NSDictionary.m"; sourceTree = "<group>"; };
@@ -157,10 +162,10 @@
 		7786715B17E35A98001FDB67 /* ZBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBViewController.m; sourceTree = "<group>"; };
 		778671BB17E705D6001FDB67 /* CLLocation+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CLLocation+Test.h"; path = "Test/CLLocation+Test.h"; sourceTree = "<group>"; };
 		778671BC17E705D6001FDB67 /* CLLocation+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CLLocation+Test.m"; path = "Test/CLLocation+Test.m"; sourceTree = "<group>"; };
-		778671BE17E74383001FDB67 /* FDTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTweet.h; sourceTree = "<group>"; };
-		778671BF17E74383001FDB67 /* FDTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTweet.m; sourceTree = "<group>"; };
-		778671C117E806BF001FDB67 /* FDLikesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDLikesView.h; sourceTree = "<group>"; };
-		778671C217E806BF001FDB67 /* FDLikesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDLikesView.m; sourceTree = "<group>"; };
+		778671BE17E74383001FDB67 /* FDTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDTweet.h; path = find/FDTweet.h; sourceTree = "<group>"; };
+		778671BF17E74383001FDB67 /* FDTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDTweet.m; path = find/FDTweet.m; sourceTree = "<group>"; };
+		778671C117E806BF001FDB67 /* FDLikesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDLikesView.h; path = find/FDLikesView.h; sourceTree = "<group>"; };
+		778671C217E806BF001FDB67 /* FDLikesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDLikesView.m; path = find/FDLikesView.m; sourceTree = "<group>"; };
 		77A5F79F17CB22960073E7F9 /* find.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = find.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77A5F7A217CB22960073E7F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		77A5F7A417CB22960073E7F9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -169,8 +174,8 @@
 		77A5F7AC17CB22960073E7F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		77A5F7AE17CB22960073E7F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		77A5F7B017CB22960073E7F9 /* find-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "find-Prefix.pch"; sourceTree = "<group>"; };
-		77A5F7B117CB22960073E7F9 /* FDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FDAppDelegate.h; sourceTree = "<group>"; };
-		77A5F7B217CB22960073E7F9 /* FDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FDAppDelegate.m; sourceTree = "<group>"; };
+		77A5F7B117CB22960073E7F9 /* FDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FDAppDelegate.h; path = find/FDAppDelegate.h; sourceTree = "<group>"; };
+		77A5F7B217CB22960073E7F9 /* FDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = FDAppDelegate.m; path = find/FDAppDelegate.m; sourceTree = "<group>"; };
 		77A5F7BA17CB22960073E7F9 /* FDAroundViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FDAroundViewController.h; sourceTree = "<group>"; };
 		77A5F7BB17CB22960073E7F9 /* FDAroundViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FDAroundViewController.m; sourceTree = "<group>"; };
 		77A5F7BD17CB22960073E7F9 /* FDDiscoveryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FDDiscoveryViewController.h; sourceTree = "<group>"; };
@@ -187,8 +192,8 @@
 		77A5F7E217CB2AB00073E7F9 /* RSTabBarController.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RSTabBarController.podspec; sourceTree = "<group>"; };
 		77A5F7E317CB2AB00073E7F9 /* RSTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTabBarViewController.h; sourceTree = "<group>"; };
 		77A5F7E417CB2AB00073E7F9 /* RSTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTabBarViewController.m; sourceTree = "<group>"; };
-		77A5F7EC17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FDAppDelegate+Appearance.h"; sourceTree = "<group>"; };
-		77A5F7ED17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FDAppDelegate+Appearance.m"; sourceTree = "<group>"; };
+		77A5F7EC17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FDAppDelegate+Appearance.h"; path = "find/FDAppDelegate+Appearance.h"; sourceTree = "<group>"; };
+		77A5F7ED17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FDAppDelegate+Appearance.m"; path = "find/FDAppDelegate+Appearance.m"; sourceTree = "<group>"; };
 		77A5F7EF17CB2F410073E7F9 /* FDHostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDHostViewController.h; sourceTree = "<group>"; };
 		77A5F7F017CB2F410073E7F9 /* FDHostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDHostViewController.m; sourceTree = "<group>"; };
 		77A5F7F217CB2F760073E7F9 /* FDCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDCameraViewController.h; sourceTree = "<group>"; };
@@ -196,8 +201,8 @@
 		77A5F7F517CB30400073E7F9 /* FDMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDMeViewController.h; sourceTree = "<group>"; };
 		77A5F7F617CB30400073E7F9 /* FDMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDMeViewController.m; sourceTree = "<group>"; };
 		77A5F88F17CD95E80073E7F9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		77AD927C17DEC88800D2FEBC /* FDAFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDAFHTTPClient.h; sourceTree = "<group>"; };
-		77AD927D17DEC88800D2FEBC /* FDAFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDAFHTTPClient.m; sourceTree = "<group>"; };
+		77AD927C17DEC88800D2FEBC /* FDAFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDAFHTTPClient.h; path = find/FDAFHTTPClient.h; sourceTree = "<group>"; };
+		77AD927D17DEC88800D2FEBC /* FDAFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDAFHTTPClient.m; path = find/FDAFHTTPClient.m; sourceTree = "<group>"; };
 		77C0C89217CDBA8F008C7FC7 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		77C0C89317CDBA8F008C7FC7 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		77C0C89417CDBA8F008C7FC7 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -258,10 +263,20 @@
 		77C0C95217D18148008C7FC7 /* PSTGridLayoutRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutRow.m; sourceTree = "<group>"; };
 		77C0C95317D18148008C7FC7 /* PSTGridLayoutSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutSection.h; sourceTree = "<group>"; };
 		77C0C95417D18148008C7FC7 /* PSTGridLayoutSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutSection.m; sourceTree = "<group>"; };
-		77C0C96217D18D7C008C7FC7 /* FDPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDPhotoCell.h; sourceTree = "<group>"; };
-		77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPhotoCell.m; sourceTree = "<group>"; };
-		77C0C96517D198F6008C7FC7 /* FDPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDPhoto.h; sourceTree = "<group>"; };
-		77C0C96617D198F6008C7FC7 /* FDPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPhoto.m; sourceTree = "<group>"; };
+		77C0C96217D18D7C008C7FC7 /* FDPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDPhotoCell.h; path = find/FDPhotoCell.h; sourceTree = "<group>"; };
+		77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDPhotoCell.m; path = find/FDPhotoCell.m; sourceTree = "<group>"; };
+		77C0C96517D198F6008C7FC7 /* FDPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDPhoto.h; path = find/FDPhoto.h; sourceTree = "<group>"; };
+		77C0C96617D198F6008C7FC7 /* FDPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDPhoto.m; path = find/FDPhoto.m; sourceTree = "<group>"; };
+		77DA106E17E97EB0001F44DF /* FDCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDCommentCell.h; path = find/FDCommentCell.h; sourceTree = "<group>"; };
+		77DA106F17E97EB0001F44DF /* FDCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDCommentCell.m; path = find/FDCommentCell.m; sourceTree = "<group>"; };
+		77DA107717E97FA9001F44DF /* FDComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDComment.h; path = find/FDComment.h; sourceTree = "<group>"; };
+		77DA107817E97FA9001F44DF /* FDComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDComment.m; path = find/FDComment.m; sourceTree = "<group>"; };
+		77F5CD4D17E966BC006D931F /* FDSigninViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSigninViewController.h; sourceTree = "<group>"; };
+		77F5CD4E17E966BC006D931F /* FDSigninViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSigninViewController.m; sourceTree = "<group>"; };
+		77F5CD5017E966DB006D931F /* FDSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSignupViewController.h; sourceTree = "<group>"; };
+		77F5CD5117E966DB006D931F /* FDSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSignupViewController.m; sourceTree = "<group>"; };
+		77F5CD5617E9771A006D931F /* UIColor+Find.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Find.h"; path = "find/UIColor+Find.h"; sourceTree = "<group>"; };
+		77F5CD5717E9771A006D931F /* UIColor+Find.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Find.m"; path = "find/UIColor+Find.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,10 +352,17 @@
 		77A5F79617CB22960073E7F9 = {
 			isa = PBXGroup;
 			children = (
-				77C0C93117D172C1008C7FC7 /* Categories */,
-				77C0C91A17CE1966008C7FC7 /* Test */,
-				77C0C8DA17CDDE1A008C7FC7 /* QiNiu */,
+				77A5F7B117CB22960073E7F9 /* FDAppDelegate.h */,
+				77A5F7B217CB22960073E7F9 /* FDAppDelegate.m */,
+				77A5F7EC17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.h */,
+				77A5F7ED17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m */,
+				77DA107B17E981FD001F44DF /* Services */,
+				77DA107117E97F3D001F44DF /* Models */,
+				77DA107217E97F5F001F44DF /* Views */,
 				77A5F7A817CB22960073E7F9 /* find */,
+				77C0C93117D172C1008C7FC7 /* Categories */,
+				77C0C8DA17CDDE1A008C7FC7 /* QiNiu */,
+				77C0C91A17CE1966008C7FC7 /* Test */,
 				77A5F7DD17CB2AB00073E7F9 /* Libraries */,
 				77A5F7CD17CB22960073E7F9 /* findTests */,
 				77A5F7A117CB22960073E7F9 /* Frameworks */,
@@ -372,12 +394,10 @@
 		77A5F7A817CB22960073E7F9 /* find */ = {
 			isa = PBXGroup;
 			children = (
-				77AD927C17DEC88800D2FEBC /* FDAFHTTPClient.h */,
-				77AD927D17DEC88800D2FEBC /* FDAFHTTPClient.m */,
-				77A5F7B117CB22960073E7F9 /* FDAppDelegate.h */,
-				77A5F7B217CB22960073E7F9 /* FDAppDelegate.m */,
-				77A5F7EC17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.h */,
-				77A5F7ED17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m */,
+				77F5CD5017E966DB006D931F /* FDSignupViewController.h */,
+				77F5CD5117E966DB006D931F /* FDSignupViewController.m */,
+				77F5CD4D17E966BC006D931F /* FDSigninViewController.h */,
+				77F5CD4E17E966BC006D931F /* FDSigninViewController.m */,
 				7734ACE417D895D1003E7BB6 /* FDViewController.h */,
 				7734ACE517D895D1003E7BB6 /* FDViewController.m */,
 				77A5F7BA17CB22960073E7F9 /* FDAroundViewController.h */,
@@ -394,22 +414,6 @@
 				7734ACCA17D8520B003E7BB6 /* FDUserProfileViewController.m */,
 				7734ACE117D8893F003E7BB6 /* FDPhotoViewController.h */,
 				7734ACE217D8893F003E7BB6 /* FDPhotoViewController.m */,
-				778671BE17E74383001FDB67 /* FDTweet.h */,
-				778671BF17E74383001FDB67 /* FDTweet.m */,
-				7734ACCC17D85368003E7BB6 /* FDUser.h */,
-				7734ACCD17D85368003E7BB6 /* FDUser.m */,
-				77C0C96517D198F6008C7FC7 /* FDPhoto.h */,
-				77C0C96617D198F6008C7FC7 /* FDPhoto.m */,
-				7734ACE717D8A6C1003E7BB6 /* FDPhotoInfo.h */,
-				7734ACE817D8A6C1003E7BB6 /* FDPhotoInfo.m */,
-				777E5E1C17D97A98005AFB67 /* FDThemeCell.h */,
-				777E5E1D17D97A98005AFB67 /* FDThemeCell.m */,
-				777E5EE617D9BBDA005AFB67 /* FDThemeItemView.h */,
-				777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */,
-				77C0C96217D18D7C008C7FC7 /* FDPhotoCell.h */,
-				77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */,
-				778671C117E806BF001FDB67 /* FDLikesView.h */,
-				778671C217E806BF001FDB67 /* FDLikesView.m */,
 				77A5F7C017CB22960073E7F9 /* Images.xcassets */,
 				77A5F7A917CB22960073E7F9 /* Supporting Files */,
 			);
@@ -560,6 +564,8 @@
 			children = (
 				7734ACD817D86A2B003E7BB6 /* PSTCollectionViewFlowLayout+FDLayout.h */,
 				7734ACD917D86A2B003E7BB6 /* PSTCollectionViewFlowLayout+FDLayout.m */,
+				77F5CD5617E9771A006D931F /* UIColor+Find.h */,
+				77F5CD5717E9771A006D931F /* UIColor+Find.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -598,6 +604,49 @@
 			);
 			name = PSTCollectionView;
 			path = PSTCollectionView/PSTCollectionView;
+			sourceTree = "<group>";
+		};
+		77DA107117E97F3D001F44DF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				778671BE17E74383001FDB67 /* FDTweet.h */,
+				778671BF17E74383001FDB67 /* FDTweet.m */,
+				7734ACCC17D85368003E7BB6 /* FDUser.h */,
+				7734ACCD17D85368003E7BB6 /* FDUser.m */,
+				77C0C96517D198F6008C7FC7 /* FDPhoto.h */,
+				77C0C96617D198F6008C7FC7 /* FDPhoto.m */,
+				77DA107717E97FA9001F44DF /* FDComment.h */,
+				77DA107817E97FA9001F44DF /* FDComment.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		77DA107217E97F5F001F44DF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7734ACE717D8A6C1003E7BB6 /* FDPhotoInfo.h */,
+				7734ACE817D8A6C1003E7BB6 /* FDPhotoInfo.m */,
+				777E5E1C17D97A98005AFB67 /* FDThemeCell.h */,
+				777E5E1D17D97A98005AFB67 /* FDThemeCell.m */,
+				777E5EE617D9BBDA005AFB67 /* FDThemeItemView.h */,
+				777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */,
+				77C0C96217D18D7C008C7FC7 /* FDPhotoCell.h */,
+				77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */,
+				77DA106E17E97EB0001F44DF /* FDCommentCell.h */,
+				77DA106F17E97EB0001F44DF /* FDCommentCell.m */,
+				778671C117E806BF001FDB67 /* FDLikesView.h */,
+				778671C217E806BF001FDB67 /* FDLikesView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		77DA107B17E981FD001F44DF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				77AD927C17DEC88800D2FEBC /* FDAFHTTPClient.h */,
+				77AD927D17DEC88800D2FEBC /* FDAFHTTPClient.m */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -711,6 +760,7 @@
 				77A5F7BF17CB22960073E7F9 /* FDDiscoveryViewController.m in Sources */,
 				77C0C96117D18148008C7FC7 /* PSTGridLayoutSection.m in Sources */,
 				77C0C91D17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m in Sources */,
+				77DA107017E97EB0001F44DF /* FDCommentCell.m in Sources */,
 				7734ACE317D8893F003E7BB6 /* FDPhotoViewController.m in Sources */,
 				77A5F7F417CB2F760073E7F9 /* FDCameraViewController.m in Sources */,
 				77C0C95717D18148008C7FC7 /* PSTCollectionViewCell.m in Sources */,
@@ -738,6 +788,8 @@
 				77C0C95E17D18148008C7FC7 /* PSTGridLayoutInfo.m in Sources */,
 				77C0C95B17D18148008C7FC7 /* PSTCollectionViewItemKey.m in Sources */,
 				7734ACD117D85605003E7BB6 /* FDUser+Test.m in Sources */,
+				77F5CD4F17E966BC006D931F /* FDSigninViewController.m in Sources */,
+				77DA107A17E97FA9001F44DF /* FDComment.m in Sources */,
 				77C0C8A717CDBA8F008C7FC7 /* AFImageRequestOperation.m in Sources */,
 				77C0C92A17CEE60C008C7FC7 /* MBProgressHUD.m in Sources */,
 				7786716817E35A98001FDB67 /* UIViewController+HUD.m in Sources */,
@@ -747,6 +799,7 @@
 				77C0C95617D18148008C7FC7 /* PSTCollectionView.m in Sources */,
 				7734ACE917D8A6C1003E7BB6 /* FDPhotoInfo.m in Sources */,
 				7786715F17E35A98001FDB67 /* MBProgressHUD+Appearance.m in Sources */,
+				77F5CD5817E9771A006D931F /* UIColor+Find.m in Sources */,
 				7786716117E35A98001FDB67 /* NSString+BundleExtensions.m in Sources */,
 				77C0C95C17D18148008C7FC7 /* PSTCollectionViewLayout.m in Sources */,
 				7786716717E35A98001FDB67 /* UIDevice+ZBUtilites.m in Sources */,
@@ -755,6 +808,7 @@
 				77C0C96017D18148008C7FC7 /* PSTGridLayoutRow.m in Sources */,
 				77C0C8A817CDBA8F008C7FC7 /* AFJSONRequestOperation.m in Sources */,
 				7734ACE617D895D1003E7BB6 /* FDViewController.m in Sources */,
+				77F5CD5217E966DB006D931F /* FDSignupViewController.m in Sources */,
 				777E5EE117D9AB2C005AFB67 /* fishhook.c in Sources */,
 				77A5F7F117CB2F410073E7F9 /* FDHostViewController.m in Sources */,
 				778671BD17E705D6001FDB67 /* CLLocation+Test.m in Sources */,

@@ -90,6 +90,10 @@
 	} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
 		if (block) block();
 	}];
+	
+	if (_photo.likes) {
+		_likesView.likes = _photo.likes;
+	}
 }
 
 #pragma mark - FDLikesViewDelegate
