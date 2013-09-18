@@ -24,7 +24,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		self.title = @"Discovery";
+		NSString *identifier = NSLocalizedString(@"Discovery", nil);
+		self.title = identifier;
+		self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:identifier] selectedImage:[UIImage imageNamed:identifier]];
     }
     return self;
 }

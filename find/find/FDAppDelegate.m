@@ -26,24 +26,22 @@
 	
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-		
-	UINavigationController *firstViewController = [[UINavigationController alloc] initWithRootViewController:[[FDAroundViewController alloc] init]];
 	
-//	FDDiscoveryViewController *firstViewController = [[FDDiscoveryViewController alloc] init];
-#ifdef FDDEBUG
-	UINavigationController *secondViewController = [[UINavigationController alloc] initWithRootViewController:[[FDTestPhotoUploadViewController alloc] init]];
-#else
-	
-	UINavigationController *secondViewController = [[UINavigationController alloc] initWithRootViewController:[[FDAroundViewController alloc] init]];
-#endif
-	UINavigationController *thirdViewController = [[UINavigationController alloc] initWithRootViewController:[[FDHostViewController alloc] init]];
-	UINavigationController *forthViewController = [[UINavigationController alloc] initWithRootViewController:[[FDCameraViewController alloc] init]];
-	UINavigationController *fifthViewController = [[UINavigationController alloc] initWithRootViewController:[[FDMeViewController alloc] init]];
-	
-	UINavigationController *sixthViewController = [[UINavigationController alloc] initWithRootViewController:[[FDDiscoveryViewController alloc] init]];
+	NSMutableArray *vcClasses = [NSMutableArray array];
+	[vcClasses addObject:[FDAroundViewController new]];
+	[vcClasses addObject:[FDDiscoveryViewController new]];
+	[vcClasses addObject:[FDTestPhotoUploadViewController new]];
+	[vcClasses addObject:[FDMeViewController new]];
+	[vcClasses addObject:[FDCameraViewController new]];
+	[vcClasses addObject:[FDHostViewController new]];
+
+	NSMutableArray *naviControllers = [NSMutableArray array];
+	for (UIViewController *viewController in vcClasses) {
+		[naviControllers addObject:[[UINavigationController alloc] initWithRootViewController:viewController]];
+	}
 	
 	tabBarController = [[UITabBarController alloc] init];
-	tabBarController.viewControllers = @[firstViewController, secondViewController, thirdViewController, forthViewController, fifthViewController, sixthViewController];
+	tabBarController.viewControllers = naviControllers;
 	tabBarController.selectedIndex = 0;
 	
 	self.window.rootViewController = tabBarController;
@@ -51,7 +49,7 @@
 	[self.window makeKeyAndVisible];
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
 	// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

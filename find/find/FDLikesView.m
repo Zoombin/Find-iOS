@@ -20,9 +20,9 @@
     if (self) {
 		self.contentMode = UIViewContentModeScaleAspectFit;
 		
-		UIImage *heart = [UIImage imageNamed:@"heart"];
+		UIImage *heart = [UIImage imageNamed:@"Heart"];
 		
-		heartView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"heart"]];
+		heartView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Heart"]];
 		heartView.contentMode = UIViewContentModeScaleAspectFit;
 		heartView.frame = CGRectMake((frame.size.width - heart.size.width) / 2, (frame.size.height - heart.size.height) / 2, heart.size.width, heart.size.height);
 		[self addSubview:heartView];
