@@ -11,8 +11,9 @@
 #import "FDPhotoCell.h"
 #import "FDUserProfileViewController.h"
 #import "FDUser.h"
+#import "FDLikesView.h"
 
-@interface FDAroundViewController () <PSTCollectionViewDelegate, PSTCollectionViewDataSource>
+@interface FDAroundViewController () <PSTCollectionViewDelegate, PSTCollectionViewDataSource, FDPhotoCellDelegate>
 
 @end
 
@@ -64,6 +65,28 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - FDPhotoCellDelegate
+
+- (void)photoCell:(FDPhotoCell *)photoCell willLikePhoto:(FDPhoto *)photo
+{
+	[[FDAFHTTPClient shared] likePhoto:photo.ID withCompletionBlock:^(BOOL success, NSString *message) {
+		if (success) {
+			photoCell.likesView.liked = @(YES);
+			photoCell.likesView.likes = @(photoCell.likesView.likes.integerValue + 1);
+		}
+	}];
+}
+
+- (void)photoCell:(FDPhotoCell *)photoCell willUnlikePhoto:(FDPhoto *)photo
+{
+	[[FDAFHTTPClient shared] unlikePhoto:photo.ID withCompletionBlock:^(BOOL success, NSString *message) {
+		if (success) {
+			photoCell.likesView.liked = @(NO);
+			photoCell.likesView.likes = @(photoCell.likesView.likes.integerValue - 1);
+		}
+	}];
+}
+
 #pragma mark - PSTCollectionViewDelegate
 
 - (CGSize)collectionView:(PSTCollectionView *)collectionView layout:(PSTCollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -82,6 +105,7 @@
 	FDPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDPhotoCellIdentifier forIndexPath:indexPath];
 	FDTweet *tweet = tweets[indexPath.row];
 	cell.tweet = tweet;
+	cell.delegate = self;
 	return cell;
 }
 

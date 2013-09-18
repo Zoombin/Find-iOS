@@ -17,4 +17,7 @@
 
 - (void)aroundPhotosAtLocation:(CLLocation *)location limit:(NSNumber *)limit distance:(NSNumber *)distance withCompletionBlock:(void (^)(BOOL success, NSArray *tweets, NSNumber *distance))block;
 
+- (void)likePhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
+
+- (void)unlikePhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
 @end

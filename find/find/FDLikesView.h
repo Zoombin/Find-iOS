@@ -8,7 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol FDLikesViewDelegate <NSObject>
+
+- (void)willLike;
+- (void)willUnlike;
+
+@end
+
 @interface FDLikesView : UIView
+
+@property (nonatomic, weak) id<FDLikesViewDelegate> delegate;
 
 @property (nonatomic, strong) NSNumber *likes;
 @property (nonatomic, strong) NSNumber *liked;

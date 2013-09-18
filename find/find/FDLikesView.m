@@ -49,15 +49,23 @@
 
 - (void)tapped
 {
-	NSLog(@"tapped likes");
-	self.liked = @(!_liked.boolValue);
+	if (!_liked.boolValue) {
+		[self willLike];
+	} else {
+		[self willUnlike];
+	}
 }
 
-- (void)setLiked:(NSNumber *)liked
+- (void)willLike
 {
-	if (_liked.boolValue == liked.boolValue) return;
-	_liked = liked;
+	[_delegate willLike];
 }
+
+- (void)willUnlike
+{
+	[_delegate willUnlike];
+}
+
 
 + (CGSize)size
 {

@@ -9,11 +9,14 @@
 #import "FDPhotoCell.h"
 #import "UIImageView+AFNetworking.h"
 
+@interface FDPhotoCell () <FDLikesViewDelegate>
+
+@end
+
 @implementation FDPhotoCell
 {
 	UIImageView *photoView;
 	UILabel *distanceLabel;
-	FDLikesView *likesView;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -26,8 +29,9 @@
 		photoView.contentMode = UIViewContentModeScaleAspectFit;
 		[self addSubview:photoView];
 		
-		likesView = [[FDLikesView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.bounds) - [FDLikesView size].width, 0, [FDLikesView size].width, [FDLikesView size].height)];
-		[self addSubview:likesView];
+		_likesView = [[FDLikesView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.bounds) - [FDLikesView size].width, 0, [FDLikesView size].width, [FDLikesView size].height)];
+		_likesView.delegate = self;
+		[self addSubview:_likesView];
 		
 		distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.bounds) - 20, frame.size.width, 20)];
 		distanceLabel.backgroundColor = [UIColor clearColor];//[UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
@@ -67,7 +71,7 @@
 	[photoView setImageWithURL:[NSURL URLWithString:[_photo urlStringScaleAspectFit:_displaySize]]];
 	
 	if (_photo.likes) {
-		likesView.likes = _photo.likes;
+		_likesView.likes = _photo.likes;
 	}
 	
 }
@@ -87,6 +91,19 @@
 		if (block) block();
 	}];
 }
+
+#pragma mark - FDLikesViewDelegate
+
+- (void)willLike
+{
+	[_delegate photoCell:self willLikePhoto:_photo];
+}
+
+- (void)willUnlike
+{
+	[_delegate photoCell:self willUnlikePhoto:_photo];
+}
+
 
 /*
 // Only override drawRect: if you perform custom drawing.
