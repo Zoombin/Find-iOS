@@ -14,26 +14,50 @@
 	UILabel *likesLabel;
 }
 
++ (UIImage *)heartGray
+{
+	static UIImage *heartGray;
+	if (!heartGray) {
+		heartGray = [UIImage imageNamed:@"HeartGray"];
+	}
+	return heartGray;
+}
+
++ (UIImage *)heartRed
+{
+	static UIImage *heartRed;
+	if (!heartRed) {
+		heartRed = [UIImage imageNamed:@"HeartRed"];
+	}
+	return heartRed;
+}
+
++ (CGSize)heartSize
+{
+	UIImage *heart = [self heartGray];
+	return heart.size;
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
 		self.contentMode = UIViewContentModeScaleAspectFit;
+	
+		CGSize heartSize = CGSizeMake(25, 25);
 		
-		UIImage *heart = [UIImage imageNamed:@"Heart"];
-		
-		heartView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Heart"]];
+		heartView = [[UIImageView alloc] initWithImage:[[self class] heartGray]];
 		heartView.contentMode = UIViewContentModeScaleAspectFit;
-		heartView.frame = CGRectMake((frame.size.width - heart.size.width) / 2, (frame.size.height - heart.size.height) / 2, heart.size.width, heart.size.height);
+		heartView.frame = CGRectMake((frame.size.width - heartSize.width) / 2, (frame.size.height - heartSize.height) / 2, heartSize.width, heartSize.height);
 		[self addSubview:heartView];
 		
-		likesLabel = [[UILabel alloc] initWithFrame:self.bounds];
+		likesLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, heartSize.width, heartSize.height)];
 		likesLabel.adjustsFontSizeToFitWidth = YES;
 		likesLabel.textColor = [UIColor whiteColor];
 		likesLabel.textAlignment = NSTextAlignmentCenter;
 		likesLabel.backgroundColor = [UIColor clearColor];
 		likesLabel.font = [UIFont boldSystemFontOfSize:12];
-		[self addSubview:likesLabel];
+		[heartView addSubview:likesLabel];
 		
 		UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped)];
 		[self addGestureRecognizer:tap];
@@ -45,6 +69,12 @@
 {
 	_likes = likes;
 	likesLabel.text = [_likes stringValue];
+}
+
+- (void)setLiked:(NSNumber *)liked
+{
+	_liked = liked;
+	heartView.image = _liked.boolValue ? [[self class] heartRed] : [[self class] heartGray];
 }
 
 - (void)tapped

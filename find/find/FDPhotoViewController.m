@@ -72,7 +72,7 @@
 	if (indexPath.section == 0) {
 		return kBigSquareSize;
 	} else
-		return CGSizeMake(CGRectGetWidth(self.view.frame), 40);
+		return CGSizeMake(CGRectGetWidth(self.view.frame) - 15, 40);
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(PSTCollectionView *)collectionView
