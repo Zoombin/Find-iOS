@@ -20,8 +20,16 @@
 	UITabBarController *tabBarController;
 }
 
+- (void)test
+{
+	NSNumber *number = @(1379575567);//2013-09-19 15:26 = 1379575567
+	NSLog(@"number: %@", [number printableTimestamp]);
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	[self test];
+	
 	[self customizeAppearance];
 	
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
