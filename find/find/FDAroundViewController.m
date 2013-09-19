@@ -50,7 +50,7 @@
 	[self.view addSubview:photosCollectionView];
 	
 	
-	users = [FDUser createTest:100];
+	//users = [FDUser createTest:100];
 	
 	[[FDAFHTTPClient shared] aroundPhotosAtLocation:[CLLocation fakeLocation] limit:@(9999) distance:nil withCompletionBlock:^(BOOL success, NSArray *ts, NSNumber *distance) {
 		if (success) {
@@ -71,22 +71,24 @@
 
 - (void)photoCell:(FDPhotoCell *)photoCell willLikePhoto:(FDPhoto *)photo
 {
-	[[FDAFHTTPClient shared] likePhoto:photo.ID withCompletionBlock:^(BOOL success, NSString *message) {
+	[[FDAFHTTPClient shared] likePhoto:photo.ID withCompletionBlock:^(BOOL success, NSNumber *message) {
 		if (success) {
-			photoCell.photo.likes = @(photoCell.photo.likes.integerValue + 1);
+			NSNumber *currentLikes = message;
+			photoCell.photo.likes = currentLikes;
+			photoCell.likesView.likes = currentLikes;
 			photoCell.likesView.liked = @(YES);
-			photoCell.likesView.likes = @(photoCell.likesView.likes.integerValue + 1);
 		}
 	}];
 }
 
 - (void)photoCell:(FDPhotoCell *)photoCell willUnlikePhoto:(FDPhoto *)photo
 {
-	[[FDAFHTTPClient shared] unlikePhoto:photo.ID withCompletionBlock:^(BOOL success, NSString *message) {
+	[[FDAFHTTPClient shared] unlikePhoto:photo.ID withCompletionBlock:^(BOOL success, NSNumber *message) {
 		if (success) {
-			photoCell.photo.likes = @(photoCell.photo.likes.integerValue - 1);
+			NSNumber *currentLikes = message;
+			photoCell.photo.likes = currentLikes;
+			photoCell.likesView.likes = currentLikes;
 			photoCell.likesView.liked = @(NO);
-			photoCell.likesView.likes = @(photoCell.likesView.likes.integerValue - 1);
 		}
 	}];
 }
