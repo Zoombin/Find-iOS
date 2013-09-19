@@ -10,6 +10,11 @@
 
 #define kFDHost @"http://121.199.14.43/"
 
+static NSString *responseKeyStatus = @"status";
+static NSString *responseKeyData = @"data";
+static NSString *responseKeyMsg = @"msg";
+
+
 @implementation FDAFHTTPClient
 
 static FDAFHTTPClient *_instance;
@@ -49,8 +54,7 @@ static FDAFHTTPClient *_instance;
 	[self postPath:@"tweet" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
-			//NSLog(@"data: %@",data);
-			if (block) block ([data[@"status"] boolValue], data[@"msg"]);
+			if (block) block ([data[responseKeyStatus] boolValue], data[responseKeyMsg]);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		if (block) block (NO, error.description);
@@ -71,7 +75,7 @@ static FDAFHTTPClient *_instance;
 	[self getPath:@"around/photo" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		//[self printResponseObject:responseObject];
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-		NSArray *tweets = [FDTweet createMutableWithData:data[@"data"]];
+		NSArray *tweets = [FDTweet createMutableWithData:data[responseKeyData]];
 		NSNumber *distance = data[@"distance"];
 		if (block) block(YES, tweets, distance);
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -79,31 +83,31 @@ static FDAFHTTPClient *_instance;
 	}];
 }
 
-- (void)likePhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+- (void)likePhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSNumber *message))block
 {
 	NSString *path = [NSString stringWithFormat:@"photo/%@/like", photoID];
 	
 	[self postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
-			if (block) block ([data[@"status"] boolValue], data[@"msg"]);
+			if (block) block ([data[responseKeyStatus] boolValue], data[responseKeyMsg]);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block(NO, error.description);
+		if (block) block(NO, nil);
 	}];
 }
 
-- (void)unlikePhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+- (void)unlikePhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSNumber *message))block
 {
 	NSString *path = [NSString stringWithFormat:@"photo/%@/unlike", photoID];
 	
 	[self postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
-			if (block) block ([data[@"status"] boolValue], data[@"msg"]);
+			if (block) block ([data[responseKeyStatus] boolValue], data[responseKeyData]);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block(NO, error.description);
+		if (block) block(NO, nil);
 	}];
 }
 
@@ -117,7 +121,7 @@ static FDAFHTTPClient *_instance;
 	[self postPath:path parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
-			if (block) block ([data[@"status"] boolValue], data[@"msg"]);
+			if (block) block ([data[responseKeyStatus] boolValue], data[responseKeyData]);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		if (block) block(NO, error.description);
@@ -126,7 +130,8 @@ static FDAFHTTPClient *_instance;
 
 - (void)commentsOfPhoto:(NSNumber *)photoID limit:(NSNumber *)limit published:(NSNumber *)published withCompletionBlock:(void (^)(BOOL success, NSArray *comments, NSNumber *lastestPublishedTimestamp))block
 {
-	NSMutableString *path = [NSMutableString stringWithFormat:@"tweet/%@/comment?", @(1)];
+	photoID = @(1);//TODO: test
+	NSMutableString *path = [NSMutableString stringWithFormat:@"tweet/%@/comment?", photoID];
 	
 	if (limit) {
 		[path appendString:[NSString stringWithFormat:@"limit=%@", limit]];
@@ -141,8 +146,8 @@ static FDAFHTTPClient *_instance;
 	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
-			NSArray *comments = [FDComment createMutableWithData:data[@"data"]];
-			if (block) block (YES, comments, data[@"published"]);
+			NSArray *comments = [FDComment createMutableWithData:data[responseKeyData]];
+			if (block) block (YES, comments, data[@"published"]);//TODO: maybe error
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		if (block) block(NO, nil, nil);
