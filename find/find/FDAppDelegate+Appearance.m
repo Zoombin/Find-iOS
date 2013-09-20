@@ -7,7 +7,6 @@
 //
 
 #import "FDAppDelegate+Appearance.h"
-#import "RSTabBarViewController.h"
 
 @implementation FDAppDelegate (Appearance)
 

@@ -7,7 +7,6 @@
 //
 
 #import "FDAppDelegate.h"
-#import "RSTabBarViewController.h"
 #import "FDAroundViewController.h"
 #import "FDDiscoveryViewController.h"
 #import "FDHostViewController.h"

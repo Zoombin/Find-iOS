@@ -52,10 +52,6 @@
 		77A5F7CA17CB22960073E7F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A617CB22960073E7F9 /* UIKit.framework */; };
 		77A5F7D217CB22960073E7F9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77A5F7D017CB22960073E7F9 /* InfoPlist.strings */; };
 		77A5F7D417CB22960073E7F9 /* findTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7D317CB22960073E7F9 /* findTests.m */; };
-		77A5F7E517CB2AB00073E7F9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 77A5F7DF17CB2AB00073E7F9 /* LICENSE */; };
-		77A5F7E617CB2AB00073E7F9 /* RSTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7E117CB2AB00073E7F9 /* RSTabBar.m */; };
-		77A5F7E717CB2AB00073E7F9 /* RSTabBarController.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 77A5F7E217CB2AB00073E7F9 /* RSTabBarController.podspec */; };
-		77A5F7E817CB2AB00073E7F9 /* RSTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7E417CB2AB00073E7F9 /* RSTabBarViewController.m */; };
 		77A5F7EE17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7ED17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m */; };
 		77A5F7F117CB2F410073E7F9 /* FDHostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F017CB2F410073E7F9 /* FDHostViewController.m */; };
 		77A5F7F417CB2F760073E7F9 /* FDCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F317CB2F760073E7F9 /* FDCameraViewController.m */; };
@@ -186,12 +182,6 @@
 		77A5F7CF17CB22960073E7F9 /* findTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "findTests-Info.plist"; sourceTree = "<group>"; };
 		77A5F7D117CB22960073E7F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		77A5F7D317CB22960073E7F9 /* findTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = findTests.m; sourceTree = "<group>"; };
-		77A5F7DF17CB2AB00073E7F9 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		77A5F7E017CB2AB00073E7F9 /* RSTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTabBar.h; sourceTree = "<group>"; };
-		77A5F7E117CB2AB00073E7F9 /* RSTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTabBar.m; sourceTree = "<group>"; };
-		77A5F7E217CB2AB00073E7F9 /* RSTabBarController.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RSTabBarController.podspec; sourceTree = "<group>"; };
-		77A5F7E317CB2AB00073E7F9 /* RSTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTabBarViewController.h; sourceTree = "<group>"; };
-		77A5F7E417CB2AB00073E7F9 /* RSTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTabBarViewController.m; sourceTree = "<group>"; };
 		77A5F7EC17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FDAppDelegate+Appearance.h"; path = "find/FDAppDelegate+Appearance.h"; sourceTree = "<group>"; };
 		77A5F7ED17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FDAppDelegate+Appearance.m"; path = "find/FDAppDelegate+Appearance.m"; sourceTree = "<group>"; };
 		77A5F7EF17CB2F410073E7F9 /* FDHostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDHostViewController.h; sourceTree = "<group>"; };
@@ -459,23 +449,9 @@
 				77C0C92717CEE600008C7FC7 /* MBProgressHUD */,
 				77C0C8D517CDDBA8008C7FC7 /* GTMBase64 */,
 				77C0C89117CDBA8F008C7FC7 /* AFNetworking */,
-				77A5F7DE17CB2AB00073E7F9 /* RSTabBarController */,
 			);
 			path = Libraries;
 			sourceTree = SOURCE_ROOT;
-		};
-		77A5F7DE17CB2AB00073E7F9 /* RSTabBarController */ = {
-			isa = PBXGroup;
-			children = (
-				77A5F7DF17CB2AB00073E7F9 /* LICENSE */,
-				77A5F7E017CB2AB00073E7F9 /* RSTabBar.h */,
-				77A5F7E117CB2AB00073E7F9 /* RSTabBar.m */,
-				77A5F7E217CB2AB00073E7F9 /* RSTabBarController.podspec */,
-				77A5F7E317CB2AB00073E7F9 /* RSTabBarViewController.h */,
-				77A5F7E417CB2AB00073E7F9 /* RSTabBarViewController.m */,
-			);
-			path = RSTabBarController;
-			sourceTree = "<group>";
 		};
 		77C0C89117CDBA8F008C7FC7 /* AFNetworking */ = {
 			isa = PBXGroup;
@@ -731,12 +707,10 @@
 			files = (
 				777E5EE217D9AB2C005AFB67 /* LICENSE in Resources */,
 				7786715C17E35A98001FDB67 /* .gitignore in Resources */,
-				77A5F7E717CB2AB00073E7F9 /* RSTabBarController.podspec in Resources */,
 				777E5EE317D9AB2C005AFB67 /* README.md in Resources */,
 				77A5F7C117CB22960073E7F9 /* Images.xcassets in Resources */,
 				77A5F7AD17CB22960073E7F9 /* InfoPlist.strings in Resources */,
 				7786716417E35A98001FDB67 /* README.md in Resources */,
-				77A5F7E517CB2AB00073E7F9 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -773,7 +747,6 @@
 				77A5F7AF17CB22960073E7F9 /* main.m in Sources */,
 				777E5EE817D9BBDA005AFB67 /* FDThemeItemView.m in Sources */,
 				77C0C8E017CDE32C008C7FC7 /* ZBQNAFHTTPClient.m in Sources */,
-				77A5F7E617CB2AB00073E7F9 /* RSTabBar.m in Sources */,
 				777E5E1E17D97A98005AFB67 /* FDThemeCell.m in Sources */,
 				7786716017E35A98001FDB67 /* NSNumber+PrintableMeasurement.m in Sources */,
 				77C0C8AD17CDBA8F008C7FC7 /* UIImageView+AFNetworking.m in Sources */,
@@ -815,7 +788,6 @@
 				7786715E17E35A98001FDB67 /* CLLocation+NSString.m in Sources */,
 				7786716217E35A98001FDB67 /* NSString+ZBUtilites.m in Sources */,
 				77C0C8A517CDBA8F008C7FC7 /* AFHTTPClient.m in Sources */,
-				77A5F7E817CB2AB00073E7F9 /* RSTabBarViewController.m in Sources */,
 				77C0C8D917CDDBA8008C7FC7 /* GTMBase64.m in Sources */,
 				7734ACDA17D86A2B003E7BB6 /* PSTCollectionViewFlowLayout+FDLayout.m in Sources */,
 				77C0C95A17D18148008C7FC7 /* PSTCollectionViewFlowLayout.m in Sources */,
