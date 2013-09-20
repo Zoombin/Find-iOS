@@ -34,5 +34,9 @@
 	}
 	return comments;
 }
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"<id: %@, published: %@, username: %@, content: %@>", _ID, [_published printableTimestamp], _username, _content];
+}
 
 @end
