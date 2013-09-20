@@ -12,8 +12,10 @@
 
 #define kFDCommentCellIdentifier @"kFDCommentCellIdentifier"
 
-@interface FDCommentCell : PSTCollectionViewCell
+@interface FDCommentCell : UITableViewCell
 
 @property (nonatomic, strong) FDComment *comment;
+
+- (CGFloat)height;
 
 @end

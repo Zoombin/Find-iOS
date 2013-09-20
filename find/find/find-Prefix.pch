@@ -34,6 +34,7 @@
 
 #define FDDEBUG 1
 #define QINIU_HOST @"http://find.qiniudn.com/"
+#define HeadSize CGSizeMake(50, 50)
 
 
 //TEST
