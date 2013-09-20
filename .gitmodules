@@ -1,18 +1,9 @@
-[submodule "find/Libraries/AFNetworking"]
-	path = find/Libraries/AFNetworking
-	url = https://qq30135878@github.com/qq30135878/AFNetworking.git
 [submodule "find/Libraries/ZBUtilities"]
 	path = find/Libraries/ZBUtilities
 	url = https://qq30135878@github.com/qq30135878/ZBUtilities.git
 [submodule "find/Libraries/GTMBase64"]
 	path = find/Libraries/GTMBase64
 	url = https://qq30135878@github.com/qq30135878/GTMBase64.git
-[submodule "find/Libraries/MBProgressHUD"]
-	path = find/Libraries/MBProgressHUD
-	url = https://qq30135878@github.com/qq30135878/MBProgressHUD.git
-[submodule "find/Libraries/PSTCollectionView"]
-	path = find/Libraries/PSTCollectionView
-	url = https://qq30135878@github.com/qq30135878/PSTCollectionView.git
 [submodule "find/Libraries/fishhook"]
 	path = find/Libraries/fishhook
 	url = https://qq30135878@github.com/qq30135878/fishhook.git
