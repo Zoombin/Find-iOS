@@ -12,6 +12,12 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking 3
 #define COCOAPODS_VERSION_PATCH_AFNetworking 2
 
+// Godzippa
+#define COCOAPODS_POD_AVAILABLE_Godzippa
+#define COCOAPODS_VERSION_MAJOR_Godzippa 0
+#define COCOAPODS_VERSION_MINOR_Godzippa 1
+#define COCOAPODS_VERSION_PATCH_Godzippa 2
+
 // MBProgressHUD
 #define COCOAPODS_POD_AVAILABLE_MBProgressHUD
 #define COCOAPODS_VERSION_MAJOR_MBProgressHUD 0

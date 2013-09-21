@@ -29,6 +29,8 @@
 {
 	[self test];
 	
+	[[FDAFHTTPClient shared] test];
+	
 	[self customizeAppearance];
 	
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

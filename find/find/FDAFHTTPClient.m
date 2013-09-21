@@ -7,6 +7,7 @@
 //
 
 #import "FDAFHTTPClient.h"
+#import "NSData+Godzippa.h"
 
 #define kFDHost @"http://121.199.14.43/"
 
@@ -36,6 +37,8 @@ static FDAFHTTPClient *_instance;
 		type = @"dictionary";
 	} else if ([data isKindOfClass:[NSArray class]]) {
 		type = @"array";
+	} else if ([data isKindOfClass:[NSString class]]) {
+		type = @"string";
 	}
 	NSLog(@"%@-data: %@", type, data);
 }
@@ -154,6 +157,19 @@ static FDAFHTTPClient *_instance;
 	}];	
 }
 
+- (void)test
+{
+	NSString *testHost = @"http://f.hualongxiang.com/";
+	
+	AFHTTPClient *client = [[FDAFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:testHost]];
+	[client getPath:@"mobile/getinfo/1390626" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		NSData *data = [responseObject dataByGZipDecompressingDataWithError:nil];
+		NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+		NSLog(@"dic: %@", dic);
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		NSLog(@"no");
+	}];
+}
 
 
 @end
