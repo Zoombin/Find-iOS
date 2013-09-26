@@ -149,9 +149,9 @@ static FDAFHTTPClient *_instance;
 	
 	AFHTTPClient *client = [[FDAFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:testHost]];
 	[client getPath:@"mobile/getinfo/1390626" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-		NSData *data = [responseObject dataByGZipDecompressingDataWithError:nil];
-		NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-		NSLog(@"dic: %@", dic);
+//		NSData *data = [responseObject dataByGZipDecompressingDataWithError:nil];
+//		NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+//		NSLog(@"dic: %@", dic);
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		NSLog(@"no");
 	}];

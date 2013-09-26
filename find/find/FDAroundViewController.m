@@ -20,8 +20,6 @@
 
 @implementation FDAroundViewController
 {
-	NSArray *users;
-	NSArray *photos;
 	NSArray *tweets;
 	PSTCollectionView *photosCollectionView;
 }
@@ -49,9 +47,7 @@
 	photosCollectionView.dataSource = self;
 	[self.view addSubview:photosCollectionView];
 	
-	
-	//users = [FDUser createTest:100];
-	
+	//TODO: 9999 is a test number
 	[[FDAFHTTPClient shared] aroundPhotosAtLocation:[CLLocation fakeLocation] limit:@(9999) distance:nil withCompletionBlock:^(BOOL success, NSArray *ts, NSNumber *distance) {
 		if (success) {
 			tweets = ts;
@@ -111,11 +107,6 @@
 		photoViewController.photo = tweet.photos[0];
 	}
 	[self.navigationController pushViewController:photoViewController animated:YES];
-	
 }
-
-
-
-
 
 @end

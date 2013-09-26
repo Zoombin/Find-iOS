@@ -13,43 +13,38 @@
 
 @implementation FDCommentCell
 {
-	UILabel *commentLabel;
 	UIImageView *headView;
 	UILabel *dateLabel;
 	CGFloat height;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-//- (id)initWithFrame:(CGRect)frame
 {
-    //self = [super initWithFrame:frame];
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+		self.selectionStyle = UITableViewCellSelectionStyleNone;
+		
 		self.backgroundColor = [UIColor grayColor];
 		
-		CGPoint startPoint = CGPointZero;
+//		CGPoint startPoint = CGPointZero;
 		
-		headView = [[UIImageView alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, HeadSize.width, HeadSize.height)];
-		headView.contentMode = UIViewContentModeScaleToFill;
+//		headView = [[UIImageView alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, HeadSize.width, HeadSize.height)];
+//		headView.contentMode = UIViewContentModeScaleToFill;
 		//[self addSubview:headView];
 		
-		startPoint.x = CGRectGetWidth(headView.frame) + kGap;
-		startPoint.y = 0;
+		self.textLabel.font = [self.class commentContentFont];
+		self.textLabel.textColor = [UIColor blackColor];
+		self.textLabel.numberOfLines = 0;
+		self.textLabel.lineBreakMode = NSLineBreakByWordWrapping;//TODO: ios7 enum, what if lower?
 		
-        commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, self.bounds.size.width - startPoint.x, 50)];
-		commentLabel.numberOfLines = 0;
-		commentLabel.font = [UIFont systemFontOfSize:16];
-		commentLabel.backgroundColor = [UIColor clearColor];
-		[self.contentView addSubview:commentLabel];
-		
-		//startPoint.x = CGRectGetMinX(commentLabel.frame) + kGap;
-		//startPoint.y = CGRectGetHeight(commentLabel.frame) + kGap;
+//		startPoint.x = CGRectGetWidth(headView.frame) + kGap;
+//		startPoint.y = 0;
 		
 		//dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, self.bounds.size.width - startPoint.x, 20)];
-		dateLabel = [[UILabel alloc] init];
-		dateLabel.textColor = [UIColor lightTextColor];
-		dateLabel.font = [UIFont systemFontOfSize:12];
-		[self.contentView addSubview:dateLabel];
+//		dateLabel = [[UILabel alloc] init];
+//		dateLabel.textColor = [UIColor lightTextColor];
+//		dateLabel.font = [UIFont systemFontOfSize:12];
+//		[self.contentView addSubview:dateLabel];
     }
     return self;
 }
@@ -59,40 +54,28 @@
 	if (_comment == comment) return;
 	_comment = comment;
 
-	//NSLog(@"comment: %@", _comment);
-	NSString *path = [NSString stringWithFormat:@"%@%@", QINIU_HOST, @"1.jpg"];
-	[headView setImageWithURL:[NSURL URLWithString:path]];
-	
-	commentLabel.text = [NSString stringWithFormat:@"%@ : %@", _comment.username, _comment.content];
-	[commentLabel sizeToFit];
-	
-	//CGRect commentFrame = commentLabel.frame;
-	//NSLog(@"commentFrame: %@", NSStringFromCGRect(commentFrame));
-	
-	CGPoint startPoint = CGPointZero;
-	startPoint.x = CGRectGetMinX(commentLabel.frame) + kGap;
-	startPoint.y = CGRectGetHeight(commentLabel.frame) + kGap;
-	
-	dateLabel.frame = CGRectMake(startPoint.x, startPoint.y, self.bounds.size.width - startPoint.x, 20);
-	dateLabel.text = [_comment.published printableTimestamp];
-	
-	height = CGRectGetMaxY(dateLabel.frame);
-	//self.frame = CGRectMake(0, 0, 320, CGRectGetMaxY(dateLabel.frame));
-	//NSLog(@"self.frame: %@", NSStringFromCGRect(self.frame));
+	//NSString *path = [NSString stringWithFormat:@"%@%@", QINIU_HOST, @"1.jpg"];//TODO: test
+	//[headView setImageWithURL:[NSURL URLWithString:path]];
+
+	self.textLabel.text = [NSString stringWithFormat:@"%@ : %@", _comment.username, _comment.content];
 }
 
-- (CGFloat)height
+
++ (CGFloat)heightForComment:(FDComment *)comment boundingRectWithWidth:(CGFloat)width
 {
-	return height;
+	NSString *text = [NSString stringWithFormat:@"%@ : %@", comment.username, comment.content];
+	CGRect textFrame = [text boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [self.class commentContentFont]} context:nil];
+	return textFrame.size.height + 30;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+
+static UIFont *contentFont;
++ (UIFont *)commentContentFont
 {
-    // Drawing code
+	if (!contentFont) {
+		contentFont = [UIFont systemFontOfSize:13];
+	}
+	return contentFont;
 }
-*/
 
 @end

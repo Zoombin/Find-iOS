@@ -18,15 +18,13 @@
 @implementation FDPhotoViewController
 {
 	NSArray *photoComments;
-	PSTCollectionView *photosCollectionView;
-	UITableView *_tableView;
+	UITableView *commentsTableView;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -37,18 +35,10 @@
 	
 	CGSize fullSize = self.view.bounds.size;
 	
-	photosCollectionView = [[PSTCollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSTCollectionViewFlowLayout smallSquaresLayout]];
-	photosCollectionView.backgroundColor = [UIColor clearColor];
-	[photosCollectionView registerClass:[FDPhotoCell class] forCellWithReuseIdentifier:kFDMainPhotoCellIdentifier];
-	[photosCollectionView registerClass:[FDCommentCell class] forCellWithReuseIdentifier:kFDCommentCellIdentifier];
-//	photosCollectionView.delegate = self;
-//	photosCollectionView.dataSource = self;
-	[self.view addSubview:photosCollectionView];
-	
-	_tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44 + 20, fullSize.width, fullSize.height) style:UITableViewStylePlain];
-	_tableView.delegate = self;
-	_tableView.dataSource = self;
-	[self.view addSubview:_tableView];
+	commentsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, fullSize.width, fullSize.height) style:UITableViewStylePlain];
+	commentsTableView.delegate = self;
+	commentsTableView.dataSource = self;
+	[self.view addSubview:commentsTableView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -57,8 +47,7 @@
 	[[FDAFHTTPClient shared] commentsOfPhoto:_photo.ID limit:@(9999) published:nil withCompletionBlock:^(BOOL success, NSArray *comments, NSNumber *lastestPublishedTimestamp) {
 		if (success) {
 			photoComments = comments;
-			[_tableView reloadData];
-			//[photosCollectionView reloadData];
+			[commentsTableView reloadData];
 		}
 	}];
 }
@@ -67,55 +56,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - PSTCollectionViewDelegate
-
-- (CGSize)collectionView:(PSTCollectionView *)collectionView layout:(PSTCollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-	if (indexPath.section == 0) {
-		return kBigSquareSize;
-	} else {
-		FDCommentCell *cell = (FDCommentCell *)[collectionView cellForItemAtIndexPath:indexPath];
-		//NSLog(@"cell's comment: %@", cell.comment);
-		NSLog(@"cell: %@", NSStringFromCGRect(cell.frame));
-		return cell.frame.size;
-	}
-		
-}
-
-- (NSInteger)numberOfSectionsInCollectionView:(PSTCollectionView *)collectionView
-{
-	return 2;
-}
-
-- (NSInteger)collectionView:(PSTCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-	if (section == 0) {
-		return 1;
-	} else {
-		return photoComments.count;
-	}
-}
-
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
-//- (PSTCollectionViewCell *)collectionView:(PSTCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//	if (indexPath.section == 0) {
-//		FDPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDMainPhotoCellIdentifier forIndexPath:indexPath];
-//		[cell setPhoto:_photo scaleFitWidth:collectionView.bounds.size.width completionBlock:^(void) {
-//			[collectionView reloadData];
-//		}];
-//		return cell;
-//	} else {
-//		FDCommentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDCommentCellIdentifier forIndexPath:indexPath];
-//		cell.comment = photoComments[indexPath.row];
-//		return cell;
-//	}
-//}
-
-- (void)collectionView:(PSTCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
 }
 
 #pragma mark - UITableViewDelegate
@@ -158,17 +98,17 @@
 {
 	FDCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:kFDCommentCellIdentifier];
 	if (!cell) {
-		cell = [[FDCommentCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:kFDCommentCellIdentifier];
-		cell.comment = photoComments[indexPath.row];
+		cell = [[FDCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFDCommentCellIdentifier];
 	}
+	
+	cell.comment = photoComments[indexPath.row];
 	return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//	return 100;
-	FDCommentCell *cell = (FDCommentCell *)[_tableView cellForRowAtIndexPath:indexPath];
-	return 100;
+	FDComment *comment = photoComments[indexPath.row];
+	return [FDCommentCell heightForComment:comment boundingRectWithWidth:tableView.frame.size.width];
 }
 
 
