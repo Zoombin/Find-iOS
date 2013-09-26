@@ -69,26 +69,14 @@
 
 #pragma mark - FDPhotoCellDelegate
 
-- (void)photoCell:(FDPhotoCell *)photoCell willLikePhoto:(FDPhoto *)photo
+- (void)photoCell:(FDPhotoCell *)photoCell willLikeOrUnlikePhoto:(FDPhoto *)photo
 {
-	[[FDAFHTTPClient shared] likePhoto:photo.ID withCompletionBlock:^(BOOL success, NSNumber *message) {
+	[[FDAFHTTPClient shared] likeOrUnlikePhoto:photo.ID withCompletionBlock:^(BOOL success, NSNumber *message) {
 		if (success) {
 			NSNumber *currentLikes = message;
 			photoCell.photo.likes = currentLikes;
 			photoCell.likesView.likes = currentLikes;
 			photoCell.likesView.liked = @(YES);
-		}
-	}];
-}
-
-- (void)photoCell:(FDPhotoCell *)photoCell willUnlikePhoto:(FDPhoto *)photo
-{
-	[[FDAFHTTPClient shared] unlikePhoto:photo.ID withCompletionBlock:^(BOOL success, NSNumber *message) {
-		if (success) {
-			NSNumber *currentLikes = message;
-			photoCell.photo.likes = currentLikes;
-			photoCell.likesView.likes = currentLikes;
-			photoCell.likesView.liked = @(NO);
 		}
 	}];
 }

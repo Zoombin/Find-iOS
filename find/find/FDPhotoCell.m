@@ -98,14 +98,9 @@
 
 #pragma mark - FDLikesViewDelegate
 
-- (void)willLike
+- (void)willLikeOrUnlike
 {
-	[_delegate photoCell:self willLikePhoto:_photo];
-}
-
-- (void)willUnlike
-{
-	[_delegate photoCell:self willUnlikePhoto:_photo];
+	[_delegate photoCell:self willLikeOrUnlikePhoto:_photo];
 }
 
 

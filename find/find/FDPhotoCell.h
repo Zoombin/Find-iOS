@@ -17,8 +17,7 @@
 @class FDPhotoCell;
 @protocol FDPhotoCellDelegate <NSObject>
 
-- (void)photoCell:(FDPhotoCell *)photoCell willLikePhoto:(FDPhoto *)photo;
-- (void)photoCell:(FDPhotoCell *)photoCell willUnlikePhoto:(FDPhoto *)photo;
+- (void)photoCell:(FDPhotoCell *)photoCell willLikeOrUnlikePhoto:(FDPhoto *)photo;
 
 @end
 

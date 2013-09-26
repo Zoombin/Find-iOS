@@ -10,8 +10,7 @@
 
 @protocol FDLikesViewDelegate <NSObject>
 
-- (void)willLike;
-- (void)willUnlike;
+- (void)willLikeOrUnlike;
 
 @end
 

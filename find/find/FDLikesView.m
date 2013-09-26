@@ -59,7 +59,7 @@
 		likesLabel.font = [UIFont boldSystemFontOfSize:12];
 		[heartView addSubview:likesLabel];
 		
-		UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped)];
+		UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(willLikeOrUnlike)];
 		[self addGestureRecognizer:tap];
     }
     return self;
@@ -77,25 +77,10 @@
 	heartView.image = _liked.boolValue ? [[self class] heartRed] : [[self class] heartGray];
 }
 
-- (void)tapped
+- (void)willLikeOrUnlike
 {
-	if (!_liked.boolValue) {
-		[self willLike];
-	} else {
-		[self willUnlike];
-	}
+	[_delegate willLikeOrUnlike];
 }
-
-- (void)willLike
-{
-	[_delegate willLike];
-}
-
-- (void)willUnlike
-{
-	[_delegate willUnlike];
-}
-
 
 + (CGSize)size
 {
