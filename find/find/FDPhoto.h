@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSNumber *type;
 @property (nonatomic, strong) NSString *path;
 @property (nonatomic, strong) NSNumber *likes;
+@property (nonatomic, strong) NSNumber *liked;//和用户相关的，当前用户是否like了这张照片
 @property (nonatomic, strong) NSNumber *views;
 @property (nonatomic, strong) NSNumber *uploaded;//timestamp
 @property (nonatomic, strong) FDPhotoInfo *info;

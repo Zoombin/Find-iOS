@@ -76,7 +76,7 @@
 			NSNumber *currentLikes = message;
 			photoCell.photo.likes = currentLikes;
 			photoCell.likesView.likes = currentLikes;
-			photoCell.likesView.liked = @(YES);
+			//photoCell.likesView.liked = @(YES);//TODO: will return if liked, api not return for now
 		}
 	}];
 }

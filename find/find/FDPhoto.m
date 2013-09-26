@@ -20,6 +20,7 @@
 	photo.type = attributes[@"type"];
 	photo.path = attributes[@"path"];
 	photo.likes = attributes[@"likes"];
+	photo.liked = attributes[@"liked"];
 	photo.views = attributes[@"views"];
 	photo.uploaded = attributes[@"uploaded"];
 	return photo;

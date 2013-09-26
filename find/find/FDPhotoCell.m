@@ -34,7 +34,7 @@
 		[self addSubview:_likesView];
 		
 		distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.bounds) - 20, frame.size.width, 20)];
-		distanceLabel.backgroundColor = [UIColor clearColor];//[UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
+		distanceLabel.backgroundColor = [UIColor clearColor];
 		distanceLabel.textColor = [UIColor whiteColor];
 		distanceLabel.font = [UIFont boldSystemFontOfSize:12];
 		distanceLabel.adjustsFontSizeToFitWidth = YES;
@@ -70,10 +70,7 @@
 	_photo = photo;
 	[photoView setImageWithURL:[NSURL URLWithString:[_photo urlStringScaleAspectFit:_displaySize]]];
 	
-	if (_photo.likes) {
-		_likesView.likes = _photo.likes;
-	}
-	
+	[self setPhotoInfo];
 }
 
 - (void)setPhoto:(FDPhoto *)photo scaleFitWidth:(CGFloat)width completionBlock:(dispatch_block_t)block
@@ -91,9 +88,17 @@
 		if (block) block();
 	}];
 	
-	if (_photo.likes) {
-		_likesView.likes = _photo.likes;
-	}
+	[self setPhotoInfo];
+}
+
+- (void)setPhotoInfo
+{
+	_likesView.likes = _photo.likes;
+	_likesView.liked = _photo.liked;
+	
+	//TODO: for test. displaying photo id
+	NSString *displayedInfo = [NSString stringWithFormat:@"pid: %@, distace: %@", _photo.ID, [_tweet.distance printableDistance]];
+	distanceLabel.text = displayedInfo;
 }
 
 #pragma mark - FDLikesViewDelegate
