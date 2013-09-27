@@ -94,8 +94,7 @@ static FDAFHTTPClient *_instance;
 	[self postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
-			//action == 10 means liked, 11 means unliked
-			NSNumber *liked = @([data[responseKeyAct] integerValue] == 10);
+			NSNumber *liked = @([data[responseKeyAct] integerValue] == DOLIKE);
 			if (block) block ([data[responseKeyStatus] boolValue], data[responseKeyMsg], liked);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
