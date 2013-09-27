@@ -35,13 +35,16 @@
 		avatar = [[FDAvatarView alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, avatarSize.width, avatarSize.height)];
 		[self.contentView addSubview:avatar];
 		
-		startPoint.x = CGRectGetMaxX(avatar.frame) + kGap * 2;
+		NSLog(@"max avatar frame = %f", CGRectGetMaxX(avatar.frame));
+		NSLog(@"min avatar y = %f", CGRectGetMinY(avatar.bounds));
+		
+		startPoint.x = CGRectGetMaxX(avatar.frame) + 15;
 		startPoint.y = CGRectGetMinY(avatar.bounds) - 10;
 		
 		NSLog(@"startPoint: %@", NSStringFromCGPoint(startPoint));
 		
 		contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, 200, 30)];
-		contentLabel.font = [self.class commentContentFont];
+		contentLabel.font = [[self class] contentFont];
 		contentLabel.textColor = [UIColor blackColor];
 		contentLabel.numberOfLines = 0;
 		contentLabel.lineBreakMode = NSLineBreakByWordWrapping;//TODO: ios7 enum, what if lower?
@@ -78,13 +81,13 @@
 + (CGFloat)heightForComment:(FDComment *)comment boundingRectWithWidth:(CGFloat)width
 {
 	NSString *text = [NSString stringWithFormat:@"%@ : %@", comment.username, comment.content];
-	CGRect textFrame = [text boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [self.class commentContentFont]} context:nil];
+	CGRect textFrame = [text boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [[self class] contentFont]} context:nil];
 	return textFrame.size.height + 30;
 }
 
 
 static UIFont *contentFont;
-+ (UIFont *)commentContentFont
++ (UIFont *)contentFont
 {
 	if (!contentFont) {
 		contentFont = [UIFont systemFontOfSize:13];
