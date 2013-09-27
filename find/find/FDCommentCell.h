@@ -12,8 +12,15 @@
 
 #define kFDCommentCellIdentifier @"kFDCommentCellIdentifier"
 
+@protocol FDCommentCellDelegate <NSObject>
+
+- (void)willCommentOrReply:(FDComment *)comment;
+
+@end
+
 @interface FDCommentCell : UITableViewCell
 
+@property (nonatomic, weak) id<FDCommentCellDelegate> delegate;
 @property (nonatomic, strong) FDComment *comment;
 
 + (CGFloat)heightForComment:(FDComment *)comment;

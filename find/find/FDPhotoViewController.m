@@ -11,7 +11,7 @@
 #import "FDPhotoCell.h"
 #import "FDCommentCell.h"
 
-@interface FDPhotoViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface FDPhotoViewController () <UITableViewDelegate, UITableViewDataSource, FDCommentCellDelegate>
 
 @end
 
@@ -44,6 +44,11 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
+	[self fetchComments];
+}
+
+- (void)fetchComments
+{
 	[[FDAFHTTPClient shared] commentsOfPhoto:_photo.ID limit:@(9999) published:nil withCompletionBlock:^(BOOL success, NSArray *comments, NSNumber *lastestPublishedTimestamp) {
 		if (success) {
 			photoComments = comments;
@@ -56,6 +61,22 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - FDCommentCellDelegate
+
+- (void)willCommentOrReply:(FDComment *)comment
+{
+	NSDate *now = [NSDate date];
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	dateFormatter.dateFormat = @"YYYY-mm-dd HH:MM:SS";
+	NSString *tweetString = [NSString stringWithFormat:@"comment at:%@", [dateFormatter stringFromDate:now]];
+
+	[[FDAFHTTPClient shared] commentPhoto:_photo.ID content:tweetString withCompletionBlock:^(BOOL success, NSString *message) {
+		if (success) {
+			[self fetchComments];
+		}
+	}];
 }
 
 #pragma mark - UITableViewDelegate
@@ -99,6 +120,7 @@
 	FDCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:kFDCommentCellIdentifier];
 	if (!cell) {
 		cell = [[FDCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFDCommentCellIdentifier];
+		cell.delegate = self;
 	}
 	cell.comment = photoComments[indexPath.row];
 	return cell;

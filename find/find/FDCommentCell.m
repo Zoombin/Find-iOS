@@ -57,6 +57,18 @@
 		dateLabel.font = [UIFont systemFontOfSize:9];
 //		dateLabel.backgroundColor = [UIColor randomColor];//TODO: test
 		[self.contentView addSubview:dateLabel];
+		
+		startPoint.x = CGRectGetMaxX(contentLabel.frame);
+		startPoint.y = CGRectGetMinY(contentLabel.frame);
+		
+		UIButton *tweetCommentButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		[tweetCommentButton setImage:[UIImage imageNamed:@"CommentGray"] forState:UIControlStateNormal];
+		tweetCommentButton.backgroundColor = [UIColor randomColor];
+		tweetCommentButton.contentMode = UIViewContentModeCenter;
+		tweetCommentButton.showsTouchWhenHighlighted = YES;
+		tweetCommentButton.frame = CGRectMake(startPoint.x, startPoint.y, self.bounds.size.width - startPoint.x, self.frame.size.height - 2 * startPoint.y);
+		[tweetCommentButton addTarget:self action:@selector(willCommentOrReply:) forControlEvents:UIControlEventTouchUpInside];
+		[self.contentView addSubview:tweetCommentButton];
     }
     return self;
 }
@@ -79,6 +91,10 @@
 //	}
 }
 
+- (void)willCommentOrReply:(FDComment *)comment
+{
+	[_delegate willCommentOrReply:comment];
+}
 
 + (CGFloat)heightForComment:(FDComment *)comment
 {

@@ -104,6 +104,7 @@ static FDAFHTTPClient *_instance;
 
 - (void)commentPhoto:(NSNumber *)photoID content:(NSString *)content withCompletionBlock:(void (^)(BOOL success, NSString *message))block
 {
+	photoID = @(1);//TODO: test
 	NSString *path = [NSString stringWithFormat:@"tweet/%d/comment", photoID.integerValue];
 	
 	NSDictionary *parameters;
