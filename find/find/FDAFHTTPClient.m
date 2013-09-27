@@ -14,6 +14,7 @@
 static NSString *responseKeyStatus = @"status";
 static NSString *responseKeyData = @"data";
 static NSString *responseKeyMsg = @"msg";
+static NSString *responseKeyAct = @"action";
 
 
 @implementation FDAFHTTPClient
@@ -86,17 +87,19 @@ static FDAFHTTPClient *_instance;
 	}];
 }
 
-- (void)likeOrUnlikePhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSNumber *message))block
+- (void)likeOrUnlikePhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSNumber *message, NSNumber *liked))block
 {
 	NSString *path = [NSString stringWithFormat:@"photo/%@/like", photoID];
 	
 	[self postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
-			if (block) block ([data[responseKeyStatus] boolValue], data[responseKeyMsg]);
+			//action == 10 means liked, 11 means unliked
+			NSNumber *liked = @([data[responseKeyAct] integerValue] == 10);
+			if (block) block ([data[responseKeyStatus] boolValue], data[responseKeyMsg], liked);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block(NO, nil);
+		if (block) block(NO, nil, NO);
 	}];
 }
 

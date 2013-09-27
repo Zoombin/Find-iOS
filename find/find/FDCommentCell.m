@@ -7,15 +7,15 @@
 //
 
 #import "FDCommentCell.h"
-#import "UIImageView+AFNetworking.h"
+#import "FDAvatarView.h"
 
-#define kGap 10
+#define kGap 5
 
 @implementation FDCommentCell
 {
-	UIImageView *headView;
+	FDAvatarView *avatar;
+	UILabel *contentLabel;
 	UILabel *dateLabel;
-	CGFloat height;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -26,19 +26,26 @@
 		
 		self.backgroundColor = [UIColor grayColor];
 		
-//		CGPoint startPoint = CGPointZero;
+		CGPoint startPoint = CGPointZero;
 		
-//		headView = [[UIImageView alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, HeadSize.width, HeadSize.height)];
-//		headView.contentMode = UIViewContentModeScaleToFill;
-		//[self addSubview:headView];
+		startPoint.x = 8;
+		startPoint.y = kGap;
 		
-		self.textLabel.font = [self.class commentContentFont];
-		self.textLabel.textColor = [UIColor blackColor];
-		self.textLabel.numberOfLines = 0;
-		self.textLabel.lineBreakMode = NSLineBreakByWordWrapping;//TODO: ios7 enum, what if lower?
+		CGSize avatarSize = [FDAvatarView defaultSize];
+		avatar = [[FDAvatarView alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, avatarSize.width, avatarSize.height)];
+		[self.contentView addSubview:avatar];
 		
-//		startPoint.x = CGRectGetWidth(headView.frame) + kGap;
-//		startPoint.y = 0;
+		startPoint.x = CGRectGetMaxX(avatar.frame) + kGap * 2;
+		startPoint.y = CGRectGetMinY(avatar.bounds) - 10;
+		
+		NSLog(@"startPoint: %@", NSStringFromCGPoint(startPoint));
+		
+		contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, 200, 30)];
+		contentLabel.font = [self.class commentContentFont];
+		contentLabel.textColor = [UIColor blackColor];
+		contentLabel.numberOfLines = 0;
+		contentLabel.lineBreakMode = NSLineBreakByWordWrapping;//TODO: ios7 enum, what if lower?
+		[self.contentView addSubview:contentLabel];
 		
 		//dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, self.bounds.size.width - startPoint.x, 20)];
 //		dateLabel = [[UILabel alloc] init];
@@ -53,11 +60,18 @@
 {
 	if (_comment == comment) return;
 	_comment = comment;
-
-	//NSString *path = [NSString stringWithFormat:@"%@%@", QINIU_HOST, @"1.jpg"];//TODO: test
-	//[headView setImageWithURL:[NSURL URLWithString:path]];
-
-	self.textLabel.text = [NSString stringWithFormat:@"%@ : %@", _comment.username, _comment.content];
+	
+	contentLabel.text = [NSString stringWithFormat:@"%@ : %@", _comment.username, _comment.content];
+	
+	CGRect contentFrame = contentLabel.frame;
+	
+	CGFloat height = [self.class heightForComment:comment boundingRectWithWidth:contentLabel.frame.size.width];
+	contentFrame.size.height = height;
+	contentLabel.frame = contentFrame;
+	
+	if (_comment.userID) {
+		avatar.userID = _comment.userID;
+	}
 }
 
 

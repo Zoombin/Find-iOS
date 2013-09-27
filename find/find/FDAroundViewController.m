@@ -67,12 +67,12 @@
 
 - (void)photoCell:(FDPhotoCell *)photoCell willLikeOrUnlikePhoto:(FDPhoto *)photo
 {
-	[[FDAFHTTPClient shared] likeOrUnlikePhoto:photo.ID withCompletionBlock:^(BOOL success, NSNumber *message) {
+	[[FDAFHTTPClient shared] likeOrUnlikePhoto:photo.ID withCompletionBlock:^(BOOL success, NSNumber *message, NSNumber *liked) {
 		if (success) {
 			NSNumber *currentLikes = message;
 			photoCell.photo.likes = currentLikes;
 			photoCell.likesView.likes = currentLikes;
-			//photoCell.likesView.liked = @(YES);//TODO: will return if liked, api not return for now
+			photoCell.likesView.liked = liked;
 		}
 	}];
 }

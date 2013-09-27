@@ -7,7 +7,6 @@
 //
 
 #import "FDPhotoCell.h"
-#import "UIImageView+AFNetworking.h"
 
 @interface FDPhotoCell () <FDLikesViewDelegate>
 

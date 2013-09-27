@@ -58,6 +58,7 @@
 		77A5F7F717CB30400073E7F9 /* FDMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F617CB30400073E7F9 /* FDMeViewController.m */; };
 		77A5F89017CD95E80073E7F9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F88F17CD95E80073E7F9 /* CFNetwork.framework */; };
 		77AD927E17DEC88800D2FEBC /* FDAFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AD927D17DEC88800D2FEBC /* FDAFHTTPClient.m */; };
+		77C0242D17F3FB46009634CA /* FDAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0242C17F3FB46009634CA /* FDAvatarView.m */; };
 		77C0C8D917CDDBA8008C7FC7 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8D717CDDBA8008C7FC7 /* GTMBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		77C0C8DD17CDDE6A008C7FC7 /* ZBQNPutPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8DC17CDDE6A008C7FC7 /* ZBQNPutPolicy.m */; };
 		77C0C8E017CDE32C008C7FC7 /* ZBQNAFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8DF17CDE32C008C7FC7 /* ZBQNAFHTTPClient.m */; };
@@ -170,6 +171,8 @@
 		77A5F88F17CD95E80073E7F9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		77AD927C17DEC88800D2FEBC /* FDAFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDAFHTTPClient.h; path = find/FDAFHTTPClient.h; sourceTree = "<group>"; };
 		77AD927D17DEC88800D2FEBC /* FDAFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDAFHTTPClient.m; path = find/FDAFHTTPClient.m; sourceTree = "<group>"; };
+		77C0242B17F3FB46009634CA /* FDAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDAvatarView.h; path = find/FDAvatarView.h; sourceTree = "<group>"; };
+		77C0242C17F3FB46009634CA /* FDAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDAvatarView.m; path = find/FDAvatarView.m; sourceTree = "<group>"; };
 		77C0C8D617CDDBA8008C7FC7 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
 		77C0C8D717CDDBA8008C7FC7 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
 		77C0C8D817CDDBA8008C7FC7 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
@@ -468,6 +471,8 @@
 				77DA106F17E97EB0001F44DF /* FDCommentCell.m */,
 				778671C117E806BF001FDB67 /* FDLikesView.h */,
 				778671C217E806BF001FDB67 /* FDLikesView.m */,
+				77C0242B17F3FB46009634CA /* FDAvatarView.h */,
+				77C0242C17F3FB46009634CA /* FDAvatarView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -664,6 +669,7 @@
 				77C0C96717D198F6008C7FC7 /* FDPhoto.m in Sources */,
 				77C0C96417D18D7C008C7FC7 /* FDPhotoCell.m in Sources */,
 				7734ACCB17D8520B003E7BB6 /* FDUserProfileViewController.m in Sources */,
+				77C0242D17F3FB46009634CA /* FDAvatarView.m in Sources */,
 				7786716517E35A98001FDB67 /* UIColor+Hex.m in Sources */,
 				778671C017E74383001FDB67 /* FDTweet.m in Sources */,
 			);

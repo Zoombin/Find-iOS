@@ -100,7 +100,6 @@
 	if (!cell) {
 		cell = [[FDCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFDCommentCellIdentifier];
 	}
-	
 	cell.comment = photoComments[indexPath.row];
 	return cell;
 }
