@@ -18,7 +18,6 @@
 	FDAvatarView *avatar;
 	UILabel *contentLabel;
 	UILabel *dateLabel;
-//	CGFloat *
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -27,7 +26,7 @@
     if (self) {
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
 		
-		//self.backgroundColor = [UIColor grayColor];
+//		self.backgroundColor = [UIColor grayColor];//TODO: test
 		
 		CGPoint startPoint = CGPointZero;
 		
