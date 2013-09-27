@@ -16,6 +16,6 @@
 
 @property (nonatomic, strong) FDComment *comment;
 
-+ (CGFloat)heightForComment:(FDComment *)comment boundingRectWithWidth:(CGFloat)width;
++ (CGFloat)heightForComment:(FDComment *)comment;
 
 @end

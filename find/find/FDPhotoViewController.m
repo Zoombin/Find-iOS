@@ -107,7 +107,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	FDComment *comment = photoComments[indexPath.row];
-	return [FDCommentCell heightForComment:comment boundingRectWithWidth:tableView.frame.size.width];
+	return [FDCommentCell heightForComment:comment];
 }
 
 

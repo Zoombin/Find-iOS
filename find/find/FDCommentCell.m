@@ -10,12 +10,15 @@
 #import "FDAvatarView.h"
 
 #define kGap 5
+#define kWidthOfContentArea 200
+#define kHeightOfDateLabel 10
 
 @implementation FDCommentCell
 {
 	FDAvatarView *avatar;
 	UILabel *contentLabel;
 	UILabel *dateLabel;
+//	CGFloat *
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -24,37 +27,37 @@
     if (self) {
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
 		
-		self.backgroundColor = [UIColor grayColor];
+		//self.backgroundColor = [UIColor grayColor];
 		
 		CGPoint startPoint = CGPointZero;
 		
-		startPoint.x = 8;
+		startPoint.x = kGap;
 		startPoint.y = kGap;
 		
 		CGSize avatarSize = [FDAvatarView defaultSize];
 		avatar = [[FDAvatarView alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, avatarSize.width, avatarSize.height)];
 		[self.contentView addSubview:avatar];
+		avatar.backgroundColor = [UIColor blueColor];
 		
-		NSLog(@"max avatar frame = %f", CGRectGetMaxX(avatar.frame));
-		NSLog(@"min avatar y = %f", CGRectGetMinY(avatar.bounds));
+		startPoint.x = CGRectGetMaxX(avatar.frame) + kGap;
+		startPoint.y = CGRectGetMinY(avatar.frame);
 		
-		startPoint.x = CGRectGetMaxX(avatar.frame) + 15;
-		startPoint.y = CGRectGetMinY(avatar.bounds) - 10;
-		
-		NSLog(@"startPoint: %@", NSStringFromCGPoint(startPoint));
-		
-		contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, 200, 30)];
+		contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, kWidthOfContentArea, 0)];
 		contentLabel.font = [[self class] contentFont];
-		contentLabel.textColor = [UIColor blackColor];
 		contentLabel.numberOfLines = 0;
+		contentLabel.textColor = [UIColor blackColor];
+//		contentLabel.backgroundColor = [UIColor randomColor];//TODO: test
 		contentLabel.lineBreakMode = NSLineBreakByWordWrapping;//TODO: ios7 enum, what if lower?
 		[self.contentView addSubview:contentLabel];
 		
-		//dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, self.bounds.size.width - startPoint.x, 20)];
-//		dateLabel = [[UILabel alloc] init];
-//		dateLabel.textColor = [UIColor lightTextColor];
-//		dateLabel.font = [UIFont systemFontOfSize:12];
-//		[self.contentView addSubview:dateLabel];
+		startPoint.x = CGRectGetMinX(contentLabel.frame);
+		startPoint.y = CGRectGetMaxY(contentLabel.frame);
+		
+		dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, self.bounds.size.width - startPoint.x, kHeightOfDateLabel)];
+		dateLabel.textColor = [UIColor lightGrayColor];
+		dateLabel.font = [UIFont systemFontOfSize:9];
+//		dateLabel.backgroundColor = [UIColor randomColor];//TODO: test
+		[self.contentView addSubview:dateLabel];
     }
     return self;
 }
@@ -65,24 +68,24 @@
 	_comment = comment;
 	
 	contentLabel.text = [NSString stringWithFormat:@"%@ : %@", _comment.username, _comment.content];
+	[contentLabel sizeToFit];
 	
-	CGRect contentFrame = contentLabel.frame;
+	CGRect newFrame = dateLabel.frame;
+	newFrame.origin.y = CGRectGetMaxY(contentLabel.frame) + kGap;
+	dateLabel.frame = newFrame;
+	dateLabel.text = [_comment.published printableTimestamp];
 	
-	CGFloat height = [self.class heightForComment:comment boundingRectWithWidth:contentLabel.frame.size.width];
-	contentFrame.size.height = height;
-	contentLabel.frame = contentFrame;
-	
-	if (_comment.userID) {
-		avatar.userID = _comment.userID;
-	}
+//	if (_comment.userID) {
+//		avatar.userID = _comment.userID;
+//	}
 }
 
 
-+ (CGFloat)heightForComment:(FDComment *)comment boundingRectWithWidth:(CGFloat)width
++ (CGFloat)heightForComment:(FDComment *)comment
 {
 	NSString *text = [NSString stringWithFormat:@"%@ : %@", comment.username, comment.content];
-	CGRect textFrame = [text boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [[self class] contentFont]} context:nil];
-	return textFrame.size.height + 30;
+	CGRect textFrame = [text boundingRectWithSize:CGSizeMake(kWidthOfContentArea, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [[self class] contentFont]} context:nil];
+	return kGap + textFrame.size.height + kGap +  kHeightOfDateLabel + kGap;
 }
 
 

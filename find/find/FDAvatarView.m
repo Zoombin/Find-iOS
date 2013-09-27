@@ -17,11 +17,10 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-		self.layer.cornerRadius = 5;
+		self.layer.cornerRadius = 4;
 		
-        imageView = [[UIImageView alloc] initWithFrame:frame];
-		imageView.layer.cornerRadius = 5;
-		//imageView.layer.masksToBounds = YES;
+        imageView = [[UIImageView alloc] initWithFrame:self.bounds];
+		imageView.layer.cornerRadius = self.layer.cornerRadius;
 		[self addSubview:imageView];
     }
     return self;
