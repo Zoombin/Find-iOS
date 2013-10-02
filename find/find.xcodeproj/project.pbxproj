@@ -17,9 +17,6 @@
 		7734ACE617D895D1003E7BB6 /* FDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE517D895D1003E7BB6 /* FDViewController.m */; };
 		7734ACE917D8A6C1003E7BB6 /* FDPhotoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE817D8A6C1003E7BB6 /* FDPhotoInfo.m */; };
 		777E5E1E17D97A98005AFB67 /* FDThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 777E5E1D17D97A98005AFB67 /* FDThemeCell.m */; };
-		777E5EE117D9AB2C005AFB67 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 777E5EDD17D9AB2C005AFB67 /* fishhook.c */; };
-		777E5EE217D9AB2C005AFB67 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 777E5EDF17D9AB2C005AFB67 /* LICENSE */; };
-		777E5EE317D9AB2C005AFB67 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 777E5EE017D9AB2C005AFB67 /* README.md */; };
 		777E5EE817D9BBDA005AFB67 /* FDThemeItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */; };
 		7786715D17E35A98001FDB67 /* CLLocation+NSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786714317E35A98001FDB67 /* CLLocation+NSDictionary.m */; };
 		7786715E17E35A98001FDB67 /* CLLocation+NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786714517E35A98001FDB67 /* CLLocation+NSString.m */; };
@@ -27,7 +24,6 @@
 		7786716017E35A98001FDB67 /* NSNumber+PrintableMeasurement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786714917E35A98001FDB67 /* NSNumber+PrintableMeasurement.m */; };
 		7786716117E35A98001FDB67 /* NSString+BundleExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786714B17E35A98001FDB67 /* NSString+BundleExtensions.m */; };
 		7786716217E35A98001FDB67 /* NSString+ZBUtilites.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786714D17E35A98001FDB67 /* NSString+ZBUtilites.m */; };
-		7786716317E35A98001FDB67 /* QuietAssertMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = 7786714E17E35A98001FDB67 /* QuietAssertMacros.c */; };
 		7786716417E35A98001FDB67 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7786714F17E35A98001FDB67 /* README.md */; };
 		7786716517E35A98001FDB67 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786715117E35A98001FDB67 /* UIColor+Hex.m */; };
 		7786716617E35A98001FDB67 /* UIColor+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786715317E35A98001FDB67 /* UIColor+Random.m */; };
@@ -102,10 +98,6 @@
 		7734ACE817D8A6C1003E7BB6 /* FDPhotoInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDPhotoInfo.m; path = find/FDPhotoInfo.m; sourceTree = "<group>"; };
 		777E5E1C17D97A98005AFB67 /* FDThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeCell.h; path = find/FDThemeCell.h; sourceTree = "<group>"; };
 		777E5E1D17D97A98005AFB67 /* FDThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDThemeCell.m; path = find/FDThemeCell.m; sourceTree = "<group>"; };
-		777E5EDD17D9AB2C005AFB67 /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fishhook.c; sourceTree = "<group>"; };
-		777E5EDE17D9AB2C005AFB67 /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
-		777E5EDF17D9AB2C005AFB67 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		777E5EE017D9AB2C005AFB67 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		777E5EE617D9BBDA005AFB67 /* FDThemeItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeItemView.h; path = find/FDThemeItemView.h; sourceTree = "<group>"; };
 		777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDThemeItemView.m; path = find/FDThemeItemView.m; sourceTree = "<group>"; };
 		7786714217E35A98001FDB67 /* CLLocation+NSDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+NSDictionary.h"; sourceTree = "<group>"; };
@@ -120,7 +112,6 @@
 		7786714B17E35A98001FDB67 /* NSString+BundleExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BundleExtensions.m"; sourceTree = "<group>"; };
 		7786714C17E35A98001FDB67 /* NSString+ZBUtilites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ZBUtilites.h"; sourceTree = "<group>"; };
 		7786714D17E35A98001FDB67 /* NSString+ZBUtilites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZBUtilites.m"; sourceTree = "<group>"; };
-		7786714E17E35A98001FDB67 /* QuietAssertMacros.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = QuietAssertMacros.c; sourceTree = "<group>"; };
 		7786714F17E35A98001FDB67 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		7786715017E35A98001FDB67 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		7786715117E35A98001FDB67 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
@@ -227,17 +218,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		777E5EDC17D9AB2C005AFB67 /* fishhook */ = {
-			isa = PBXGroup;
-			children = (
-				777E5EDD17D9AB2C005AFB67 /* fishhook.c */,
-				777E5EDE17D9AB2C005AFB67 /* fishhook.h */,
-				777E5EDF17D9AB2C005AFB67 /* LICENSE */,
-				777E5EE017D9AB2C005AFB67 /* README.md */,
-			);
-			path = fishhook;
-			sourceTree = "<group>";
-		};
 		7786714017E35A98001FDB67 /* ZBUtilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,7 +233,6 @@
 				7786714B17E35A98001FDB67 /* NSString+BundleExtensions.m */,
 				7786714C17E35A98001FDB67 /* NSString+ZBUtilites.h */,
 				7786714D17E35A98001FDB67 /* NSString+ZBUtilites.m */,
-				7786714E17E35A98001FDB67 /* QuietAssertMacros.c */,
 				7786714F17E35A98001FDB67 /* README.md */,
 				7786715017E35A98001FDB67 /* UIColor+Hex.h */,
 				7786715117E35A98001FDB67 /* UIColor+Hex.m */,
@@ -378,7 +357,6 @@
 			isa = PBXGroup;
 			children = (
 				7786714017E35A98001FDB67 /* ZBUtilities */,
-				777E5EDC17D9AB2C005AFB67 /* fishhook */,
 				77C0C8D517CDDBA8008C7FC7 /* GTMBase64 */,
 			);
 			path = Libraries;
@@ -568,8 +546,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				777E5EE217D9AB2C005AFB67 /* LICENSE in Resources */,
-				777E5EE317D9AB2C005AFB67 /* README.md in Resources */,
 				77A5F7C117CB22960073E7F9 /* Images.xcassets in Resources */,
 				77A5F7AD17CB22960073E7F9 /* InfoPlist.strings in Resources */,
 				7786716417E35A98001FDB67 /* README.md in Resources */,
@@ -643,7 +619,6 @@
 				7786716017E35A98001FDB67 /* NSNumber+PrintableMeasurement.m in Sources */,
 				77C0C8DD17CDDE6A008C7FC7 /* ZBQNPutPolicy.m in Sources */,
 				7786715D17E35A98001FDB67 /* CLLocation+NSDictionary.m in Sources */,
-				7786716317E35A98001FDB67 /* QuietAssertMacros.c in Sources */,
 				77AD927E17DEC88800D2FEBC /* FDAFHTTPClient.m in Sources */,
 				7734ACD117D85605003E7BB6 /* FDUser+Test.m in Sources */,
 				77F5CD4F17E966BC006D931F /* FDSigninViewController.m in Sources */,
@@ -659,7 +634,6 @@
 				7734ACCE17D85368003E7BB6 /* FDUser.m in Sources */,
 				7734ACE617D895D1003E7BB6 /* FDViewController.m in Sources */,
 				77F5CD5217E966DB006D931F /* FDSignupViewController.m in Sources */,
-				777E5EE117D9AB2C005AFB67 /* fishhook.c in Sources */,
 				77A5F7F117CB2F410073E7F9 /* FDHostViewController.m in Sources */,
 				778671BD17E705D6001FDB67 /* CLLocation+Test.m in Sources */,
 				7786715E17E35A98001FDB67 /* CLLocation+NSString.m in Sources */,
