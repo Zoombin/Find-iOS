@@ -27,7 +27,6 @@
 		7786716017E35A98001FDB67 /* NSNumber+PrintableMeasurement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786714917E35A98001FDB67 /* NSNumber+PrintableMeasurement.m */; };
 		7786716117E35A98001FDB67 /* NSString+BundleExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786714B17E35A98001FDB67 /* NSString+BundleExtensions.m */; };
 		7786716217E35A98001FDB67 /* NSString+ZBUtilites.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786714D17E35A98001FDB67 /* NSString+ZBUtilites.m */; };
-		7786716317E35A98001FDB67 /* QuietAssertMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = 7786714E17E35A98001FDB67 /* QuietAssertMacros.c */; };
 		7786716417E35A98001FDB67 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7786714F17E35A98001FDB67 /* README.md */; };
 		7786716517E35A98001FDB67 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786715117E35A98001FDB67 /* UIColor+Hex.m */; };
 		7786716617E35A98001FDB67 /* UIColor+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786715317E35A98001FDB67 /* UIColor+Random.m */; };
@@ -120,7 +119,6 @@
 		7786714B17E35A98001FDB67 /* NSString+BundleExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BundleExtensions.m"; sourceTree = "<group>"; };
 		7786714C17E35A98001FDB67 /* NSString+ZBUtilites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ZBUtilites.h"; sourceTree = "<group>"; };
 		7786714D17E35A98001FDB67 /* NSString+ZBUtilites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZBUtilites.m"; sourceTree = "<group>"; };
-		7786714E17E35A98001FDB67 /* QuietAssertMacros.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = QuietAssertMacros.c; sourceTree = "<group>"; };
 		7786714F17E35A98001FDB67 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		7786715017E35A98001FDB67 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		7786715117E35A98001FDB67 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
@@ -253,7 +251,6 @@
 				7786714B17E35A98001FDB67 /* NSString+BundleExtensions.m */,
 				7786714C17E35A98001FDB67 /* NSString+ZBUtilites.h */,
 				7786714D17E35A98001FDB67 /* NSString+ZBUtilites.m */,
-				7786714E17E35A98001FDB67 /* QuietAssertMacros.c */,
 				7786714F17E35A98001FDB67 /* README.md */,
 				7786715017E35A98001FDB67 /* UIColor+Hex.h */,
 				7786715117E35A98001FDB67 /* UIColor+Hex.m */,
@@ -643,7 +640,6 @@
 				7786716017E35A98001FDB67 /* NSNumber+PrintableMeasurement.m in Sources */,
 				77C0C8DD17CDDE6A008C7FC7 /* ZBQNPutPolicy.m in Sources */,
 				7786715D17E35A98001FDB67 /* CLLocation+NSDictionary.m in Sources */,
-				7786716317E35A98001FDB67 /* QuietAssertMacros.c in Sources */,
 				77AD927E17DEC88800D2FEBC /* FDAFHTTPClient.m in Sources */,
 				7734ACD117D85605003E7BB6 /* FDUser+Test.m in Sources */,
 				77F5CD4F17E966BC006D931F /* FDSigninViewController.m in Sources */,
