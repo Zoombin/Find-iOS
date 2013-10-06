@@ -275,4 +275,32 @@ static FDAFHTTPClient *_instance;
 		;
 	}];
 }
+
+- (void)followerListOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+{
+	NSAssert(userID, @"userID must not be nil when fetch follower list of this user!");
+	
+	//TODO
+	NSString *path = [NSString stringWithFormat:@"member/%@/follower", userID];
+	
+	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		;
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		;
+	}];
+}
+
+- (void)followedListOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+{
+	NSAssert(userID, @"userID must not be nil when fetch followed list of this user!");
+	
+	//TODO
+	NSString *path = [NSString stringWithFormat:@"member/%@/followed", userID];
+	
+	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		;
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		;
+	}];
+}
 @end

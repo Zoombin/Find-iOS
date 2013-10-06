@@ -57,6 +57,13 @@
 
 - (void)followOrUnfollowUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
 
+//查看改用户的粉丝
+- (void)followerListOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
+
+//查看该用户关注的人
+- (void)followedListOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
+
+
 //test gzip
 - (void)test;
 
