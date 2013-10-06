@@ -262,4 +262,17 @@ static FDAFHTTPClient *_instance;
 	}];
 }
 
+- (void)followOrUnfollowUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+{
+	NSAssert(userID, @"userID must not be nil when follow or unfollow user!");
+	
+	NSString *path = [NSString stringWithFormat:@"member/%@/follow", userID];
+	
+	//TODO: need return followed or unfollowed
+	[self postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		;
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		;
+	}];
+}
 @end

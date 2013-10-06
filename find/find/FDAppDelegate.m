@@ -37,8 +37,12 @@
 //		
 //	}];
 	
-	[[FDAFHTTPClient shared] blockUser:@(3) withCompletionBlock:^(BOOL success, NSString *message) {
-		
+//	[[FDAFHTTPClient shared] blockUser:@(3) withCompletionBlock:^(BOOL success, NSString *message) {
+//		
+//	}];
+	
+	[[FDAFHTTPClient shared] followOrUnfollowUser:@(2) withCompletionBlock:^(BOOL success, NSString *message) {
+		;
 	}];
 }
 
