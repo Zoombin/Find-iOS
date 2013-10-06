@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
+#import	"FDTestAccountsViewController.h"
 #import "FDTestPhotoUploadViewController.h"
 #import "FDPhoto+Test.h"
 #import "FDUser+Test.h"

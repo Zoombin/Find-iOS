@@ -16,7 +16,6 @@ static NSString *responseKeyData = @"data";
 static NSString *responseKeyMsg = @"msg";
 static NSString *responseKeyAct = @"action";
 
-
 @implementation FDAFHTTPClient
 
 static FDAFHTTPClient *_instance;
@@ -29,6 +28,21 @@ static FDAFHTTPClient *_instance;
 	}
 	return _instance;
 }
+
+//TEST gzip
+- (void)test
+{
+	NSString *testHost = @"http://f.hualongxiang.com/";
+	AFHTTPClient *client = [[FDAFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:testHost]];
+	[client getPath:@"mobile/getinfo/1390626" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		//		NSData *data = [responseObject dataByGZipDecompressingDataWithError:nil];
+		//		NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+		//		NSLog(@"dic: %@", dic);
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		NSLog(@"no");
+	}];
+}
+
 
 - (void)printResponseObject:(id)responseObject
 {
@@ -146,19 +160,50 @@ static FDAFHTTPClient *_instance;
 	}];	
 }
 
-- (void)test
+//location could be nil, username and password must not be nil
+- (void)signupAtLocation:(CLLocation *)location username:(NSString *)username password:(NSString *)password withCompletionBlock:(void (^)(BOOL success, NSString *message))block
 {
-	NSString *testHost = @"http://f.hualongxiang.com/";
+	NSAssert(username && password, @"username and password must not be nil when signup!");
 	
-	AFHTTPClient *client = [[FDAFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:testHost]];
-	[client getPath:@"mobile/getinfo/1390626" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//		NSData *data = [responseObject dataByGZipDecompressingDataWithError:nil];
-//		NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-//		NSLog(@"dic: %@", dic);
+	NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+	if (location) {
+		parameters = [[location parseToDictionary] mutableCopy];
+	}
+	
+	parameters[@"username"] = username;
+	parameters[@"password"] = password;
+	
+	[self postPath:@"signup" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			if (block) block ([data[responseKeyStatus] boolValue], data[responseKeyMsg]);//TODO: if failed msg is a number, may lead crash
+		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		NSLog(@"no");
+		if (block) block (NO, error.description);
 	}];
 }
 
+//location could be nil, username and password must not be nil
+- (void)signinAtLocation:(CLLocation *)location username:(NSString *)username password:(NSString *)password withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+{
+	NSAssert(username && password, @"username and password must not be nil when signin!");
+	
+	NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+	if (location) {
+		parameters = [[location parseToDictionary] mutableCopy];
+	}
+	
+	parameters[@"username"] = username;
+	parameters[@"password"] = password;
+	
+	[self postPath:@"signin" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			if (block) block ([data[responseKeyStatus] boolValue], data[responseKeyMsg]);//TODO: if failed msg is a number, may lead crash
+		}
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		if (block) block (NO, error.description);
+	}];
+}
 
 @end

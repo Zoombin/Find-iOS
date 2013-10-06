@@ -66,6 +66,7 @@
 		77F5CD4F17E966BC006D931F /* FDSigninViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5CD4E17E966BC006D931F /* FDSigninViewController.m */; };
 		77F5CD5217E966DB006D931F /* FDSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5CD5117E966DB006D931F /* FDSignupViewController.m */; };
 		77F5CD5817E9771A006D931F /* UIColor+Find.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5CD5717E9771A006D931F /* UIColor+Find.m */; };
+		77FE43431801040F00B1B5D3 /* FDTestAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FE43421801040F00B1B5D3 /* FDTestAccountsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -189,6 +190,8 @@
 		77F5CD5117E966DB006D931F /* FDSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSignupViewController.m; sourceTree = "<group>"; };
 		77F5CD5617E9771A006D931F /* UIColor+Find.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Find.h"; path = "find/UIColor+Find.h"; sourceTree = "<group>"; };
 		77F5CD5717E9771A006D931F /* UIColor+Find.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Find.m"; path = "find/UIColor+Find.m"; sourceTree = "<group>"; };
+		77FE43411801040F00B1B5D3 /* FDTestAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDTestAccountsViewController.h; path = Test/FDTestAccountsViewController.h; sourceTree = "<group>"; };
+		77FE43421801040F00B1B5D3 /* FDTestAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDTestAccountsViewController.m; path = Test/FDTestAccountsViewController.m; sourceTree = "<group>"; };
 		89DD9B7861784BB187663779 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -396,6 +399,8 @@
 			isa = PBXGroup;
 			children = (
 				77C0C91E17CE1A51008C7FC7 /* FDTest.h */,
+				77FE43411801040F00B1B5D3 /* FDTestAccountsViewController.h */,
+				77FE43421801040F00B1B5D3 /* FDTestAccountsViewController.m */,
 				77C0C91B17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.h */,
 				77C0C91C17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m */,
 				7734ACCF17D85605003E7BB6 /* FDUser+Test.h */,
@@ -631,6 +636,7 @@
 				7786716117E35A98001FDB67 /* NSString+BundleExtensions.m in Sources */,
 				7786716717E35A98001FDB67 /* UIDevice+ZBUtilites.m in Sources */,
 				7734ACD417D8562F003E7BB6 /* FDPhoto+Test.m in Sources */,
+				77FE43431801040F00B1B5D3 /* FDTestAccountsViewController.m in Sources */,
 				7734ACCE17D85368003E7BB6 /* FDUser.m in Sources */,
 				7734ACE617D895D1003E7BB6 /* FDViewController.m in Sources */,
 				77F5CD5217E966DB006D931F /* FDSignupViewController.m in Sources */,

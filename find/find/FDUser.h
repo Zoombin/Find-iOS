@@ -19,5 +19,4 @@
 + (NSArray *)createMutableWithData:(NSArray *)data;
 - (FDPhoto *)mainPhoto;
 
-
 @end

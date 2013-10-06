@@ -40,6 +40,7 @@
 	[vcClasses addObject:[FDAroundViewController new]];
 	[vcClasses addObject:[FDDiscoveryViewController new]];
 	[vcClasses addObject:[FDTestPhotoUploadViewController new]];
+	[vcClasses addObject:[FDTestAccountsViewController new]];
 	[vcClasses addObject:[FDMeViewController new]];
 	[vcClasses addObject:[FDCameraViewController new]];
 	[vcClasses addObject:[FDHostViewController new]];
