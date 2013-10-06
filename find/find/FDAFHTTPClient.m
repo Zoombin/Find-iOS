@@ -118,6 +118,8 @@ static FDAFHTTPClient *_instance;
 
 - (void)commentPhoto:(NSNumber *)photoID content:(NSString *)content withCompletionBlock:(void (^)(BOOL success, NSString *message))block
 {
+	NSAssert(photoID, @"photoID must not be nil when comment this photo!");
+	
 	photoID = @(1);//TODO: test
 	NSString *path = [NSString stringWithFormat:@"tweet/%d/comment", photoID.integerValue];
 	
@@ -136,6 +138,8 @@ static FDAFHTTPClient *_instance;
 
 - (void)commentsOfPhoto:(NSNumber *)photoID limit:(NSNumber *)limit published:(NSNumber *)published withCompletionBlock:(void (^)(BOOL success, NSArray *comments, NSNumber *lastestPublishedTimestamp))block
 {
+	NSAssert(photoID, @"photoID must not be nil when fetch comments of this photo!");
+	
 	photoID = @(1);//TODO: test
 	NSMutableString *path = [NSMutableString stringWithFormat:@"tweet/%@/comment?", photoID];
 	
@@ -203,6 +207,22 @@ static FDAFHTTPClient *_instance;
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		if (block) block (NO, error.description);
+	}];
+}
+
+- (void)profileOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSDictionary *userAttributes))block
+{
+	NSAssert(userID, @"userID must not be nil when fetch profile!");
+	
+	NSString *path = [NSString stringWithFormat:@"member/%@/profile", userID];
+	
+	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			if (block) block (YES, data);
+		}
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		if (block) block (NO, nil);
 	}];
 }
 

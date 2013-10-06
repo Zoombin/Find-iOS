@@ -41,6 +41,10 @@
 
 - (void)signinAtLocation:(CLLocation *)location username:(NSString *)username password:(NSString *)password withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
 
+//- (void)changePassword:()
+
+- (void)profileOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSDictionary *userAttributes))block;
+
 //test gzip
 - (void)test;
 
