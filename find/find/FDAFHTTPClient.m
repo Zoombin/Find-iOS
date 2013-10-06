@@ -226,4 +226,40 @@ static FDAFHTTPClient *_instance;
 	}];
 }
 
+- (void)editProfileOfUser:(NSNumber *)userID profileAttributes:(NSDictionary *)profileAttributes withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+{
+	
+}
+
+- (void)blockUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+{
+	NSAssert(userID, @"userID must not be nil when block it!");
+	
+	NSString *path = [NSString stringWithFormat:@"member/black/%@", userID];
+	
+	[self postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		if (block) block (YES, nil);
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		if (block) block (NO, error.description);
+	}];
+}
+
+- (void)blockListOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+{
+	NSAssert(userID, @"userID must not be nil when fetch block list!");
+	
+	NSString *path = [NSString stringWithFormat:@"member/%@/black", userID];
+	
+	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		//id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		[self printResponseObject:responseObject];
+//		if ([data isKindOfClass:[NSDictionary class]]) {
+//			if (block) block (YES, data);
+//		}
+		if (block) block (YES, nil);//TODO: should return array of FDUsers
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		if (block) block (NO, error.description);
+	}];
+}
+
 @end

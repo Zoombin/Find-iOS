@@ -32,6 +32,14 @@
 //			NSLog(@"profile: %@", userProfile);
 //		}
 //	}];
+	
+//	[[FDAFHTTPClient shared] blockListOfUser:@(1) withCompletionBlock:^(BOOL success, NSString *message) {
+//		
+//	}];
+	
+	[[FDAFHTTPClient shared] blockUser:@(3) withCompletionBlock:^(BOOL success, NSString *message) {
+		
+	}];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
