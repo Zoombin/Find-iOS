@@ -29,6 +29,7 @@
 #import "FDPhoto.h"
 #import "FDTweet.h"
 #import "FDComment.h"
+#import "FDUserProfile.h"
 
 #import "UIDevice+ZBUtilites.h"
 #import "UIImageView+AFNetworking.h"

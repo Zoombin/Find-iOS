@@ -210,7 +210,7 @@ static FDAFHTTPClient *_instance;
 	}];
 }
 
-- (void)profileOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSDictionary *userAttributes))block
+- (void)profileOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSDictionary *userProfileAttributes))block
 {
 	NSAssert(userID, @"userID must not be nil when fetch profile!");
 	

@@ -43,7 +43,7 @@
 
 //- (void)changePassword:()
 
-- (void)profileOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSDictionary *userAttributes))block;
+- (void)profileOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSDictionary *userProfileAttributes))block;
 
 //test gzip
 - (void)test;

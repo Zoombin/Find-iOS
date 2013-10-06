@@ -21,8 +21,17 @@
 
 - (void)test
 {
-	NSNumber *number = @(1379575567);//2013-09-19 15:26 = 1379575567
-	NSLog(@"number: %@", [number printableTimestamp]);
+//	NSNumber *number = @(1379575567);//2013-09-19 15:26 = 1379575567
+//	NSLog(@"number: %@", [number printableTimestamp]);
+	
+//	[[FDAFHTTPClient shared] profileOfUser:@(1) withCompletionBlock:^(BOOL success, NSDictionary *userProfileAttributes) {
+//		if (success) {
+//			NSLog(@"userAttributes: %@", userProfileAttributes);
+//			
+//			FDUserProfile *userProfile = [FDUserProfile createWithAttributes:userProfileAttributes];
+//			NSLog(@"profile: %@", userProfile);
+//		}
+//	}];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
