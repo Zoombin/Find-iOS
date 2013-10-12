@@ -23,35 +23,8 @@
 {
 //	NSNumber *number = @(1379575567);//2013-09-19 15:26 = 1379575567
 //	NSLog(@"number: %@", [number printableTimestamp]);
-	
-//	[[FDAFHTTPClient shared] profileOfUser:@(1) withCompletionBlock:^(BOOL success, NSDictionary *userProfileAttributes) {
-//		if (success) {
-//			NSLog(@"userAttributes: %@", userProfileAttributes);
-//			
-//			FDUserProfile *userProfile = [FDUserProfile createWithAttributes:userProfileAttributes];
-//			NSLog(@"profile: %@", userProfile);
-//		}
-//	}];
-	
-//	[[FDAFHTTPClient shared] blockListOfUser:@(1) withCompletionBlock:^(BOOL success, NSString *message) {
-//		
-//	}];
-	
-//	[[FDAFHTTPClient shared] blockUser:@(3) withCompletionBlock:^(BOOL success, NSString *message) {
-//		
-//	}];
-	
-//	[[FDAFHTTPClient shared] followOrUnfollowUser:@(2) withCompletionBlock:^(BOOL success, NSString *message) {
-//		;
-//	}];
-	
-	[[FDAFHTTPClient shared] followerListOfUser:@(2) withCompletionBlock:^(BOOL success, NSString *message) {
-		;
-	}];
-	
-	[[FDAFHTTPClient shared] followedListOfUser:@(1) withCompletionBlock:^(BOOL success, NSString *message) {
-		;
-	}];
+
+	[[FDAFHTTPClient shared] test];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

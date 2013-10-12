@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		45D1109202E547CCB807D5B8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E7030C33EC4070B937A558 /* libPods.a */; };
+		77338E7F18090184006DEC3D /* FDErrorMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 77338E7E18090184006DEC3D /* FDErrorMessage.m */; };
 		7734ACCB17D8520B003E7BB6 /* FDUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACCA17D8520B003E7BB6 /* FDUserProfileViewController.m */; };
 		7734ACCE17D85368003E7BB6 /* FDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACCD17D85368003E7BB6 /* FDUser.m */; };
 		7734ACD117D85605003E7BB6 /* FDUser+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACD017D85605003E7BB6 /* FDUser+Test.m */; };
@@ -82,6 +83,8 @@
 
 /* Begin PBXFileReference section */
 		19E7030C33EC4070B937A558 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		77338E7D18090184006DEC3D /* FDErrorMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDErrorMessage.h; path = find/FDErrorMessage.h; sourceTree = "<group>"; };
+		77338E7E18090184006DEC3D /* FDErrorMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDErrorMessage.m; path = find/FDErrorMessage.m; sourceTree = "<group>"; };
 		7734ACC917D8520B003E7BB6 /* FDUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDUserProfileViewController.h; sourceTree = "<group>"; };
 		7734ACCA17D8520B003E7BB6 /* FDUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDUserProfileViewController.m; sourceTree = "<group>"; };
 		7734ACCC17D85368003E7BB6 /* FDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDUser.h; path = find/FDUser.h; sourceTree = "<group>"; };
@@ -468,6 +471,8 @@
 		77DA107B17E981FD001F44DF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				77338E7D18090184006DEC3D /* FDErrorMessage.h */,
+				77338E7E18090184006DEC3D /* FDErrorMessage.m */,
 				77AD927C17DEC88800D2FEBC /* FDAFHTTPClient.h */,
 				77AD927D17DEC88800D2FEBC /* FDAFHTTPClient.m */,
 			);
@@ -652,6 +657,7 @@
 				7786716217E35A98001FDB67 /* NSString+ZBUtilites.m in Sources */,
 				77C0C8D917CDDBA8008C7FC7 /* GTMBase64.m in Sources */,
 				7734ACDA17D86A2B003E7BB6 /* PSTCollectionViewFlowLayout+FDLayout.m in Sources */,
+				77338E7F18090184006DEC3D /* FDErrorMessage.m in Sources */,
 				77C0C96717D198F6008C7FC7 /* FDPhoto.m in Sources */,
 				77C0C96417D18D7C008C7FC7 /* FDPhotoCell.m in Sources */,
 				7734ACCB17D8520B003E7BB6 /* FDUserProfileViewController.m in Sources */,

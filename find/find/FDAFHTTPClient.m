@@ -8,6 +8,7 @@
 
 #import "FDAFHTTPClient.h"
 #import "NSData+Godzippa.h"
+#import "FDErrorMessage.h"
 
 #define kFDHost @"http://121.199.14.43/"
 
@@ -15,32 +16,74 @@ static NSString *responseKeyStatus = @"status";
 static NSString *responseKeyData = @"data";
 static NSString *responseKeyMsg = @"msg";
 static NSString *responseKeyAct = @"action";
+static NSString *responseKeyToken = @"token";
+static NSString *userDefaultKeyToken = @"fd_token";
 
 @implementation FDAFHTTPClient
 
 static FDAFHTTPClient *_instance;
-
+static NSString *token;
 
 +(FDAFHTTPClient *)shared
 {
 	if(!_instance){
 		_instance = [[FDAFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kFDHost]];
+		token = [[NSUserDefaults standardUserDefaults] objectForKey:userDefaultKeyToken];
 	}
 	return _instance;
+}
+
+- (void)saveToken:(NSString *)aToken
+{
+	NSAssert(aToken, @"token must not be nil!");
+	[[NSUserDefaults standardUserDefaults] setObject:aToken forKey:userDefaultKeyToken];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	NSLog(@"save user token: %@", aToken);
+}
+
+- (void)getPath:(NSString *)path
+     parameters:(NSDictionary *)parameters
+        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:path parameters:parameters];
+	if (token) {
+		[request setValue:token forHTTPHeaderField:@"Cookie"];
+	}
+    AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure];
+    [self enqueueHTTPRequestOperation:operation];
+}
+
+- (void)postPath:(NSString *)path
+      parameters:(NSDictionary *)parameters
+         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:path parameters:parameters];
+	if (token) {
+		[request setValue:token forHTTPHeaderField:@"Cookie"];
+	}
+	AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure];
+    [self enqueueHTTPRequestOperation:operation];
 }
 
 //TEST gzip
 - (void)test
 {
-	NSString *testHost = @"http://f.hualongxiang.com/";
-	AFHTTPClient *client = [[FDAFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:testHost]];
-	[client getPath:@"mobile/getinfo/1390626" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-		//		NSData *data = [responseObject dataByGZipDecompressingDataWithError:nil];
-		//		NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-		//		NSLog(@"dic: %@", dic);
-	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		NSLog(@"no");
-	}];
+//			NSString *token = @"token=MzA2MXwzMDg3fDMwOTF8MzEwNnwzMDYxfDMwNTJ8MzA1M3wzMTA2fDMwNjJ8MzA2OHwzMDg3fDMwMzV8MzA2M3wzMDUzfDMwNTB8MzEwNHwzMDgzfDMwNjd8MzAzN3wzMDkwfDMwODJ8MzAzNHwzMDMyfDMwNTh8MzA2MXwzMDQ5fDMwNDV8MzA0NXwyOTg0fA==";
+//	
+//	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"http://121.199.14.43/a.php" parameters:nil];
+//	[request setValue:token forHTTPHeaderField:@"Cookie"];
+//	AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject)
+//										 {
+//											 NSLog(@"oauthAuthorize Success: %@",    [operation.response allHeaderFields]);
+//											 
+//										 }
+//																	  failure:^(AFHTTPRequestOperation *operation, NSError *error)
+//										 {
+//											 NSLog(@"oauthAuthorize Fail: %@",operation.responseString);
+//										 }];
+//	[self enqueueHTTPRequestOperation:operation];
 }
 
 
@@ -79,7 +122,7 @@ static FDAFHTTPClient *_instance;
 	}];
 }
 
-- (void)aroundPhotosAtLocation:(CLLocation *)location limit:(NSNumber *)limit distance:(NSNumber *)distance withCompletionBlock:(void (^)(BOOL success, NSArray *tweets, NSNumber *distance))block
+- (void)aroundPhotosAtLocation:(CLLocation *)location limit:(NSNumber *)limit distance:(NSNumber *)distance withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *tweets, NSNumber *distance))block
 {
 	NSMutableDictionary *parameters = [[location parseToDictionary] mutableCopy];
 	if (limit) {
@@ -91,13 +134,12 @@ static FDAFHTTPClient *_instance;
 	}
 	
 	[self getPath:@"around/photo" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-		//[self printResponseObject:responseObject];
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		NSArray *tweets = [FDTweet createMutableWithData:data[responseKeyData]];
 		NSNumber *distance = data[@"distance"];
-		if (block) block(YES, tweets, distance);
+		if (block) block(YES, [FDErrorMessage messageFromData:data[responseKeyMsg]], tweets, distance);
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block(NO, nil, nil);
+		if (block) block(NO, [FDErrorMessage messageNetworkError], nil, nil);
 	}];
 }
 
@@ -108,8 +150,8 @@ static FDAFHTTPClient *_instance;
 	[self postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
-			NSNumber *liked = @([data[responseKeyAct] integerValue] == DOLIKE);
-			if (block) block ([data[responseKeyStatus] boolValue], data[responseKeyMsg], liked);
+			//NSNumber *liked = @([data[responseKeyAct] integerValue] == DOLIKE);
+			//if (block) block ([data[responseKeyStatus] boolValue], data[responseKeyMsg], liked);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		if (block) block(NO, nil, NO);
@@ -129,14 +171,14 @@ static FDAFHTTPClient *_instance;
 	[self postPath:path parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
-			if (block) block ([data[responseKeyStatus] boolValue], data[responseKeyData]);
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]]);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block(NO, error.description);
+		if (block) block(NO, [FDErrorMessage messageNetworkError]);
 	}];
 }
 
-- (void)commentsOfPhoto:(NSNumber *)photoID limit:(NSNumber *)limit published:(NSNumber *)published withCompletionBlock:(void (^)(BOOL success, NSArray *comments, NSNumber *lastestPublishedTimestamp))block
+- (void)commentsOfPhoto:(NSNumber *)photoID limit:(NSNumber *)limit published:(NSNumber *)published withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *comments, NSNumber *lastestPublishedTimestamp))block
 {
 	NSAssert(photoID, @"photoID must not be nil when fetch comments of this photo!");
 	
@@ -157,10 +199,10 @@ static FDAFHTTPClient *_instance;
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
 			NSArray *comments = [FDComment createMutableWithData:data[responseKeyData]];
-			if (block) block (YES, comments, data[@"published"]);//TODO: maybe error
+			if (block) block (YES, [FDErrorMessage messageFromData:data[responseKeyMsg]], comments, data[@"published"]);//TODO: maybe error
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block(NO, nil, nil);
+		if (block) block(NO, [FDErrorMessage messageNetworkError], nil, nil);
 	}];	
 }
 
@@ -180,10 +222,14 @@ static FDAFHTTPClient *_instance;
 	[self postPath:@"signup" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
-			if (block) block ([data[responseKeyStatus] boolValue], data[responseKeyMsg]);//TODO: if failed msg is a number, may lead crash
+			if ([data[responseKeyStatus] boolValue]) {
+				token = data[responseKeyToken];
+				[self saveToken:token];
+			}
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]]);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block (NO, error.description);
+		if (block) block (NO, [FDErrorMessage messageNetworkError]);
 	}];
 }
 
@@ -203,14 +249,18 @@ static FDAFHTTPClient *_instance;
 	[self postPath:@"signin" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
-			if (block) block ([data[responseKeyStatus] boolValue], data[responseKeyMsg]);//TODO: if failed msg is a number, may lead crash
+			if ([data[responseKeyStatus] boolValue]) {
+				token = data[responseKeyToken];
+				[self saveToken:token];
+			}
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]]);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block (NO, error.description);
+		if (block) block (NO, [FDErrorMessage messageNetworkError]);
 	}];
 }
 
-- (void)profileOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSDictionary *userProfileAttributes))block
+- (void)profileOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSDictionary *userProfileAttributes))block
 {
 	NSAssert(userID, @"userID must not be nil when fetch profile!");
 	
@@ -219,10 +269,10 @@ static FDAFHTTPClient *_instance;
 	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
-			if (block) block (YES, data);
+			if (block) block (YES, [FDErrorMessage messageFromData:data[responseKeyMsg]], data);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block (NO, nil);
+		if (block) block (NO, [FDErrorMessage messageNetworkError], nil);
 	}];
 }
 
@@ -238,9 +288,12 @@ static FDAFHTTPClient *_instance;
 	NSString *path = [NSString stringWithFormat:@"member/black/%@", userID];
 	
 	[self postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-		if (block) block (YES, nil);
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			if (block) block (YES, [FDErrorMessage messageFromData:data[responseKeyMsg]]);
+		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block (NO, error.description);
+		if (block) block (NO, [FDErrorMessage messageNetworkError]);
 	}];
 }
 
@@ -251,14 +304,16 @@ static FDAFHTTPClient *_instance;
 	NSString *path = [NSString stringWithFormat:@"member/%@/black", userID];
 	
 	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		
 		//id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-		[self printResponseObject:responseObject];
+		//[self printResponseObject:responseObject];
+		
 //		if ([data isKindOfClass:[NSDictionary class]]) {
 //			if (block) block (YES, data);
 //		}
 		if (block) block (YES, nil);//TODO: should return array of FDUsers
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block (NO, error.description);
+		if (block) block (NO, [FDErrorMessage messageNetworkError]);
 	}];
 }
 
@@ -272,7 +327,7 @@ static FDAFHTTPClient *_instance;
 	[self postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		;
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		;
+		if (block) block (NO, [FDErrorMessage messageNetworkError]);
 	}];
 }
 
@@ -286,7 +341,7 @@ static FDAFHTTPClient *_instance;
 	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		;
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		;
+		if (block) block (NO, [FDErrorMessage messageNetworkError]);
 	}];
 }
 
@@ -300,7 +355,7 @@ static FDAFHTTPClient *_instance;
 	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		;
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		;
+		if (block) block (NO, [FDErrorMessage messageNetworkError]);
 	}];
 }
 @end

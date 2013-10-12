@@ -48,7 +48,7 @@
 	[self.view addSubview:photosCollectionView];
 	
 	//TODO: 9999 is a test number
-	[[FDAFHTTPClient shared] aroundPhotosAtLocation:[CLLocation fakeLocation] limit:@(9999) distance:nil withCompletionBlock:^(BOOL success, NSArray *ts, NSNumber *distance) {
+	[[FDAFHTTPClient shared] aroundPhotosAtLocation:[CLLocation fakeLocation] limit:@(9999) distance:nil withCompletionBlock:^(BOOL success, NSString *message, NSArray *ts, NSNumber *distance) {
 		if (success) {
 			tweets = ts;
 			[photosCollectionView reloadData];

@@ -49,7 +49,7 @@
 
 - (void)fetchComments
 {
-	[[FDAFHTTPClient shared] commentsOfPhoto:_photo.ID limit:@(9999) published:nil withCompletionBlock:^(BOOL success, NSArray *comments, NSNumber *lastestPublishedTimestamp) {
+	[[FDAFHTTPClient shared] commentsOfPhoto:_photo.ID limit:@(9999) published:nil withCompletionBlock:^(BOOL success, NSString *message, NSArray *comments, NSNumber *lastestPublishedTimestamp) {
 		if (success) {
 			photoComments = comments;
 			[commentsTableView reloadData];
