@@ -18,7 +18,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -26,7 +25,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+//	if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+//		self.wantsFullScreenLayout = YES;
+//	}
 }
 
 - (void)didReceiveMemoryWarning

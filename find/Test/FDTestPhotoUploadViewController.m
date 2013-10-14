@@ -52,6 +52,9 @@
 	
 	CGFloat margin = 10;
 	CGFloat startY = 64;
+	if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+		startY -= 64;
+	}
 	CGFloat height = 30;
 	
 	trueLocationLabel = [[UILabel alloc] initWithFrame:CGRectMake(margin, startY, fullSize.width, height)];

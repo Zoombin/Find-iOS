@@ -32,10 +32,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
 	CGFloat startY = 100;
+	if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+		startY -= 64;
+	}
 	CGFloat gap = 10;
-	
 	CGSize fullSize = self.view.bounds.size;
 	
 	accountTextField = [[UITextField alloc] initWithFrame:CGRectMake(gap, startY, fullSize.width - 2 * gap, 40)];
