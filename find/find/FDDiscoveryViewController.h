@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FDDiscoveryViewController : UIViewController
+@interface FDDiscoveryViewController : FDViewController
 
 @end

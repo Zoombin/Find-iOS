@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZBViewController.h"
 
-@interface FDViewController : UIViewController
+@interface FDViewController : ZBViewController
 
 @end

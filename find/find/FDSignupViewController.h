@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "FDViewController.h"
+#import <UIKit/UIKit.h>
 
 @interface FDSignupViewController : FDViewController
 
