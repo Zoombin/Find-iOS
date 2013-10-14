@@ -54,7 +54,7 @@
 		
 		dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, self.bounds.size.width - startPoint.x, kHeightOfDateLabel)];
 		dateLabel.textColor = [UIColor lightGrayColor];
-		dateLabel.font = [UIFont systemFontOfSize:9];
+		dateLabel.font = [UIFont fdThemeFontWithSize:9];
 //		dateLabel.backgroundColor = [UIColor randomColor];//TODO: test
 		[self.contentView addSubview:dateLabel];
 		
@@ -108,7 +108,7 @@ static UIFont *contentFont;
 + (UIFont *)contentFont
 {
 	if (!contentFont) {
-		contentFont = [UIFont systemFontOfSize:13];
+		contentFont = [UIFont fdThemeFontWithSize:13];
 	}
 	return contentFont;
 }

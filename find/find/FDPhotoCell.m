@@ -35,7 +35,7 @@
 		distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.bounds) - 20, frame.size.width, 20)];
 		distanceLabel.backgroundColor = [UIColor clearColor];
 		distanceLabel.textColor = [UIColor whiteColor];
-		distanceLabel.font = [UIFont boldSystemFontOfSize:12];
+		distanceLabel.font = [UIFont fdThemeFontWithSize:12];
 		distanceLabel.adjustsFontSizeToFitWidth = YES;
 		distanceLabel.textAlignment = NSTextAlignmentRight;
 		[self addSubview:distanceLabel];

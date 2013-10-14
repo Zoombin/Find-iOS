@@ -56,7 +56,7 @@
 		likesLabel.textColor = [UIColor whiteColor];
 		likesLabel.textAlignment = NSTextAlignmentCenter;
 		likesLabel.backgroundColor = [UIColor clearColor];
-		likesLabel.font = [UIFont boldSystemFontOfSize:12];
+		likesLabel.font = [UIFont fdThemeFontWithSize:12];
 		[heartView addSubview:likesLabel];
 		
 		UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(willLikeOrUnlike)];
