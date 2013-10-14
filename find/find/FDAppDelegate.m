@@ -38,17 +38,17 @@
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
 	
-	NSMutableArray *vcClasses = [NSMutableArray array];
-	[vcClasses addObject:[FDAroundViewController new]];
-	[vcClasses addObject:[FDDiscoveryViewController new]];
-	[vcClasses addObject:[FDTestPhotoUploadViewController new]];
-	[vcClasses addObject:[FDTestAccountsViewController new]];
-	[vcClasses addObject:[FDMeViewController new]];
-	[vcClasses addObject:[FDCameraViewController new]];
-	[vcClasses addObject:[FDHostViewController new]];
+	NSMutableArray *viewControllers = [NSMutableArray array];
+	[viewControllers addObject:[FDAroundViewController new]];
+	[viewControllers addObject:[FDDiscoveryViewController new]];
+	[viewControllers addObject:[FDTestPhotoUploadViewController new]];
+	[viewControllers addObject:[FDTestAccountsViewController new]];
+	[viewControllers addObject:[FDMeViewController new]];
+	[viewControllers addObject:[FDCameraViewController new]];
+	[viewControllers addObject:[FDHostViewController new]];
 
 	NSMutableArray *naviControllers = [NSMutableArray array];
-	for (UIViewController *viewController in vcClasses) {
+	for (UIViewController *viewController in viewControllers) {
 		[naviControllers addObject:[[UINavigationController alloc] initWithRootViewController:viewController]];
 	}
 	
