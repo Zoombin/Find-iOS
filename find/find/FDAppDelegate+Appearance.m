@@ -52,9 +52,14 @@
 	//								 } forButtonState:UIControlStateSelected];
 	
 #pragma mark UINavigationBar Appearance
-	
-	if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-		[[UINavigationBar appearance] setBarTintColor:[UIColor fdThemeRed]];
+
+	id appearance = [UINavigationBar appearance];
+	if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+		//[appearance setBackgroundImage:[UIImage imageNamed:@"NavigationbarBG"] forBarMetrics:UIBarMetricsDefault];
+	} else {
+		[appearance setBarTintColor:[UIColor fdThemeRed]];
+		NSDictionary *textTitleOptions = @{UITextAttributeTextColor : [UIColor whiteColor]};
+		[[UINavigationBar appearance] setTitleTextAttributes:textTitleOptions];
 	}
 	
 //	[[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor redColor] forKey:UITextAttributeTextColor]];

@@ -48,9 +48,9 @@
 	[self.view addSubview:photosCollectionView];
 	
 	//TODO: 9999 is a test number
-	[[FDAFHTTPClient shared] aroundPhotosAtLocation:[CLLocation fakeLocation] limit:@(9999) distance:nil withCompletionBlock:^(BOOL success, NSString *message, NSArray *ts, NSNumber *distance) {
+	[[FDAFHTTPClient shared] aroundPhotosAtLocation:[CLLocation fakeLocation] limit:@(9999) distance:nil withCompletionBlock:^(BOOL success, NSString *message, NSArray *tweetsData, NSNumber *distance) {
 		if (success) {
-			tweets = ts;
+			tweets = [FDTweet createMutableWithData:tweetsData];
 			[photosCollectionView reloadData];
 		}
 	}];
@@ -67,11 +67,10 @@
 
 - (void)photoCell:(FDPhotoCell *)photoCell willLikeOrUnlikePhoto:(FDPhoto *)photo
 {
-	[[FDAFHTTPClient shared] likeOrUnlikePhoto:photo.ID withCompletionBlock:^(BOOL success, NSNumber *message, NSNumber *liked) {
+	[[FDAFHTTPClient shared] likeOrUnlikePhoto:photo.ID withCompletionBlock:^(BOOL success, NSString *message, NSNumber *liked, NSNumber *likes) {
 		if (success) {
-			NSNumber *currentLikes = message;
-			photoCell.photo.likes = currentLikes;
-			photoCell.likesView.likes = currentLikes;
+			photoCell.photo.likes = likes;
+			photoCell.likesView.likes = likes;
 			photoCell.likesView.liked = liked;
 		}
 	}];

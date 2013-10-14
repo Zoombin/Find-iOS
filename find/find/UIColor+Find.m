@@ -12,7 +12,7 @@
 
 + (UIColor *)fdThemeRed
 {
-	return [UIColor colorWithRed:244.0/255.0f green:3.0/255.0f blue:133.0/255.0f alpha:1.0f];
+	return [UIColor colorWithRed:247.0/255.0f green:27.0/255.0f blue:101/255.0f alpha:1.0f];
 }
 
 @end

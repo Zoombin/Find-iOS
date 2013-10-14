@@ -58,6 +58,12 @@
 	
 	self.window.rootViewController = tabBarController;
 	
+	if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+		[application setStatusBarStyle:UIStatusBarStyleLightContent];
+	} else {
+		[application setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+	}
+	
 	[self.window makeKeyAndVisible];
     return YES;
 }

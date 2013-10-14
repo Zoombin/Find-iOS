@@ -16,6 +16,7 @@ static NSString *responseKeyStatus = @"status";
 static NSString *responseKeyData = @"data";
 static NSString *responseKeyMsg = @"msg";
 static NSString *responseKeyAct = @"action";
+static NSString *responseKeyLikes = @"likes";
 static NSString *responseKeyToken = @"token";
 static NSString *userDefaultKeyToken = @"fd_token";
 
@@ -29,6 +30,7 @@ static NSString *token;
 	if(!_instance){
 		_instance = [[FDAFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kFDHost]];
 		token = [[NSUserDefaults standardUserDefaults] objectForKey:userDefaultKeyToken];
+		NSLog(@"load token: %@", token);
 	}
 	return _instance;
 }
@@ -39,6 +41,20 @@ static NSString *token;
 	[[NSUserDefaults standardUserDefaults] setObject:aToken forKey:userDefaultKeyToken];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 	NSLog(@"save user token: %@", aToken);
+}
+
+- (void)printResponseObject:(id)responseObject
+{
+	id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+	NSString *type;
+	if ([data isKindOfClass:[NSDictionary class]]) {
+		type = @"dictionary";
+	} else if ([data isKindOfClass:[NSArray class]]) {
+		type = @"array";
+	} else if ([data isKindOfClass:[NSString class]]) {
+		type = @"string";
+	}
+	NSLog(@"%@-data: %@", type, data);
 }
 
 - (void)getPath:(NSString *)path
@@ -86,21 +102,6 @@ static NSString *token;
 //	[self enqueueHTTPRequestOperation:operation];
 }
 
-
-- (void)printResponseObject:(id)responseObject
-{
-	id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-	NSString *type;
-	if ([data isKindOfClass:[NSDictionary class]]) {
-		type = @"dictionary";
-	} else if ([data isKindOfClass:[NSArray class]]) {
-		type = @"array";
-	} else if ([data isKindOfClass:[NSString class]]) {
-		type = @"string";
-	}
-	NSLog(@"%@-data: %@", type, data);
-}
-
 - (void)tweetPhotos:(NSArray *)photos atLocation:(CLLocation *)location address:(NSString *)address withCompletionBlock:(void (^)(BOOL success, NSString *message))block
 {
 	NSMutableDictionary *parameters = [[location parseToDictionary] mutableCopy];
@@ -115,14 +116,14 @@ static NSString *token;
 	[self postPath:@"tweet" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
-			if (block) block ([data[responseKeyStatus] boolValue], data[responseKeyMsg]);
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]]);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block (NO, error.description);
+		if (block) block (NO, [FDErrorMessage messageNetworkError]);
 	}];
 }
 
-- (void)aroundPhotosAtLocation:(CLLocation *)location limit:(NSNumber *)limit distance:(NSNumber *)distance withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *tweets, NSNumber *distance))block
+- (void)aroundPhotosAtLocation:(CLLocation *)location limit:(NSNumber *)limit distance:(NSNumber *)distance withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *tweetsData, NSNumber *distance))block
 {
 	NSMutableDictionary *parameters = [[location parseToDictionary] mutableCopy];
 	if (limit) {
@@ -135,26 +136,30 @@ static NSString *token;
 	
 	[self getPath:@"around/photo" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-		NSArray *tweets = [FDTweet createMutableWithData:data[responseKeyData]];
-		NSNumber *distance = data[@"distance"];
-		if (block) block(YES, [FDErrorMessage messageFromData:data[responseKeyMsg]], tweets, distance);
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			NSNumber *distance = data[@"distance"];
+			//TODO: YES everytime?
+			if (block) block (YES, [FDErrorMessage messageFromData:data[responseKeyMsg]], data[responseKeyData], distance);
+		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		if (block) block(NO, [FDErrorMessage messageNetworkError], nil, nil);
 	}];
 }
 
-- (void)likeOrUnlikePhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSNumber *message, NSNumber *liked))block
+- (void)likeOrUnlikePhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSNumber *liked, NSNumber *likes))block;
 {
 	NSString *path = [NSString stringWithFormat:@"photo/%@/like", photoID];
 	
 	[self postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
-			//NSNumber *liked = @([data[responseKeyAct] integerValue] == DOLIKE);
-			//if (block) block ([data[responseKeyStatus] boolValue], data[responseKeyMsg], liked);
+			BOOL success = [data[responseKeyStatus] boolValue];
+			NSNumber *liked = @([data[responseKeyAct] integerValue] == DOLIKE);
+			NSString *message = [FDErrorMessage messageFromData:data[responseKeyMsg]];
+			if (block) block (success, message, liked, data[responseKeyLikes]);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block(NO, nil, NO);
+		if (block) block(NO, [FDErrorMessage messageNetworkError], nil, nil);
 	}];
 }
 
@@ -178,7 +183,7 @@ static NSString *token;
 	}];
 }
 
-- (void)commentsOfPhoto:(NSNumber *)photoID limit:(NSNumber *)limit published:(NSNumber *)published withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *comments, NSNumber *lastestPublishedTimestamp))block
+- (void)commentsOfPhoto:(NSNumber *)photoID limit:(NSNumber *)limit published:(NSNumber *)published withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *commentsData, NSNumber *lastestPublishedTimestamp))block
 {
 	NSAssert(photoID, @"photoID must not be nil when fetch comments of this photo!");
 	
@@ -198,8 +203,8 @@ static NSString *token;
 	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
-			NSArray *comments = [FDComment createMutableWithData:data[responseKeyData]];
-			if (block) block (YES, [FDErrorMessage messageFromData:data[responseKeyMsg]], comments, data[@"published"]);//TODO: maybe error
+			//TODO: YES everytime?
+			if (block) block (YES, [FDErrorMessage messageFromData:data[responseKeyMsg]], data[responseKeyData], data[@"published"]);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		if (block) block(NO, [FDErrorMessage messageNetworkError], nil, nil);
@@ -304,14 +309,10 @@ static NSString *token;
 	NSString *path = [NSString stringWithFormat:@"member/%@/black", userID];
 	
 	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-		
-		//id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-		//[self printResponseObject:responseObject];
-		
-//		if ([data isKindOfClass:[NSDictionary class]]) {
-//			if (block) block (YES, data);
-//		}
-		if (block) block (YES, nil);//TODO: should return array of FDUsers
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			if (block) block (YES, [FDErrorMessage messageFromData:data[responseKeyMsg]]);//TODO: should return array of FDUsers
+		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		if (block) block (NO, [FDErrorMessage messageNetworkError]);
 	}];
