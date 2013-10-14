@@ -37,7 +37,7 @@
 			<key>Style</key>
 			<string>UIBarStyleDefault</string>
 			<key>Translucent</key>
-			<false/>
+			<true/>
 		</dict>
 	</dict>
 	<key>UISupportedInterfaceOrientations</key>
@@ -52,6 +52,13 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>YouYuan.ttf</string>
+		<string>FZBWKSJW--GB1-0.ttf</string>
 	</array>
 </dict>
 </plist>

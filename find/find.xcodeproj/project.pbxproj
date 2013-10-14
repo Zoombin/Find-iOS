@@ -67,6 +67,9 @@
 		77F5CD4F17E966BC006D931F /* FDSigninViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5CD4E17E966BC006D931F /* FDSigninViewController.m */; };
 		77F5CD5217E966DB006D931F /* FDSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5CD5117E966DB006D931F /* FDSignupViewController.m */; };
 		77F5CD5817E9771A006D931F /* UIColor+Find.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5CD5717E9771A006D931F /* UIColor+Find.m */; };
+		77F88986180B875300D6A45D /* UIFont+Find.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F88985180B875300D6A45D /* UIFont+Find.m */; };
+		77F8898A180B888100D6A45D /* FZBWKSJW--GB1-0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77F88988180B888100D6A45D /* FZBWKSJW--GB1-0.ttf */; };
+		77F8898B180B888100D6A45D /* YouYuan.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77F88989180B888100D6A45D /* YouYuan.ttf */; };
 		77FE43431801040F00B1B5D3 /* FDTestAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FE43421801040F00B1B5D3 /* FDTestAccountsViewController.m */; };
 		77FE434918012BB000B1B5D3 /* FDUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FE434818012BB000B1B5D3 /* FDUserProfile.m */; };
 /* End PBXBuildFile section */
@@ -194,6 +197,10 @@
 		77F5CD5117E966DB006D931F /* FDSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSignupViewController.m; sourceTree = "<group>"; };
 		77F5CD5617E9771A006D931F /* UIColor+Find.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Find.h"; path = "find/UIColor+Find.h"; sourceTree = "<group>"; };
 		77F5CD5717E9771A006D931F /* UIColor+Find.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Find.m"; path = "find/UIColor+Find.m"; sourceTree = "<group>"; };
+		77F88984180B875300D6A45D /* UIFont+Find.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIFont+Find.h"; path = "find/UIFont+Find.h"; sourceTree = "<group>"; };
+		77F88985180B875300D6A45D /* UIFont+Find.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIFont+Find.m"; path = "find/UIFont+Find.m"; sourceTree = "<group>"; };
+		77F88988180B888100D6A45D /* FZBWKSJW--GB1-0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FZBWKSJW--GB1-0.ttf"; sourceTree = "<group>"; };
+		77F88989180B888100D6A45D /* YouYuan.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = YouYuan.ttf; sourceTree = "<group>"; };
 		77FE43411801040F00B1B5D3 /* FDTestAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDTestAccountsViewController.h; path = Test/FDTestAccountsViewController.h; sourceTree = "<group>"; };
 		77FE43421801040F00B1B5D3 /* FDTestAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDTestAccountsViewController.m; path = Test/FDTestAccountsViewController.m; sourceTree = "<group>"; };
 		77FE434718012BB000B1B5D3 /* FDUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDUserProfile.h; path = find/FDUserProfile.h; sourceTree = "<group>"; };
@@ -335,6 +342,7 @@
 		77A5F7A917CB22960073E7F9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				77F88987180B888100D6A45D /* Fonts */,
 				77C0C91617CDF4A8008C7FC7 /* TestLocations */,
 				77A5F7AA17CB22960073E7F9 /* find-Info.plist */,
 				77A5F7AB17CB22960073E7F9 /* InfoPlist.strings */,
@@ -426,6 +434,8 @@
 				7734ACD917D86A2B003E7BB6 /* PSTCollectionViewFlowLayout+FDLayout.m */,
 				77F5CD5617E9771A006D931F /* UIColor+Find.h */,
 				77F5CD5717E9771A006D931F /* UIColor+Find.m */,
+				77F88984180B875300D6A45D /* UIFont+Find.h */,
+				77F88985180B875300D6A45D /* UIFont+Find.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -478,6 +488,15 @@
 			);
 			name = Services;
 			sourceTree = "<group>";
+		};
+		77F88987180B888100D6A45D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				77F88988180B888100D6A45D /* FZBWKSJW--GB1-0.ttf */,
+				77F88989180B888100D6A45D /* YouYuan.ttf */,
+			);
+			path = Fonts;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -561,8 +580,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77F8898A180B888100D6A45D /* FZBWKSJW--GB1-0.ttf in Resources */,
 				77A5F7C117CB22960073E7F9 /* Images.xcassets in Resources */,
 				77A5F7AD17CB22960073E7F9 /* InfoPlist.strings in Resources */,
+				77F8898B180B888100D6A45D /* YouYuan.ttf in Resources */,
 				7786716417E35A98001FDB67 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -654,6 +675,7 @@
 				77FE434918012BB000B1B5D3 /* FDUserProfile.m in Sources */,
 				778671BD17E705D6001FDB67 /* CLLocation+Test.m in Sources */,
 				7786715E17E35A98001FDB67 /* CLLocation+NSString.m in Sources */,
+				77F88986180B875300D6A45D /* UIFont+Find.m in Sources */,
 				7786716217E35A98001FDB67 /* NSString+ZBUtilites.m in Sources */,
 				77C0C8D917CDDBA8008C7FC7 /* GTMBase64.m in Sources */,
 				7734ACDA17D86A2B003E7BB6 /* PSTCollectionViewFlowLayout+FDLayout.m in Sources */,
