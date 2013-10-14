@@ -70,6 +70,7 @@
 		77F88986180B875300D6A45D /* UIFont+Find.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F88985180B875300D6A45D /* UIFont+Find.m */; };
 		77F8898A180B888100D6A45D /* FZBWKSJW--GB1-0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77F88988180B888100D6A45D /* FZBWKSJW--GB1-0.ttf */; };
 		77F8898B180B888100D6A45D /* YouYuan.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77F88989180B888100D6A45D /* YouYuan.ttf */; };
+		77F889AC180BB9B000D6A45D /* UIImage+LogN.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F88996180BB9B000D6A45D /* UIImage+LogN.m */; };
 		77FE43431801040F00B1B5D3 /* FDTestAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FE43421801040F00B1B5D3 /* FDTestAccountsViewController.m */; };
 		77FE434918012BB000B1B5D3 /* FDUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FE434818012BB000B1B5D3 /* FDUserProfile.m */; };
 /* End PBXBuildFile section */
@@ -201,6 +202,8 @@
 		77F88985180B875300D6A45D /* UIFont+Find.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIFont+Find.m"; path = "find/UIFont+Find.m"; sourceTree = "<group>"; };
 		77F88988180B888100D6A45D /* FZBWKSJW--GB1-0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FZBWKSJW--GB1-0.ttf"; sourceTree = "<group>"; };
 		77F88989180B888100D6A45D /* YouYuan.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = YouYuan.ttf; sourceTree = "<group>"; };
+		77F88995180BB9B000D6A45D /* UIImage+LogN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LogN.h"; sourceTree = "<group>"; };
+		77F88996180BB9B000D6A45D /* UIImage+LogN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LogN.m"; sourceTree = "<group>"; };
 		77FE43411801040F00B1B5D3 /* FDTestAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDTestAccountsViewController.h; path = Test/FDTestAccountsViewController.h; sourceTree = "<group>"; };
 		77FE43421801040F00B1B5D3 /* FDTestAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDTestAccountsViewController.m; path = Test/FDTestAccountsViewController.m; sourceTree = "<group>"; };
 		77FE434718012BB000B1B5D3 /* FDUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDUserProfile.h; path = find/FDUserProfile.h; sourceTree = "<group>"; };
@@ -373,6 +376,7 @@
 		77A5F7DD17CB2AB00073E7F9 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				77F8898F180BB9B000D6A45D /* LNToolkit */,
 				7786714017E35A98001FDB67 /* ZBUtilities */,
 				77C0C8D517CDDBA8008C7FC7 /* GTMBase64 */,
 			);
@@ -497,6 +501,23 @@
 			);
 			path = Fonts;
 			sourceTree = SOURCE_ROOT;
+		};
+		77F8898F180BB9B000D6A45D /* LNToolkit */ = {
+			isa = PBXGroup;
+			children = (
+				77F88990180BB9B000D6A45D /* Categories */,
+			);
+			path = LNToolkit;
+			sourceTree = "<group>";
+		};
+		77F88990180BB9B000D6A45D /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				77F88995180BB9B000D6A45D /* UIImage+LogN.h */,
+				77F88996180BB9B000D6A45D /* UIImage+LogN.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -646,6 +667,7 @@
 				77A5F7BC17CB22960073E7F9 /* FDAroundViewController.m in Sources */,
 				77A5F7EE17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m in Sources */,
 				7786716917E35A98001FDB67 /* ZBTextValidate.m in Sources */,
+				77F889AC180BB9B000D6A45D /* UIImage+LogN.m in Sources */,
 				77A5F7F717CB30400073E7F9 /* FDMeViewController.m in Sources */,
 				77A5F7B317CB22960073E7F9 /* FDAppDelegate.m in Sources */,
 				77A5F7AF17CB22960073E7F9 /* main.m in Sources */,

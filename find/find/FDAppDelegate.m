@@ -63,7 +63,7 @@
 	} else {
 		[application setStatusBarStyle:UIStatusBarStyleBlackOpaque];
 	}
-	
+
 	[self.window makeKeyAndVisible];
     return YES;
 }
