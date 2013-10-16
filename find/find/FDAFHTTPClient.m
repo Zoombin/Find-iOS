@@ -359,4 +359,14 @@ static NSString *token;
 		if (block) block (NO, [FDErrorMessage messageNetworkError]);
 	}];
 }
+
+- (void)eventListWithCompletionBlock:(void (^)(BOOL success, NSString *message))block
+{
+	[self getPath:@"event" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		;
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		;
+	}];
+}
+
 @end

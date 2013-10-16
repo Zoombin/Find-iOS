@@ -15,7 +15,8 @@
 
 #define kQiniuAccessKey @"zrAvv0stUaPwrAYiaSuVgvsUSgajrFDcJoIn62Vp"
 #define kQiniuSecretKey @"8onamuD2Evcu6nzoozjydlRL0oybHrRuc45fy_yA"
-#define kQiniuBucketName @"find"
+#define kQiniuBucketFind @"find"
+#define kQiniuBucketFindServer @"findserver"
 
 @implementation ZBQNAFHTTPClient
 
@@ -29,7 +30,7 @@ static NSString *_token;
 		[_instance setDefaultHeader:@"User-Agent" value:kQiniuUserAgent];
 		
 		ZBQNPutPolicy *policy = [[ZBQNPutPolicy alloc] init];
-		policy.scope = kQiniuBucketName;
+		policy.scope = kQiniuBucketFind;
 		_token = [policy makeToken:kQiniuAccessKey secretKey:kQiniuSecretKey];
     }
     return _instance;
