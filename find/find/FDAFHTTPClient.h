@@ -53,7 +53,7 @@
 
 
 //活动(发现界面)
-- (void)eventListWithCompletionBlock:(void (^)(BOOL success, NSString *message))block;
+- (void)themeListWithCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *themesData))block;
 
 
 //test gzip

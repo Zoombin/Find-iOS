@@ -360,12 +360,21 @@ static NSString *token;
 	}];
 }
 
-- (void)eventListWithCompletionBlock:(void (^)(BOOL success, NSString *message))block
+- (void)themeListWithCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *themesData))block
 {
 	[self getPath:@"event" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-		;
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		//if ([data isKindOfClass:[NSDictionary class]]) {
+			//TODO: fake data
+			NSString *imagePath = @"http://findserver.u.qiniudn.com/ad/1.jpg";
+			NSString *imagePath2 = @"http://findserver.u.qiniudn.com/ad/2.jpg";
+			NSDictionary *theme = @{@"id": @1, @"name" : @"love美腿", @"aid" : @0, @"typeid" : @0, @"order" : @0, @"image" : imagePath};
+			NSDictionary *theme2 = @{@"id": @2, @"name" : @"时尚辣妈", @"aid" : @0, @"typeid" : @0, @"order" : @1, @"image" : imagePath2};
+			NSArray *themes = @[theme, theme2];
+			if (block) block (YES, nil, themes);//TODO success and message
+		//}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		;
+		if (block) block (NO, [FDErrorMessage messageNetworkError], nil);
 	}];
 }
 

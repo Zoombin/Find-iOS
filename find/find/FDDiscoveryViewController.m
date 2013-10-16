@@ -18,6 +18,8 @@
 {
 	UITableView *discoveryTableView;
 	NSMutableDictionary *sectionsAttributesMap;
+	NSArray *themes;
+	NSArray *slideADThemes;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -45,7 +47,23 @@
 	
 	sectionsAttributesMap = [NSMutableDictionary dictionary];
 	sectionsAttributesMap[@(0)] = [FDThemeCell attributesOfSlideADStyle];
-	sectionsAttributesMap[@(1)] = [FDThemeCell attributesOfIconStyle];	
+	sectionsAttributesMap[@(1)] = [FDThemeCell attributesOfIconStyle];
+	
+	[[FDAFHTTPClient shared] themeListWithCompletionBlock:^(BOOL success, NSString *message, NSArray *themesData) {
+		if (success) {
+			themes = [FDTheme createMutableWithData:themesData];
+			
+			NSMutableArray *slideADs = [NSMutableArray array];
+			for (FDTheme *theme in themes) {
+				if (theme.categoryID.integerValue == 0) {
+					[slideADs addObject:theme];
+				}
+			}
+			slideADThemes = slideADs;
+			
+			[discoveryTableView reloadData];
+		}
+	}];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -98,17 +116,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	FDThemeCell *cell = [tableView dequeueReusableCellWithIdentifier:kFDThemeCellIdentifier];
-	if (!cell) {
-		NSDictionary *attributes;
-		if (indexPath.section == 0) {
-			attributes = [FDThemeCell attributesOfSlideADStyle];
-		} else {
-			attributes = [FDThemeCell attributesOfIconStyle];
-		}
-		cell = [[FDThemeCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:kFDThemeCellIdentifier];
-		cell.attributes = attributes;
-		cell.items = @[@"1", @"2", @"3", @"4", @"5", @"6"];
+	NSDictionary *attributes;
+	if (indexPath.section == 0) {
+		attributes = [FDThemeCell attributesOfSlideADStyle];
+	} else {
+		attributes = [FDThemeCell attributesOfIconStyle];
 	}
+	cell = [[FDThemeCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:kFDThemeCellIdentifier];
+	cell.attributes = attributes;
+	cell.items = slideADThemes;
+	NSLog(@"slideADThemes: %@", slideADThemes);
 	return cell;
 }
 

@@ -43,6 +43,7 @@
 	CGFloat itemWidth = [_attributes[kThemeCellAttributeKeyItemWidth] floatValue];
 	for (int i = 0; i < items.count; i++) {
 		FDThemeItemView *itemView = [[FDThemeItemView alloc] initWithFrame:CGRectMake(itemWidth * i, 0, itemWidth, _scrollView.frame.size.height)];
+		itemView.theme = items[i];
 		[_scrollView addSubview:itemView];
 	}
 	
@@ -127,13 +128,5 @@ static NSDictionary *attributesOfIconStyle;
 }
 
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

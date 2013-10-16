@@ -9,23 +9,32 @@
 #import "FDThemeItemView.h"
 
 @implementation FDThemeItemView
+{
+	UIImageView *imageView;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor randomColor];
+		
+		imageView = [[UIImageView alloc] initWithFrame:self.bounds];
+		imageView.contentMode = UIViewContentModeScaleAspectFit;
+		[self addSubview:imageView];
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)setTheme:(FDTheme *)theme
 {
-    // Drawing code
+	if (_theme == theme) return;
+	_theme = theme;
+	
+	if (_theme.imagePath) {
+		NSLog(@"imagePath: %@", _theme.imagePath);
+		[imageView setImageWithURL:[NSURL URLWithString:_theme.imagePath]];
+	}
 }
-*/
 
 @end

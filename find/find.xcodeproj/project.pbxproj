@@ -63,7 +63,7 @@
 		77C0C96417D18D7C008C7FC7 /* FDPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */; };
 		77C0C96717D198F6008C7FC7 /* FDPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C96617D198F6008C7FC7 /* FDPhoto.m */; };
 		77D69700180E540E000BCA07 /* FDSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D696FF180E540E000BCA07 /* FDSize.m */; };
-		77D69703180E6D95000BCA07 /* FDEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D69702180E6D95000BCA07 /* FDEvent.m */; };
+		77D69703180E6D95000BCA07 /* FDTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D69702180E6D95000BCA07 /* FDTheme.m */; };
 		77DA107017E97EB0001F44DF /* FDCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DA106F17E97EB0001F44DF /* FDCommentCell.m */; };
 		77DA107A17E97FA9001F44DF /* FDComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DA107817E97FA9001F44DF /* FDComment.m */; };
 		77F5CD4F17E966BC006D931F /* FDSigninViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5CD4E17E966BC006D931F /* FDSigninViewController.m */; };
@@ -192,8 +192,8 @@
 		77C0C96617D198F6008C7FC7 /* FDPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDPhoto.m; path = find/FDPhoto.m; sourceTree = "<group>"; };
 		77D696FE180E540E000BCA07 /* FDSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDSize.h; path = find/FDSize.h; sourceTree = "<group>"; };
 		77D696FF180E540E000BCA07 /* FDSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDSize.m; path = find/FDSize.m; sourceTree = "<group>"; };
-		77D69701180E6D95000BCA07 /* FDEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDEvent.h; path = find/FDEvent.h; sourceTree = "<group>"; };
-		77D69702180E6D95000BCA07 /* FDEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDEvent.m; path = find/FDEvent.m; sourceTree = "<group>"; };
+		77D69701180E6D95000BCA07 /* FDTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDTheme.h; path = find/FDTheme.h; sourceTree = "<group>"; };
+		77D69702180E6D95000BCA07 /* FDTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDTheme.m; path = find/FDTheme.m; sourceTree = "<group>"; };
 		77DA106E17E97EB0001F44DF /* FDCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDCommentCell.h; path = find/FDCommentCell.h; sourceTree = "<group>"; };
 		77DA106F17E97EB0001F44DF /* FDCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDCommentCell.m; path = find/FDCommentCell.m; sourceTree = "<group>"; };
 		77DA107717E97FA9001F44DF /* FDComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDComment.h; path = find/FDComment.h; sourceTree = "<group>"; };
@@ -455,8 +455,8 @@
 			children = (
 				77D696FE180E540E000BCA07 /* FDSize.h */,
 				77D696FF180E540E000BCA07 /* FDSize.m */,
-				77D69701180E6D95000BCA07 /* FDEvent.h */,
-				77D69702180E6D95000BCA07 /* FDEvent.m */,
+				77D69701180E6D95000BCA07 /* FDTheme.h */,
+				77D69702180E6D95000BCA07 /* FDTheme.m */,
 				778671BE17E74383001FDB67 /* FDTweet.h */,
 				778671BF17E74383001FDB67 /* FDTweet.m */,
 				7734ACCC17D85368003E7BB6 /* FDUser.h */,
@@ -688,7 +688,7 @@
 				77C0C8DD17CDDE6A008C7FC7 /* ZBQNPutPolicy.m in Sources */,
 				7786715D17E35A98001FDB67 /* CLLocation+NSDictionary.m in Sources */,
 				77AD927E17DEC88800D2FEBC /* FDAFHTTPClient.m in Sources */,
-				77D69703180E6D95000BCA07 /* FDEvent.m in Sources */,
+				77D69703180E6D95000BCA07 /* FDTheme.m in Sources */,
 				7734ACD117D85605003E7BB6 /* FDUser+Test.m in Sources */,
 				77F5CD4F17E966BC006D931F /* FDSigninViewController.m in Sources */,
 				77DA107A17E97FA9001F44DF /* FDComment.m in Sources */,

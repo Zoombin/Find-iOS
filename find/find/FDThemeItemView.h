@@ -10,4 +10,6 @@
 
 @interface FDThemeItemView : UIView
 
+@property (nonatomic, strong) FDTheme *theme;
+
 @end
