@@ -10,24 +10,24 @@
 
 @implementation PSTCollectionViewFlowLayout (FDLayout)
 
-+ (PSTCollectionViewFlowLayout *)squaresLayout
++ (PSTCollectionViewFlowLayout *)aroundPhotoLayout
 {
 	PSTCollectionViewFlowLayout *layout = [[PSTCollectionViewFlowLayout alloc] init];
-	//layout.itemSize = kThumbnailSquareSize;//CGSizeMake(kThumbnailSquareLength, 175);
-	layout.minimumInteritemSpacing = 10;
-	layout.minimumLineSpacing = 10;
-	layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+	layout.minimumInteritemSpacing = 5;
+	layout.minimumLineSpacing = 5;
+	layout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
 	return layout;
 }
 
 + (PSTCollectionViewFlowLayout *)smallSquaresLayout
 {
 	PSTCollectionViewFlowLayout *layout = [[PSTCollectionViewFlowLayout alloc] init];
-	//layout.itemSize = kThumbnailSmallSquareSize;
 	layout.minimumInteritemSpacing = 5;
 	layout.minimumLineSpacing = 5;
 	layout.sectionInset = UIEdgeInsetsMake(10, 5, 10, 5);
 	return layout;
 }
+
+
 
 @end

@@ -51,9 +51,9 @@
 - (CGSize)collectionView:(PSTCollectionView *)collectionView layout:(PSTCollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (indexPath.section == 0) {
-		return kBigSquareSize;
+		return [FDSize profilePhotoSize];
 	} else {
-		return kThumbnailSmallSquareSize;
+		return [FDSize profileOtherPhotoSize];
 	}
 }
 

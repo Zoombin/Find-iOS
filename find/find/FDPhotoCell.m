@@ -22,23 +22,37 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-		self.backgroundColor = [UIColor blueColor];
-		photoView = [[UIImageView alloc] initWithFrame:self.bounds];
-		_displaySize = self.bounds.size;
+		self.layer.borderWidth = 0.5;
+		self.layer.borderColor = [[UIColor grayColor] CGColor];
+		self.backgroundColor = [UIColor whiteColor];
+		
+		CGPoint start = CGPointZero;
+		
+		photoView = [[UIImageView alloc] initWithFrame:CGRectMake(start.x, start.y, self.bounds.size.width, self.bounds.size.width)];
+		_displaySize = photoView.frame.size;
 		photoView.contentMode = UIViewContentModeScaleAspectFit;
 		[self addSubview:photoView];
 		
-		_likesView = [[FDLikesView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.bounds) - [FDLikesView size].width, 0, [FDLikesView size].width, [FDLikesView size].height)];
+		start = CGPointMake(5, CGRectGetMaxY(photoView.frame));
+		
+		UIImageView *distanceIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Around"]];
+		distanceIcon.contentMode = UIViewContentModeScaleAspectFit;
+		distanceIcon.frame = CGRectMake(start.x, start.y, 22, 27);
+		[self addSubview:distanceIcon];
+		
+		start = CGPointMake(CGRectGetMaxX(distanceIcon.frame), CGRectGetMaxY(photoView.frame));
+		
+		distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(start.x, start.y, self.bounds.size.width - start.x, self.bounds.size.height - start.y)];
+		distanceLabel.backgroundColor = [UIColor clearColor];
+		distanceLabel.font = [UIFont fdThemeFontWithSize:18];
+		distanceLabel.adjustsFontSizeToFitWidth = YES;
+		[self addSubview:distanceLabel];
+		
+		start = CGPointMake(CGRectGetMaxX(self.bounds) - [FDLikesView size].width, CGRectGetMaxY(photoView.frame) - 7);
+		
+		_likesView = [[FDLikesView alloc] initWithFrame:CGRectMake(start.x, start.y, [FDLikesView size].width, [FDLikesView size].height)];
 		_likesView.delegate = self;
 		[self addSubview:_likesView];
-		
-		distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.bounds) - 20, frame.size.width, 20)];
-		distanceLabel.backgroundColor = [UIColor clearColor];
-		distanceLabel.textColor = [UIColor whiteColor];
-		distanceLabel.font = [UIFont fdThemeFontWithSize:12];
-		distanceLabel.adjustsFontSizeToFitWidth = YES;
-		distanceLabel.textAlignment = NSTextAlignmentRight;
-		[self addSubview:distanceLabel];
     }
     return self;
 }
@@ -96,7 +110,8 @@
 	_likesView.liked = _photo.liked;
 	
 	//TODO: for test. displaying photo id
-	NSString *displayedInfo = [NSString stringWithFormat:@"pid: %@, distace: %@", _photo.ID, [_tweet.distance printableDistance]];
+	//NSString *displayedInfo = [NSString stringWithFormat:@"%@ pid: %@", [_tweet.distance printableDistance], _photo.ID];
+	NSString *displayedInfo = [_tweet.distance printableDistance];
 	distanceLabel.text = displayedInfo;
 }
 
@@ -107,14 +122,12 @@
 	[_delegate photoCell:self willLikeOrUnlikePhoto:_photo];
 }
 
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)prepareForReuse
 {
-    // Drawing code
+	[super prepareForReuse];
+	_photo = nil;
+	_tweet = nil;
+	photoView.image = nil;
 }
-*/
 
 @end

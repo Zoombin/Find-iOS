@@ -34,6 +34,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "UIImage+LogN.h"
 #import "UIFont+Find.h"
+#import "FDSize.h"
 
 #define FDDEBUG 1
 #define QINIU_HOST @"http://find.qiniudn.com/"
