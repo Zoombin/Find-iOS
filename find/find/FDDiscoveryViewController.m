@@ -18,8 +18,8 @@
 {
 	UITableView *discoveryTableView;
 	NSMutableDictionary *sectionsAttributesMap;
+	NSDictionary *themesMap;
 	NSArray *themes;
-	NSArray *slideADThemes;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -30,6 +30,11 @@
 		self.title = identifier;
 		self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:identifier] tag:0];
 		//self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:identifier] selectedImage:[UIImage imageNamed:identifier]];
+		
+		sectionsAttributesMap = [NSMutableDictionary dictionary];
+		sectionsAttributesMap[@(0)] = [FDThemeCell attributesOfSlideADStyle];
+		sectionsAttributesMap[@(1)] = [FDThemeCell attributesOfIconStyle];
+		sectionsAttributesMap[@(2)] = [FDThemeCell attributesOfBrandStyle];
     }
     return self;
 }
@@ -45,22 +50,24 @@
 	discoveryTableView.dataSource = self;
 	[self.view addSubview:discoveryTableView];
 	
-	sectionsAttributesMap = [NSMutableDictionary dictionary];
-	sectionsAttributesMap[@(0)] = [FDThemeCell attributesOfSlideADStyle];
-	sectionsAttributesMap[@(1)] = [FDThemeCell attributesOfIconStyle];
-	
 	[[FDAFHTTPClient shared] themeListWithCompletionBlock:^(BOOL success, NSString *message, NSArray *themesData) {
 		if (success) {
 			themes = [FDTheme createMutableWithData:themesData];
 			
 			NSMutableArray *slideADs = [NSMutableArray array];
+			NSMutableArray *icons = [NSMutableArray array];
+			NSMutableArray *brands = [NSMutableArray array];
+			
 			for (FDTheme *theme in themes) {
 				if (theme.categoryID.integerValue == 0) {
 					[slideADs addObject:theme];
+				} else if (theme.categoryID.integerValue == 1) {
+					[icons addObject:theme];
+				} else if (theme.categoryID.integerValue == 2) {
+					[brands addObject:theme];
 				}
 			}
-			slideADThemes = slideADs;
-			
+			themesMap = @{@(0) : slideADs, @(1) : icons, @(2) : brands};
 			[discoveryTableView reloadData];
 		}
 	}];
@@ -99,7 +106,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return 2;
+	return themesMap.allKeys.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -116,16 +123,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	FDThemeCell *cell = [tableView dequeueReusableCellWithIdentifier:kFDThemeCellIdentifier];
-	NSDictionary *attributes;
-	if (indexPath.section == 0) {
-		attributes = [FDThemeCell attributesOfSlideADStyle];
-	} else {
-		attributes = [FDThemeCell attributesOfIconStyle];
+	if (!cell) {
+		cell = [[FDThemeCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:kFDThemeCellIdentifier];
 	}
-	cell = [[FDThemeCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:kFDThemeCellIdentifier];
+	NSDictionary *attributes = sectionsAttributesMap[@(indexPath.section)];
 	cell.attributes = attributes;
-	cell.items = slideADThemes;
-	NSLog(@"slideADThemes: %@", slideADThemes);
+	cell.items = themesMap[@(indexPath.section)];
 	return cell;
 }
 

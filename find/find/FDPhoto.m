@@ -37,7 +37,7 @@
 
 - (NSString *)urlString
 {
-	return [NSString stringWithFormat:@"%@%@", QINIU_HOST, _path];
+	return [NSString stringWithFormat:@"%@%@", QINIU_FIND, _path];
 }
 
 - (NSString *)urlStringInfo

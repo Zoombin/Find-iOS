@@ -9,7 +9,7 @@
 #import "FDThemeCell.h"
 #import "FDThemeItemView.h"
 
-#define kAutoScrollTimeInterval 3.0
+#define kAutoScrollTimeInterval 4.0
 
 @interface FDThemeCell () <UIScrollViewDelegate>
 
@@ -26,7 +26,7 @@
 {
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-		self.backgroundColor = [UIColor clearColor];
+		self.backgroundColor = [UIColor randomColor];
 		_scrollView = [[UIScrollView alloc] init];
 		_scrollView.backgroundColor = [UIColor clearColor];
 		_scrollView.delegate = self;
@@ -72,8 +72,6 @@
 	if (_attributes[kThemeCellAttributeKeyAutoScrollEnabled]) {
 		[self performSelector:@selector(scrollToNext) withObject:nil afterDelay:kAutoScrollTimeInterval];
 	}
-
-	
 }
 
 - (void)scrollToNext
@@ -118,6 +116,19 @@ static NSDictionary *attributesOfIconStyle;
 	return attributesOfIconStyle;
 }
 
+static NSDictionary *attributesOfBrandStyle;
++ (NSDictionary *)attributesOfBrandStyle
+{
+	if (!attributesOfBrandStyle) {
+		NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+		CGRect rect = CGRectMake(0, 0, 320, 75);
+		attributes[kThemeCellAttributeKeyBounds] = NSStringFromCGRect(rect);
+		attributes[kThemeCellAttributeKeyItemWidth] = @(170);
+		attributes[kThemeCellAttributeKeyShowsHorizontalScrollIndicator] = @(NO);
+		attributesOfBrandStyle = [NSDictionary dictionaryWithDictionary:attributes];
+	}
+	return attributesOfBrandStyle;
+}
 
 #pragma mark - UIScrollViewDelegate
 

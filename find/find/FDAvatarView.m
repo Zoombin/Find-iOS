@@ -31,7 +31,7 @@
 	if (_userID == userID) return;
 	_userID = userID;
 	
-	NSString *path = [NSString stringWithFormat:@"%@%@", QINIU_HOST, @"1.jpg"];//TODO: test
+	NSString *path = [NSString stringWithFormat:@"%@%@", QINIU_FIND, @"1.jpg"];//TODO: test
 	[imageView setImageWithURL:[NSURL URLWithString:path]];
 }
 

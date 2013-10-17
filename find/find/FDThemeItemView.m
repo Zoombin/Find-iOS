@@ -32,7 +32,6 @@
 	_theme = theme;
 	
 	if (_theme.imagePath) {
-		NSLog(@"imagePath: %@", _theme.imagePath);
 		[imageView setImageWithURL:[NSURL URLWithString:_theme.imagePath]];
 	}
 }

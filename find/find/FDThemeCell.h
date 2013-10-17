@@ -26,5 +26,6 @@
 
 + (NSDictionary *)attributesOfSlideADStyle;
 + (NSDictionary *)attributesOfIconStyle;
++ (NSDictionary *)attributesOfBrandStyle;
 
 @end
