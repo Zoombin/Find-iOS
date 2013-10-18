@@ -11,5 +11,6 @@
 @interface UIColor (Find)
 
 + (UIColor *)fdThemeRed;
++ (UIColor *)fdSeparateLineColor;
 
 @end

@@ -26,7 +26,8 @@
 {
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-		self.backgroundColor = [UIColor randomColor];
+		//self.backgroundColor = [UIColor randomColor];
+		
 		_scrollView = [[UIScrollView alloc] init];
 		_scrollView.backgroundColor = [UIColor clearColor];
 		_scrollView.delegate = self;
@@ -72,6 +73,16 @@
 	if (_attributes[kThemeCellAttributeKeyAutoScrollEnabled]) {
 		[self performSelector:@selector(scrollToNext) withObject:nil afterDelay:kAutoScrollTimeInterval];
 	}
+	
+	if ([_attributes[kThemeCellAttributeKeyHasSeparateLine] boolValue]) {
+		UIView *line = [[UIView alloc] initWithFrame:CGRectMake(self.bounds.origin.x, 0, self.bounds.size.width, 1)];
+		line.backgroundColor = [UIColor fdSeparateLineColor];
+		[self addSubview:line];
+		
+		UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(self.bounds.origin.x, CGRectGetHeight(_scrollView.bounds) - 1, self.bounds.size.width, 1)];
+		bottomLine.backgroundColor = [UIColor fdSeparateLineColor];
+		[self addSubview:bottomLine];
+	}
 }
 
 - (void)scrollToNext
@@ -106,11 +117,11 @@ static NSDictionary *attributesOfIconStyle;
 {
 	if (!attributesOfIconStyle) {
 		NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-		CGRect rect = CGRectMake(0, 0, 320, 150);
+		CGRect rect = CGRectMake(0, 0, 320, 130);
 		attributes[kThemeCellAttributeKeyBounds] = NSStringFromCGRect(rect);
 		attributes[kThemeCellAttributeKeyItemWidth] = @(95);
 		attributes[kThemeCellAttributeKeyShowsHorizontalScrollIndicator] = @(NO);
-		attributes[kThemeCellAttributeKeyHeaderTitle] = @"hello";
+		attributes[kThemeCellAttributeKeyHeaderTitle] = @"热门城市";//TODO: should implement here
 		attributesOfIconStyle = [NSDictionary dictionaryWithDictionary:attributes];
 	}
 	return attributesOfIconStyle;
@@ -121,10 +132,11 @@ static NSDictionary *attributesOfBrandStyle;
 {
 	if (!attributesOfBrandStyle) {
 		NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-		CGRect rect = CGRectMake(0, 0, 320, 75);
+		CGRect rect = CGRectMake(0, 0, 320, 110);
 		attributes[kThemeCellAttributeKeyBounds] = NSStringFromCGRect(rect);
-		attributes[kThemeCellAttributeKeyItemWidth] = @(170);
+		attributes[kThemeCellAttributeKeyItemWidth] = @(180);
 		attributes[kThemeCellAttributeKeyShowsHorizontalScrollIndicator] = @(NO);
+		attributes[kThemeCellAttributeKeyHasSeparateLine] = @(YES);
 		attributesOfBrandStyle = [NSDictionary dictionaryWithDictionary:attributes];
 	}
 	return attributesOfBrandStyle;

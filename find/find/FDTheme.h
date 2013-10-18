@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, FDThemeCategory) {
+    FDThemeCategorySlideAD,
+    FDThemeCategoryIcon,
+    FDThemeCategoryBrand
+};
+
 @interface FDTheme : NSObject
 
 @property (nonatomic, strong) NSNumber *ID;

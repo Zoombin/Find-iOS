@@ -16,4 +16,9 @@
 	return [UIColor colorWithRed:242.0/255.0f green:0/255.0f blue:0/255.0f alpha:1.0f];
 }
 
++ (UIColor *)fdSeparateLineColor
+{
+	return [UIColor colorWithRed:242/255.0f green:242/255.0f blue:242/255.0f alpha:1.0f];
+}
+
 @end

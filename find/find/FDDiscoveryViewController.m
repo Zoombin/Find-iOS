@@ -8,6 +8,7 @@
 
 #import "FDDiscoveryViewController.h"
 #import "FDThemeCell.h"
+#import "FDThemeHeader.h"
 #import "FDThemeItemView.h"
 
 @interface FDDiscoveryViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -90,16 +91,21 @@
 {
 	if (section == 0) {
 		return 0;
-	} else return 40;
+	} else if (section == 1) {
+		return [FDThemeHeader height];
+	} else if (section == 2) {
+		return 0;
+	}
+	return 0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
 	NSDictionary *attributes = sectionsAttributesMap[@(section)];
 	if (attributes[kThemeCellAttributeKeyHeaderTitle]) {
-		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 40)];
-		label.text = attributes[kThemeCellAttributeKeyHeaderTitle];
-		return label;
+		FDThemeHeader *header = [[FDThemeHeader alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, [FDThemeHeader height])];
+		header.title = attributes[kThemeCellAttributeKeyHeaderTitle];
+		return header;
 	}
 	return nil;
 }

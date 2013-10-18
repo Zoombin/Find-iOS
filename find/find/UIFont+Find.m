@@ -12,7 +12,8 @@
 
 + (UIFont *)fdThemeFontWithSize:(CGFloat)size
 {
-	return [UIFont fontWithName:@"FZBWKSJW--GB1-0" size:size];
+	//return [UIFont fontWithName:@"FZBWKSJW--GB1-0" size:size];
+	return [UIFont fontWithName:@"YouYuan" size:size];
 }
 
 @end

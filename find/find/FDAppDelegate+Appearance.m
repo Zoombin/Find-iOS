@@ -62,6 +62,11 @@
 		[[UINavigationBar appearance] setTitleTextAttributes:textTitleOptions];
 	}
 	
+//	UIImage *image = [UIImage imageFromColor:[UIColor spTabBarBackgroundColor]];
+//	appearance = [UITabBar appearance];
+//	[appearance setBackgroundImage:image];
+//	[appearance setSelectionIndicatorImage:image];
+	
 //	[[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor redColor] forKey:UITextAttributeTextColor]];
 	
 	//[[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:244.0/255.0f green:3.0/255.0f blue:133.0/255.0f alpha:1.0f]];

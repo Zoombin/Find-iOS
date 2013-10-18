@@ -14,6 +14,7 @@
 #define kThemeCellAttributeKeyShowsHorizontalScrollIndicator @"kThemeCellAttributeKeyShowsHorizontalScrollIndicator"
 #define kThemeCellAttributeKeyAutoScrollEnabled @"kThemeCellAttributeKeyAutoScrollEnabled"
 #define kThemeCellAttributeKeyHeaderTitle @"kThemeCellAttributeKeyHeaderTitle"
+#define kThemeCellAttributeKeyHasSeparateLine @"kThemeCellAttributeKeyHasSeparateLine"
 
 #define kFDThemeCellIdentifier @"kFDThemeCellIdentifier"
 

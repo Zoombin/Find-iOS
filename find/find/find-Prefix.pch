@@ -41,7 +41,7 @@
 #define QINIU_FIND @"http://find.qiniudn.com/"
 #define QINIU_FIND_SERVER @"http://findserver.u.qiniudn.com/"
 #define HeadSize CGSizeMake(50, 50)
-
+#define CELL_LEFT_MARGIN 15
 
 //TEST
 #import "FDTest.h"

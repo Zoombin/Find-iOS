@@ -55,6 +55,7 @@
 		77A5F7F717CB30400073E7F9 /* FDMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F617CB30400073E7F9 /* FDMeViewController.m */; };
 		77A5F89017CD95E80073E7F9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F88F17CD95E80073E7F9 /* CFNetwork.framework */; };
 		77AD927E17DEC88800D2FEBC /* FDAFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AD927D17DEC88800D2FEBC /* FDAFHTTPClient.m */; };
+		77B6397F1810E14F00AE8526 /* FDThemeHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B6397E1810E14F00AE8526 /* FDThemeHeader.m */; };
 		77C0242D17F3FB46009634CA /* FDAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0242C17F3FB46009634CA /* FDAvatarView.m */; };
 		77C0C8D917CDDBA8008C7FC7 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8D717CDDBA8008C7FC7 /* GTMBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		77C0C8DD17CDDE6A008C7FC7 /* ZBQNPutPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8DC17CDDE6A008C7FC7 /* ZBQNPutPolicy.m */; };
@@ -173,6 +174,8 @@
 		77A5F88F17CD95E80073E7F9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		77AD927C17DEC88800D2FEBC /* FDAFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDAFHTTPClient.h; path = find/FDAFHTTPClient.h; sourceTree = "<group>"; };
 		77AD927D17DEC88800D2FEBC /* FDAFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDAFHTTPClient.m; path = find/FDAFHTTPClient.m; sourceTree = "<group>"; };
+		77B6397D1810E14F00AE8526 /* FDThemeHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeHeader.h; path = find/FDThemeHeader.h; sourceTree = "<group>"; };
+		77B6397E1810E14F00AE8526 /* FDThemeHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDThemeHeader.m; path = find/FDThemeHeader.m; sourceTree = "<group>"; };
 		77C0242B17F3FB46009634CA /* FDAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDAvatarView.h; path = find/FDAvatarView.h; sourceTree = "<group>"; };
 		77C0242C17F3FB46009634CA /* FDAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDAvatarView.m; path = find/FDAvatarView.m; sourceTree = "<group>"; };
 		77C0C8D617CDDBA8008C7FC7 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
@@ -478,6 +481,8 @@
 				7734ACE817D8A6C1003E7BB6 /* FDPhotoInfo.m */,
 				777E5E1C17D97A98005AFB67 /* FDThemeCell.h */,
 				777E5E1D17D97A98005AFB67 /* FDThemeCell.m */,
+				77B6397D1810E14F00AE8526 /* FDThemeHeader.h */,
+				77B6397E1810E14F00AE8526 /* FDThemeHeader.m */,
 				777E5EE617D9BBDA005AFB67 /* FDThemeItemView.h */,
 				777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */,
 				77C0C96217D18D7C008C7FC7 /* FDPhotoCell.h */,
@@ -683,6 +688,7 @@
 				77A5F7AF17CB22960073E7F9 /* main.m in Sources */,
 				777E5EE817D9BBDA005AFB67 /* FDThemeItemView.m in Sources */,
 				77C0C8E017CDE32C008C7FC7 /* ZBQNAFHTTPClient.m in Sources */,
+				77B6397F1810E14F00AE8526 /* FDThemeHeader.m in Sources */,
 				777E5E1E17D97A98005AFB67 /* FDThemeCell.m in Sources */,
 				7786716017E35A98001FDB67 /* NSNumber+PrintableMeasurement.m in Sources */,
 				77C0C8DD17CDDE6A008C7FC7 /* ZBQNPutPolicy.m in Sources */,
@@ -777,6 +783,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -837,13 +844,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yujuan Song (VBZJAQEPT7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yujuan Song (VBZJAQEPT7)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "find/find-Prefix.pch";
 				INFOPLIST_FILE = "find/find-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -855,12 +864,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "find/find-Prefix.pch";
 				INFOPLIST_FILE = "find/find-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
