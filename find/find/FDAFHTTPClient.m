@@ -54,6 +54,14 @@ static NSString *token;
 	NSLog(@"save user account: %@", aAccount);
 }
 
+- (NSString *)cookieValue
+{
+	if (token) {
+		return [NSString stringWithFormat:@"token=%@", token];
+	}
+	return nil;
+}
+
 - (NSString *)account
 {
 	NSString *account = nil;
@@ -84,8 +92,8 @@ static NSString *token;
         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
 	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:path parameters:parameters];
-	if (token) {
-		[request setValue:token forHTTPHeaderField:@"Cookie"];
+	if ([self cookieValue]) {
+		[request setValue:[self cookieValue] forHTTPHeaderField:@"Cookie"];
 	}
     AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure];
     [self enqueueHTTPRequestOperation:operation];
@@ -97,8 +105,8 @@ static NSString *token;
          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:path parameters:parameters];
-	if (token) {
-		[request setValue:token forHTTPHeaderField:@"Cookie"];
+	if ([self cookieValue]) {
+		[request setValue:[self cookieValue] forHTTPHeaderField:@"Cookie"];
 	}
 	AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure];
     [self enqueueHTTPRequestOperation:operation];
@@ -249,8 +257,7 @@ static NSString *token;
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
 			if ([data[responseKeyStatus] boolValue]) {
-				token = data[responseKeyToken];
-				[self saveToken:token];
+				[self saveToken:data[responseKeyToken]];
 				[self saveAccount:username];
 			}
 			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]]);
@@ -277,8 +284,7 @@ static NSString *token;
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
 			if ([data[responseKeyStatus] boolValue]) {
-				token = data[responseKeyToken];
-				[self saveToken:token];
+				[self saveToken:data[responseKeyToken]];
 				[self saveAccount:username];
 			}
 			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]]);
