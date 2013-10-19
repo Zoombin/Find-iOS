@@ -10,10 +10,16 @@
 
 @implementation UIFont (Find)
 
-+ (UIFont *)fdThemeFontWithSize:(CGFloat)size
++ (UIFont *)fdThemeFontOfSize:(CGFloat)size
 {
 	//return [UIFont fontWithName:@"FZBWKSJW--GB1-0" size:size];
-	return [UIFont fontWithName:@"YouYuan" size:size];
+	//return [UIFont fontWithName:@"YouYuan" size:size];
+	return [UIFont systemFontOfSize:size];
+}
+
++ (UIFont *)fdBoldThemeFontOfSize:(CGFloat)size
+{
+	return [UIFont boldSystemFontOfSize:size];
 }
 
 @end

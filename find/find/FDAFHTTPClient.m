@@ -19,6 +19,7 @@ static NSString *responseKeyAct = @"action";
 static NSString *responseKeyLikes = @"likes";
 static NSString *responseKeyToken = @"token";
 static NSString *userDefaultKeyToken = @"fd_token";
+static NSString *userDefaultKeyAccount = @"fd_account";
 
 @implementation FDAFHTTPClient
 
@@ -37,10 +38,30 @@ static NSString *token;
 
 - (void)saveToken:(NSString *)aToken
 {
-	NSAssert(aToken, @"token must not be nil!");
+	if ([token isEqualToString:aToken]) return;
+	token = aToken;
+	NSAssert(token, @"token must not be nil!");
 	[[NSUserDefaults standardUserDefaults] setObject:aToken forKey:userDefaultKeyToken];
 	[[NSUserDefaults standardUserDefaults] synchronize];
-	NSLog(@"save user token: %@", aToken);
+	NSLog(@"save user token: %@", token);
+}
+
+- (void)saveAccount:(NSString *)aAccount
+{
+	NSAssert(aAccount, @"token must not be nil!");
+	[[NSUserDefaults standardUserDefaults] setObject:aAccount forKey:userDefaultKeyAccount];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	NSLog(@"save user account: %@", aAccount);
+}
+
+- (NSString *)account
+{
+	NSString *account = nil;
+	account = [[NSUserDefaults standardUserDefaults] objectForKey:userDefaultKeyAccount];
+	if (!account) {
+		account = @"root";
+	}
+	return account;
 }
 
 - (void)printResponseObject:(id)responseObject
@@ -230,6 +251,7 @@ static NSString *token;
 			if ([data[responseKeyStatus] boolValue]) {
 				token = data[responseKeyToken];
 				[self saveToken:token];
+				[self saveAccount:username];
 			}
 			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]]);
 		}
@@ -257,6 +279,7 @@ static NSString *token;
 			if ([data[responseKeyStatus] boolValue]) {
 				token = data[responseKeyToken];
 				[self saveToken:token];
+				[self saveAccount:username];
 			}
 			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]]);
 		}

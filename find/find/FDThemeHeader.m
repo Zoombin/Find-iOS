@@ -19,7 +19,7 @@
     if (self) {
 		titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(CELL_LEFT_MARGIN, 0, self.bounds.size.width, self.bounds.size.height)];
 		titleLabel.backgroundColor = [UIColor clearColor];
-		titleLabel.font = [UIFont fdThemeFontWithSize:16];
+		titleLabel.font = [UIFont fdThemeFontOfSize:16];
 		[self addSubview:titleLabel];
 		
 		UILabel *showAllLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width - CELL_LEFT_MARGIN, self.bounds.size.height)];
@@ -27,7 +27,7 @@
 		showAllLabel.text = @"显示全部>";//TODO: 国际化
 		showAllLabel.textAlignment = NSTextAlignmentRight;
 		showAllLabel.textColor = [UIColor grayColor];
-		showAllLabel.font = [UIFont fdThemeFontWithSize:14];
+		showAllLabel.font = [UIFont fdThemeFontOfSize:14];
 		[self addSubview:showAllLabel];
     }
     return self;

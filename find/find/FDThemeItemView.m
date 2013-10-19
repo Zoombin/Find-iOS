@@ -50,7 +50,7 @@
 		UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(start.x, start.y, size.width, 16)];
 		titleLabel.backgroundColor = [UIColor clearColor];
 		titleLabel.textColor = [UIColor blackColor];
-		titleLabel.font = [UIFont fdThemeFontWithSize:12];
+		titleLabel.font = [UIFont fdThemeFontOfSize:12];
 		titleLabel.textAlignment = NSTextAlignmentCenter;
 		titleLabel.text = @"百变美女静";//TODO
 		[self addSubview:titleLabel];
@@ -60,7 +60,7 @@
 		UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(start.x, start.y, size.width, 13)];
 		subtitleLabel.backgroundColor = [UIColor clearColor];
 		subtitleLabel.textColor = [UIColor grayColor];
-		subtitleLabel.font = [UIFont fdThemeFontWithSize:12];
+		subtitleLabel.font = [UIFont fdThemeFontOfSize:12];
 		subtitleLabel.textAlignment = NSTextAlignmentCenter;
 		subtitleLabel.text = @"上海";//TODO
 		[self addSubview:subtitleLabel];

@@ -17,6 +17,7 @@
 	UITextField *accountTextField;
 	UITextField *passwordTextField;
 	NSDictionary *accountsAndPassword;
+	UILabel *currentAccountLabel;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -91,6 +92,21 @@
 	[user3 setBackgroundColor:[UIColor grayColor]];
 	[user3 addTarget:self action:@selector(signin:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:user3];
+	
+	startY = CGRectGetMaxY(user3.frame) + gap;
+	
+	currentAccountLabel = [[UILabel alloc] initWithFrame:CGRectMake(gap, startY, fullSize.width - 2 * gap, 40)];
+	currentAccountLabel.backgroundColor = [UIColor clearColor];
+	currentAccountLabel.textColor = [UIColor blackColor];
+	[self.view addSubview:currentAccountLabel];
+	
+	[self displayCurrentAccount];
+}
+
+- (void)displayCurrentAccount
+{
+	NSString *str = [NSString stringWithFormat:@"Current account: %@", [[FDAFHTTPClient shared] account]];
+	currentAccountLabel.text = str;
 }
 
 - (void)signin:(UIButton *)sender
@@ -104,6 +120,7 @@
 		[self hideHUD:YES];
 		if (success) {
 			[self displayHUDTitle:@"登录成功" message:nil];
+			[self displayCurrentAccount];
 		} else {
 			[self displayHUDTitle:@"登录失败" message:message];
 		}
@@ -123,6 +140,7 @@
 		passwordTextField.text = nil;
 		if (success) {
 			[self displayHUDTitle:@"注册成功" message:nil];
+			[self displayCurrentAccount];
 		} else {
 			[self displayHUDTitle:@"注册失败" message:message];
 		}

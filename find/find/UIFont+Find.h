@@ -10,6 +10,7 @@
 
 @interface UIFont (Find)
 
-+ (UIFont *)fdThemeFontWithSize:(CGFloat)size;
++ (UIFont *)fdThemeFontOfSize:(CGFloat)size;
++ (UIFont *)fdBoldThemeFontOfSize:(CGFloat)size;
 
 @end
