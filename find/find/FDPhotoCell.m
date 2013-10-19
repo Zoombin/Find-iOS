@@ -110,8 +110,8 @@
 	_likesView.liked = _photo.liked;
 	
 	//TODO: for test. displaying photo id
-	//NSString *displayedInfo = [NSString stringWithFormat:@"%@ pid: %@", [_tweet.distance printableDistance], _photo.ID];
-	NSString *displayedInfo = [_tweet.distance printableDistance];
+	NSString *displayedInfo = [NSString stringWithFormat:@"%@ pid: %@", [_tweet.distance printableDistance], _photo.ID];
+	//NSString *displayedInfo = [_tweet.distance printableDistance];
 	distanceLabel.text = displayedInfo;
 }
 
