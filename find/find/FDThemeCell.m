@@ -97,24 +97,24 @@
 	[self performSelector:@selector(scrollToNext) withObject:nil afterDelay:3];
 }
 
-static NSDictionary *attributesOfSlideADStyle;
-+ (NSDictionary *)attributesOfSlideADStyle
++ (NSDictionary *)attributesOfSlideStyle
 {
-	if (!attributesOfSlideADStyle) {
+	static NSDictionary *attributesOfSlideStyle;
+	if (!attributesOfSlideStyle) {
 		NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
 		CGRect rect = CGRectMake(0, 0, 320, 130);
 		attributes[kThemeCellAttributeKeyBounds] = NSStringFromCGRect(rect);
 		attributes[kThemeCellAttributeKeyItemWidth] = @(320);
 		attributes[kThemeCellAttributeKeyPagingEnabled] = @(YES);
 		attributes[kThemeCellAttributeKeyAutoScrollEnabled] = @(YES);
-		attributesOfSlideADStyle = [NSDictionary dictionaryWithDictionary:attributes];
+		attributesOfSlideStyle = [NSDictionary dictionaryWithDictionary:attributes];
 	}
-	return attributesOfSlideADStyle;
+	return attributesOfSlideStyle;
 }
 
-static NSDictionary *attributesOfIconStyle;
 + (NSDictionary *)attributesOfIconStyle
 {
+	static NSDictionary *attributesOfIconStyle;
 	if (!attributesOfIconStyle) {
 		NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
 		CGRect rect = CGRectMake(0, 0, 320, 130);
@@ -127,9 +127,9 @@ static NSDictionary *attributesOfIconStyle;
 	return attributesOfIconStyle;
 }
 
-static NSDictionary *attributesOfBrandStyle;
 + (NSDictionary *)attributesOfBrandStyle
 {
+	static NSDictionary *attributesOfBrandStyle;
 	if (!attributesOfBrandStyle) {
 		NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
 		CGRect rect = CGRectMake(0, 0, 320, 110);

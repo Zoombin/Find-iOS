@@ -25,7 +25,7 @@
 @property (nonatomic, strong) NSArray *items;
 
 
-+ (NSDictionary *)attributesOfSlideADStyle;
++ (NSDictionary *)attributesOfSlideStyle;
 + (NSDictionary *)attributesOfIconStyle;
 + (NSDictionary *)attributesOfBrandStyle;
 

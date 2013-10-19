@@ -8,19 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSUInteger, FDThemeCategory) {
-    FDThemeCategorySlideAD,
-    FDThemeCategoryIcon,
-    FDThemeCategoryBrand
-};
+extern NSString *kThemeCategoryIdentifierSlide;
+extern NSString *kThemeCategoryIdentifierIcon;
+extern NSString *kThemeCategoryIdentifierBrand;
 
 @interface FDTheme : NSObject
 
 @property (nonatomic, strong) NSNumber *ID;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSNumber *typeID;//0会员 1图片
-@property (nonatomic, strong) NSNumber *categoryID;//aid in DB: 活动位置 0banner 1hot a 2hot b
-@property (nonatomic, strong) NSNumber *order;
+@property (nonatomic, strong) NSString *categoryIdentifier;
 @property (nonatomic, strong) NSString *imagePath;
 
 + (FDTheme *)createWithAttributes:(NSDictionary *)attributes;

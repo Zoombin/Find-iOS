@@ -36,9 +36,9 @@
 	if (_theme == theme) return;
 	_theme = theme;
 	
-	if (theme.categoryID.integerValue == FDThemeCategorySlideAD) {
+	if ([theme.categoryIdentifier isEqualToString:kThemeCategoryIdentifierSlide]) {
 		imageView.frame = self.bounds;
-	} else if (theme.categoryID.integerValue == FDThemeCategoryIcon) {
+	} else if ([theme.categoryIdentifier isEqualToString:kThemeCategoryIdentifierIcon]) {
 		CGSize size = CGSizeMake(72, 72);
 		CGPoint start = CGPointMake((self.bounds.size.width - size.width) / 2, 5);
 		
@@ -65,7 +65,7 @@
 		subtitleLabel.text = @"上海";//TODO
 		[self addSubview:subtitleLabel];
 		
-	} else if (theme.categoryID.integerValue == FDThemeCategoryBrand) {
+	} else if ([theme.categoryIdentifier isEqualToString:kThemeCategoryIdentifierBrand]) {
 		CGSize size = CGSizeMake(150, 72);
 		CGPoint start = CGPointMake((self.bounds.size.width - size.width) / 2, (self.bounds.size.height - size.height) / 2);
 		imageView.frame = CGRectMake(start.x, start.y, size.width, size.height);

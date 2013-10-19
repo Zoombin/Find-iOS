@@ -33,7 +33,7 @@
 		//self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:identifier] selectedImage:[UIImage imageNamed:identifier]];
 		
 		sectionsAttributesMap = [NSMutableDictionary dictionary];
-		sectionsAttributesMap[@(0)] = [FDThemeCell attributesOfSlideADStyle];
+		sectionsAttributesMap[@(0)] = [FDThemeCell attributesOfSlideStyle];
 		sectionsAttributesMap[@(1)] = [FDThemeCell attributesOfIconStyle];
 		sectionsAttributesMap[@(2)] = [FDThemeCell attributesOfBrandStyle];
     }
@@ -55,20 +55,20 @@
 		if (success) {
 			themes = [FDTheme createMutableWithData:themesData];
 			
-			NSMutableArray *slideADs = [NSMutableArray array];
-			NSMutableArray *icons = [NSMutableArray array];
-			NSMutableArray *brands = [NSMutableArray array];
+			NSMutableArray *slideThemes = [NSMutableArray array];
+			NSMutableArray *iconThemes = [NSMutableArray array];
+			NSMutableArray *brandThemes = [NSMutableArray array];
 			
 			for (FDTheme *theme in themes) {
-				if (theme.categoryID.integerValue == 0) {
-					[slideADs addObject:theme];
-				} else if (theme.categoryID.integerValue == 1) {
-					[icons addObject:theme];
-				} else if (theme.categoryID.integerValue == 2) {
-					[brands addObject:theme];
+				if ([theme.categoryIdentifier isEqualToString:kThemeCategoryIdentifierSlide]) {
+					[slideThemes addObject:theme];
+				} else if ([theme.categoryIdentifier isEqualToString:kThemeCategoryIdentifierIcon]) {
+					[iconThemes addObject:theme];
+				} else if ([theme.categoryIdentifier isEqualToString:kThemeCategoryIdentifierBrand]) {
+					[brandThemes addObject:theme];
 				}
 			}
-			themesMap = @{@(0) : slideADs, @(1) : icons, @(2) : brands};
+			themesMap = @{@(0) : slideThemes, @(1) : iconThemes, @(2) : brandThemes};
 			[discoveryTableView reloadData];
 		}
 	}];
