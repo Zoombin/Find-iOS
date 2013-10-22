@@ -23,7 +23,7 @@
 #import "UIViewController+HUD.h"
 #import "UIColor+Random.h"
 #import "UIColor+Find.h"
-#import "PSTCollectionViewFlowLayout+FDLayout.h"
+#import "PSUICollectionViewFlowLayout+FDLayout.h"
 #import "NSNumber+PrintableMeasurement.h"
 #import "FDUser.h"
 #import "FDPhoto.h"

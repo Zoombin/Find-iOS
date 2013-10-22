@@ -48,7 +48,6 @@
 	[[FDAFHTTPClient shared] themeListWithCompletionBlock:^(BOOL success, NSString *message, NSArray *themesData) {
 		if (success) {
 			themeSections = [FDThemeSection createMutableWithData:themesData];
-			NSLog(@"themeSections: %@", themeSections);
 			[discoveryTableView reloadData];
 		}
 	}];

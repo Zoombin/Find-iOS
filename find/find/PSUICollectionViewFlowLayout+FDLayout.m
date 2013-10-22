@@ -6,22 +6,22 @@
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "PSTCollectionViewFlowLayout+FDLayout.h"
+#import "PSUICollectionViewFlowLayout+FDLayout.h"
 
-@implementation PSTCollectionViewFlowLayout (FDLayout)
+@implementation PSUICollectionViewFlowLayout (FDLayout)
 
-+ (PSTCollectionViewFlowLayout *)aroundPhotoLayout
++ (PSUICollectionViewFlowLayout *)aroundPhotoLayout
 {
-	PSTCollectionViewFlowLayout *layout = [[PSTCollectionViewFlowLayout alloc] init];
+	PSUICollectionViewFlowLayout *layout = [[PSUICollectionViewFlowLayout alloc] init];
 	layout.minimumInteritemSpacing = 5;
 	layout.minimumLineSpacing = 5;
 	layout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
 	return layout;
 }
 
-+ (PSTCollectionViewFlowLayout *)smallSquaresLayout
++ (PSUICollectionViewFlowLayout *)smallSquaresLayout
 {
-	PSTCollectionViewFlowLayout *layout = [[PSTCollectionViewFlowLayout alloc] init];
+	PSUICollectionViewFlowLayout *layout = [[PSUICollectionViewFlowLayout alloc] init];
 	layout.minimumInteritemSpacing = 5;
 	layout.minimumLineSpacing = 5;
 	layout.sectionInset = UIEdgeInsetsMake(10, 5, 10, 5);

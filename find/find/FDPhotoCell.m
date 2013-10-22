@@ -24,21 +24,22 @@
     if (self) {
 		self.layer.borderWidth = 0.5;
 		self.layer.borderColor = [[UIColor grayColor] CGColor];
-		self.backgroundColor = [UIColor whiteColor];
+		self.backgroundColor = [UIColor randomColor];
 		
 		CGPoint start = CGPointZero;
 		
 		photoView = [[UIImageView alloc] initWithFrame:CGRectMake(start.x, start.y, self.bounds.size.width, self.bounds.size.width)];
 		_displaySize = photoView.frame.size;
 		photoView.contentMode = UIViewContentModeScaleAspectFit;
-		[self addSubview:photoView];
+		photoView.userInteractionEnabled = YES;
+		//[self addSubview:photoView];
 		
 		start = CGPointMake(5, CGRectGetMaxY(photoView.frame));
 		
 		UIImageView *distanceIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Around"]];
 		distanceIcon.contentMode = UIViewContentModeScaleAspectFit;
 		distanceIcon.frame = CGRectMake(start.x, start.y, 22, 27);
-		[self addSubview:distanceIcon];
+		//[self addSubview:distanceIcon];
 		
 		start = CGPointMake(CGRectGetMaxX(distanceIcon.frame), CGRectGetMaxY(photoView.frame));
 		
@@ -46,16 +47,24 @@
 		distanceLabel.backgroundColor = [UIColor clearColor];
 		distanceLabel.font = [UIFont fdThemeFontOfSize:18];
 		distanceLabel.adjustsFontSizeToFitWidth = YES;
-		[self addSubview:distanceLabel];
+		//[self addSubview:distanceLabel];
 		
 		start = CGPointMake(CGRectGetMaxX(self.bounds) - [FDLikesView size].width, CGRectGetMaxY(photoView.frame) - 7);
 		
 		_likesView = [[FDLikesView alloc] initWithFrame:CGRectMake(start.x, start.y, [FDLikesView size].width, [FDLikesView size].height)];
 		_likesView.delegate = self;
-		[self addSubview:_likesView];
+		//[self addSubview:_likesView];
+		
+//		UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped)];
+//		[self addGestureRecognizer:tap];
     }
     return self;
 }
+
+//- (void)tapped
+//{
+//	NSLog(@"tapped!");
+//}
 
 - (void)setTweet:(FDTweet *)tweet
 {

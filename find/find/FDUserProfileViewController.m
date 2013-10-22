@@ -11,7 +11,7 @@
 #import "FDPhotoCell.h"
 #import "FDPhotoViewController.h"
 
-@interface FDUserProfileViewController () <PSTCollectionViewDelegate, PSTCollectionViewDataSource>
+@interface FDUserProfileViewController () <PSUICollectionViewDelegate, PSUICollectionViewDataSource>
 
 @end
 
@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
 	
-	PSTCollectionView *photosCollectionView = [[PSTCollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSTCollectionViewFlowLayout smallSquaresLayout]];
+	PSUICollectionView *photosCollectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSUICollectionViewFlowLayout smallSquaresLayout]];
 	photosCollectionView.backgroundColor = [UIColor clearColor];
 	[photosCollectionView registerClass:[FDPhotoCell class] forCellWithReuseIdentifier:kFDPhotoCellIdentifier];
 	[photosCollectionView registerClass:[FDPhotoCell class] forCellWithReuseIdentifier:kFDMainPhotoCellIdentifier];
@@ -46,9 +46,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - PSTCollectionViewDelegate
+#pragma mark - PSUICollectionViewDelegate
 
-- (CGSize)collectionView:(PSTCollectionView *)collectionView layout:(PSTCollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+- (CGSize)collectionView:(PSUICollectionView *)collectionView layout:(PSUICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (indexPath.section == 0) {
 		return [FDSize profilePhotoSize];
@@ -57,12 +57,12 @@
 	}
 }
 
-- (NSInteger)numberOfSectionsInCollectionView:(PSTCollectionView *)collectionView
+- (NSInteger)numberOfSectionsInCollectionView:(PSUICollectionView *)collectionView
 {
 	return 2;
 }
 
-- (NSInteger)collectionView:(PSTCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+- (NSInteger)collectionView:(PSUICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
 	if (section == 0) {
 		return 1;
@@ -72,7 +72,7 @@
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
-- (PSTCollectionViewCell *)collectionView:(PSTCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (PSUICollectionViewCell *)collectionView:(PSUICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (indexPath.section == 0) {
 		FDPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDMainPhotoCellIdentifier forIndexPath:indexPath];
@@ -90,7 +90,7 @@
 	}
 }
 
-- (void)collectionView:(PSTCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(PSUICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (indexPath.section == 1) {
 		FDPhotoViewController *photoViewController = [[FDPhotoViewController alloc] init];

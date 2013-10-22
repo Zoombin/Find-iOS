@@ -14,14 +14,14 @@
 #import "FDLikesView.h"
 #import "FDPhotoViewController.h"
 
-@interface FDAroundViewController () <PSTCollectionViewDelegate, PSTCollectionViewDataSource, FDPhotoCellDelegate>
+@interface FDAroundViewController () <PSUICollectionViewDelegate, PSUICollectionViewDataSource, FDPhotoCellDelegate>
 
 @end
 
 @implementation FDAroundViewController
 {
 	NSArray *tweets;
-	PSTCollectionView *photosCollectionView;
+	PSUICollectionView *photosCollectionView;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -41,7 +41,7 @@
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor whiteColor];
 
-	photosCollectionView = [[PSTCollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSTCollectionViewFlowLayout aroundPhotoLayout]];
+	photosCollectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSUICollectionViewFlowLayout aroundPhotoLayout]];
 	photosCollectionView.backgroundColor = [UIColor clearColor];
 	[photosCollectionView registerClass:[FDPhotoCell class] forCellWithReuseIdentifier:kFDPhotoCellIdentifier];
 	photosCollectionView.delegate = self;
@@ -79,27 +79,27 @@
 
 #pragma mark - PSTCollectionViewDelegate
 
-- (CGSize)collectionView:(PSTCollectionView *)collectionView layout:(PSTCollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+- (CGSize)collectionView:(PSUICollectionView *)collectionView layout:(PSUICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	return [FDSize aroundPhotoSize];
 }
 
-- (NSInteger)collectionView:(PSTCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+- (NSInteger)collectionView:(PSUICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
 	return tweets.count;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
-- (PSTCollectionViewCell *)collectionView:(PSTCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (PSUICollectionViewCell *)collectionView:(PSUICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	FDPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDPhotoCellIdentifier forIndexPath:indexPath];
-	FDTweet *tweet = tweets[indexPath.row];
-	cell.tweet = tweet;
-	cell.delegate = self;
+	//FDTweet *tweet = tweets[indexPath.row];
+	//cell.tweet = tweet;
+	//cell.delegate = self;
 	return cell;
 }
 
-- (void)collectionView:(PSTCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(PSUICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	FDPhotoViewController *photoViewController = [[FDPhotoViewController alloc] init];
 	FDTweet *tweet = tweets[indexPath.row];

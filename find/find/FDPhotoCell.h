@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "PSTCollectionViewCell.h"
+#import "PSTCollectionView.h"
 #import "FDUser.h"
 #import "FDPhoto.h"
 #import "FDLikesView.h"
@@ -22,7 +22,7 @@
 @end
 
 
-@interface FDPhotoCell : PSTCollectionViewCell
+@interface FDPhotoCell : PSUICollectionViewCell
 
 @property (nonatomic, weak) id<FDPhotoCellDelegate> delegate;
 @property (nonatomic, assign) CGSize displaySize;
