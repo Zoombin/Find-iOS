@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FDSignupViewController : FDViewController
+@interface FDSignupViewController : UIViewController
 
 @end

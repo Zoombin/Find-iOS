@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FDUser.h"
 
-@interface FDUserProfileViewController : FDViewController
+@interface FDUserProfileViewController : UIViewController
 
 @property (nonatomic, strong) FDUser *user;
 

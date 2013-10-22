@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FDHostViewController : FDViewController
+@interface FDHostViewController : UIViewController
 
 @end

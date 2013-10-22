@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FDSigninViewController : FDViewController
+@interface FDSigninViewController : UIViewController
 
 @end

@@ -59,8 +59,8 @@
 		likesLabel.font = [UIFont fdThemeFontOfSize:12];
 		[heartView addSubview:likesLabel];
 		
-		UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(willLikeOrUnlike)];
-		[self addGestureRecognizer:tap];
+		//UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(willLikeOrUnlike)];
+		//[self addGestureRecognizer:tap];
     }
     return self;
 }

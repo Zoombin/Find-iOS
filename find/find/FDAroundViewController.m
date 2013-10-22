@@ -42,6 +42,7 @@
 	self.view.backgroundColor = [UIColor whiteColor];
 
 	photosCollectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSUICollectionViewFlowLayout aroundPhotoLayout]];
+	photosCollectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	photosCollectionView.backgroundColor = [UIColor clearColor];
 	[photosCollectionView registerClass:[FDPhotoCell class] forCellWithReuseIdentifier:kFDPhotoCellIdentifier];
 	photosCollectionView.delegate = self;
@@ -77,7 +78,7 @@
 	}];
 }
 
-#pragma mark - PSTCollectionViewDelegate
+#pragma mark - PSUICollectionViewDelegate
 
 - (CGSize)collectionView:(PSUICollectionView *)collectionView layout:(PSUICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -93,9 +94,9 @@
 - (PSUICollectionViewCell *)collectionView:(PSUICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	FDPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDPhotoCellIdentifier forIndexPath:indexPath];
-	//FDTweet *tweet = tweets[indexPath.row];
-	//cell.tweet = tweet;
-	//cell.delegate = self;
+	FDTweet *tweet = tweets[indexPath.row];
+	cell.tweet = tweet;
+	cell.delegate = self;
 	return cell;
 }
 
