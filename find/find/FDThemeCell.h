@@ -7,14 +7,15 @@
 //
 
 #import "PSTCollectionViewCell.h"
+#import "FDThemeSection.h"
 
-#define kThemeCellAttributeKeyBounds @"kThemeCellAttributeKeyBounds"
-#define kThemeCellAttributeKeyItemWidth @"kThemeCellAttributeKeyItemWidth"
-#define kThemeCellAttributeKeyPagingEnabled @"kThemeCellAttributeKeyPagingEnabled"
-#define kThemeCellAttributeKeyShowsHorizontalScrollIndicator @"kThemeCellAttributeKeyShowsHorizontalScrollIndicator"
-#define kThemeCellAttributeKeyAutoScrollEnabled @"kThemeCellAttributeKeyAutoScrollEnabled"
-#define kThemeCellAttributeKeyHeaderTitle @"kThemeCellAttributeKeyHeaderTitle"
-#define kThemeCellAttributeKeyHasSeparateLine @"kThemeCellAttributeKeyHasSeparateLine"
+extern NSString *kThemeCellAttributeKeyBounds;
+extern NSString *kThemeCellAttributeKeyItemWidth;
+extern NSString *kThemeCellAttributeKeyPagingEnabled;
+extern NSString *kThemeCellAttributeKeyShowsHorizontalScrollIndicator;
+extern NSString *kThemeCellAttributeKeyAutoScrollEnabled;
+extern NSString *kThemeCellAttributeKeyHeaderTitle;
+extern NSString *kThemeCellAttributeKeyHasSeparateLine;
 
 #define kFDThemeCellIdentifier @"kFDThemeCellIdentifier"
 
@@ -22,11 +23,8 @@
 
 @property (nonatomic, strong) NSDictionary *attributes;
 @property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) NSArray *items;
+@property (nonatomic, strong) FDThemeSection *themeSection;
 
-
-+ (NSDictionary *)attributesOfSlideStyle;
-+ (NSDictionary *)attributesOfIconStyle;
-+ (NSDictionary *)attributesOfBrandStyle;
++ (NSDictionary *)attributesOfStyle:(NSString *)themeStyle;
 
 @end

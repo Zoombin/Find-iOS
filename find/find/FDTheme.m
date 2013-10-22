@@ -10,10 +10,6 @@
 
 @implementation FDTheme
 
-NSString *kThemeCategoryIdentifierSlide = @"slide";
-NSString *kThemeCategoryIdentifierIcon = @"icon";
-NSString *kThemeCategoryIdentifierBrand = @"brand";
-
 + (FDTheme *)createWithAttributes:(NSDictionary *)attributes
 {
 	NSAssert(attributes[@"id"], @"Every event must has an ID!");
@@ -21,7 +17,6 @@ NSString *kThemeCategoryIdentifierBrand = @"brand";
 	
 	theme.ID = attributes[@"id"];
 	theme.name = attributes[@"name"];
-	theme.categoryIdentifier = attributes[@"area"];
 	theme.imagePath = attributes[@"img"];
 	return theme;
 }
@@ -37,7 +32,7 @@ NSString *kThemeCategoryIdentifierBrand = @"brand";
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"<THEME: id: %@, name: %@, categoryIdentifier: %@,  image: %@>", _ID, _name, _categoryIdentifier, _imagePath];
+	return [NSString stringWithFormat:@"<THEME: id: %@, name: %@, image: %@>", _ID, _name, _imagePath];
 }
 
 - (NSString *)imagePath

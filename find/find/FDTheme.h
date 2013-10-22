@@ -8,16 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *kThemeCategoryIdentifierSlide;
-extern NSString *kThemeCategoryIdentifierIcon;
-extern NSString *kThemeCategoryIdentifierBrand;
-
 @interface FDTheme : NSObject
 
 @property (nonatomic, strong) NSNumber *ID;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *categoryIdentifier;
 @property (nonatomic, strong) NSString *imagePath;
+@property (nonatomic, strong) NSString *style;
 
 + (FDTheme *)createWithAttributes:(NSDictionary *)attributes;
 + (NSArray *)createMutableWithData:(NSArray *)data;

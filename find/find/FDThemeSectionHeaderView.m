@@ -6,9 +6,10 @@
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "FDThemeHeader.h"
+#import "FDThemeSectionHeaderView.h"
+#import "FDThemeSection.h"
 
-@implementation FDThemeHeader
+@implementation FDThemeSectionHeaderView
 {
 	UILabel *titleLabel;
 }

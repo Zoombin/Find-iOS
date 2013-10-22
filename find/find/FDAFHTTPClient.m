@@ -393,9 +393,9 @@ static NSString *token;
 {
 	[self getPath:@"event" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-		//if ([data isKindOfClass:[NSDictionary class]]) {
-			if (block) block (YES, nil, data);//TODO success and message
-		//}
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			if (block) block (YES, [FDErrorMessage messageFromData:data[responseKeyMsg]], [data allValues]);//TODO success and message
+		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		if (block) block (NO, [FDErrorMessage messageNetworkError], nil);
 	}];

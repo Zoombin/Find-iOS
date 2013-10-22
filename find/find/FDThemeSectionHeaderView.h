@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FDThemeHeader : UIView
+@interface FDThemeSectionHeaderView : UIView
 
 @property (nonatomic, strong) NSString *title;
 

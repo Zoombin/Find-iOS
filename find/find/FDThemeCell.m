@@ -9,6 +9,14 @@
 #import "FDThemeCell.h"
 #import "FDThemeItemView.h"
 
+NSString *kThemeCellAttributeKeyBounds = @"kThemeCellAttributeKeyBounds";
+NSString *kThemeCellAttributeKeyItemWidth = @"kThemeCellAttributeKeyItemWidth";
+NSString *kThemeCellAttributeKeyPagingEnabled = @"kThemeCellAttributeKeyPagingEnabled";
+NSString *kThemeCellAttributeKeyShowsHorizontalScrollIndicator = @"kThemeCellAttributeKeyShowsHorizontalScrollIndicator";
+NSString *kThemeCellAttributeKeyAutoScrollEnabled = @"kThemeCellAttributeKeyAutoScrollEnabled";
+NSString *kThemeCellAttributeKeyHeaderTitle = @"kThemeCellAttributeKeyHeaderTitle";
+NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSeparateLine";
+
 #define kAutoScrollTimeInterval 4.0
 
 @interface FDThemeCell () <UIScrollViewDelegate>
@@ -20,7 +28,6 @@
 	NSUInteger currentPage;
 	NSUInteger numberOfPages;
 }
-
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -36,22 +43,22 @@
     return self;
 }
 
-- (void)setItems:(NSArray *)items
+- (void)setThemeSection:(FDThemeSection *)themeSection
 {
-	if (_items == items) return;
-	_items = items;
+	if (_themeSection == themeSection) return;
+	_themeSection = themeSection;
 	
 	CGFloat itemWidth = [_attributes[kThemeCellAttributeKeyItemWidth] floatValue];
-	for (int i = 0; i < items.count; i++) {
+	for (int i = 0; i < _themeSection.themes.count; i++) {
 		FDThemeItemView *itemView = [[FDThemeItemView alloc] initWithFrame:CGRectMake(itemWidth * i, 0, itemWidth, _scrollView.frame.size.height)];
-		itemView.theme = items[i];
+		itemView.theme = _themeSection.themes[i];
 		[_scrollView addSubview:itemView];
 	}
 	
-	_scrollView.contentSize = CGSizeMake(itemWidth * items.count, self.frame.size.height);
+	_scrollView.contentSize = CGSizeMake(itemWidth * _themeSection.themes.count, self.frame.size.height);
 	
 	currentPage = 0;
-	numberOfPages = items.count;
+	numberOfPages = _themeSection.themes.count;
 }
 
 - (void)setAttributes:(NSDictionary *)attributes
@@ -140,6 +147,18 @@
 		attributesOfBrandStyle = [NSDictionary dictionaryWithDictionary:attributes];
 	}
 	return attributesOfBrandStyle;
+}
+
++ (NSDictionary *)attributesOfStyle:(NSString *)themeStyle
+{
+	if ([themeStyle isEqualToString:kThemeStyleIdentifierSlide]) {
+		return [self attributesOfSlideStyle];
+	} else if ([themeStyle isEqualToString:kThemeStyleIdentifierIcon]) {
+		return [self attributesOfIconStyle];
+	} else if ([themeStyle isEqualToString:kThemeStyleIdentifierBrand]) {
+		return [self attributesOfBrandStyle];
+	}
+	return nil;
 }
 
 #pragma mark - UIScrollViewDelegate

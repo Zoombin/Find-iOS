@@ -35,6 +35,7 @@
 		778671BD17E705D6001FDB67 /* CLLocation+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 778671BC17E705D6001FDB67 /* CLLocation+Test.m */; };
 		778671C017E74383001FDB67 /* FDTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 778671BF17E74383001FDB67 /* FDTweet.m */; };
 		778671C317E806BF001FDB67 /* FDLikesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 778671C217E806BF001FDB67 /* FDLikesView.m */; };
+		779DFF48181602E10013E5F7 /* FDThemeSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 779DFF47181602E10013E5F7 /* FDThemeSection.m */; };
 		77A5F7A317CB22960073E7F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A217CB22960073E7F9 /* Foundation.framework */; };
 		77A5F7A517CB22960073E7F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A417CB22960073E7F9 /* CoreGraphics.framework */; };
 		77A5F7A717CB22960073E7F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A617CB22960073E7F9 /* UIKit.framework */; };
@@ -55,7 +56,7 @@
 		77A5F7F717CB30400073E7F9 /* FDMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F617CB30400073E7F9 /* FDMeViewController.m */; };
 		77A5F89017CD95E80073E7F9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F88F17CD95E80073E7F9 /* CFNetwork.framework */; };
 		77AD927E17DEC88800D2FEBC /* FDAFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AD927D17DEC88800D2FEBC /* FDAFHTTPClient.m */; };
-		77B6397F1810E14F00AE8526 /* FDThemeHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B6397E1810E14F00AE8526 /* FDThemeHeader.m */; };
+		77B6397F1810E14F00AE8526 /* FDThemeSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B6397E1810E14F00AE8526 /* FDThemeSectionHeaderView.m */; };
 		77C0242D17F3FB46009634CA /* FDAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0242C17F3FB46009634CA /* FDAvatarView.m */; };
 		77C0C8D917CDDBA8008C7FC7 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8D717CDDBA8008C7FC7 /* GTMBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		77C0C8DD17CDDE6A008C7FC7 /* ZBQNPutPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8DC17CDDE6A008C7FC7 /* ZBQNPutPolicy.m */; };
@@ -143,6 +144,8 @@
 		778671BF17E74383001FDB67 /* FDTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDTweet.m; path = find/FDTweet.m; sourceTree = "<group>"; };
 		778671C117E806BF001FDB67 /* FDLikesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDLikesView.h; path = find/FDLikesView.h; sourceTree = "<group>"; };
 		778671C217E806BF001FDB67 /* FDLikesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDLikesView.m; path = find/FDLikesView.m; sourceTree = "<group>"; };
+		779DFF46181602E10013E5F7 /* FDThemeSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeSection.h; path = find/FDThemeSection.h; sourceTree = "<group>"; };
+		779DFF47181602E10013E5F7 /* FDThemeSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDThemeSection.m; path = find/FDThemeSection.m; sourceTree = "<group>"; };
 		77A5F79F17CB22960073E7F9 /* find.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = find.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77A5F7A217CB22960073E7F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		77A5F7A417CB22960073E7F9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -174,8 +177,8 @@
 		77A5F88F17CD95E80073E7F9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		77AD927C17DEC88800D2FEBC /* FDAFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDAFHTTPClient.h; path = find/FDAFHTTPClient.h; sourceTree = "<group>"; };
 		77AD927D17DEC88800D2FEBC /* FDAFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDAFHTTPClient.m; path = find/FDAFHTTPClient.m; sourceTree = "<group>"; };
-		77B6397D1810E14F00AE8526 /* FDThemeHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeHeader.h; path = find/FDThemeHeader.h; sourceTree = "<group>"; };
-		77B6397E1810E14F00AE8526 /* FDThemeHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDThemeHeader.m; path = find/FDThemeHeader.m; sourceTree = "<group>"; };
+		77B6397D1810E14F00AE8526 /* FDThemeSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeSectionHeaderView.h; path = find/FDThemeSectionHeaderView.h; sourceTree = "<group>"; };
+		77B6397E1810E14F00AE8526 /* FDThemeSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDThemeSectionHeaderView.m; path = find/FDThemeSectionHeaderView.m; sourceTree = "<group>"; };
 		77C0242B17F3FB46009634CA /* FDAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDAvatarView.h; path = find/FDAvatarView.h; sourceTree = "<group>"; };
 		77C0242C17F3FB46009634CA /* FDAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDAvatarView.m; path = find/FDAvatarView.m; sourceTree = "<group>"; };
 		77C0C8D617CDDBA8008C7FC7 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
@@ -458,6 +461,8 @@
 			children = (
 				77D696FE180E540E000BCA07 /* FDSize.h */,
 				77D696FF180E540E000BCA07 /* FDSize.m */,
+				779DFF46181602E10013E5F7 /* FDThemeSection.h */,
+				779DFF47181602E10013E5F7 /* FDThemeSection.m */,
 				77D69701180E6D95000BCA07 /* FDTheme.h */,
 				77D69702180E6D95000BCA07 /* FDTheme.m */,
 				778671BE17E74383001FDB67 /* FDTweet.h */,
@@ -481,8 +486,8 @@
 				7734ACE817D8A6C1003E7BB6 /* FDPhotoInfo.m */,
 				777E5E1C17D97A98005AFB67 /* FDThemeCell.h */,
 				777E5E1D17D97A98005AFB67 /* FDThemeCell.m */,
-				77B6397D1810E14F00AE8526 /* FDThemeHeader.h */,
-				77B6397E1810E14F00AE8526 /* FDThemeHeader.m */,
+				77B6397D1810E14F00AE8526 /* FDThemeSectionHeaderView.h */,
+				77B6397E1810E14F00AE8526 /* FDThemeSectionHeaderView.m */,
 				777E5EE617D9BBDA005AFB67 /* FDThemeItemView.h */,
 				777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */,
 				77C0C96217D18D7C008C7FC7 /* FDPhotoCell.h */,
@@ -688,13 +693,14 @@
 				77A5F7AF17CB22960073E7F9 /* main.m in Sources */,
 				777E5EE817D9BBDA005AFB67 /* FDThemeItemView.m in Sources */,
 				77C0C8E017CDE32C008C7FC7 /* ZBQNAFHTTPClient.m in Sources */,
-				77B6397F1810E14F00AE8526 /* FDThemeHeader.m in Sources */,
+				77B6397F1810E14F00AE8526 /* FDThemeSectionHeaderView.m in Sources */,
 				777E5E1E17D97A98005AFB67 /* FDThemeCell.m in Sources */,
 				7786716017E35A98001FDB67 /* NSNumber+PrintableMeasurement.m in Sources */,
 				77C0C8DD17CDDE6A008C7FC7 /* ZBQNPutPolicy.m in Sources */,
 				7786715D17E35A98001FDB67 /* CLLocation+NSDictionary.m in Sources */,
 				77AD927E17DEC88800D2FEBC /* FDAFHTTPClient.m in Sources */,
 				77D69703180E6D95000BCA07 /* FDTheme.m in Sources */,
+				779DFF48181602E10013E5F7 /* FDThemeSection.m in Sources */,
 				7734ACD117D85605003E7BB6 /* FDUser+Test.m in Sources */,
 				77F5CD4F17E966BC006D931F /* FDSigninViewController.m in Sources */,
 				77DA107A17E97FA9001F44DF /* FDComment.m in Sources */,
