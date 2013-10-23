@@ -81,55 +81,49 @@
 
 #pragma mark - UITableViewDelegate
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//	if (section == 0) {
-//		return 0;
-//	} else return 40;
-//}
-
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//	NSDictionary *attributes = sectionsAttributesMap[@(section)];
-//	if (attributes[kThemeCellAttributeKeyHeaderTitle]) {
-//		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 40)];
-//		label.text = attributes[kThemeCellAttributeKeyHeaderTitle];
-//		return label;
-//	}
-//	return nil;
-//}
-
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//	return 1;
-//}
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//	NSDictionary *attributes = sectionsAttributesMap[@(indexPath.section)];
-//	return CGRectFromString(attributes[kThemeCellAttributeKeyBounds]).size.height;
-//}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return 2;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+	if (section == 0) {
+		return 1;
+	}
 	return photoComments.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	FDCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:kFDCommentCellIdentifier];
-	if (!cell) {
-		cell = [[FDCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFDCommentCellIdentifier];
-		cell.delegate = self;
+	if (indexPath.section == 0) {
+		FDCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:kFDCommentCellIdentifier];
+		if (!cell) {
+			cell = [[FDCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFDCommentCellIdentifier];
+			cell.delegate = self;
+		}
+		return cell;
+	} else {
+		FDCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:kFDCommentCellIdentifier];
+		if (!cell) {
+			cell = [[FDCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFDCommentCellIdentifier];
+			cell.delegate = self;
+		}
+		cell.comment = photoComments[indexPath.row];
+		//[tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+		return cell;
 	}
-	cell.comment = photoComments[indexPath.row];
-	return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	FDComment *comment = photoComments[indexPath.row];
-	return [FDCommentCell heightForComment:comment];
+	if (indexPath.section == 0) {
+		return 100;
+	} else {
+		FDComment *comment = photoComments[indexPath.row];
+		NSLog(@"heightForComment: %f", [FDCommentCell heightForComment:comment]);
+		return [FDCommentCell heightForComment:comment];
+	}
 }
 
 

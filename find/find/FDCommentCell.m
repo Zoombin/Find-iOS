@@ -12,13 +12,17 @@
 #define kGap 5
 #define kWidthOfContentArea 200
 #define kHeightOfDateLabel 10
+#define kMinCellHeight 60
+
+@interface FDCommentCell()
+
+@property (readwrite) FDAvatarView *avatar;
+@property (readwrite) UILabel *contentLabel;
+@property (readwrite) UILabel *dateLabel;
+
+@end
 
 @implementation FDCommentCell
-{
-	FDAvatarView *avatar;
-	UILabel *contentLabel;
-	UILabel *dateLabel;
-}
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -34,32 +38,31 @@
 		startPoint.y = kGap;
 		
 		CGSize avatarSize = [FDAvatarView defaultSize];
-		avatar = [[FDAvatarView alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, avatarSize.width, avatarSize.height)];
-		[self.contentView addSubview:avatar];
-		avatar.backgroundColor = [UIColor blueColor];
+		_avatar = [[FDAvatarView alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, avatarSize.width, avatarSize.height)];
+		[self.contentView addSubview:_avatar];
 		
-		startPoint.x = CGRectGetMaxX(avatar.frame) + kGap;
-		startPoint.y = CGRectGetMinY(avatar.frame);
+		startPoint.x = CGRectGetMaxX(_avatar.frame) + kGap;
+		startPoint.y = CGRectGetMinY(_avatar.frame);
 		
-		contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, kWidthOfContentArea, 0)];
-		contentLabel.font = [[self class] contentFont];
-		contentLabel.numberOfLines = 0;
-		contentLabel.textColor = [UIColor blackColor];
-//		contentLabel.backgroundColor = [UIColor randomColor];//TODO: test
-		contentLabel.lineBreakMode = NSLineBreakByWordWrapping;//TODO: ios7 enum, what if lower?
-		[self.contentView addSubview:contentLabel];
+		_contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, kWidthOfContentArea, kMinCellHeight)];
+		_contentLabel.font = [[self class] contentFont];
+		_contentLabel.numberOfLines = 0;
+		_contentLabel.textColor = [UIColor blackColor];
+//		_contentLabel.backgroundColor = [UIColor randomColor];//TODO: test
+		_contentLabel.lineBreakMode = NSLineBreakByCharWrapping;//TODO: ios7 enum, what if lower?
+		[self.contentView addSubview:_contentLabel];
 		
-		startPoint.x = CGRectGetMinX(contentLabel.frame);
-		startPoint.y = CGRectGetMaxY(contentLabel.frame);
+		startPoint.x = CGRectGetMinX(_contentLabel.frame);
+		startPoint.y = CGRectGetMaxY(_contentLabel.frame);
 		
-		dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, self.bounds.size.width - startPoint.x, kHeightOfDateLabel)];
-		dateLabel.textColor = [UIColor lightGrayColor];
-		dateLabel.font = [UIFont fdThemeFontOfSize:9];
-//		dateLabel.backgroundColor = [UIColor randomColor];//TODO: test
-		[self.contentView addSubview:dateLabel];
+		_dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, self.bounds.size.width - startPoint.x, kHeightOfDateLabel)];
+		_dateLabel.textColor = [UIColor lightGrayColor];
+		_dateLabel.font = [UIFont fdThemeFontOfSize:9];
+		_dateLabel.backgroundColor = [UIColor randomColor];//TODO: test
+		[self.contentView addSubview:_dateLabel];
 		
-		startPoint.x = CGRectGetMaxX(contentLabel.frame);
-		startPoint.y = CGRectGetMinY(contentLabel.frame);
+		startPoint.x = CGRectGetMaxX(_contentLabel.frame);
+		startPoint.y = CGRectGetMinY(_contentLabel.frame);
 		
 		UIButton *tweetCommentButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		[tweetCommentButton setImage:[UIImage imageNamed:@"CommentGray"] forState:UIControlStateNormal];
@@ -73,22 +76,46 @@
     return self;
 }
 
++ (NSString *)displayContent:(FDComment *)comment
+{
+	if (comment) {
+		return [NSString stringWithFormat:@"%@: %@", comment.username, comment.content];
+	}
+	return nil;
+}
+
 - (void)setComment:(FDComment *)comment
 {
 	if (_comment == comment) return;
 	_comment = comment;
+	_contentLabel.text = [[self class] displayContent:_comment];
+	_dateLabel.text = [_comment.published printableTimestamp];
+	_avatar.userID = _comment.userID;
+}
+
+- (void)layoutSubviews {
+	[super layoutSubviews];
+
+	CGRect frame = _contentLabel.frame;
+	[_contentLabel sizeToFit];
+	frame.size.height = _contentLabel.frame.size.height;
+	_contentLabel.frame = frame;
 	
-	contentLabel.text = [NSString stringWithFormat:@"%@ : %@", _comment.username, _comment.content];
-	[contentLabel sizeToFit];
-	
-	CGRect newFrame = dateLabel.frame;
-	newFrame.origin.y = CGRectGetMaxY(contentLabel.frame) + kGap;
-	dateLabel.frame = newFrame;
-	dateLabel.text = [_comment.published printableTimestamp];
-	
-//	if (_comment.userID) {
-//		avatar.userID = _comment.userID;
-//	}
+	frame = _dateLabel.frame;
+	frame.origin.y = CGRectGetMaxY(_contentLabel.frame) + kGap;
+	_dateLabel.frame = frame;
+}
+
+
+- (void)prepareForReuse
+{
+	[super prepareForReuse];
+	_contentLabel.text = nil;
+	_dateLabel.text = nil;
+//	avatar.userID = nil;
+//	avatar.image = nil;
+	_comment.userID = nil;
+	_comment = nil;
 }
 
 - (void)willCommentOrReply:(FDComment *)comment
@@ -98,15 +125,14 @@
 
 + (CGFloat)heightForComment:(FDComment *)comment
 {
-	NSString *text = [NSString stringWithFormat:@"%@ : %@", comment.username, comment.content];
+	NSString *text = [self displayContent:comment];
 	CGRect textFrame = [text boundingRectWithSize:CGSizeMake(kWidthOfContentArea, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [[self class] contentFont]} context:nil];
 	return kGap + textFrame.size.height + kGap +  kHeightOfDateLabel + kGap;
 }
 
-
-static UIFont *contentFont;
 + (UIFont *)contentFont
 {
+	static UIFont *contentFont;
 	if (!contentFont) {
 		contentFont = [UIFont fdThemeFontOfSize:13];
 	}

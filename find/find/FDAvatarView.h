@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FDAvatarView : UIView
+@interface FDAvatarView : UIImageView
 
 @property (nonatomic, strong) NSNumber *userID;
 

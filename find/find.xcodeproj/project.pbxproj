@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		45D1109202E547CCB807D5B8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E7030C33EC4070B937A558 /* libPods.a */; };
 		77042964181676E30087F7BF /* PSUICollectionViewFlowLayout+FDLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 77042963181676E30087F7BF /* PSUICollectionViewFlowLayout+FDLayout.m */; };
+		77042967181765D50087F7BF /* FDComment+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 77042966181765D50087F7BF /* FDComment+Test.m */; };
 		77338E7F18090184006DEC3D /* FDErrorMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 77338E7E18090184006DEC3D /* FDErrorMessage.m */; };
 		7734ACCB17D8520B003E7BB6 /* FDUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACCA17D8520B003E7BB6 /* FDUserProfileViewController.m */; };
 		7734ACCE17D85368003E7BB6 /* FDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACCD17D85368003E7BB6 /* FDUser.m */; };
@@ -93,6 +94,8 @@
 		19E7030C33EC4070B937A558 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		77042962181676E30087F7BF /* PSUICollectionViewFlowLayout+FDLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PSUICollectionViewFlowLayout+FDLayout.h"; path = "find/PSUICollectionViewFlowLayout+FDLayout.h"; sourceTree = "<group>"; };
 		77042963181676E30087F7BF /* PSUICollectionViewFlowLayout+FDLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PSUICollectionViewFlowLayout+FDLayout.m"; path = "find/PSUICollectionViewFlowLayout+FDLayout.m"; sourceTree = "<group>"; };
+		77042965181765D50087F7BF /* FDComment+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FDComment+Test.h"; path = "Test/FDComment+Test.h"; sourceTree = "<group>"; };
+		77042966181765D50087F7BF /* FDComment+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FDComment+Test.m"; path = "Test/FDComment+Test.m"; sourceTree = "<group>"; };
 		77338E7D18090184006DEC3D /* FDErrorMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDErrorMessage.h; path = find/FDErrorMessage.h; sourceTree = "<group>"; };
 		77338E7E18090184006DEC3D /* FDErrorMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDErrorMessage.m; path = find/FDErrorMessage.m; sourceTree = "<group>"; };
 		7734ACC917D8520B003E7BB6 /* FDUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDUserProfileViewController.h; sourceTree = "<group>"; };
@@ -429,6 +432,8 @@
 			isa = PBXGroup;
 			children = (
 				77C0C91E17CE1A51008C7FC7 /* FDTest.h */,
+				77042965181765D50087F7BF /* FDComment+Test.h */,
+				77042966181765D50087F7BF /* FDComment+Test.m */,
 				77FE43411801040F00B1B5D3 /* FDTestAccountsViewController.h */,
 				77FE43421801040F00B1B5D3 /* FDTestAccountsViewController.m */,
 				77C0C91B17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.h */,
@@ -712,6 +717,7 @@
 				77F5CD5817E9771A006D931F /* UIColor+Find.m in Sources */,
 				7786716117E35A98001FDB67 /* NSString+BundleExtensions.m in Sources */,
 				7786716717E35A98001FDB67 /* UIDevice+ZBUtilites.m in Sources */,
+				77042967181765D50087F7BF /* FDComment+Test.m in Sources */,
 				7734ACD417D8562F003E7BB6 /* FDPhoto+Test.m in Sources */,
 				77D69700180E540E000BCA07 /* FDSize.m in Sources */,
 				77FE43431801040F00B1B5D3 /* FDTestAccountsViewController.m in Sources */,

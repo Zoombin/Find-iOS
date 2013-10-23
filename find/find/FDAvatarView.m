@@ -9,19 +9,13 @@
 #import "FDAvatarView.h"
 
 @implementation FDAvatarView
-{
-	UIImageView *imageView;
-}
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
 		self.layer.cornerRadius = 4;
-		
-        imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-		imageView.layer.cornerRadius = self.layer.cornerRadius;
-		[self addSubview:imageView];
+		self.backgroundColor = [UIColor randomColor];//TODO:test
     }
     return self;
 }
@@ -31,22 +25,14 @@
 	if (_userID == userID) return;
 	_userID = userID;
 	
-	NSString *path = [NSString stringWithFormat:@"%@%@", QINIU_FIND, @"1.jpg"];//TODO: test
-	[imageView setImageWithURL:[NSURL URLWithString:path]];
+	//NSInteger idx = arc4random() % 50 + 1;//TODO: test
+	NSString *path = [NSString stringWithFormat:@"%@%d.jpg", QINIU_FIND, 1];
+	[self setImageWithURL:[NSURL URLWithString:path]];
 }
 
 + (CGSize)defaultSize
 {
 	return CGSizeMake(35, 35);
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

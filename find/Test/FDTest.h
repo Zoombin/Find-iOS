@@ -11,3 +11,4 @@
 #import "FDPhoto+Test.h"
 #import "FDUser+Test.h"
 #import "CLLocation+Test.h"
+#import "FDComment+Test.h"
