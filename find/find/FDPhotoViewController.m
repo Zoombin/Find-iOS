@@ -79,6 +79,11 @@
 	}];
 }
 
+- (void)willReport:(FDComment *)comment
+{
+	NSLog(@"will report comment: %@", comment);
+}
+
 #pragma mark - UITableViewDelegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

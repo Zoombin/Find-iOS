@@ -19,7 +19,14 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"Me";
+		NSString *identifier = NSLocalizedString(@"Me", nil);
+		self.title = identifier;
+		
+		if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Me"] selectedImage:[UIImage imageNamed:@"MeHighlighted"]];
+		} else {
+			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Me"] tag:0];
+		}
     }
     return self;
 }

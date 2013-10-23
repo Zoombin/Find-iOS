@@ -18,7 +18,14 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"Camera";
+        NSString *identifier = NSLocalizedString(@"Camera", nil);
+		self.title = identifier;
+		
+		if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Camera"] selectedImage:[UIImage imageNamed:@"CameraHighlighted"]];
+		} else {
+			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Camera"] tag:0];
+		}
     }
     return self;
 }

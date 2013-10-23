@@ -15,6 +15,7 @@
 @protocol FDCommentCellDelegate <NSObject>
 
 - (void)willCommentOrReply:(FDComment *)comment;
+- (void)willReport:(FDComment *)comment;
 
 @end
 

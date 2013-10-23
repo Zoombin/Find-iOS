@@ -30,8 +30,12 @@
     if (self) {
 		NSString *identifier = NSLocalizedString(@"Around", nil);
 		self.title = identifier;
-		self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:identifier] tag:0];
-		//self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:identifier] selectedImage:[UIImage imageNamed:identifier]];
+		
+		if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Around"] selectedImage:[UIImage imageNamed:@"AroundHighlighted"]];
+		} else {
+			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Around"] tag:0];
+		}
     }
     return self;
 }

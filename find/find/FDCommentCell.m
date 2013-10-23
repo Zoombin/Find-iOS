@@ -13,6 +13,7 @@
 #define kWidthOfContentArea 200
 #define kHeightOfDateLabel 10
 #define kMinCellHeight 60
+#define kMoreActionLayoutOffset 40
 
 @interface FDCommentCell()
 
@@ -30,8 +31,8 @@
     if (self) {
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
 		
-//		self.backgroundColor = [UIColor grayColor];//TODO: test
-		
+//		self.backgroundColor = [UIColor randomColor];//TODO: test
+
 		CGPoint startPoint = CGPointZero;
 		
 		startPoint.x = kGap;
@@ -64,24 +65,52 @@
 		startPoint.x = CGRectGetMaxX(_contentLabel.frame);
 		startPoint.y = CGRectGetMinY(_contentLabel.frame);
 		
+		CGSize buttonSize = CGSizeMake(60, 40);
+		
 		UIButton *tweetCommentButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		[tweetCommentButton setImage:[UIImage imageNamed:@"CommentGray"] forState:UIControlStateNormal];
-		tweetCommentButton.backgroundColor = [UIColor randomColor];
+		[tweetCommentButton setImage:[UIImage imageNamed:@"Comment"] forState:UIControlStateNormal];
+		//tweetCommentButton.backgroundColor = [UIColor randomColor];
 		tweetCommentButton.contentMode = UIViewContentModeCenter;
 		tweetCommentButton.showsTouchWhenHighlighted = YES;
-		tweetCommentButton.frame = CGRectMake(startPoint.x, startPoint.y, self.bounds.size.width - startPoint.x, self.frame.size.height - 2 * startPoint.y);
+		tweetCommentButton.frame = CGRectMake(startPoint.x, startPoint.y, buttonSize.width, buttonSize.height);
 		[tweetCommentButton addTarget:self action:@selector(willCommentOrReply:) forControlEvents:UIControlEventTouchUpInside];
 		[self.contentView addSubview:tweetCommentButton];
+		
+		startPoint.x = CGRectGetMaxX(tweetCommentButton.frame);
+		startPoint.y = CGRectGetMinY(tweetCommentButton.frame);
+		
+		UIButton *reportButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		[reportButton setImage:[UIImage imageNamed:@"Report"] forState:UIControlStateNormal];
+		//blockButton.backgroundColor = [UIColor randomColor];
+		reportButton.contentMode = UIViewContentModeCenter;
+		reportButton.showsTouchWhenHighlighted = YES;
+		reportButton.frame = CGRectMake(startPoint.x, startPoint.y, buttonSize.width, buttonSize.height);
+		[reportButton addTarget:self action:@selector(willReport:) forControlEvents:UIControlEventTouchUpInside];
+		[self.contentView addSubview:reportButton];
+		
+		UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doThingOrCancel)];
+		[self addGestureRecognizer:tapGestureRecognizer];
+		
+		UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(doThingOrCancel)];
+		swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight;
+		[self addGestureRecognizer:swipeGestureRecognizer];
     }
     return self;
 }
 
-+ (NSString *)displayContent:(FDComment *)comment
+- (void)doThingOrCancel
 {
-	if (comment) {
-		return [NSString stringWithFormat:@"%@: %@", comment.username, comment.content];
+	CGFloat startX = self.frame.origin.x;
+	CGFloat endX = -1 * kMoreActionLayoutOffset;
+	if (startX < 0) {
+		endX = 0;
 	}
-	return nil;
+	[UIView animateWithDuration:0.25 animations:^{
+		CGRect frame = self.frame;
+		frame.origin.x = endX;
+		frame.size.width -= endX;
+		self.frame = frame;
+	}];
 }
 
 - (void)setComment:(FDComment *)comment
@@ -106,7 +135,6 @@
 	_dateLabel.frame = frame;
 }
 
-
 - (void)prepareForReuse
 {
 	[super prepareForReuse];
@@ -130,6 +158,11 @@
 	return kGap + textFrame.size.height + kGap +  kHeightOfDateLabel + kGap;
 }
 
+- (void)willReport:(FDComment *)comment
+{
+	[_delegate willReport:comment];
+}
+
 + (UIFont *)contentFont
 {
 	static UIFont *contentFont;
@@ -137,6 +170,14 @@
 		contentFont = [UIFont fdThemeFontOfSize:13];
 	}
 	return contentFont;
+}
+
++ (NSString *)displayContent:(FDComment *)comment
+{
+	if (comment) {
+		return [NSString stringWithFormat:@"%@: %@", comment.username, comment.content];
+	}
+	return nil;
 }
 
 @end

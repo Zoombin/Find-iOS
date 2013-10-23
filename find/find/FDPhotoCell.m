@@ -36,7 +36,7 @@
 		
 		start = CGPointMake(5, CGRectGetMaxY(photoView.frame));
 		
-		UIImageView *distanceIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Around"]];
+		UIImageView *distanceIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Location"]];
 		distanceIcon.contentMode = UIViewContentModeScaleAspectFit;
 		distanceIcon.frame = CGRectMake(start.x, start.y, 22, 27);
 		[self addSubview:distanceIcon];
