@@ -58,7 +58,7 @@
 		_dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, self.bounds.size.width - startPoint.x, kHeightOfDateLabel)];
 		_dateLabel.textColor = [UIColor lightGrayColor];
 		_dateLabel.font = [UIFont fdThemeFontOfSize:9];
-		_dateLabel.backgroundColor = [UIColor randomColor];//TODO: test
+//		_dateLabel.backgroundColor = [UIColor randomColor];//TODO: test
 		[self.contentView addSubview:_dateLabel];
 		
 		startPoint.x = CGRectGetMaxX(_contentLabel.frame);

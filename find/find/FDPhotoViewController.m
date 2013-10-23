@@ -121,7 +121,6 @@
 		return 100;
 	} else {
 		FDComment *comment = photoComments[indexPath.row];
-		NSLog(@"heightForComment: %f", [FDCommentCell heightForComment:comment]);
 		return [FDCommentCell heightForComment:comment];
 	}
 }
