@@ -19,7 +19,7 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 
 #define kAutoScrollTimeInterval 4.0
 
-@interface FDThemeCell () <UIScrollViewDelegate>
+@interface FDThemeCell () <UIScrollViewDelegate, FDThemeItemViewDelegate>
 
 @property (readwrite) NSUInteger currentPage;
 @property (readwrite) NSUInteger numberOfPages;
@@ -52,6 +52,7 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 	for (int i = 0; i < _themeSection.themes.count; i++) {
 		FDThemeItemView *itemView = [[FDThemeItemView alloc] initWithFrame:CGRectMake(itemWidth * i, 0, itemWidth, _scrollView.frame.size.height)];
 		itemView.theme = _themeSection.themes[i];
+		itemView.delegate = self;
 		[_scrollView addSubview:itemView];
 	}
 	
@@ -183,6 +184,13 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 {
 	CGFloat pageWidth = scrollView.frame.size.width;
 	_currentPage = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+}
+
+#pragma mark - FDThemeItemViewDelegate
+
+- (void)didSelectTheme:(FDTheme *)theme
+{
+	[_delegate didSelectTheme:theme inThemeSection:_themeSection];
 }
 
 

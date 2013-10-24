@@ -29,7 +29,8 @@
 		imageView.layer.masksToBounds = YES;
 		[self addSubview:imageView];
 		
-		
+		UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped)];
+		[self addGestureRecognizer:tapGestureRecognizer];
     }
     return self;
 }
@@ -79,6 +80,11 @@
 		[imageView setImageWithURL:[NSURL URLWithString:_theme.imagePath]];
 		//[imageView setImage:[UIImage imageFromColor:[UIColor randomColor]]];
 	}
+}
+
+- (void)tapped
+{
+	[_delegate didSelectTheme:_theme];
 }
 
 @end

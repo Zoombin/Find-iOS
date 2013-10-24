@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol FDThemeItemViewDelegate <NSObject>
+
+- (void)didSelectTheme:(FDTheme *)theme;
+
+@end
+
 @interface FDThemeItemView : UIView
 
+@property (nonatomic, weak) id<FDThemeItemViewDelegate> delegate;
 @property (nonatomic, strong) FDTheme *theme;
 
 @end

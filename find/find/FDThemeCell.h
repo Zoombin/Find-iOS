@@ -19,8 +19,15 @@ extern NSString *kThemeCellAttributeKeyHasSeparateLine;
 
 #define kFDThemeCellIdentifier @"kFDThemeCellIdentifier"
 
+@protocol FDThemeCellDelegate <NSObject>
+
+- (void)didSelectTheme:(FDTheme *)theme inThemeSection:(FDThemeSection *)themeSection;
+
+@end
+
 @interface FDThemeCell : UITableViewCell
 
+@property (nonatomic, weak) id<FDThemeCellDelegate> delegate;
 @property (nonatomic, strong) NSDictionary *attributes;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) FDThemeSection *themeSection;

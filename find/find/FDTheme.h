@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *kThemeTypeIdentifierPhoto;
+extern NSString *kThemeTypeIdentifierUser;
+
 @interface FDTheme : NSObject
 
 @property (nonatomic, strong) NSNumber *ID;

@@ -8,6 +8,9 @@
 
 #import "FDTheme.h"
 
+NSString *kThemeTypeIdentifierPhoto = @"photo";
+NSString *kThemeTypeIdentifierUser = @"member";
+
 @implementation FDTheme
 
 + (FDTheme *)createWithAttributes:(NSDictionary *)attributes
@@ -34,7 +37,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"<THEME: id: %@, title: %@, subtitle: %@, image: %@>", _ID, _title, _subtitle, _imagePath];
+	return [NSString stringWithFormat:@"<THEME: id: %@, title: %@, subtitle: %@, type: %@, image: %@>", _ID, _title, _subtitle, _type, _imagePath];
 }
 
 - (NSString *)imagePath

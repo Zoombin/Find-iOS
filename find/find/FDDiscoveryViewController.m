@@ -11,8 +11,9 @@
 #import "FDThemeSectionHeaderView.h"
 #import "FDThemeItemView.h"
 #import "FDThemeSection.h"
+#import "FDUserProfileViewController.h"
 
-@interface FDDiscoveryViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface FDDiscoveryViewController () <UITableViewDataSource, UITableViewDelegate, FDThemeCellDelegate>
 
 @end
 
@@ -127,12 +128,25 @@
 	FDThemeCell *cell = [tableView dequeueReusableCellWithIdentifier:kFDThemeCellIdentifier];
 	if (!cell) {
 		cell = [[FDThemeCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:kFDThemeCellIdentifier];
+		cell.delegate = self;
 	}
 	FDThemeSection *themeSection = [self themeSectionInSection:indexPath.section];
 	NSDictionary *attributes = [FDThemeCell attributesOfStyle:themeSection.style];
 	cell.attributes = attributes;
 	cell.themeSection = themeSection;
 	return cell;
+}
+
+#pragma mark - FDThemeCellDelegate
+
+- (void)didSelectTheme:(FDTheme *)theme inThemeSection:(FDThemeSection *)themeSection
+{
+	NSLog(@"select theme: %@ in themeSection: %@", theme, themeSection);
+	if ([theme.type isEqualToString:kThemeTypeIdentifierPhoto]) {
+		;
+	} else if ([theme.type isEqualToString:kThemeTypeIdentifierUser]) {
+		[self.navigationController pushViewController:[[FDUserProfileViewController alloc] init] animated:YES];
+	}
 }
 
 @end
