@@ -16,8 +16,10 @@
 	FDTheme *theme = [[FDTheme alloc] init];
 	
 	theme.ID = attributes[@"id"];
-	theme.name = attributes[@"name"];
+	theme.title = attributes[@"title"];
+	theme.subtitle = attributes[@"subtitle"];
 	theme.imagePath = attributes[@"img"];
+	theme.type = attributes[@"type"];
 	return theme;
 }
 
@@ -32,7 +34,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"<THEME: id: %@, name: %@, image: %@>", _ID, _name, _imagePath];
+	return [NSString stringWithFormat:@"<THEME: id: %@, title: %@, subtitle: %@, image: %@>", _ID, _title, _subtitle, _imagePath];
 }
 
 - (NSString *)imagePath

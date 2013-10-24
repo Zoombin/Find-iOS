@@ -21,13 +21,13 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 
 @interface FDThemeCell () <UIScrollViewDelegate>
 
+@property (readwrite) NSUInteger currentPage;
+@property (readwrite) NSUInteger numberOfPages;
+@property (readwrite) BOOL autoScroll;
+
 @end
 
 @implementation FDThemeCell
-{
-	NSUInteger currentPage;
-	NSUInteger numberOfPages;
-}
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -57,8 +57,8 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 	
 	_scrollView.contentSize = CGSizeMake(itemWidth * _themeSection.themes.count, self.frame.size.height);
 	
-	currentPage = 0;
-	numberOfPages = _themeSection.themes.count;
+	_currentPage = 0;
+	_numberOfPages = _themeSection.themes.count;
 }
 
 - (void)setAttributes:(NSDictionary *)attributes
@@ -79,6 +79,7 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 	
 	if (_attributes[kThemeCellAttributeKeyAutoScrollEnabled]) {
 		[self performSelector:@selector(scrollToNext) withObject:nil afterDelay:kAutoScrollTimeInterval];
+		_autoScroll = YES;
 	}
 	
 	if ([_attributes[kThemeCellAttributeKeyHasSeparateLine] boolValue]) {
@@ -94,14 +95,29 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 
 - (void)scrollToNext
 {
-	currentPage++;
-	if (currentPage >= numberOfPages) {
+	if (!_autoScroll) return;
+	_currentPage++;
+	if (_currentPage >= _numberOfPages) {
 		[_scrollView setContentOffset:CGPointZero animated:NO];
-		currentPage = 0;
+		_currentPage = 0;
 	} else {
-		[_scrollView setContentOffset:CGPointMake(currentPage * _scrollView.frame.size.width, 0) animated:YES];
+		[_scrollView setContentOffset:CGPointMake(_currentPage * _scrollView.frame.size.width, 0) animated:YES];
 	}
 	[self performSelector:@selector(scrollToNext) withObject:nil afterDelay:3];
+}
+
+- (void)prepareForReuse
+{
+	[super prepareForReuse];
+	_themeSection = nil;
+	_attributes = nil;
+	_currentPage = 0;
+	_numberOfPages = 0;
+	for (UIView *subView in _scrollView.subviews) {
+		[subView removeFromSuperview];
+	}
+	_autoScroll = NO;
+	_scrollView.showsHorizontalScrollIndicator = YES;
 }
 
 + (NSDictionary *)attributesOfSlideStyle
@@ -166,7 +182,7 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
 	CGFloat pageWidth = scrollView.frame.size.width;
-	currentPage = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+	_currentPage = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
 }
 
 

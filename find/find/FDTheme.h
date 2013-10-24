@@ -11,8 +11,10 @@
 @interface FDTheme : NSObject
 
 @property (nonatomic, strong) NSNumber *ID;
-@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *subtitle;
 @property (nonatomic, strong) NSString *imagePath;
+@property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *style;
 
 + (FDTheme *)createWithAttributes:(NSDictionary *)attributes;

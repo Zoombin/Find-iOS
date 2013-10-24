@@ -16,6 +16,7 @@ extern NSString *kThemeStyleIdentifierBrand;
 
 @property (nonatomic, strong) NSNumber *ID;
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSNumber *ordered;
 @property (nonatomic, strong) NSArray *themes;
 @property (nonatomic, strong) NSString *style;

@@ -20,7 +20,8 @@ NSString *kThemeStyleIdentifierBrand = @"brand";
 	NSAssert(attributes[@"id"], @"A themeSection must have a ID!");
 	FDThemeSection *themeSection = [[FDThemeSection alloc] init];
 	themeSection.ID = attributes[@"id"];
-	themeSection.name = attributes[@"name"];
+	themeSection.name = attributes[@"secname"];
+	themeSection.title = attributes[@"title"];
 	themeSection.ordered = attributes[@"ordered"];
 	
 	if ([themeSection.name hasPrefix:kThemeStyleIdentifierSlide]) {

@@ -95,7 +95,7 @@
 	NSDictionary *attributes = [FDThemeCell attributesOfStyle:themeSection.style];
 	if (attributes[kThemeCellAttributeKeyHeaderTitle]) {
 		FDThemeSectionHeaderView *headerView = [[FDThemeSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, [FDThemeSectionHeaderView height])];
-		headerView.title = themeSection.name;
+		headerView.title = themeSection.title;
 		return headerView;
 	}
 	return nil;
@@ -128,7 +128,6 @@
 	if (!cell) {
 		cell = [[FDThemeCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:kFDThemeCellIdentifier];
 	}
-	
 	FDThemeSection *themeSection = [self themeSectionInSection:indexPath.section];
 	NSDictionary *attributes = [FDThemeCell attributesOfStyle:themeSection.style];
 	cell.attributes = attributes;

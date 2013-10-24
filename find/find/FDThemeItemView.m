@@ -28,6 +28,8 @@
 		imageView.layer.borderWidth = 1;
 		imageView.layer.masksToBounds = YES;
 		[self addSubview:imageView];
+		
+		
     }
     return self;
 }
@@ -53,7 +55,7 @@
 		titleLabel.textColor = [UIColor blackColor];
 		titleLabel.font = [UIFont fdThemeFontOfSize:12];
 		titleLabel.textAlignment = NSTextAlignmentCenter;
-		titleLabel.text = @"百变美女静";//TODO
+		titleLabel.text = _theme.title;
 		[self addSubview:titleLabel];
 
 		start = CGPointMake(CGRectGetMinX(titleLabel.frame), CGRectGetMaxY(titleLabel.frame));
@@ -63,7 +65,7 @@
 		subtitleLabel.textColor = [UIColor grayColor];
 		subtitleLabel.font = [UIFont fdThemeFontOfSize:12];
 		subtitleLabel.textAlignment = NSTextAlignmentCenter;
-		subtitleLabel.text = @"上海";//TODO
+		subtitleLabel.text = _theme.subtitle;
 		[self addSubview:subtitleLabel];
 
 	} else if ([_theme.style isEqualToString:kThemeStyleIdentifierBrand]) {
