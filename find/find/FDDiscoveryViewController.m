@@ -125,9 +125,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	FDThemeCell *cell = [tableView dequeueReusableCellWithIdentifier:kFDThemeCellIdentifier];
+	//no reuse for remember themecell's scroll position
+	NSString *noReuseIdentiifer = [NSString stringWithFormat:@"%@%@", kFDThemeCellIdentifier, @(indexPath.section)];
+	FDThemeCell *cell = [tableView dequeueReusableCellWithIdentifier:noReuseIdentiifer];
 	if (!cell) {
-		cell = [[FDThemeCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:kFDThemeCellIdentifier];
+		cell = [[FDThemeCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:noReuseIdentiifer];
 		cell.delegate = self;
 	}
 	FDThemeSection *themeSection = [self themeSectionInSection:indexPath.section];

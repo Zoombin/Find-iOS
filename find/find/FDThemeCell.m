@@ -56,8 +56,9 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 		[_scrollView addSubview:itemView];
 	}
 	
+	_scrollView.contentOffset = CGPointMake(0, 0);
 	_scrollView.contentSize = CGSizeMake(itemWidth * _themeSection.themes.count, self.frame.size.height);
-	
+
 	_currentPage = 0;
 	_numberOfPages = _themeSection.themes.count;
 }
@@ -109,16 +110,16 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 
 - (void)prepareForReuse
 {
-	[super prepareForReuse];
-	_themeSection = nil;
-	_attributes = nil;
-	_currentPage = 0;
-	_numberOfPages = 0;
-	for (UIView *subView in _scrollView.subviews) {
-		[subView removeFromSuperview];
-	}
-	_autoScroll = NO;
-	_scrollView.showsHorizontalScrollIndicator = YES;
+	;//do nothing, no reuse themecell for remember scroll position
+//	[super prepareForReuse];
+//	_themeSection = nil;
+//	_attributes = nil;
+//	for (UIView *subView in _scrollView.subviews) {
+//		[subView removeFromSuperview];
+//	}
+//	_autoScroll = NO;
+//	_scrollView.showsHorizontalScrollIndicator = YES;
+//	_scrollView.contentOffset = CGPointMake(0, 0);
 }
 
 + (NSDictionary *)attributesOfSlideStyle
