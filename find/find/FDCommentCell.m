@@ -10,7 +10,7 @@
 #import "FDAvatarView.h"
 
 #define kGap 5
-#define kWidthOfContentArea 200
+#define kWidthOfContentArea 240
 #define kHeightOfDateLabel 10
 #define kMinCellHeight 60
 #define kMoreActionLayoutOffset 40
@@ -49,7 +49,7 @@
 		_contentLabel.font = [[self class] contentFont];
 		_contentLabel.numberOfLines = 0;
 		_contentLabel.textColor = [UIColor blackColor];
-//		_contentLabel.backgroundColor = [UIColor randomColor];//TODO: test
+		_contentLabel.backgroundColor = [UIColor randomColor];//TODO: test
 		_contentLabel.lineBreakMode = NSLineBreakByCharWrapping;//TODO: ios7 enum, what if lower?
 		[self.contentView addSubview:_contentLabel];
 		
@@ -65,11 +65,11 @@
 		startPoint.x = CGRectGetMaxX(_contentLabel.frame);
 		startPoint.y = CGRectGetMinY(_contentLabel.frame);
 		
-		CGSize buttonSize = CGSizeMake(60, 40);
+		CGSize buttonSize = CGSizeMake(40, 40);
 		
 		UIButton *tweetCommentButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		[tweetCommentButton setImage:[UIImage imageNamed:@"Comment"] forState:UIControlStateNormal];
-		//tweetCommentButton.backgroundColor = [UIColor randomColor];
+//		tweetCommentButton.backgroundColor = [UIColor randomColor];
 		tweetCommentButton.contentMode = UIViewContentModeCenter;
 		tweetCommentButton.showsTouchWhenHighlighted = YES;
 		tweetCommentButton.frame = CGRectMake(startPoint.x, startPoint.y, buttonSize.width, buttonSize.height);
@@ -81,7 +81,7 @@
 		
 		UIButton *reportButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		[reportButton setImage:[UIImage imageNamed:@"Report"] forState:UIControlStateNormal];
-		//blockButton.backgroundColor = [UIColor randomColor];
+//		reportButton.backgroundColor = [UIColor randomColor];
 		reportButton.contentMode = UIViewContentModeCenter;
 		reportButton.showsTouchWhenHighlighted = YES;
 		reportButton.frame = CGRectMake(startPoint.x, startPoint.y, buttonSize.width, buttonSize.height);
