@@ -101,7 +101,6 @@
 	} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
 		if (block) block();
 	}];
-	
 	[self setPhotoInfo];
 }
 
