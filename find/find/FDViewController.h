@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "ZBViewController.h"
 
-@interface FDViewController : ZBViewController
+@interface FDViewController : UIViewController
+
+- (void)setLeftBarButtonItemAsBackButton;
 
 @end

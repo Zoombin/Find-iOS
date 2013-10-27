@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FDAroundViewController : UIViewController
+@interface FDAroundViewController : FDViewController
 
 @end

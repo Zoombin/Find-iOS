@@ -22,7 +22,7 @@
 		self.title = identifier;
 		
 		if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-			[self.self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"HostHighlighted"] withFinishedUnselectedImage:[UIImage imageNamed:@"Host"]];
+			[self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"HostHighlighted"] withFinishedUnselectedImage:[UIImage imageNamed:@"Host"]];
 		} else {
 			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Host"] tag:0];
 		}

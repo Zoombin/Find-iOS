@@ -31,7 +31,7 @@
 		self.title = identifier;
 		
 		if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-			[self.self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"DiscoveryHighlighted"] withFinishedUnselectedImage:[UIImage imageNamed:@"Discovery"]];
+			[self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"DiscoveryHighlighted"] withFinishedUnselectedImage:[UIImage imageNamed:@"Discovery"]];
 		} else {
 			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Discovery"] tag:0];
 		}

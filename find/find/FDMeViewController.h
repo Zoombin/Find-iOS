@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FDMeViewController : UIViewController
+@interface FDMeViewController : FDViewController
 
 @end

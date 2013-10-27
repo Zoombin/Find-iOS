@@ -25,6 +25,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+		[self setLeftBarButtonItemAsBackButton];
     }
     return self;
 }
@@ -51,6 +52,7 @@
 {
 	[[FDAFHTTPClient shared] commentsOfPhoto:_photo.ID limit:@(9999) published:nil withCompletionBlock:^(BOOL success, NSString *message, NSArray *commentsData, NSNumber *lastestPublishedTimestamp) {
 		if (success) {
+			self.navigationItem.title = @"hello";//TODO set username
 			photoComments = [FDComment createMutableWithData:commentsData];
 			[commentsTableView reloadData];
 		}

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FDCameraViewController : UIViewController
+@interface FDCameraViewController : FDViewController
 
 @end

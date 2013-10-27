@@ -32,10 +32,12 @@
 		self.title = identifier;
 		
 		if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-			[self.self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"AroundHighlighted"] withFinishedUnselectedImage:[UIImage imageNamed:@"Around"]];
+			[self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"AroundHighlighted"] withFinishedUnselectedImage:[UIImage imageNamed:@"Around"]];
 		} else {
-			//self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Around"] tag:0];
+			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Around"] tag:0];
 		}
+		
+		//self.navigationController.hidesBottomBarWhenPushed = YES;
     }
     return self;
 }
