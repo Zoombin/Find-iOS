@@ -10,13 +10,12 @@
 
 @interface FDPhotoCell () <FDLikesViewDelegate>
 
+@property (readwrite) UIImageView *photoView;
+@property (readwrite) UILabel *distanceLabel;
+
 @end
 
 @implementation FDPhotoCell
-{
-	UIImageView *photoView;
-	UILabel *distanceLabel;
-}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -28,28 +27,28 @@
 		
 		CGPoint start = CGPointZero;
 		
-		photoView = [[UIImageView alloc] initWithFrame:CGRectMake(start.x, start.y, self.bounds.size.width, self.bounds.size.width)];
-		_displaySize = photoView.frame.size;
-		photoView.contentMode = UIViewContentModeScaleAspectFit;
-		photoView.userInteractionEnabled = YES;
-		[self addSubview:photoView];
+		_photoView = [[UIImageView alloc] initWithFrame:CGRectMake(start.x, start.y, self.bounds.size.width, self.bounds.size.width)];
+		_displaySize = _photoView.frame.size;
+		_photoView.contentMode = UIViewContentModeScaleAspectFit;
+		_photoView.userInteractionEnabled = YES;
+		[self addSubview:_photoView];
 		
-		start = CGPointMake(5, CGRectGetMaxY(photoView.frame));
+		start = CGPointMake(5, CGRectGetMaxY(_photoView.frame));
 		
 		UIImageView *distanceIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Location"]];
 		distanceIcon.contentMode = UIViewContentModeScaleAspectFit;
 		distanceIcon.frame = CGRectMake(start.x, start.y, 22, 27);
 		[self addSubview:distanceIcon];
 		
-		start = CGPointMake(CGRectGetMaxX(distanceIcon.frame), CGRectGetMaxY(photoView.frame));
+		start = CGPointMake(CGRectGetMaxX(distanceIcon.frame), CGRectGetMaxY(_photoView.frame));
 		
-		distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(start.x, start.y, self.bounds.size.width - start.x, self.bounds.size.height - start.y)];
-		distanceLabel.backgroundColor = [UIColor clearColor];
-		distanceLabel.font = [UIFont fdThemeFontOfSize:18];
-		distanceLabel.adjustsFontSizeToFitWidth = YES;
-		[self addSubview:distanceLabel];
+		_distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(start.x, start.y, self.bounds.size.width - start.x, self.bounds.size.height - start.y)];
+		_distanceLabel.backgroundColor = [UIColor clearColor];
+		_distanceLabel.font = [UIFont fdThemeFontOfSize:18];
+		_distanceLabel.adjustsFontSizeToFitWidth = YES;
+		[self addSubview:_distanceLabel];
 		
-		start = CGPointMake(CGRectGetMaxX(self.bounds) - [FDLikesView size].width, CGRectGetMaxY(photoView.frame) - 7);
+		start = CGPointMake(CGRectGetMaxX(self.bounds) - [FDLikesView size].width, CGRectGetMaxY(_photoView.frame) - 7);
 		
 		_likesView = [[FDLikesView alloc] initWithFrame:CGRectMake(start.x, start.y, [FDLikesView size].width, [FDLikesView size].height)];
 		_likesView.delegate = self;
@@ -64,7 +63,7 @@
 	_tweet = tweet;
 	
 	if (_tweet.distance) {
-		distanceLabel.text = [_tweet.distance printableDistance];
+		_distanceLabel.text = [_tweet.distance printableDistance];
 	}
 	
 	if (_tweet.photos.count) {
@@ -82,7 +81,7 @@
 {
 	if (_photo == photo) return;
 	_photo = photo;
-	[photoView setImageWithURL:[NSURL URLWithString:[_photo urlStringScaleAspectFit:_displaySize]]];
+	[_photoView setImageWithURL:[NSURL URLWithString:[_photo urlStringScaleAspectFit:_displaySize]]];
 	
 	[self setPhotoInfo];
 }
@@ -95,7 +94,7 @@
 	
 	NSURL *url = [NSURL URLWithString:[_photo urlStringScaleFitWidth:width]];
 	[iView setImageWithURLRequest:[NSURLRequest requestWithURL:url] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-		photoView.image = image;
+		_photoView.image = image;
 		_displaySize = image.size;
 		if (block) block();
 	} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
@@ -112,7 +111,7 @@
 	//TODO: for test. displaying photo id
 	NSString *displayedInfo = [NSString stringWithFormat:@"%@ pid: %@", [_tweet.distance printableDistance], _photo.ID];
 	//NSString *displayedInfo = [_tweet.distance printableDistance];
-	distanceLabel.text = displayedInfo;
+	_distanceLabel.text = displayedInfo;
 }
 
 #pragma mark - FDLikesViewDelegate
@@ -127,7 +126,7 @@
 	[super prepareForReuse];
 	_photo = nil;
 	_tweet = nil;
-	photoView.image = nil;
+	_photoView.image = nil;
 }
 
 @end
