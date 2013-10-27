@@ -49,7 +49,7 @@
 		_contentLabel.font = [[self class] contentFont];
 		_contentLabel.numberOfLines = 0;
 		_contentLabel.textColor = [UIColor blackColor];
-//		_contentLabel.backgroundColor = [UIColor randomColor];//TODO: test
+		_contentLabel.backgroundColor = [UIColor randomColor];//TODO: test
 		_contentLabel.lineBreakMode = NSLineBreakByCharWrapping;//TODO: ios7 enum, what if lower?
 		[self.contentView addSubview:_contentLabel];
 		
