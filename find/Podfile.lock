@@ -3,17 +3,22 @@ PODS:
   - Godzippa (0.1.2)
   - MBProgressHUD (0.8)
   - PSTCollectionView (1.1.0)
+  - SDWebImage (3.5):
+    - SDWebImage/Core
+  - SDWebImage/Core (3.5)
 
 DEPENDENCIES:
   - AFNetworking (~> 1.3.2)
   - Godzippa (~> 0.1.2)
   - MBProgressHUD (~> 0.8)
   - PSTCollectionView (~> 1.1.0)
+  - SDWebImage (~> 3.5)
 
 SPEC CHECKSUMS:
   AFNetworking: 0700ec7a58c36ad217173e167f6e4df7270df66b
   Godzippa: 1634e19b3cf30370a1b8eb5402532188bee6b7bc
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   PSTCollectionView: af42b0fb111200a1b87a04aee96181725977f19b
+  SDWebImage: f1a72472f8a2d54445f1fedafe2090593d9caf7f
 
-COCOAPODS: 0.24.0
+COCOAPODS: 0.27.1
