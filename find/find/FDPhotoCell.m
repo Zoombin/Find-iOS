@@ -28,7 +28,6 @@
 		CGPoint start = CGPointZero;
 		
 		_photoView = [[UIImageView alloc] initWithFrame:CGRectMake(start.x, start.y, self.bounds.size.width, self.bounds.size.width)];
-		_displaySize = _photoView.frame.size;
 		_photoView.contentMode = UIViewContentModeScaleAspectFit;
 		_photoView.userInteractionEnabled = YES;
 		[self addSubview:_photoView];
@@ -81,7 +80,7 @@
 {
 	if (_photo == photo) return;
 	_photo = photo;
-	[_photoView setImageWithURL:[NSURL URLWithString:[_photo urlStringScaleAspectFit:_displaySize]]];
+	[_photoView setImageWithURL:[NSURL URLWithString:[_photo urlStringScaleAspectFit:_photoView.bounds.size]]];
 	
 	[self setPhotoInfo];
 }
@@ -95,7 +94,6 @@
 	NSURL *url = [NSURL URLWithString:[_photo urlStringScaleFitWidth:width]];
 	[iView setImageWithURLRequest:[NSURLRequest requestWithURL:url] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
 		_photoView.image = image;
-		_displaySize = image.size;
 		if (block) block();
 	} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
 		if (block) block();

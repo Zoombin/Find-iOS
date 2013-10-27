@@ -25,7 +25,6 @@
 @interface FDPhotoCell : PSUICollectionViewCell
 
 @property (nonatomic, weak) id<FDPhotoCellDelegate> delegate;
-@property (nonatomic, assign) CGSize displaySize;
 @property (nonatomic, strong) FDTweet *tweet;
 @property (nonatomic, strong) FDUser *user;
 @property (nonatomic, strong) FDPhoto *photo;
