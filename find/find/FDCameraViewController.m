@@ -22,7 +22,7 @@
 		self.title = identifier;
 		
 		if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Camera"] selectedImage:[UIImage imageNamed:@"CameraHighlighted"]];
+			[self.self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"CameraHighlighted"] withFinishedUnselectedImage:[UIImage imageNamed:@"Camera"]];
 		} else {
 			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Camera"] tag:0];
 		}

@@ -31,7 +31,7 @@
 		self.title = identifier;
 		
 		if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Discovery"] selectedImage:[UIImage imageNamed:@"DiscoveryHighlighted"]];
+			[self.self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"DiscoveryHighlighted"] withFinishedUnselectedImage:[UIImage imageNamed:@"Discovery"]];
 		} else {
 			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Discovery"] tag:0];
 		}
@@ -54,6 +54,8 @@
 		if (success) {
 			themeSections = [FDThemeSection createMutableWithData:themesData];
 			[discoveryTableView reloadData];
+		} else {
+			[self displayHUDTitle:nil message:message];
 		}
 	}];
 }
