@@ -42,7 +42,7 @@ NSString *kThemeTypeIdentifierUser = @"member";
 
 - (NSString *)imagePath
 {
-	return [NSString stringWithFormat:@"%@%@", QINIU_FIND_SERVER, _imagePath];
+	return [NSString stringWithFormat:@"%@", _imagePath];
 }
 
 @end

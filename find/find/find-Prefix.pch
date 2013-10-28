@@ -43,8 +43,8 @@
 #import "PSUICollectionViewFlowLayout+FDLayout.h"
 
 #define FDDEBUG 1
-#define QINIU_FIND @"http://find.qiniudn.com/"
-#define QINIU_FIND_SERVER @"http://findserver.u.qiniudn.com/"
+//#define QINIU_FIND @"http://find.qiniudn.com/"
+//#define QINIU_FIND_SERVER @"http://findserver.u.qiniudn.com/"
 #define HeadSize CGSizeMake(50, 50)
 #define CELL_LEFT_MARGIN 15
 
