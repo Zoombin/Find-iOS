@@ -12,8 +12,10 @@
 
 #ifdef __OBJC__
 
-#import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
+@import UIKit;
+@import Foundation;
+
+//FD
 #import "FDAppDelegate.h"
 #import	"FDViewController.h"
 #import "ZBQNAFHTTPClient.h"
@@ -37,6 +39,7 @@
 
 //cocoapods
 #import "UIImageView+AFNetworking.h"
+#import "PSTCollectionView.h"
 #import "PSUICollectionViewFlowLayout+FDLayout.h"
 
 #define FDDEBUG 1

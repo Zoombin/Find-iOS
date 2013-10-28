@@ -7,7 +7,6 @@
 //
 
 #import "FDAroundViewController.h"
-#import "PSTCollectionView.h"
 #import "FDPhotoCell.h"
 #import "FDUserProfileViewController.h"
 #import "FDUser.h"

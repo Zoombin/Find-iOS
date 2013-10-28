@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "PSTCollectionView.h"
 #import "FDThemeSection.h"
 
 extern NSString *kThemeCellAttributeKeyBounds;
