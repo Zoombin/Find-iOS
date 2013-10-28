@@ -13,7 +13,7 @@
 #import "FDCameraViewController.h"
 #import "FDMeViewController.h"
 #import "FDAppDelegate+Appearance.h"
-
+@import iAd.ADBannerView;
 @implementation FDAppDelegate
 {
 	UITabBarController *tabBarController;

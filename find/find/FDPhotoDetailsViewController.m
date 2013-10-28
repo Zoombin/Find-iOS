@@ -1,21 +1,21 @@
 //
-//  FDPhotoViewController.m
+//  FDPhotoDetailsViewController.h
 //  find
 //
 //  Created by zhangbin on 9/5/13.
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "FDPhotoViewController.h"
+#import "FDPhotoDetailsViewController.h"
 #import "PSTCollectionView.h"
 #import "FDPhotoCell.h"
 #import "FDCommentCell.h"
 
-@interface FDPhotoViewController () <UITableViewDelegate, UITableViewDataSource, FDCommentCellDelegate>
+@interface FDPhotoDetailsViewController () <UITableViewDelegate, UITableViewDataSource, FDCommentCellDelegate>
 
 @end
 
-@implementation FDPhotoViewController
+@implementation FDPhotoDetailsViewController
 {
 	NSArray *photoComments;
 	UITableView *commentsTableView;

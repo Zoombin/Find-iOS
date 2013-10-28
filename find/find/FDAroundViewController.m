@@ -12,7 +12,7 @@
 #import "FDUserProfileViewController.h"
 #import "FDUser.h"
 #import "FDLikesView.h"
-#import "FDPhotoViewController.h"
+#import "FDPhotoDetailsViewController.h"
 
 @interface FDAroundViewController () <PSUICollectionViewDelegate, PSUICollectionViewDataSource, FDPhotoCellDelegate>
 
@@ -108,12 +108,12 @@
 
 - (void)collectionView:(PSUICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	FDPhotoViewController *photoViewController = [[FDPhotoViewController alloc] init];
+	FDPhotoDetailsViewController *photoDetailsViewController = [[FDPhotoDetailsViewController alloc] init];
 	FDTweet *tweet = tweets[indexPath.row];
 	if (tweet.photos.count) {
-		photoViewController.photo = tweet.photos[0];
+		photoDetailsViewController.photo = tweet.photos[0];
 	}
-	[self.navigationController pushViewController:photoViewController animated:YES];
+	[self.navigationController pushViewController:photoDetailsViewController animated:YES];
 }
 
 @end

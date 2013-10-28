@@ -57,6 +57,7 @@
 //活动(发现界面)
 - (void)themeListWithCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *themesData))block;
 
+- (void)themeContent:(NSNumber *)themeID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *themeContentData, NSDictionary *themeAttributes))block;
 
 //test gzip
 - (void)test;

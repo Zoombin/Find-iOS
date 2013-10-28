@@ -401,4 +401,17 @@ static NSString *token;
 	}];
 }
 
+- (void)themeContent:(NSNumber *)themeID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *themeContentData, NSDictionary *themeAttributes))block
+{
+	NSString *path = [NSString stringWithFormat:@"event/%@", themeID];
+	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]], data[responseKeyData], data[@"event"]);
+		}
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		if (block) block (NO, [FDErrorMessage messageNetworkError], nil, nil);
+	}];
+}
+
 @end

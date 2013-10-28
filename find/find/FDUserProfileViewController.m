@@ -9,7 +9,7 @@
 #import "FDUserProfileViewController.h"
 #import "PSTCollectionView.h"
 #import "FDPhotoCell.h"
-#import "FDPhotoViewController.h"
+#import "FDPhotoDetailsViewController.h"
 
 @interface FDUserProfileViewController () <PSUICollectionViewDelegate, PSUICollectionViewDataSource>
 
@@ -93,10 +93,10 @@
 - (void)collectionView:(PSUICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (indexPath.section == 1) {
-		FDPhotoViewController *photoViewController = [[FDPhotoViewController alloc] init];
-		photoViewController.user = _user;
-		photoViewController.photo = _user.photos[indexPath.row];
-		[self.navigationController pushViewController:photoViewController animated:YES];
+		FDPhotoDetailsViewController *photoDetailsViewController = [[FDPhotoDetailsViewController alloc] init];
+		photoDetailsViewController.user = _user;
+		photoDetailsViewController.photo = _user.photos[indexPath.row];
+		[self.navigationController pushViewController:photoDetailsViewController animated:YES];
 	}
 }
 

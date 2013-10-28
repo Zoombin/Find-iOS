@@ -1,5 +1,5 @@
 //
-//  FDPhotoViewController.h
+//  FDPhotoDetailsViewController.h
 //  find
 //
 //  Created by zhangbin on 9/5/13.
@@ -10,7 +10,7 @@
 #import "FDUser.h"
 #import "FDPhoto.h"
 
-@interface FDPhotoViewController : FDViewController
+@interface FDPhotoDetailsViewController : FDViewController
 
 @property (nonatomic, strong) FDUser *user;
 @property (nonatomic, strong) FDPhoto *photo;
