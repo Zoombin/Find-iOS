@@ -69,6 +69,7 @@
 		77DA107017E97EB0001F44DF /* FDCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DA106F17E97EB0001F44DF /* FDCommentCell.m */; };
 		77DA107A17E97FA9001F44DF /* FDComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DA107817E97FA9001F44DF /* FDComment.m */; };
 		77DBC8CD181FA5B500F0A7A8 /* FDImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DBC8CC181FA5B500F0A7A8 /* FDImageView.m */; };
+		77DBC8D21820C42B00F0A7A8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77DBC8D01820C42B00F0A7A8 /* Localizable.strings */; };
 		77F5CD4F17E966BC006D931F /* FDSigninViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5CD4E17E966BC006D931F /* FDSigninViewController.m */; };
 		77F5CD5217E966DB006D931F /* FDSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5CD5117E966DB006D931F /* FDSignupViewController.m */; };
 		77F5CD5817E9771A006D931F /* UIColor+Find.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5CD5717E9771A006D931F /* UIColor+Find.m */; };
@@ -211,6 +212,10 @@
 		77DA107817E97FA9001F44DF /* FDComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDComment.m; path = find/FDComment.m; sourceTree = "<group>"; };
 		77DBC8CB181FA5B500F0A7A8 /* FDImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDImageView.h; path = find/FDImageView.h; sourceTree = "<group>"; };
 		77DBC8CC181FA5B500F0A7A8 /* FDImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDImageView.m; path = find/FDImageView.m; sourceTree = "<group>"; };
+		77DBC8CE1820B7A400F0A7A8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; usesTabs = 1; };
+		77DBC8CF1820B7A400F0A7A8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		77DBC8D11820C42B00F0A7A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		77DBC8D31820C43400F0A7A8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		77F5CD4D17E966BC006D931F /* FDSigninViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSigninViewController.h; sourceTree = "<group>"; };
 		77F5CD4E17E966BC006D931F /* FDSigninViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSigninViewController.m; sourceTree = "<group>"; };
 		77F5CD5017E966DB006D931F /* FDSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSignupViewController.h; sourceTree = "<group>"; };
@@ -368,6 +373,7 @@
 				77C0C91617CDF4A8008C7FC7 /* TestLocations */,
 				77A5F7AA17CB22960073E7F9 /* find-Info.plist */,
 				77A5F7AB17CB22960073E7F9 /* InfoPlist.strings */,
+				77DBC8D01820C42B00F0A7A8 /* Localizable.strings */,
 				77A5F7AE17CB22960073E7F9 /* main.m */,
 				77A5F7B017CB22960073E7F9 /* find-Prefix.pch */,
 			);
@@ -615,6 +621,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 77A5F79617CB22960073E7F9;
 			productRefGroup = 77A5F7A017CB22960073E7F9 /* Products */;
@@ -633,6 +640,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77F8898A180B888100D6A45D /* FZBWKSJW--GB1-0.ttf in Resources */,
+				77DBC8D21820C42B00F0A7A8 /* Localizable.strings in Resources */,
 				77A5F7C117CB22960073E7F9 /* Images.xcassets in Resources */,
 				77A5F7AD17CB22960073E7F9 /* InfoPlist.strings in Resources */,
 				77F8898B180B888100D6A45D /* YouYuan.ttf in Resources */,
@@ -772,6 +780,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				77A5F7AC17CB22960073E7F9 /* en */,
+				77DBC8CE1820B7A400F0A7A8 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -780,8 +789,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				77A5F7D117CB22960073E7F9 /* en */,
+				77DBC8CF1820B7A400F0A7A8 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		77DBC8D01820C42B00F0A7A8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				77DBC8D11820C42B00F0A7A8 /* en */,
+				77DBC8D31820C43400F0A7A8 /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

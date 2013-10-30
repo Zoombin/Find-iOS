@@ -85,7 +85,7 @@
 
 - (void)willReport:(FDComment *)comment
 {
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles:@"举报不良评论", nil];
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Report Bad Comment", nil), nil];
 	[actionSheet showInView:self.view];
 	_reportCommentID = comment.ID;
 }
@@ -163,7 +163,7 @@
 		if (_reportCommentID) {
 			[[FDAFHTTPClient shared] reportComment:_reportCommentID withCompletionBlock:^(BOOL success, NSString *message) {
 				if (success) {
-					[self displayHUDTitle:nil message:NSLocalizedString(@"举报成功我们会尽快处理！", nil)];//TODO need to be english
+					[self displayHUDTitle:nil message:NSLocalizedString(@"Report successfully, we will handle it ASAP!", nil)];//TODO need to be english
 				} else {
 					[self displayHUDTitle:nil message:message];
 				}
