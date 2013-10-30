@@ -85,7 +85,7 @@
 		reportButton.contentMode = UIViewContentModeCenter;
 		reportButton.showsTouchWhenHighlighted = YES;
 		reportButton.frame = CGRectMake(startPoint.x, startPoint.y, buttonSize.width, buttonSize.height);
-		[reportButton addTarget:self action:@selector(willReport:) forControlEvents:UIControlEventTouchUpInside];
+		[reportButton addTarget:self action:@selector(willReport) forControlEvents:UIControlEventTouchUpInside];
 		[self.contentView addSubview:reportButton];
 		
 		UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doThingOrCancel)];
@@ -158,9 +158,9 @@
 	return kGap + textFrame.size.height + kGap +  kHeightOfDateLabel + kGap;
 }
 
-- (void)willReport:(FDComment *)comment
+- (void)willReport
 {
-	[_delegate willReport:comment];
+	[_delegate willReport:_comment];
 }
 
 + (UIFont *)contentFont
