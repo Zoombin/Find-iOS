@@ -12,13 +12,13 @@
 
 @interface FDPhotoDetailsViewController () <UITableViewDelegate, UITableViewDataSource, FDCommentCellDelegate>
 
+@property (readwrite) NSArray *comments;
+@property (readwrite) UITableView *kTableView;
+@property (readwrite) CGFloat heightOfPhoto;
+
 @end
 
 @implementation FDPhotoDetailsViewController
-{
-	NSArray *photoComments;
-	UITableView *commentsTableView;
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,10 +35,10 @@
 	
 	CGSize fullSize = self.view.bounds.size;
 	
-	commentsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, fullSize.width, fullSize.height) style:UITableViewStylePlain];
-	commentsTableView.delegate = self;
-	commentsTableView.dataSource = self;
-	[self.view addSubview:commentsTableView];
+	_kTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, fullSize.width, fullSize.height) style:UITableViewStylePlain];
+	_kTableView.delegate = self;
+	_kTableView.dataSource = self;
+	[self.view addSubview:_kTableView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -52,8 +52,8 @@
 	[[FDAFHTTPClient shared] commentsOfPhoto:_photo.ID limit:@(9999) published:nil withCompletionBlock:^(BOOL success, NSString *message, NSArray *commentsData, NSNumber *lastestPublishedTimestamp) {
 		if (success) {
 			self.navigationItem.title = @"hello";//TODO set username
-			photoComments = [FDComment createMutableWithData:commentsData];
-			[commentsTableView reloadData];
+			_comments = [FDComment createMutableWithData:commentsData];
+			[_kTableView reloadData];
 		}
 	}];
 }
@@ -97,16 +97,36 @@
 	if (section == 0) {
 		return 1;
 	}
-	return photoComments.count;
+	return _comments.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (indexPath.section == 0) {
-		FDCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:kFDCommentCellIdentifier];
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PhotoCell"];
 		if (!cell) {
-			cell = [[FDCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFDCommentCellIdentifier];
-			cell.delegate = self;
+			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PhotoCell"];
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+			NSURLRequest *request = [NSURLRequest requestWithURL:[_photo urlScaleFitWidth:self.view.bounds.size.width * 2]];
+			UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+			imageView.contentMode = UIViewContentModeTop | UIViewContentModeCenter | UIViewContentModeScaleAspectFit;
+			[imageView setImageWithURLRequest:request placeholderImage:nil success:nil failure:nil];
+			[[[UIImageView alloc] init] setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+				imageView.image = image;
+				CGRect newFrame = imageView.frame;
+				if (image.size.width < imageView.bounds.size.width) {
+					CGFloat ratio = imageView.bounds.size.width / image.size.width;
+					newFrame.size.height = image.size.height * ratio;
+				} else {
+					newFrame.size.height = image.size.height;
+				}
+				imageView.frame = newFrame;
+				_heightOfPhoto = newFrame.size.height;
+				[tableView reloadData];
+			} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+				
+			}];
+			[cell.contentView addSubview:imageView];
 		}
 		return cell;
 	} else {
@@ -115,8 +135,7 @@
 			cell = [[FDCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFDCommentCellIdentifier];
 			cell.delegate = self;
 		}
-		cell.comment = photoComments[indexPath.row];
-		//[tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+		cell.comment = _comments[indexPath.row];
 		return cell;
 	}
 }
@@ -124,9 +143,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (indexPath.section == 0) {
-		return 100;
+		return _heightOfPhoto;
 	} else {
-		FDComment *comment = photoComments[indexPath.row];
+		FDComment *comment = _comments[indexPath.row];
 		return [FDCommentCell heightForComment:comment];
 	}
 }

@@ -40,6 +40,11 @@
 	return [NSString stringWithFormat:@"%@", _path];
 }
 
+- (NSURL *)url
+{
+	return [NSURL URLWithString:[self urlString]];
+}
+
 - (NSString *)urlStringInfo
 {
 	return [NSString stringWithFormat:@"%@?imageInfo", [self urlString]];
@@ -47,18 +52,25 @@
 
 - (NSString *)urlStringScaleAspectFit:(CGSize)size
 {
+	//http://qiniuphotos.qiniudn.com/gogopher.jpg?imageMogr/v2/thumbnail/100
 	return [NSString stringWithFormat:@"%@?imageView/1/w/%d/h/%d", [self urlString], (NSUInteger)size.width, (NSUInteger)size.height];
 }
 
 - (NSString *)urlStringScaleFitWidth:(CGFloat)width
 {
-	return [NSString stringWithFormat:@"%@?imageView/2/w/%d", [self urlString], (NSUInteger)width];
+	//http://qiniuphotos.qiniudn.com/gogopher.jpg?imageMogr/v2/thumbnail/100
+	return [NSString stringWithFormat:@"%@?imageMogr/v2/thumbnail/%d", [self urlString], (NSUInteger)width];
+}
+
+- (NSURL *)urlScaleFitWidth:(CGFloat)width
+{
+	return [NSURL URLWithString:[self urlStringScaleFitWidth:width]];
 }
 
 - (void)fetchInfoWithCompletionBlock:(dispatch_block_t)block
 {
-	[[ZBQNAFHTTPClient shared] infoOfPhoto:self completionBlockWithSuccess:^(FDPhotoInfo *info) {
-		_info = info;
+	[[FDAFHTTPClient shared] infoOfPhoto:self.urlStringInfo completionBlockWithSuccess:^(NSDictionary *infoAttributes) {
+		_info = [FDPhotoInfo createWithAttributes:infoAttributes];
 		if (block) block();
 	}];
 }

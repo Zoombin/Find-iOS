@@ -27,7 +27,7 @@
 	
 	//NSInteger idx = arc4random() % 50 + 1;//TODO: test
 	NSString *path = [NSString stringWithFormat:@"%@%d.jpg", @"http://find.qiniudn.com/", 1];
-	[self setImageWithURL:[NSURL URLWithString:path]];
+	//[self setImageWithURL:[NSURL URLWithString:path]];
 }
 
 + (CGSize)defaultSize

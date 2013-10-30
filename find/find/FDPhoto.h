@@ -26,9 +26,11 @@
 + (NSArray *)createMutableWithData:(NSArray *)data;
 
 - (NSString *)urlString;
+- (NSURL *)url;
 - (NSString *)urlStringInfo;
 - (NSString *)urlStringScaleAspectFit:(CGSize)size;
 - (NSString *)urlStringScaleFitWidth:(CGFloat)width;
+- (NSURL *)urlScaleFitWidth:(CGFloat)width;
 
 - (void)fetchInfoWithCompletionBlock:(dispatch_block_t)block;
 
