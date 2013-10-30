@@ -9,6 +9,7 @@
 #import "FDAFHTTPClient.h"
 #import "NSData+Godzippa.h"
 #import "FDErrorMessage.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 #define kFDHost @"http://121.199.14.43/"
 
@@ -29,6 +30,7 @@ static NSString *token;
 +(FDAFHTTPClient *)shared
 {
 	if(!_instance){
+		[AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
 		_instance = [[FDAFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kFDHost]];
 		token = [[NSUserDefaults standardUserDefaults] objectForKey:userDefaultKeyToken];
 		NSLog(@"load token: %@", token);
@@ -129,6 +131,18 @@ static NSString *token;
 //											 NSLog(@"oauthAuthorize Fail: %@",operation.responseString);
 //										 }];
 //	[self enqueueHTTPRequestOperation:operation];
+}
+
+- (void)infoOfPhoto:(NSString *)photoInfoUrlString completionBlockWithSuccess:(void (^)(NSDictionary *infoAttributes))success
+{
+	[self getPath:photoInfoUrlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			if (success) success(data);
+		}
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		
+	}];
 }
 
 - (void)tweetPhotos:(NSArray *)photos atLocation:(CLLocation *)location address:(NSString *)address withCompletionBlock:(void (^)(BOOL success, NSString *message))block

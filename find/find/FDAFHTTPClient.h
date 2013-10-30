@@ -15,6 +15,8 @@
 
 - (NSString *)account;
 
+- (void)infoOfPhoto:(NSString *)photoInfoUrlString completionBlockWithSuccess:(void (^)(NSDictionary *infoAttributes))success;
+
 - (void)tweetPhotos:(NSArray *)photos atLocation:(CLLocation *)location address:(NSString *)address withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
 
 //distance是本次请求返回的所有照片中距离的最大值

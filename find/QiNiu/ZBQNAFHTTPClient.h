@@ -14,8 +14,6 @@
 
 +(ZBQNAFHTTPClient *)shared;
 
-- (void)infoOfPhoto:(FDPhoto *)photo completionBlockWithSuccess:(void (^)(FDPhotoInfo *info))success;
-
 - (void)uploadData:(NSData *)data name:(NSString *)name completionBlock:(dispatch_block_t)block;
 
 - (void)uploadData:(NSData *)data name:(NSString *)name progressBlock:(void (^)(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite))progress completionBlockWithSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;

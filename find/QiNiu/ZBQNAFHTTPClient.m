@@ -36,19 +36,6 @@ static NSString *_token;
     return _instance;
 }
 
-- (void)infoOfPhoto:(FDPhoto *)photo completionBlockWithSuccess:(void (^)(FDPhotoInfo *info))success
-{
-	[self getPath:photo.urlStringInfo parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-		if ([data isKindOfClass:[NSDictionary class]]) {
-			FDPhotoInfo *info = [FDPhotoInfo createWithAttributes:data];
-			if (success) success(info);
-		}
-	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		
-	}];
-}
-
 - (void)uploadData:(NSData *)data name:(NSString *)name completionBlock:(dispatch_block_t)block
 {
 	[self uploadData:data name:name progressBlock:nil completionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
