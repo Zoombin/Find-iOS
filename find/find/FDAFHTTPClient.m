@@ -428,9 +428,8 @@ static NSString *token;
 	}];
 }
 
-- (void)reportComment:(NSNumber *)commentID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+- (void)report:(NSString *)path withCompletionBlock:(void (^)(BOOL success, NSString *message))block
 {
-	NSString *path = [NSString stringWithFormat:@"comment/%@/report", commentID];
 	[self postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
@@ -438,6 +437,30 @@ static NSString *token;
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		if (block) block (NO, [FDErrorMessage messageNetworkError]);
+	}];
+}
+
+- (void)reportComment:(NSNumber *)commentID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+{
+	NSString *path = [NSString stringWithFormat:@"comment/%@/report", commentID];
+	[self report:path withCompletionBlock:^(BOOL success, NSString *message) {
+		if (block) block(success, message);
+	}];
+}
+
+- (void)reportUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+{
+	NSString *path = [NSString stringWithFormat:@"member/%@/report", userID];
+	[self report:path withCompletionBlock:^(BOOL success, NSString *message) {
+		if (block) block(success, message);
+	}];
+}
+
+- (void)reportPhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+{
+	NSString *path = [NSString stringWithFormat:@"tweet/%@/report", photoID];
+	[self report:path withCompletionBlock:^(BOOL success, NSString *message) {
+		if (block) block(success, message);
 	}];
 }
 
