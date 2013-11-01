@@ -27,7 +27,7 @@ static NSString *userDefaultKeyAccount = @"fd_account";
 static FDAFHTTPClient *_instance;
 static NSString *token;
 
-+(FDAFHTTPClient *)shared
++(instancetype)shared
 {
 	if(!_instance){
 		[AFNetworkActivityIndicatorManager sharedManager].enabled = YES;

@@ -23,7 +23,7 @@
 static ZBQNAFHTTPClient *_instance;
 static NSString *_token;
 
-+(ZBQNAFHTTPClient *)shared
++(instancetype)shared
 {
     if(!_instance){
         _instance = [[ZBQNAFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kQiniuUpHost]];

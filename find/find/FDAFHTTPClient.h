@@ -11,7 +11,7 @@
 
 @interface FDAFHTTPClient : AFHTTPClient
 
-+(FDAFHTTPClient *)shared;
++(instancetype)shared;
 
 - (NSString *)account;
 

@@ -12,7 +12,7 @@
 
 @interface ZBQNAFHTTPClient : AFHTTPClient
 
-+(ZBQNAFHTTPClient *)shared;
++(instancetype)shared;
 
 - (void)uploadData:(NSData *)data name:(NSString *)name completionBlock:(dispatch_block_t)block;
 
