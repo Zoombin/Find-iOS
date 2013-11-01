@@ -80,26 +80,26 @@
 {
 	if (_photo == photo) return;
 	_photo = photo;
-	[_photoView setImageWithURL:[NSURL URLWithString:[_photo urlStringScaleAspectFit:_photoView.bounds.size]]];
+	CGSize pxSize = CGSizeMake(_photoView.bounds.size.width * 2, _photoView.bounds.size.height * 2);
+	[_photoView setImageWithURL:[NSURL URLWithString:[_photo urlstringCropToSize:pxSize]]];
 	
 	[self setPhotoInfo];
 }
 
-- (void)setPhoto:(FDPhoto *)photo scaleFitWidth:(CGFloat)width completionBlock:(dispatch_block_t)block
-{
-	if (_photo == photo) return;
-	_photo = photo;
-	UIImageView *iView = [[UIImageView alloc] init];
-	
-	NSURL *url = [NSURL URLWithString:[_photo urlStringScaleFitWidth:width]];
-	[iView setImageWithURLRequest:[NSURLRequest requestWithURL:url] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-		_photoView.image = image;
-		if (block) block();
-	} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-		if (block) block();
-	}];
-	[self setPhotoInfo];
-}
+//- (void)setPhoto:(FDPhoto *)photo scaleFitWidth:(CGFloat)width completionBlock:(dispatch_block_t)block
+//{
+//	if (_photo == photo) return;
+//	_photo = photo;
+//	
+//	NSURL *url = [NSURL URLWithString:[_photo urlStringScaleFitWidth:width]];
+//	[[UIImageView alloc] setImageWithURLRequest:[NSURLRequest requestWithURL:url] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+//		_photoView.image = image;
+//		if (block) block();
+//	} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+//		if (block) block();
+//	}];
+//	[self setPhotoInfo];
+//}
 
 - (void)setPhotoInfo
 {

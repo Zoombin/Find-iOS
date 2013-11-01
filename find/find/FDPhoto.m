@@ -7,6 +7,7 @@
 //
 
 #import "FDPhoto.h"
+#import "NSString+Qiniu.h"
 
 @implementation FDPhoto
 
@@ -47,24 +48,28 @@
 
 - (NSString *)urlStringInfo
 {
-	return [NSString stringWithFormat:@"%@?imageInfo", [self urlString]];
+	return [[self urlString] qnImageInfo];
 }
 
 - (NSString *)urlStringScaleAspectFit:(CGSize)size
 {
-	//http://qiniuphotos.qiniudn.com/gogopher.jpg?imageMogr/v2/thumbnail/100
-	return [NSString stringWithFormat:@"%@?imageView/1/w/%d/h/%d", [self urlString], (NSUInteger)size.width, (NSUInteger)size.height];
+	return [[self urlString] qnScaleAspectFit:size];
 }
 
 - (NSString *)urlStringScaleFitWidth:(CGFloat)width
 {
-	//http://qiniuphotos.qiniudn.com/gogopher.jpg?imageMogr/v2/thumbnail/100
-	return [NSString stringWithFormat:@"%@?imageMogr/v2/thumbnail/%d", [self urlString], (NSUInteger)width];
+	return [[self urlString] qnScaleFitWidth:width];
 }
 
 - (NSURL *)urlScaleFitWidth:(CGFloat)width
 {
 	return [NSURL URLWithString:[self urlStringScaleFitWidth:width]];
+}
+
+- (NSString *)urlstringCropToSize:(CGSize)size
+{
+	NSLog(@"urlstringCropToSize: %@", [[self urlString] qnCropFromCenterToSize:size]);
+	return [[self urlString] qnCropFromCenterToSize:size];
 }
 
 - (void)fetchInfoWithCompletionBlock:(dispatch_block_t)block

@@ -64,6 +64,7 @@
 		77C0C91D17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C91C17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m */; };
 		77C0C96417D18D7C008C7FC7 /* FDPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */; };
 		77C0C96717D198F6008C7FC7 /* FDPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C96617D198F6008C7FC7 /* FDPhoto.m */; };
+		77CB749518235FB800063B88 /* NSString+Qiniu.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CB749418235FB800063B88 /* NSString+Qiniu.m */; };
 		77D69700180E540E000BCA07 /* FDSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D696FF180E540E000BCA07 /* FDSize.m */; };
 		77D69703180E6D95000BCA07 /* FDTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D69702180E6D95000BCA07 /* FDTheme.m */; };
 		77DA107017E97EB0001F44DF /* FDCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DA106F17E97EB0001F44DF /* FDCommentCell.m */; };
@@ -202,6 +203,8 @@
 		77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDPhotoCell.m; path = find/FDPhotoCell.m; sourceTree = "<group>"; };
 		77C0C96517D198F6008C7FC7 /* FDPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDPhoto.h; path = find/FDPhoto.h; sourceTree = "<group>"; };
 		77C0C96617D198F6008C7FC7 /* FDPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDPhoto.m; path = find/FDPhoto.m; sourceTree = "<group>"; };
+		77CB749318235FB800063B88 /* NSString+Qiniu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Qiniu.h"; path = "QiNiu/NSString+Qiniu.h"; sourceTree = "<group>"; };
+		77CB749418235FB800063B88 /* NSString+Qiniu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Qiniu.m"; path = "QiNiu/NSString+Qiniu.m"; sourceTree = "<group>"; };
 		77D696FE180E540E000BCA07 /* FDSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDSize.h; path = find/FDSize.h; sourceTree = "<group>"; };
 		77D696FF180E540E000BCA07 /* FDSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDSize.m; path = find/FDSize.m; sourceTree = "<group>"; };
 		77D69701180E6D95000BCA07 /* FDTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDTheme.h; path = find/FDTheme.h; sourceTree = "<group>"; };
@@ -426,6 +429,8 @@
 				77C0C8DC17CDDE6A008C7FC7 /* ZBQNPutPolicy.m */,
 				77C0C8DE17CDE32C008C7FC7 /* ZBQNAFHTTPClient.h */,
 				77C0C8DF17CDE32C008C7FC7 /* ZBQNAFHTTPClient.m */,
+				77CB749318235FB800063B88 /* NSString+Qiniu.h */,
+				77CB749418235FB800063B88 /* NSString+Qiniu.m */,
 			);
 			name = QiNiu;
 			sourceTree = "<group>";
@@ -744,6 +749,7 @@
 				77FE434918012BB000B1B5D3 /* FDUserProfile.m in Sources */,
 				778671BD17E705D6001FDB67 /* CLLocation+Test.m in Sources */,
 				7786715E17E35A98001FDB67 /* CLLocation+NSString.m in Sources */,
+				77CB749518235FB800063B88 /* NSString+Qiniu.m in Sources */,
 				77F88986180B875300D6A45D /* UIFont+Find.m in Sources */,
 				7786716217E35A98001FDB67 /* NSString+ZBUtilites.m in Sources */,
 				77C0C8D917CDDBA8008C7FC7 /* GTMBase64.m in Sources */,

@@ -31,6 +31,7 @@
 - (NSString *)urlStringScaleAspectFit:(CGSize)size;
 - (NSString *)urlStringScaleFitWidth:(CGFloat)width;
 - (NSURL *)urlScaleFitWidth:(CGFloat)width;
+- (NSString *)urlstringCropToSize:(CGSize)size;
 
 - (void)fetchInfoWithCompletionBlock:(dispatch_block_t)block;
 
