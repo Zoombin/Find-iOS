@@ -122,6 +122,14 @@
 	_avatar.userID = _comment.userID;
 }
 
+- (void)setBMine:(BOOL)bMine
+{
+	_bMine = bMine;
+	if (_bMine) {
+		_contentLabel.textColor = [UIColor fdThemeRed];
+	}
+}
+
 - (void)layoutSubviews {
 	[super layoutSubviews];
 

@@ -22,6 +22,7 @@
 
 @property (nonatomic, weak) id<FDCommentCellDelegate> delegate;
 @property (nonatomic, strong) FDComment *comment;
+@property (nonatomic, assign) BOOL bMine;
 
 + (CGFloat)heightForComment:(FDComment *)comment;
 

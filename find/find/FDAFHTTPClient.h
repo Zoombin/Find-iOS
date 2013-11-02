@@ -14,6 +14,7 @@
 +(instancetype)shared;
 
 - (NSString *)account;
+- (NSNumber *)userID;
 
 - (void)infoOfPhoto:(NSString *)photoInfoUrlString completionBlockWithSuccess:(void (^)(NSDictionary *infoAttributes))success;
 

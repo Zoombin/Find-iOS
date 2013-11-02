@@ -21,6 +21,7 @@ static NSString *responseKeyLikes = @"likes";
 static NSString *responseKeyToken = @"token";
 static NSString *userDefaultKeyToken = @"fd_token";
 static NSString *userDefaultKeyAccount = @"fd_account";
+static NSString *userDefaultKeyUserID = @"fd_user_id";
 
 @implementation FDAFHTTPClient
 
@@ -69,9 +70,16 @@ static NSString *token;
 	NSString *account = nil;
 	account = [[NSUserDefaults standardUserDefaults] objectForKey:userDefaultKeyAccount];
 	if (!account) {
-		account = @"root";
+		account = @"root";//TODO: 这样对吗？还是只是为了test
 	}
 	return account;
+}
+
+- (NSString *)userID
+{
+	NSString *userID = nil;
+	userID = [[NSUserDefaults standardUserDefaults] objectForKey:userDefaultKeyUserID];
+	return userID;
 }
 
 - (void)printResponseObject:(id)responseObject
