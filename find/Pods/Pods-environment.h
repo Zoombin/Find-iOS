@@ -18,6 +18,12 @@
 #define COCOAPODS_VERSION_MINOR_Godzippa 1
 #define COCOAPODS_VERSION_PATCH_Godzippa 2
 
+// HPGrowingTextView
+#define COCOAPODS_POD_AVAILABLE_HPGrowingTextView
+#define COCOAPODS_VERSION_MAJOR_HPGrowingTextView 1
+#define COCOAPODS_VERSION_MINOR_HPGrowingTextView 0
+#define COCOAPODS_VERSION_PATCH_HPGrowingTextView 1
+
 // MBProgressHUD
 #define COCOAPODS_POD_AVAILABLE_MBProgressHUD
 #define COCOAPODS_VERSION_MAJOR_MBProgressHUD 0
