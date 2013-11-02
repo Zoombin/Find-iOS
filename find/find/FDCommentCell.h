@@ -25,5 +25,8 @@
 @property (nonatomic, assign) BOOL bMine;
 
 + (CGFloat)heightForComment:(FDComment *)comment;
+- (void)showMoreActions;
+- (void)hideMoreActions;
+- (void)showOrHideMoreActions;
 
 @end

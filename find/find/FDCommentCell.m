@@ -13,7 +13,7 @@
 #define kWidthOfContentArea 240
 #define kHeightOfDateLabel 10
 #define kMinCellHeight 60
-#define kMoreActionLayoutOffset 40
+#define kMoreActionsLayoutOffset 40
 
 @interface FDCommentCell()
 
@@ -29,7 +29,7 @@
 {
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-		self.selectionStyle = UITableViewCellSelectionStyleNone;
+		//self.selectionStyle = UITableViewCellSelectionStyleNone;
 		
 //		self.backgroundColor = [UIColor randomColor];//TODO: test
 
@@ -51,6 +51,7 @@
 		_contentLabel.textColor = [UIColor blackColor];
 		_contentLabel.backgroundColor = [UIColor randomColor];//TODO: test
 		_contentLabel.lineBreakMode = NSLineBreakByCharWrapping;//TODO: ios7 enum, what if lower?
+		_contentLabel.userInteractionEnabled = YES;
 		[self.contentView addSubview:_contentLabel];
 		
 		startPoint.x = CGRectGetMinX(_contentLabel.frame);
@@ -59,6 +60,7 @@
 		_dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y, self.bounds.size.width - startPoint.x, kHeightOfDateLabel)];
 		_dateLabel.textColor = [UIColor lightGrayColor];
 		_dateLabel.font = [UIFont fdThemeFontOfSize:9];
+		_dateLabel.userInteractionEnabled = YES;
 //		_dateLabel.backgroundColor = [UIColor randomColor];//TODO: test
 		[self.contentView addSubview:_dateLabel];
 		
@@ -88,29 +90,46 @@
 		[reportButton addTarget:self action:@selector(willReport) forControlEvents:UIControlEventTouchUpInside];
 		[self.contentView addSubview:reportButton];
 		
-		UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doThingOrCancel)];
-		[self addGestureRecognizer:tapGestureRecognizer];
+		//UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showMoreActionsOrHide)];
+		//[self addGestureRecognizer:tapGestureRecognizer];
 		
-		UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(doThingOrCancel)];
-		swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight;
-		[self addGestureRecognizer:swipeGestureRecognizer];
+		//UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showMoreActionsOrHide)];
+		//swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight;
+		//[self addGestureRecognizer:swipeGestureRecognizer];
     }
     return self;
 }
 
-- (void)doThingOrCancel
+- (void)showMoreActions
 {
-	CGFloat startX = self.frame.origin.x;
-	CGFloat endX = -1 * kMoreActionLayoutOffset;
-	if (startX < 0) {
-		endX = 0;
-	}
+	CGFloat endX = -1 * kMoreActionsLayoutOffset;
+	[self animationOfShowAndHideMoreActionsWithDestinationX:endX];
+}
+
+- (void)hideMoreActions
+{
+	CGFloat endX = 0;
+	[self animationOfShowAndHideMoreActionsWithDestinationX:endX];
+}
+
+- (void)animationOfShowAndHideMoreActionsWithDestinationX:(CGFloat)endX
+{
 	[UIView animateWithDuration:0.25 animations:^{
 		CGRect frame = self.frame;
 		frame.origin.x = endX;
 		frame.size.width -= endX;
 		self.frame = frame;
 	}];
+}
+
+- (void)showOrHideMoreActions
+{
+	CGFloat startX = self.frame.origin.x;
+	if (startX < 0) {
+		[self hideMoreActions];
+	} else {
+		[self showMoreActions];
+	}
 }
 
 - (void)setComment:(FDComment *)comment
