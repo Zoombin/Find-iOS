@@ -10,9 +10,9 @@
 #import "FDAvatarView.h"
 
 #define kGap 5
-#define kWidthOfContentArea 240
+#define kWidthOfContentArea 220
 #define kHeightOfDateLabel 10
-#define kMinCellHeight 60
+#define kMinCellHeight 50
 #define kMoreActionsLayoutOffset 40
 
 @interface FDCommentCell()
@@ -67,7 +67,7 @@
 		startPoint.x = CGRectGetMaxX(_contentLabel.frame);
 		startPoint.y = CGRectGetMinY(_contentLabel.frame);
 		
-		CGSize buttonSize = CGSizeMake(40, 40);
+		CGSize buttonSize = CGSizeMake(50, 40);
 		
 		UIButton *tweetCommentButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		[tweetCommentButton setImage:[UIImage imageNamed:@"Comment"] forState:UIControlStateNormal];
@@ -90,12 +90,9 @@
 		[reportButton addTarget:self action:@selector(willReport) forControlEvents:UIControlEventTouchUpInside];
 		[self.contentView addSubview:reportButton];
 		
-		//UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showMoreActionsOrHide)];
-		//[self addGestureRecognizer:tapGestureRecognizer];
-		
-		//UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showMoreActionsOrHide)];
-		//swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight;
-		//[self addGestureRecognizer:swipeGestureRecognizer];
+//		UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showOrHideMoreActions)];
+//		swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight;
+//		[self addGestureRecognizer:swipeGestureRecognizer];
     }
     return self;
 }
@@ -182,7 +179,7 @@
 {
 	NSString *text = [self displayContent:comment];
 	CGRect textFrame = [text boundingRectWithSize:CGSizeMake(kWidthOfContentArea, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [[self class] contentFont]} context:nil];
-	return kGap + textFrame.size.height + kGap +  kHeightOfDateLabel + kGap;
+	return MAX(kGap + textFrame.size.height + kGap +  kHeightOfDateLabel + kGap, kMinCellHeight);
 }
 
 - (void)willReport
