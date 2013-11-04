@@ -58,7 +58,7 @@ static NSString *token;
 	NSLog(@"save user account: %@", aAccount);
 }
 
-- (void)saveUserID:(NSString *)aUserID
+- (void)saveUserID:(NSNumber *)aUserID
 {
 	NSAssert(aUserID, @"userID must not be nil!");
 	[[NSUserDefaults standardUserDefaults] setObject:aUserID forKey:userDefaultKeyUserID];
@@ -76,17 +76,19 @@ static NSString *token;
 
 - (NSString *)account
 {
-	NSString *account = nil;
-	account = [[NSUserDefaults standardUserDefaults] objectForKey:userDefaultKeyAccount];
+	NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:userDefaultKeyAccount];
 	if (!account) {
 		account = @"root";//TODO: 这样对吗？还是只是为了test
 	}
 	return account;
 }
 
-- (NSString *)userID
+- (NSNumber *)userID
 {
-	NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:userDefaultKeyUserID];
+	NSNumber *userID = [[NSUserDefaults standardUserDefaults] objectForKey:userDefaultKeyUserID];
+	if (!userID) {
+		userID = @(1);
+	}
 	return userID;
 }
 

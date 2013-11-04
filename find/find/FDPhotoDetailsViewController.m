@@ -45,7 +45,7 @@
 	
 	CGFloat heightOfGrowingTextView = 40;
 	
-	_kTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, fullSize.width, fullSize.height - heightOfGrowingTextView) style:UITableViewStyleGrouped];
+	_kTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, fullSize.width, fullSize.height - heightOfGrowingTextView) style:UITableViewStylePlain];
 	_kTableView.delegate = self;
 	_kTableView.dataSource = self;
 	[self.view addSubview:_kTableView];
@@ -245,7 +245,7 @@
 			cell.delegate = self;
 		}
 		cell.comment = _comments[indexPath.row];
-		//cell.bMine = YES;//TODO
+		cell.bMine = [[FDAFHTTPClient shared] userID] == cell.comment.userID;
 		return cell;
 	}
 }
