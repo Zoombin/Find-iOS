@@ -39,13 +39,13 @@
     self.window.backgroundColor = [UIColor whiteColor];
 	
 	NSMutableArray *viewControllers = [NSMutableArray array];
-	[viewControllers addObject:[FDAroundViewController new]];
 	[viewControllers addObject:[FDDiscoveryViewController new]];
+	[viewControllers addObject:[FDAroundViewController new]];
 	[viewControllers addObject:[FDHostViewController new]];
-	[viewControllers addObject:[FDCameraViewController new]];
 	[viewControllers addObject:[FDMeViewController new]];
+	[viewControllers addObject:[FDTestAccountsViewController new]];
+//	[viewControllers addObject:[FDCameraViewController new]];
 //	[viewControllers addObject:[FDTestPhotoUploadViewController new]];
-//	[viewControllers addObject:[FDTestAccountsViewController new]];
 
 
 	NSMutableArray *naviControllers = [NSMutableArray array];

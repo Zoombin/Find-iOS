@@ -40,11 +40,11 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	BOOL bSigninValid = NO;
-	if (!bSigninValid) {
-		FDSignupViewController *signupViewController = [[FDSignupViewController alloc] init];
-		[self.navigationController pushViewController:signupViewController animated:YES];
-	}
+//	BOOL bSigninValid = NO;
+//	if (!bSigninValid) {
+//		FDSignupViewController *signupViewController = [[FDSignupViewController alloc] init];
+//		[self.navigationController pushViewController:signupViewController animated:YES];
+//	}
 }
 
 - (void)didReceiveMemoryWarning

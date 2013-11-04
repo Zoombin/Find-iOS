@@ -19,6 +19,7 @@ static NSString *responseKeyMsg = @"msg";
 static NSString *responseKeyAct = @"action";
 static NSString *responseKeyLikes = @"likes";
 static NSString *responseKeyToken = @"token";
+static NSString *responseKeyUserID = @"mid";
 static NSString *userDefaultKeyToken = @"fd_token";
 static NSString *userDefaultKeyAccount = @"fd_account";
 static NSString *userDefaultKeyUserID = @"fd_user_id";
@@ -57,6 +58,14 @@ static NSString *token;
 	NSLog(@"save user account: %@", aAccount);
 }
 
+- (void)saveUserID:(NSString *)aUserID
+{
+	NSAssert(aUserID, @"userID must not be nil!");
+	[[NSUserDefaults standardUserDefaults] setObject:aUserID forKey:userDefaultKeyUserID];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	NSLog(@"save user account: %@", aUserID);
+}
+
 - (NSString *)cookieValue
 {
 	if (token) {
@@ -77,8 +86,7 @@ static NSString *token;
 
 - (NSString *)userID
 {
-	NSString *userID = nil;
-	userID = [[NSUserDefaults standardUserDefaults] objectForKey:userDefaultKeyUserID];
+	NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:userDefaultKeyUserID];
 	return userID;
 }
 
@@ -281,6 +289,7 @@ static NSString *token;
 			if ([data[responseKeyStatus] boolValue]) {
 				[self saveToken:data[responseKeyToken]];
 				[self saveAccount:username];
+				[self saveUserID:data[responseKeyUserID]];
 			}
 			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]]);
 		}
@@ -308,6 +317,7 @@ static NSString *token;
 			if ([data[responseKeyStatus] boolValue]) {
 				[self saveToken:data[responseKeyToken]];
 				[self saveAccount:username];
+				[self saveUserID:data[responseKeyUserID]];
 			}
 			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]]);
 		}
