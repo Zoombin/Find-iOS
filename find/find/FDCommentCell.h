@@ -9,7 +9,7 @@
 #import "FDPhoto.h"
 #import "FDUser.h"
 
-#define kFDCommentCellIdentifier @"kFDCommentCellIdentifier"
+static NSString *kFDCommentCellIdentifier = @"kFDCommentCellIdentifier";
 
 @protocol FDCommentCellDelegate <NSObject>
 

@@ -68,7 +68,7 @@
 
 - (NSString *)urlstringCropToSize:(CGSize)size
 {
-	NSLog(@"urlstringCropToSize: %@", [[self urlString] qnCropFromCenterToSize:size]);
+	//NSLog(@"urlstringCropToSize: %@", [[self urlString] qnCropFromCenterToSize:size]);
 	return [[self urlString] qnCropFromCenterToSize:size];
 }
 

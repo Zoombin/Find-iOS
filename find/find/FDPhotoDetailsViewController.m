@@ -9,11 +9,17 @@
 #import "FDPhotoDetailsViewController.h"
 #import "FDPhotoCell.h"
 #import "FDCommentCell.h"
+#import "FDVoteCell.h"
 
-#define kSectionOfPhoto 0
-#define kSectionOfComments 1
-#define kIndexOfReportButtonInActionSheet 0
-#define kHeightOfSegmentedControl 30;
+static NSInteger kSectionOfPhoto = 0;
+static NSInteger kSectionOfComments = 1;
+static NSInteger kIndexOfReportButtonInActionSheet = 0;
+static NSInteger kHeightOfSegmentedControl = 30;
+
+static NSInteger kSegmentedControlIndexComments = 0;
+static NSInteger kSegmentedControlIndexTags = 1;
+static NSInteger kSegmentedControlIndexRegions = 2;
+static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 
 @interface FDPhotoDetailsViewController () <UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource, FDCommentCellDelegate, HPGrowingTextViewDelegate>
 
@@ -44,7 +50,7 @@
     [super viewDidLoad];
 	
 	CGSize fullSize = self.view.bounds.size;
-	
+	_heightOfPhoto = fullSize.height;
 	CGFloat heightOfGrowingTextView = 40;
 	
 	_kTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, fullSize.width, fullSize.height - heightOfGrowingTextView) style:UITableViewStylePlain];
@@ -197,6 +203,21 @@
 	_reportCommentID = comment.ID;
 }
 
+- (void)selectedSegment:(UISegmentedControl *)segmentedControl
+{
+	NSLog(@"selectedSegment: %@", [segmentedControl titleForSegmentAtIndex:segmentedControl.selectedSegmentIndex]);
+	[_kTableView reloadData];
+//	if (segmentedControl.selectedSegmentIndex == kSegmentedControlIndexComments) {
+//		
+//	} else if (segmentedControl.selectedSegmentIndex == kSegmentedControlIndexRegions) {
+//
+//	} else if (segmentedControl.selectedSegmentIndex == kSegmentedControlIndexTags) {
+//
+//	} else if (segmentedControl.selectedSegmentIndex == kSegmentedControlIndexShareAndGifts) {
+//		
+//	}
+}
+
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -219,6 +240,9 @@
 		if (!_segmentedControl) {
 			_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[comments, tags, regions, sharAndGifts]];
 			_segmentedControl.selectedSegmentIndex = 0;
+			_segmentedControl.backgroundColor = _kTableView.backgroundColor;
+			_segmentedControl.tintColor = [UIColor fdThemeRed];
+			[_segmentedControl addTarget:self action:@selector(selectedSegment:) forControlEvents:UIControlEventValueChanged];
 		}
 		return _segmentedControl;
 	}
@@ -268,22 +292,34 @@
 		}
 		return cell;
 	} else {
-		FDCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:kFDCommentCellIdentifier];
-		if (!cell) {
-			cell = [[FDCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFDCommentCellIdentifier];
-			cell.selectionStyle = UITableViewCellSelectionStyleNone;
-			cell.delegate = self;
+		if (_segmentedControl.selectedSegmentIndex == kSegmentedControlIndexComments) {
+			FDCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:kFDCommentCellIdentifier];
+			if (!cell) {
+				cell = [[FDCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFDCommentCellIdentifier];
+				cell.selectionStyle = UITableViewCellSelectionStyleNone;
+				cell.delegate = self;
+			}
+			cell.comment = _comments[indexPath.row];
+			cell.bMine = [[FDAFHTTPClient shared] userID] == cell.comment.userID;
+			return cell;
+		} else {
+			FDVoteCell *cell = [tableView dequeueReusableCellWithIdentifier:kFDVoteCellIdentifier];
+			if (!cell) {
+				cell = [[FDVoteCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFDVoteCellIdentifier];
+				cell.selectionStyle = UITableViewCellSelectionStyleNone;
+				//cell.delegate = self;
+			}
+			//cell.comment = _comments[indexPath.row];
+			//cell.bMine = [[FDAFHTTPClient shared] userID] == cell.comment.userID;
+			return cell;
 		}
-		cell.comment = _comments[indexPath.row];
-		cell.bMine = [[FDAFHTTPClient shared] userID] == cell.comment.userID;
-		return cell;
 	}
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (indexPath.section == kSectionOfPhoto) {
-		return _heightOfPhoto;
+		return _heightOfPhoto + 10;
 	} else {
 		FDComment *comment = _comments[indexPath.row];
 		return [FDCommentCell heightForComment:comment];

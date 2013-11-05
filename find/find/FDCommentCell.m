@@ -143,8 +143,6 @@
 	_bMine = bMine;
 	if (_bMine) {
 		_contentLabel.textColor = [UIColor fdThemeRed];
-	} else {
-		_contentLabel.textColor = [UIColor blackColor];
 	}
 }
 
