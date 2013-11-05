@@ -58,7 +58,7 @@
 	[self.view addSubview:_containerView];
 	
 	_sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	[_sendButton setTitle:NSLocalizedString(@"发评论", nil) forState:UIControlStateNormal];
+	[_sendButton setTitle:NSLocalizedString(@"Send", nil) forState:UIControlStateNormal];
 	_sendButton.backgroundColor = [UIColor randomColor];
 	_sendButton.frame = CGRectMake(fullSize.width - 50, 0, 50, _containerView.frame.size.height);
 	_sendButton.titleLabel.font = [UIFont fdThemeFontOfSize:13];
@@ -79,7 +79,7 @@
 	_growingTextView.delegate = self;
     _growingTextView.internalTextView.scrollIndicatorInsets = UIEdgeInsetsMake(5, 0, 5, 0);
     _growingTextView.backgroundColor = [UIColor randomColor];
-    _growingTextView.placeholder = NSLocalizedString(@"评论此照片", nil);
+    _growingTextView.placeholder = NSLocalizedString(@"Comment This Photo", nil);
 	[_containerView addSubview:_growingTextView];
 }
 
@@ -194,6 +194,29 @@
 }
 
 #pragma mark - UITableViewDelegate
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+	if (section == kSectionOfComments) {
+		UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 60)];
+		headerView.backgroundColor = [UIColor randomColor];
+		NSString *comments = NSLocalizedString(@"Comments", nil);
+		NSString *tags = NSLocalizedString(@"Tags", nil);
+		NSString *regions = NSLocalizedString(@"Regions", nil);
+		NSString *sharAndGifts = NSLocalizedString(@"Share&Gifts", nil);
+		UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[comments, tags, regions, sharAndGifts]];
+		[headerView addSubview:segmentedControl];
+		return headerView;
+	}
+//	FDThemeSection *themeSection = [self themeSectionInSection:section];
+//	NSDictionary *attributes = [FDThemeCell attributesOfStyle:themeSection.style];
+//	if (attributes[kThemeCellAttributeKeyHeaderTitle]) {
+//		FDThemeSectionHeaderView *headerView = [[FDThemeSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, [FDThemeSectionHeaderView height])];
+//		headerView.title = themeSection.title;
+//		return headerView;
+//	}
+	return nil;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
