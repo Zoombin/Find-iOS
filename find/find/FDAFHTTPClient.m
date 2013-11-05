@@ -244,7 +244,7 @@ static NSString *token;
 	}];
 }
 
-- (void)commentsOfPhoto:(NSNumber *)photoID limit:(NSNumber *)limit published:(NSNumber *)published withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *commentsData, NSNumber *lastestPublishedTimestamp))block
+- (void)commentsOfPhoto:(NSNumber *)photoID limit:(NSNumber *)limit published:(NSNumber *)published withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *commentsData, NSNumber *total, NSNumber *lastestPublishedTimestamp))block
 {
 	NSAssert(photoID, @"photoID must not be nil when fetch comments of this photo!");
 	
@@ -265,10 +265,10 @@ static NSString *token;
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
 			//TODO: YES everytime?
-			if (block) block (YES, [FDErrorMessage messageFromData:data[responseKeyMsg]], data[responseKeyData], data[@"published"]);
+			if (block) block (YES, [FDErrorMessage messageFromData:data[responseKeyMsg]], data[responseKeyData], data[@"total"], data[@"published"]);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block(NO, [FDErrorMessage messageNetworkError], nil, nil);
+		if (block) block(NO, [FDErrorMessage messageNetworkError], nil, nil, nil);
 	}];	
 }
 

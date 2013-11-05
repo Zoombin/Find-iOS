@@ -13,6 +13,7 @@
 #define kSectionOfPhoto 0
 #define kSectionOfComments 1
 #define kIndexOfReportButtonInActionSheet 0
+#define kHeightOfSegmentedControl 30;
 
 @interface FDPhotoDetailsViewController () <UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource, FDCommentCellDelegate, HPGrowingTextViewDelegate>
 
@@ -23,6 +24,7 @@
 @property (readwrite) UIView *containerView;
 @property (readwrite) HPGrowingTextView *growingTextView;
 @property (readwrite) UIButton *sendButton;
+@property (readwrite) UISegmentedControl *segmentedControl;
 
 @end
 
@@ -105,10 +107,12 @@
 
 - (void)fetchComments
 {
-	[[FDAFHTTPClient shared] commentsOfPhoto:_photo.ID limit:@(9999) published:nil withCompletionBlock:^(BOOL success, NSString *message, NSArray *commentsData, NSNumber *lastestPublishedTimestamp) {
+	[[FDAFHTTPClient shared] commentsOfPhoto:_photo.ID limit:@(9999) published:nil withCompletionBlock:^(BOOL success, NSString *message, NSArray *commentsData, NSNumber *total, NSNumber *lastestPublishedTimestamp) {
 		if (success) {
 			self.navigationItem.title = @"hello";//TODO set username
 			_comments = [FDComment createMutableWithData:commentsData];
+			NSString *title = [NSString stringWithFormat:@"%@(%@)", NSLocalizedString(@"Comments", nil), total];
+			[_segmentedControl setTitle:title forSegmentAtIndex:0];
 			[_kTableView reloadData];
 		}
 	}];
@@ -195,26 +199,29 @@
 
 #pragma mark - UITableViewDelegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+	if (section == kSectionOfComments) {
+		return kHeightOfSegmentedControl;
+	}
+	return 0;
+}
+
+
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
 	if (section == kSectionOfComments) {
-		UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 60)];
-		headerView.backgroundColor = [UIColor randomColor];
 		NSString *comments = NSLocalizedString(@"Comments", nil);
 		NSString *tags = NSLocalizedString(@"Tags", nil);
 		NSString *regions = NSLocalizedString(@"Regions", nil);
 		NSString *sharAndGifts = NSLocalizedString(@"Share&Gifts", nil);
-		UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[comments, tags, regions, sharAndGifts]];
-		[headerView addSubview:segmentedControl];
-		return headerView;
+		if (!_segmentedControl) {
+			_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[comments, tags, regions, sharAndGifts]];
+			_segmentedControl.selectedSegmentIndex = 0;
+		}
+		return _segmentedControl;
 	}
-//	FDThemeSection *themeSection = [self themeSectionInSection:section];
-//	NSDictionary *attributes = [FDThemeCell attributesOfStyle:themeSection.style];
-//	if (attributes[kThemeCellAttributeKeyHeaderTitle]) {
-//		FDThemeSectionHeaderView *headerView = [[FDThemeSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, [FDThemeSectionHeaderView height])];
-//		headerView.title = themeSection.title;
-//		return headerView;
-//	}
 	return nil;
 }
 
