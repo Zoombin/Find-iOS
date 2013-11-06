@@ -73,6 +73,8 @@
 		77DA107A17E97FA9001F44DF /* FDComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DA107817E97FA9001F44DF /* FDComment.m */; };
 		77DBC8CD181FA5B500F0A7A8 /* FDImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DBC8CC181FA5B500F0A7A8 /* FDImageView.m */; };
 		77DBC8D21820C42B00F0A7A8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77DBC8D01820C42B00F0A7A8 /* Localizable.strings */; };
+		77E94B48182A2F140017FF8E /* FDVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E94B47182A2F140017FF8E /* FDVote.m */; };
+		77E94B4B182A3E1B0017FF8E /* FDVote+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E94B4A182A3E1B0017FF8E /* FDVote+Test.m */; };
 		77F5CD4F17E966BC006D931F /* FDSigninViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5CD4E17E966BC006D931F /* FDSigninViewController.m */; };
 		77F5CD5217E966DB006D931F /* FDSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5CD5117E966DB006D931F /* FDSignupViewController.m */; };
 		77F5CD5817E9771A006D931F /* UIColor+Find.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5CD5717E9771A006D931F /* UIColor+Find.m */; };
@@ -224,6 +226,10 @@
 		77DBC8CF1820B7A400F0A7A8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		77DBC8D11820C42B00F0A7A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		77DBC8D31820C43400F0A7A8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		77E94B46182A2F140017FF8E /* FDVote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDVote.h; path = find/FDVote.h; sourceTree = "<group>"; };
+		77E94B47182A2F140017FF8E /* FDVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDVote.m; path = find/FDVote.m; sourceTree = "<group>"; };
+		77E94B49182A3E1B0017FF8E /* FDVote+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FDVote+Test.h"; path = "Test/FDVote+Test.h"; sourceTree = "<group>"; };
+		77E94B4A182A3E1B0017FF8E /* FDVote+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FDVote+Test.m"; path = "Test/FDVote+Test.m"; sourceTree = "<group>"; };
 		77F5CD4D17E966BC006D931F /* FDSigninViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSigninViewController.h; sourceTree = "<group>"; };
 		77F5CD4E17E966BC006D931F /* FDSigninViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSigninViewController.m; sourceTree = "<group>"; };
 		77F5CD5017E966DB006D931F /* FDSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSignupViewController.h; sourceTree = "<group>"; };
@@ -465,6 +471,8 @@
 				7734ACD317D8562F003E7BB6 /* FDPhoto+Test.m */,
 				778671BB17E705D6001FDB67 /* CLLocation+Test.h */,
 				778671BC17E705D6001FDB67 /* CLLocation+Test.m */,
+				77E94B49182A3E1B0017FF8E /* FDVote+Test.h */,
+				77E94B4A182A3E1B0017FF8E /* FDVote+Test.m */,
 			);
 			name = Test;
 			sourceTree = "<group>";
@@ -501,6 +509,8 @@
 				77C0C96617D198F6008C7FC7 /* FDPhoto.m */,
 				77DA107717E97FA9001F44DF /* FDComment.h */,
 				77DA107817E97FA9001F44DF /* FDComment.m */,
+				77E94B46182A2F140017FF8E /* FDVote.h */,
+				77E94B47182A2F140017FF8E /* FDVote.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -727,6 +737,7 @@
 				77A5F7B317CB22960073E7F9 /* FDAppDelegate.m in Sources */,
 				77A5F7AF17CB22960073E7F9 /* main.m in Sources */,
 				777E5EE817D9BBDA005AFB67 /* FDThemeItemView.m in Sources */,
+				77E94B4B182A3E1B0017FF8E /* FDVote+Test.m in Sources */,
 				77C0C8E017CDE32C008C7FC7 /* ZBQNAFHTTPClient.m in Sources */,
 				77B6397F1810E14F00AE8526 /* FDThemeSectionHeaderView.m in Sources */,
 				777E5E1E17D97A98005AFB67 /* FDThemeCell.m in Sources */,
@@ -751,6 +762,7 @@
 				7734ACD417D8562F003E7BB6 /* FDPhoto+Test.m in Sources */,
 				77A4AF2B18288E1C00B7D65B /* FDVoteCell.m in Sources */,
 				77D69700180E540E000BCA07 /* FDSize.m in Sources */,
+				77E94B48182A2F140017FF8E /* FDVote.m in Sources */,
 				77FE43431801040F00B1B5D3 /* FDTestAccountsViewController.m in Sources */,
 				7734ACCE17D85368003E7BB6 /* FDUser.m in Sources */,
 				7734ACE617D895D1003E7BB6 /* FDViewController.m in Sources */,

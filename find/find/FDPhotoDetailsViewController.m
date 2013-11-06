@@ -10,6 +10,7 @@
 #import "FDPhotoCell.h"
 #import "FDCommentCell.h"
 #import "FDVoteCell.h"
+#import "FDVote.h"
 
 static NSInteger kSectionOfPhoto = 0;
 static NSInteger kSectionOfComments = 1;
@@ -31,6 +32,8 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 @property (readwrite) HPGrowingTextView *growingTextView;
 @property (readwrite) UIButton *sendButton;
 @property (readwrite) UISegmentedControl *segmentedControl;
+@property (readwrite) NSArray *tags;
+@property (readwrite) NSMutableDictionary *dataSourceMap;
 
 @end
 
@@ -89,6 +92,8 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
     _growingTextView.backgroundColor = [UIColor randomColor];
     _growingTextView.placeholder = NSLocalizedString(@"Comment This Photo", nil);
 	[_containerView addSubview:_growingTextView];
+	
+	_dataSourceMap = [NSMutableDictionary dictionary];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -101,7 +106,16 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	[self fetchComments];
+	
+	if (!_comments) {
+		[self fetchComments:^{
+			[_kTableView reloadData];
+		}];
+	}
+	
+	if (!_tags) {
+		[self fetchTags:nil];
+	}
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -111,15 +125,27 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)fetchComments
+- (void)fetchComments:(dispatch_block_t)block
 {
 	[[FDAFHTTPClient shared] commentsOfPhoto:_photo.ID limit:@(9999) published:nil withCompletionBlock:^(BOOL success, NSString *message, NSArray *commentsData, NSNumber *total, NSNumber *lastestPublishedTimestamp) {
 		if (success) {
 			self.navigationItem.title = @"hello";//TODO set username
 			_comments = [FDComment createMutableWithData:commentsData];
+			_dataSourceMap[@(kSegmentedControlIndexComments)] = _comments;
 			NSString *title = [NSString stringWithFormat:@"%@(%@)", NSLocalizedString(@"Comments", nil), total];
 			[_segmentedControl setTitle:title forSegmentAtIndex:0];
-			[_kTableView reloadData];
+			if (block) block ();
+		}
+	}];
+}
+
+- (void)fetchTags:(dispatch_block_t)block
+{
+	[[FDAFHTTPClient shared] tagsOfPhoto:_photo.ID withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData) {
+		if (success) {
+			_tags = [FDVote createTest:10];
+			_dataSourceMap[@(kSegmentedControlIndexTags)] = _tags;
+			if (block) block ();
 		}
 	}];
 }
@@ -222,31 +248,31 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-	if (section == kSectionOfComments) {
-		return kHeightOfSegmentedControl;
+	if (section == kSectionOfPhoto) {
+		return 0;
 	}
-	return 0;
+	return kHeightOfSegmentedControl;
 }
 
 
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-	if (section == kSectionOfComments) {
-		NSString *comments = NSLocalizedString(@"Comments", nil);
-		NSString *tags = NSLocalizedString(@"Tags", nil);
-		NSString *regions = NSLocalizedString(@"Regions", nil);
-		NSString *sharAndGifts = NSLocalizedString(@"Share&Gifts", nil);
-		if (!_segmentedControl) {
-			_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[comments, tags, regions, sharAndGifts]];
-			_segmentedControl.selectedSegmentIndex = 0;
-			_segmentedControl.backgroundColor = _kTableView.backgroundColor;
-			_segmentedControl.tintColor = [UIColor fdThemeRed];
-			[_segmentedControl addTarget:self action:@selector(selectedSegment:) forControlEvents:UIControlEventValueChanged];
-		}
-		return _segmentedControl;
+	if (section == kSectionOfPhoto) {
+		return nil;
 	}
-	return nil;
+	NSString *comments = NSLocalizedString(@"Comments", nil);
+	NSString *tags = NSLocalizedString(@"Tags", nil);
+	NSString *regions = NSLocalizedString(@"Regions", nil);
+	NSString *sharAndGifts = NSLocalizedString(@"Share&Gifts", nil);
+	if (!_segmentedControl) {
+		_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[comments, tags, regions, sharAndGifts]];
+		_segmentedControl.selectedSegmentIndex = 0;
+		_segmentedControl.backgroundColor = _kTableView.backgroundColor;
+		_segmentedControl.tintColor = [UIColor fdThemeRed];
+		[_segmentedControl addTarget:self action:@selector(selectedSegment:) forControlEvents:UIControlEventValueChanged];
+	}
+	return _segmentedControl;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -259,7 +285,8 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 	if (section == kSectionOfPhoto) {
 		return 1;
 	}
-	return _comments.count;
+	NSArray *dataSource = _dataSourceMap[@(_segmentedControl.selectedSegmentIndex)];
+	return dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -309,8 +336,7 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 				cell.selectionStyle = UITableViewCellSelectionStyleNone;
 				//cell.delegate = self;
 			}
-			//cell.comment = _comments[indexPath.row];
-			//cell.bMine = [[FDAFHTTPClient shared] userID] == cell.comment.userID;
+			cell.vote = _tags[indexPath.row];
 			return cell;
 		}
 	}
@@ -321,8 +347,13 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 	if (indexPath.section == kSectionOfPhoto) {
 		return _heightOfPhoto + 10;
 	} else {
-		FDComment *comment = _comments[indexPath.row];
-		return [FDCommentCell heightForComment:comment];
+		if (_segmentedControl.selectedSegmentIndex == kSegmentedControlIndexComments) {
+			FDComment *comment = _comments[indexPath.row];
+			return [FDCommentCell heightForComment:comment];
+		} else
+		{
+			return [FDVoteCell height];
+		}
 	}
 }
 

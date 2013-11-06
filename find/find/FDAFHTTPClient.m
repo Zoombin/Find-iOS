@@ -484,4 +484,9 @@ static NSString *token;
 	}];
 }
 
+- (void)tagsOfPhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *votesData))block
+{
+	if (block) block (YES, @"mes", nil);//TODO
+}
+
 @end
