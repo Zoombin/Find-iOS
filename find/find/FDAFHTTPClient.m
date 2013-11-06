@@ -489,4 +489,15 @@ static NSString *token;
 	if (block) block (YES, @"mes", nil);//TODO
 }
 
+- (void)regionsOfPhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *votesData))block
+{
+	if (block) block (YES, @"mes", nil);//TODO
+}
+
+
+- (void)vote:(NSNumber *)voteID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+{
+	if (block) block (YES, @"msg");//TODO
+}
+
 @end

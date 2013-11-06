@@ -22,7 +22,7 @@ static NSInteger kSegmentedControlIndexTags = 1;
 static NSInteger kSegmentedControlIndexRegions = 2;
 static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 
-@interface FDPhotoDetailsViewController () <UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource, FDCommentCellDelegate, HPGrowingTextViewDelegate>
+@interface FDPhotoDetailsViewController () <UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource, FDCommentCellDelegate, HPGrowingTextViewDelegate, FDVoteCellDelegate>
 
 @property (readwrite) NSArray *comments;
 @property (readwrite) UITableView *kTableView;
@@ -33,6 +33,7 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 @property (readwrite) UIButton *sendButton;
 @property (readwrite) UISegmentedControl *segmentedControl;
 @property (readwrite) NSArray *tags;
+@property (readwrite) NSArray *regions;
 @property (readwrite) NSMutableDictionary *dataSourceMap;
 
 @end
@@ -82,7 +83,6 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 	_growingTextView.layer.borderColor = [[UIColor grayColor] CGColor];
 	_growingTextView.isScrollable = NO;
     _growingTextView.contentInset = UIEdgeInsetsMake(0, 5, 0, 5);
-    
 	_growingTextView.minNumberOfLines = 1;
     _growingTextView.maxHeight = 150.0f;//if large than 150 growingTextView will cover navigation
 	_growingTextView.returnKeyType = UIReturnKeyDefault;
@@ -115,6 +115,10 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 	
 	if (!_tags) {
 		[self fetchTags:nil];
+	}
+	
+	if (!_regions) {
+		[self fetchRegions:nil];
 	}
 }
 
@@ -150,98 +154,35 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 	}];
 }
 
+- (void)fetchRegions:(dispatch_block_t)block
+{
+	[[FDAFHTTPClient shared] regionsOfPhoto:_photo.ID withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData) {
+		if (success) {
+			_regions = [FDVote createTest:30];
+			_dataSourceMap[@(kSegmentedControlIndexRegions)] = _regions;
+			if (block) block ();
+		}
+	}];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - FDCommentCellDelegate
-
-- (void)willCommentOrReply:(FDComment *)comment
-{
-	NSDate *now = [NSDate date];
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	dateFormatter.dateFormat = @"YYYY-mm-dd HH:MM:SS";
-	NSString *tweetString = [NSString stringWithFormat:@"comment at:%@", [dateFormatter stringFromDate:now]];
-	
-//	[[FDAFHTTPClient shared] commentPhoto:_photo.ID content:tweetString withCompletionBlock:^(BOOL success, NSString *message) {
-//		if (success) {
-//			[self fetchComments];
-//		}
-//	}];
-}
-
--(void)keyboardWillShow:(NSNotification *)notification
-{
-    // get keyboard size and loctaion
-	CGRect keyboardBounds;
-    [[notification.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &keyboardBounds];
-    NSNumber *duration = [notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    NSNumber *curve = [notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
-	
-    // Need to translate the bounds to account for rotation.
-    keyboardBounds = [self.view convertRect:keyboardBounds toView:nil];
-	
-	// get a rect for the textView frame
-	CGRect containerFrame = _containerView.frame;
-    containerFrame.origin.y = self.view.bounds.size.height - (keyboardBounds.size.height + containerFrame.size.height);
-	// animations settings
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:[duration doubleValue]];
-    [UIView setAnimationCurve:[curve intValue]];
-	
-	// set views with new info
-	_containerView.frame = containerFrame;
-	
-	// commit animations
-	[UIView commitAnimations];
-}
-
--(void)keyboardWillHide:(NSNotification *)notification
-{
-    NSNumber *duration = [notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    NSNumber *curve = [notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
-	
-	// get a rect for the textView frame
-	CGRect containerFrame = _containerView.frame;
-    containerFrame.origin.y = self.view.bounds.size.height - containerFrame.size.height;
-	
-	// animations settings
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:[duration doubleValue]];
-    [UIView setAnimationCurve:[curve intValue]];
-	
-	// set views with new info
-	_containerView.frame = containerFrame;
-	
-	// commit animations
-	[UIView commitAnimations];
-}
-
-
-- (void)willReport:(FDComment *)comment
-{
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Report Bad Comment", nil), nil];
-	[actionSheet showInView:self.view];
-	_reportCommentID = comment.ID;
-}
-
 - (void)selectedSegment:(UISegmentedControl *)segmentedControl
 {
 	NSLog(@"selectedSegment: %@", [segmentedControl titleForSegmentAtIndex:segmentedControl.selectedSegmentIndex]);
+	_containerView.hidden = segmentedControl.selectedSegmentIndex != kSegmentedControlIndexComments;
+	CGRect frame = _kTableView.frame;
+	if (segmentedControl.selectedSegmentIndex != kSegmentedControlIndexComments) {
+		frame.size.height = self.view.bounds.size.height;
+	} else {
+		frame.size.height = self.view.bounds.size.height - _containerView.bounds.size.height;
+	}
+	_kTableView.frame = frame;
 	[_kTableView reloadData];
-//	if (segmentedControl.selectedSegmentIndex == kSegmentedControlIndexComments) {
-//		
-//	} else if (segmentedControl.selectedSegmentIndex == kSegmentedControlIndexRegions) {
-//
-//	} else if (segmentedControl.selectedSegmentIndex == kSegmentedControlIndexTags) {
-//
-//	} else if (segmentedControl.selectedSegmentIndex == kSegmentedControlIndexShareAndGifts) {
-//		
-//	}
 }
 
 #pragma mark - UITableViewDelegate
@@ -269,7 +210,7 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 		_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[comments, tags, regions, sharAndGifts]];
 		_segmentedControl.selectedSegmentIndex = 0;
 		_segmentedControl.backgroundColor = _kTableView.backgroundColor;
-		_segmentedControl.tintColor = [UIColor fdThemeRed];
+		_segmentedControl.tintColor = [UIColor grayColor];
 		[_segmentedControl addTarget:self action:@selector(selectedSegment:) forControlEvents:UIControlEventValueChanged];
 	}
 	return _segmentedControl;
@@ -334,9 +275,13 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 			if (!cell) {
 				cell = [[FDVoteCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFDVoteCellIdentifier];
 				cell.selectionStyle = UITableViewCellSelectionStyleNone;
-				//cell.delegate = self;
+				cell.delegate = self;
 			}
-			cell.vote = _tags[indexPath.row];
+			if (_segmentedControl.selectedSegmentIndex == kSegmentedControlIndexTags) {
+				cell.vote = _tags[indexPath.row];
+			} else if (_segmentedControl.selectedSegmentIndex == kSegmentedControlIndexRegions) {
+				cell.vote = _regions[indexPath.row];
+			}
 			return cell;
 		}
 	}
@@ -363,17 +308,21 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 		NSLog(@"resign");
 		return;
 	}
-	if (indexPath.section == kSectionOfComments) {
-		FDCommentCell *cell = (FDCommentCell *)[tableView cellForRowAtIndexPath:indexPath];
-		[cell showOrHideMoreActions];
+	if (indexPath.section != kSectionOfPhoto) {
+		if (_segmentedControl.selectedSegmentIndex == kSegmentedControlIndexComments) {
+			FDCommentCell *cell = (FDCommentCell *)[tableView cellForRowAtIndexPath:indexPath];
+			[cell showOrHideMoreActions];
+		}
 	}
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.section == kSectionOfComments) {
-		FDCommentCell *cell = (FDCommentCell *)[tableView cellForRowAtIndexPath:indexPath];
-		[cell hideMoreActions];
+	if (indexPath.section != kSectionOfPhoto) {
+		if (_segmentedControl.selectedSegmentIndex == kSegmentedControlIndexComments) {
+			FDCommentCell *cell = (FDCommentCell *)[tableView cellForRowAtIndexPath:indexPath];
+			[cell hideMoreActions];
+		}
 	}
 }
 
@@ -409,5 +358,93 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 	_sendButton.frame = frame;
 }
 
+#pragma mark - KeyboardNotifications
+
+-(void)keyboardWillShow:(NSNotification *)notification
+{
+    // get keyboard size and loctaion
+	CGRect keyboardBounds;
+    [[notification.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &keyboardBounds];
+    NSNumber *duration = [notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curve = [notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+	
+    // Need to translate the bounds to account for rotation.
+    keyboardBounds = [self.view convertRect:keyboardBounds toView:nil];
+	
+	// get a rect for the textView frame
+	CGRect containerFrame = _containerView.frame;
+    containerFrame.origin.y = self.view.bounds.size.height - (keyboardBounds.size.height + containerFrame.size.height);
+	// animations settings
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:[duration doubleValue]];
+    [UIView setAnimationCurve:[curve intValue]];
+	
+	// set views with new info
+	_containerView.frame = containerFrame;
+	
+	// commit animations
+	[UIView commitAnimations];
+}
+
+-(void)keyboardWillHide:(NSNotification *)notification
+{
+    NSNumber *duration = [notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curve = [notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+	
+	// get a rect for the textView frame
+	CGRect containerFrame = _containerView.frame;
+    containerFrame.origin.y = self.view.bounds.size.height - containerFrame.size.height;
+	
+	// animations settings
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:[duration doubleValue]];
+    [UIView setAnimationCurve:[curve intValue]];
+	
+	// set views with new info
+	_containerView.frame = containerFrame;
+	
+	// commit animations
+	[UIView commitAnimations];
+}
+
+#pragma mark - FDCommentCellDelegate
+
+- (void)willCommentOrReply:(FDComment *)comment
+{
+	NSDate *now = [NSDate date];
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	dateFormatter.dateFormat = @"YYYY-mm-dd HH:MM:SS";
+	NSString *tweetString = [NSString stringWithFormat:@"comment at:%@", [dateFormatter stringFromDate:now]];
+	
+	//	[[FDAFHTTPClient shared] commentPhoto:_photo.ID content:tweetString withCompletionBlock:^(BOOL success, NSString *message) {
+	//		if (success) {
+	//			[self fetchComments];
+	//		}
+	//	}];
+}
+
+- (void)willReport:(FDComment *)comment
+{
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Report Bad Comment", nil), nil];
+	[actionSheet showInView:self.view];
+	_reportCommentID = comment.ID;
+}
+
+#pragma mark - FDVoteDelegate
+
+- (void)willVote:(FDVote *)vote
+{
+	[[FDAFHTTPClient shared] vote:@(1) withCompletionBlock:^(BOOL success, NSString *message) {
+		if (success) {
+			for (FDVote *tag in _tags) {
+				tag.voted = @(NO);
+			}
+			vote.voted = @(YES);
+			[_kTableView reloadData];
+		}
+	}];
+}
 
 @end

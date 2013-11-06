@@ -31,7 +31,7 @@
 		_nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(start.x, start.y, 50, [[self class] height])];
 		_nameLabel.font = [UIFont fdThemeFontOfSize:13];
 		_nameLabel.textAlignment = UITextAlignmentRight;
-		_nameLabel.backgroundColor = [UIColor randomColor];//TODO
+		//_nameLabel.backgroundColor = [UIColor randomColor];//TODO
 		[self.contentView addSubview:_nameLabel];
 		
 		start = CGPointMake(CGRectGetMaxX(_nameLabel.frame) + gap, 0);
@@ -40,7 +40,7 @@
 		
 		_quantityLabel = [[UILabel alloc] initWithFrame:CGRectMake(start.x, start.y, size.width, size.height)];
 		_quantityLabel.font = [UIFont fdBoldThemeFontOfSize:10];
-		_quantityLabel.backgroundColor = [UIColor randomColor];//TODO
+		//_quantityLabel.backgroundColor = [UIColor randomColor];//TODO
 		[self.contentView addSubview:_quantityLabel];
 		
 		start.y = CGRectGetMaxY(_quantityLabel.frame);
@@ -59,27 +59,28 @@
 		_voteButton.showsTouchWhenHighlighted = YES;
 		[_voteButton setTitle:NSLocalizedString(@"Voted", nil) forState:UIControlStateSelected];
 		_voteButton.frame = CGRectMake(start.x, start.y, self.bounds.size.width - start.x, [[self class] height]);
-		_voteButton.backgroundColor = [UIColor randomColor];//TODO
-		[_voteButton addTarget:self action:@selector(vote:) forControlEvents:UIControlEventTouchUpInside];
+		//_voteButton.backgroundColor = [UIColor randomColor];//TODO
+		[_voteButton setTitleColor:[UIColor fdThemeRed] forState:UIControlStateNormal];
+		[_voteButton addTarget:self action:@selector(willVote) forControlEvents:UIControlEventTouchUpInside];
 		[self.contentView addSubview:_voteButton];
     }
     return self;
 }
 
-- (void)vote:(UIButton *)sender
+- (void)willVote
 {
-	NSLog(@"vote: %@", _vote.name);
-	_voteButton.selected = YES;
+	if ([_vote.voted boolValue]) return;
+	[_delegate willVote:_vote];
 }
 
 - (void)setVote:(FDVote *)vote
 {
+	_voteButton.selected = [vote.voted boolValue];
 	if (_vote == vote) return;
 	_vote = vote;
 	_nameLabel.text = _vote.name;
 	_quantityLabel.text = [_vote.quantity stringValue];
 	_percentageView.progress = [_vote.percentage floatValue];
-	_voteButton.selected = [_vote.voted boolValue];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

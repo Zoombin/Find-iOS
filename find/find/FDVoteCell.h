@@ -11,8 +11,15 @@
 
 static NSString *kFDVoteCellIdentifier = @"kFDVoteCellIdentifier";
 
+@protocol FDVoteCellDelegate <NSObject>
+
+- (void)willVote:(FDVote *)vote;
+
+@end
+
 @interface FDVoteCell : UITableViewCell
 
+@property (nonatomic, weak) id<FDVoteCellDelegate> delegate;
 @property (nonatomic, strong) FDVote *vote;
 
 + (CGFloat)height;
