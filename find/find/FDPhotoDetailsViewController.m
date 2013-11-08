@@ -11,6 +11,7 @@
 #import "FDCommentCell.h"
 #import "FDVoteCell.h"
 #import "FDVote.h"
+#import "FDShareAndGiftsCell.h"
 
 static NSInteger kSectionOfPhoto = 0;
 static NSInteger kSectionOfComments = 1;
@@ -94,6 +95,7 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 	[_containerView addSubview:_growingTextView];
 	
 	_dataSourceMap = [NSMutableDictionary dictionary];
+	_dataSourceMap[@(kSegmentedControlIndexShareAndGifts)] = @[@(kSegmentedControlIndexShareAndGifts)];//为了保持代码一致性其实没什么意思
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -270,7 +272,7 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 			cell.comment = _comments[indexPath.row];
 			cell.bMine = [[FDAFHTTPClient shared] userID] == cell.comment.userID;
 			return cell;
-		} else {
+		} else if (_segmentedControl.selectedSegmentIndex == kSegmentedControlIndexTags || _segmentedControl.selectedSegmentIndex == kSegmentedControlIndexRegions){
 			FDVoteCell *cell = [tableView dequeueReusableCellWithIdentifier:kFDVoteCellIdentifier];
 			if (!cell) {
 				cell = [[FDVoteCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFDVoteCellIdentifier];
@@ -281,6 +283,13 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 				cell.vote = _tags[indexPath.row];
 			} else if (_segmentedControl.selectedSegmentIndex == kSegmentedControlIndexRegions) {
 				cell.vote = _regions[indexPath.row];
+			}
+			return cell;
+		} else {
+			FDShareAndGiftsCell *cell = [tableView dequeueReusableCellWithIdentifier:kFDShareAndGiftsCellIdentifier];
+			if (!cell) {
+				cell = [[FDShareAndGiftsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFDShareAndGiftsCellIdentifier];
+				cell.selectionStyle = UITableViewCellSelectionStyleNone;
 			}
 			return cell;
 		}
@@ -295,9 +304,10 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 		if (_segmentedControl.selectedSegmentIndex == kSegmentedControlIndexComments) {
 			FDComment *comment = _comments[indexPath.row];
 			return [FDCommentCell heightForComment:comment];
-		} else
-		{
+		} else if (_segmentedControl.selectedSegmentIndex == kSegmentedControlIndexTags || _segmentedControl.selectedSegmentIndex == kSegmentedControlIndexRegions) {
 			return [FDVoteCell height];
+		} else {
+			return [FDShareAndGiftsCell height];
 		}
 	}
 }
