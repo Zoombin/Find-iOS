@@ -8,7 +8,6 @@
 
 #import "FDAroundViewController.h"
 #import "FDPhotoCell.h"
-#import "FDUserProfileViewController.h"
 #import "FDUser.h"
 #import "FDLikesView.h"
 #import "FDPhotoDetailsViewController.h"

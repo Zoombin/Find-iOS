@@ -11,8 +11,8 @@
 #import "FDThemeSectionHeaderView.h"
 #import "FDThemeItemView.h"
 #import "FDThemeSection.h"
-#import "FDUserProfileViewController.h"
 #import "FDPhotosViewController.h"
+#import "FDPhotoDetailsViewController.h"
 
 @interface FDDiscoveryViewController () <UITableViewDataSource, UITableViewDelegate, FDThemeCellDelegate>
 
@@ -154,7 +154,7 @@
 		photosViewController.themeID = theme.ID;
 		[self.navigationController pushViewController:photosViewController animated:YES];
 	} else if ([theme.type isEqualToString:kThemeTypeIdentifierUser]) {
-		//[self.navigationController pushViewController:[[FDUserProfileViewController alloc] init] animated:YES];
+		[self.navigationController pushViewController:[[FDPhotoDetailsViewController alloc] init] animated:YES];
 	}
 }
 
