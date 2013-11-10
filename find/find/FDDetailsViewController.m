@@ -1,12 +1,12 @@
 //
-//  FDPhotoDetailsViewController.h
+//  FDDetailsViewController.h
 //  find
 //
 //  Created by zhangbin on 9/5/13.
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "FDPhotoDetailsViewController.h"
+#import "FDDetailsViewController.h"
 #import "FDPhotoCell.h"
 #import "FDCommentCell.h"
 #import "FDVoteCell.h"
@@ -20,7 +20,7 @@ static NSInteger kHeightOfSegmentedControl = 30;
 static NSString *keyOfClass = @"keyOfClass";
 static NSString *keyOfDataSource = @"keyOfDataSource";
 
-@interface FDPhotoDetailsViewController () <UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource, FDCommentCellDelegate, HPGrowingTextViewDelegate, FDVoteCellDelegate, PSUICollectionViewDelegate, PSUICollectionViewDataSource>
+@interface FDDetailsViewController () <UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource, FDCommentCellDelegate, HPGrowingTextViewDelegate, FDVoteCellDelegate, PSUICollectionViewDelegate, PSUICollectionViewDataSource>
 
 @property (readwrite) UITableView *kTableView;
 @property (readwrite) CGFloat heightOfPhoto;
@@ -39,7 +39,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 
 @end
 
-@implementation FDPhotoDetailsViewController
+@implementation FDDetailsViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

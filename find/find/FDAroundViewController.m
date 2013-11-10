@@ -10,7 +10,7 @@
 #import "FDPhotoCell.h"
 #import "FDUser.h"
 #import "FDLikesView.h"
-#import "FDPhotoDetailsViewController.h"
+#import "FDDetailsViewController.h"
 
 @interface FDAroundViewController () <PSUICollectionViewDelegate, PSUICollectionViewDataSource, FDPhotoCellDelegate>
 
@@ -106,13 +106,13 @@
 
 - (void)collectionView:(PSUICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	FDPhotoDetailsViewController *photoDetailsViewController = [[FDPhotoDetailsViewController alloc] init];
-	photoDetailsViewController.hidesBottomBarWhenPushed = YES;
+	FDDetailsViewController *detailsViewController = [[FDDetailsViewController alloc] init];
+	detailsViewController.hidesBottomBarWhenPushed = YES;
 	FDTweet *tweet = tweets[indexPath.row];
 	if (tweet.photos.count) {
-		photoDetailsViewController.photo = tweet.photos[0];
+		detailsViewController.photo = tweet.photos[0];
 	}
-	[self.navigationController pushViewController:photoDetailsViewController animated:YES];
+	[self.navigationController pushViewController:detailsViewController animated:YES];
 }
 
 @end

@@ -12,7 +12,7 @@
 #import "FDThemeItemView.h"
 #import "FDThemeSection.h"
 #import "FDPhotosViewController.h"
-#import "FDPhotoDetailsViewController.h"
+#import "FDDetailsViewController.h"
 
 @interface FDDiscoveryViewController () <UITableViewDataSource, UITableViewDelegate, FDThemeCellDelegate>
 
@@ -154,7 +154,7 @@
 		photosViewController.themeID = theme.ID;
 		[self.navigationController pushViewController:photosViewController animated:YES];
 	} else if ([theme.type isEqualToString:kThemeTypeIdentifierUser]) {
-		[self.navigationController pushViewController:[[FDPhotoDetailsViewController alloc] init] animated:YES];
+		[self.navigationController pushViewController:[[FDDetailsViewController alloc] init] animated:YES];
 	}
 }
 

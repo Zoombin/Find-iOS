@@ -16,7 +16,7 @@
 		7734ACCE17D85368003E7BB6 /* FDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACCD17D85368003E7BB6 /* FDUser.m */; };
 		7734ACD117D85605003E7BB6 /* FDUser+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACD017D85605003E7BB6 /* FDUser+Test.m */; };
 		7734ACD417D8562F003E7BB6 /* FDPhoto+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACD317D8562F003E7BB6 /* FDPhoto+Test.m */; };
-		7734ACE317D8893F003E7BB6 /* FDPhotoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE217D8893F003E7BB6 /* FDPhotoDetailsViewController.m */; };
+		7734ACE317D8893F003E7BB6 /* FDDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE217D8893F003E7BB6 /* FDDetailsViewController.m */; };
 		7734ACE617D895D1003E7BB6 /* FDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE517D895D1003E7BB6 /* FDViewController.m */; };
 		7734ACE917D8A6C1003E7BB6 /* FDPhotoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE817D8A6C1003E7BB6 /* FDPhotoInfo.m */; };
 		777E5E1E17D97A98005AFB67 /* FDThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 777E5E1D17D97A98005AFB67 /* FDThemeCell.m */; };
@@ -114,8 +114,8 @@
 		7734ACD017D85605003E7BB6 /* FDUser+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FDUser+Test.m"; path = "Test/FDUser+Test.m"; sourceTree = "<group>"; };
 		7734ACD217D8562F003E7BB6 /* FDPhoto+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FDPhoto+Test.h"; path = "Test/FDPhoto+Test.h"; sourceTree = "<group>"; };
 		7734ACD317D8562F003E7BB6 /* FDPhoto+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FDPhoto+Test.m"; path = "Test/FDPhoto+Test.m"; sourceTree = "<group>"; };
-		7734ACE117D8893F003E7BB6 /* FDPhotoDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDPhotoDetailsViewController.h; sourceTree = "<group>"; };
-		7734ACE217D8893F003E7BB6 /* FDPhotoDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPhotoDetailsViewController.m; sourceTree = "<group>"; };
+		7734ACE117D8893F003E7BB6 /* FDDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDDetailsViewController.h; sourceTree = "<group>"; };
+		7734ACE217D8893F003E7BB6 /* FDDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDDetailsViewController.m; sourceTree = "<group>"; };
 		7734ACE417D895D1003E7BB6 /* FDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDViewController.h; sourceTree = "<group>"; };
 		7734ACE517D895D1003E7BB6 /* FDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDViewController.m; sourceTree = "<group>"; };
 		7734ACE717D8A6C1003E7BB6 /* FDPhotoInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDPhotoInfo.h; path = find/FDPhotoInfo.h; sourceTree = "<group>"; };
@@ -374,8 +374,8 @@
 				77A5F7F617CB30400073E7F9 /* FDMeViewController.m */,
 				7786EDFD181E189F0059868E /* FDPhotosViewController.h */,
 				7786EDFE181E189F0059868E /* FDPhotosViewController.m */,
-				7734ACE117D8893F003E7BB6 /* FDPhotoDetailsViewController.h */,
-				7734ACE217D8893F003E7BB6 /* FDPhotoDetailsViewController.m */,
+				7734ACE117D8893F003E7BB6 /* FDDetailsViewController.h */,
+				7734ACE217D8893F003E7BB6 /* FDDetailsViewController.m */,
 				77A5F7C017CB22960073E7F9 /* Images.xcassets */,
 				77A5F7A917CB22960073E7F9 /* Supporting Files */,
 			);
@@ -729,7 +729,7 @@
 				77A5F7BF17CB22960073E7F9 /* FDDiscoveryViewController.m in Sources */,
 				77C0C91D17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m in Sources */,
 				77DA107017E97EB0001F44DF /* FDCommentCell.m in Sources */,
-				7734ACE317D8893F003E7BB6 /* FDPhotoDetailsViewController.m in Sources */,
+				7734ACE317D8893F003E7BB6 /* FDDetailsViewController.m in Sources */,
 				7786EDFF181E189F0059868E /* FDPhotosViewController.m in Sources */,
 				77A5F7F417CB2F760073E7F9 /* FDCameraViewController.m in Sources */,
 				77EC53DA182B45990042B7B3 /* FDShareAndGiftsCell.m in Sources */,
