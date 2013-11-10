@@ -69,6 +69,7 @@
 
 - (void)tagsOfPhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *votesData))block;
 
+//服务器上叫category
 - (void)regionsOfPhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *votesData))block;
 
 - (void)vote:(NSNumber *)voteID withCompletionBlock:(void (^)(BOOL success, NSString *message))block;

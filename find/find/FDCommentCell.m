@@ -29,7 +29,7 @@
 {
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-		//self.selectionStyle = UITableViewCellSelectionStyleNone;
+		self.selectionStyle = UITableViewCellSelectionStyleNone;
 		
 //		self.backgroundColor = [UIColor randomColor];//TODO: test
 
@@ -173,6 +173,12 @@
 - (void)willCommentOrReply:(FDComment *)comment
 {
 	[_delegate willCommentOrReply:comment];
+}
+
++ (NSString *)identifier
+{
+	static NSString *kFDCommentCellIdentifier = @"kFDCommentCellIdentifier";
+	return kFDCommentCellIdentifier;
 }
 
 + (CGFloat)heightForComment:(FDComment *)comment

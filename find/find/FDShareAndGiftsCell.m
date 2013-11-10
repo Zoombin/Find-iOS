@@ -31,6 +31,7 @@ static NSInteger minimumQuantityOfGift = 1;
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+		self.selectionStyle = UITableViewCellSelectionStyleNone;
 		//self.backgroundColor = [UIColor randomColor];
 		
 		CGPoint start = CGPointZero;
@@ -173,6 +174,12 @@ static NSInteger minimumQuantityOfGift = 1;
 + (CGFloat)height
 {
 	return 330;
+}
+
++ (NSString *)identifier
+{
+	static NSString *kFDShareAndGiftsCellIdentifier = @"kFDShareAndGiftsCellIdentifier";
+	return kFDShareAndGiftsCellIdentifier;
 }
 
 @end

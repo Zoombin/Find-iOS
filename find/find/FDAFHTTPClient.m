@@ -486,7 +486,7 @@ static NSString *token;
 
 - (void)tagsOfPhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *votesData))block
 {
-	NSString *path = @"tweet/tag";
+	NSString *path = [NSString stringWithFormat:@"tweet/%@/tag", photoID];
 	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
@@ -499,7 +499,7 @@ static NSString *token;
 
 - (void)regionsOfPhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *votesData))block
 {
-	NSString *path = @"category";
+	NSString *path = [NSString stringWithFormat:@"tweet/%@/category", photoID];
 	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {

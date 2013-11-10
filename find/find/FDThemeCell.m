@@ -179,6 +179,12 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 	return nil;
 }
 
++ (NSString *)identifier
+{
+	static NSString *kFDThemeCellIdentifier = @"kFDThemeCellIdentifier";
+	return kFDThemeCellIdentifier;
+}
+
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView

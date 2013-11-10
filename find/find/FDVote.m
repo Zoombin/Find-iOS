@@ -19,7 +19,7 @@
 	vote.name = attributes[@"name"];
 	vote.quantity = attributes[@"quantity"];
 	vote.percentage = attributes[@"percentage"];
-	vote.voted = attributes[@"voted"];
+	vote.voted = attributes[@"choosed"];
 	return vote;
 }
 

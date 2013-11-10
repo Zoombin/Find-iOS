@@ -16,8 +16,6 @@ extern NSString *kThemeCellAttributeKeyAutoScrollEnabled;
 extern NSString *kThemeCellAttributeKeyHeaderTitle;
 extern NSString *kThemeCellAttributeKeyHasSeparateLine;
 
-#define kFDThemeCellIdentifier @"kFDThemeCellIdentifier"
-
 @protocol FDThemeCellDelegate <NSObject>
 
 - (void)didSelectTheme:(FDTheme *)theme inThemeSection:(FDThemeSection *)themeSection;
@@ -32,5 +30,6 @@ extern NSString *kThemeCellAttributeKeyHasSeparateLine;
 @property (nonatomic, strong) FDThemeSection *themeSection;
 
 + (NSDictionary *)attributesOfStyle:(NSString *)themeStyle;
++ (NSString *)identifier;
 
 @end

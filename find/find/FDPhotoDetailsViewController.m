@@ -14,18 +14,14 @@
 #import "FDShareAndGiftsCell.h"
 
 static NSInteger kSectionOfPhoto = 0;
-static NSInteger kSectionOfComments = 1;
 static NSInteger kIndexOfReportButtonInActionSheet = 0;
 static NSInteger kHeightOfSegmentedControl = 30;
 
-static NSInteger kSegmentedControlIndexComments = 0;
-static NSInteger kSegmentedControlIndexTags = 1;
-static NSInteger kSegmentedControlIndexRegions = 2;
-static NSInteger kSegmentedControlIndexShareAndGifts = 3;
+static NSString *keyOfClass = @"keyOfClass";
+static NSString *keyOfDataSource = @"keyOfDataSource";
 
 @interface FDPhotoDetailsViewController () <UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource, FDCommentCellDelegate, HPGrowingTextViewDelegate, FDVoteCellDelegate>
 
-@property (readwrite) NSArray *comments;
 @property (readwrite) UITableView *kTableView;
 @property (readwrite) CGFloat heightOfPhoto;
 @property (readwrite) NSNumber *reportCommentID;
@@ -33,9 +29,12 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 @property (readwrite) HPGrowingTextView *growingTextView;
 @property (readwrite) UIButton *sendButton;
 @property (readwrite) UISegmentedControl *segmentedControl;
-@property (readwrite) NSArray *tags;
-@property (readwrite) NSArray *regions;
-@property (readwrite) NSMutableDictionary *dataSourceMap;
+@property (readwrite) NSMutableDictionary *segmentedControlAttributes;
+@property (readwrite) NSString *titleOfPhotos;
+@property (readwrite) NSString *titleOfComments;
+@property (readwrite) NSString *titleOfTags;
+@property (readwrite) NSString *titleOfRegions;
+@property (readwrite) NSString *titleOfShareAndGifts;
 
 @end
 
@@ -94,8 +93,39 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
     _growingTextView.placeholder = NSLocalizedString(@"Comment This Photo", nil);
 	[_containerView addSubview:_growingTextView];
 	
-	_dataSourceMap = [NSMutableDictionary dictionary];
-	_dataSourceMap[@(kSegmentedControlIndexShareAndGifts)] = @[@(kSegmentedControlIndexShareAndGifts)];//为了保持代码一致性其实没什么意思
+	_titleOfPhotos = NSLocalizedString(@"Photos", nil);
+	_titleOfComments = NSLocalizedString(@"Comments", nil);
+	_titleOfTags = NSLocalizedString(@"Tags", nil);
+	_titleOfRegions = NSLocalizedString(@"Regions", nil);
+	_titleOfShareAndGifts = NSLocalizedString(@"Share&Gifts", nil);
+	
+	//_bMemberDetails = YES;//TODO: Test
+	
+	if (_bMemberDetails) {
+		_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[_titleOfPhotos, _titleOfComments, _titleOfTags, _titleOfRegions, _titleOfShareAndGifts]];
+	} else {
+		_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[_titleOfComments, _titleOfTags, _titleOfRegions, _titleOfShareAndGifts]];
+	}
+	_segmentedControl.selectedSegmentIndex = 0;
+	_segmentedControl.backgroundColor = _kTableView.backgroundColor;
+	_segmentedControl.tintColor = [UIColor grayColor];
+	[_segmentedControl addTarget:self action:@selector(selectedSegment:) forControlEvents:UIControlEventValueChanged];
+	
+	Class photoCellClass = [FDVoteCell class];
+	Class commentCellClass = [FDCommentCell class];
+	Class tagCellClass = [FDVoteCell class];
+	Class regionCellClass = [FDVoteCell class];
+	Class shareAndGiftsCellClass = [FDShareAndGiftsCell class];
+
+	_segmentedControlAttributes = [@{_titleOfComments : [@{keyOfClass : commentCellClass} mutableCopy],
+									 _titleOfTags : [@{keyOfClass : tagCellClass} mutableCopy],
+									_titleOfRegions : [@{keyOfClass : regionCellClass} mutableCopy],
+									 _titleOfShareAndGifts : [@{keyOfClass : shareAndGiftsCellClass, keyOfDataSource : @[@"alwaysHasOne"]} mutableCopy],
+									} mutableCopy];
+	
+	if (_bMemberDetails) {
+		_segmentedControlAttributes[_titleOfPhotos] = [@{keyOfClass : photoCellClass} mutableCopy];
+	}
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -109,17 +139,17 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 {
 	[super viewDidAppear:animated];
 	
-	if (!_comments) {
+	if (!_segmentedControlAttributes[_titleOfComments][keyOfDataSource]) {
 		[self fetchComments:^{
 			[_kTableView reloadData];
 		}];
 	}
-	
-	if (!_tags) {
+
+	if (!_segmentedControlAttributes[_titleOfTags][keyOfDataSource]) {
 		[self fetchTags:nil];
 	}
 	
-	if (!_regions) {
+	if (!_segmentedControlAttributes[_titleOfRegions][keyOfDataSource]) {
 		[self fetchRegions:nil];
 	}
 }
@@ -136,10 +166,8 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 	[[FDAFHTTPClient shared] commentsOfPhoto:_photo.ID limit:@(9999) published:nil withCompletionBlock:^(BOOL success, NSString *message, NSArray *commentsData, NSNumber *total, NSNumber *lastestPublishedTimestamp) {
 		if (success) {
 			self.navigationItem.title = @"hello";//TODO set username
-			_comments = [FDComment createMutableWithData:commentsData];
-			_dataSourceMap[@(kSegmentedControlIndexComments)] = _comments;
-			NSString *title = [NSString stringWithFormat:@"%@(%@)", NSLocalizedString(@"Comments", nil), total];
-			[_segmentedControl setTitle:title forSegmentAtIndex:0];
+			
+			_segmentedControlAttributes[_titleOfComments][keyOfDataSource] = [FDComment createMutableWithData:commentsData];
 			if (block) block ();
 		}
 	}];
@@ -147,10 +175,11 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 
 - (void)fetchTags:(dispatch_block_t)block
 {
-	[[FDAFHTTPClient shared] tagsOfPhoto:_photo.ID withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData) {
+	//TODO: test@(1)
+	[[FDAFHTTPClient shared] tagsOfPhoto:@(1) withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData) {
+	//[[FDAFHTTPClient shared] tagsOfPhoto:_photo.ID withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData) {
 		if (success) {
-			_tags = [FDVote createTest:10];
-			_dataSourceMap[@(kSegmentedControlIndexTags)] = _tags;
+			_segmentedControlAttributes[_titleOfTags][keyOfDataSource] = [FDVote createMutableWithData:votesData];
 			if (block) block ();
 		}
 	}];
@@ -158,10 +187,11 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 
 - (void)fetchRegions:(dispatch_block_t)block
 {
-	[[FDAFHTTPClient shared] regionsOfPhoto:_photo.ID withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData) {
+	//TODO: test@(1)
+	[[FDAFHTTPClient shared] regionsOfPhoto:@(1) withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData) {
+	//[[FDAFHTTPClient shared] regionsOfPhoto:_photo.ID withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData) {
 		if (success) {
-			_regions = [FDVote createTest:30];
-			_dataSourceMap[@(kSegmentedControlIndexRegions)] = _regions;
+			_segmentedControlAttributes[_titleOfRegions][keyOfDataSource] = [FDVote createMutableWithData:votesData];
 			if (block) block ();
 		}
 	}];
@@ -173,12 +203,16 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
     // Dispose of any resources that can be recreated.
 }
 
+- (NSString *)titleForSelectedSegment
+{
+	return [_segmentedControl titleForSegmentAtIndex:_segmentedControl.selectedSegmentIndex];
+}
+
 - (void)selectedSegment:(UISegmentedControl *)segmentedControl
 {
-	NSLog(@"selectedSegment: %@", [segmentedControl titleForSegmentAtIndex:segmentedControl.selectedSegmentIndex]);
-	_containerView.hidden = segmentedControl.selectedSegmentIndex != kSegmentedControlIndexComments;
 	CGRect frame = _kTableView.frame;
-	if (segmentedControl.selectedSegmentIndex != kSegmentedControlIndexComments) {
+	if ([self titleForSelectedSegment] != _titleOfComments) {
+		_containerView.hidden = YES;
 		frame.size.height = self.view.bounds.size.height;
 	} else {
 		frame.size.height = self.view.bounds.size.height - _containerView.bounds.size.height;
@@ -204,17 +238,6 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 	if (section == kSectionOfPhoto) {
 		return nil;
 	}
-	NSString *comments = NSLocalizedString(@"Comments", nil);
-	NSString *tags = NSLocalizedString(@"Tags", nil);
-	NSString *regions = NSLocalizedString(@"Regions", nil);
-	NSString *sharAndGifts = NSLocalizedString(@"Share&Gifts", nil);
-	if (!_segmentedControl) {
-		_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[comments, tags, regions, sharAndGifts]];
-		_segmentedControl.selectedSegmentIndex = 0;
-		_segmentedControl.backgroundColor = _kTableView.backgroundColor;
-		_segmentedControl.tintColor = [UIColor grayColor];
-		[_segmentedControl addTarget:self action:@selector(selectedSegment:) forControlEvents:UIControlEventValueChanged];
-	}
 	return _segmentedControl;
 }
 
@@ -228,7 +251,8 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 	if (section == kSectionOfPhoto) {
 		return 1;
 	}
-	NSArray *dataSource = _dataSourceMap[@(_segmentedControl.selectedSegmentIndex)];
+	NSString *title = [self titleForSelectedSegment];
+	NSArray *dataSource = _segmentedControlAttributes[title][keyOfDataSource];
 	return dataSource.count;
 }
 
@@ -262,49 +286,40 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 		}
 		return cell;
 	} else {
-		if (_segmentedControl.selectedSegmentIndex == kSegmentedControlIndexComments) {
-			FDCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:kFDCommentCellIdentifier];
-			if (!cell) {
-				cell = [[FDCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFDCommentCellIdentifier];
-				cell.selectionStyle = UITableViewCellSelectionStyleNone;
-				cell.delegate = self;
-			}
-			cell.comment = _comments[indexPath.row];
-			cell.bMine = [[FDAFHTTPClient shared] userID] == cell.comment.userID;
-			return cell;
-		} else if (_segmentedControl.selectedSegmentIndex == kSegmentedControlIndexTags || _segmentedControl.selectedSegmentIndex == kSegmentedControlIndexRegions){
-			FDVoteCell *cell = [tableView dequeueReusableCellWithIdentifier:kFDVoteCellIdentifier];
-			if (!cell) {
-				cell = [[FDVoteCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFDVoteCellIdentifier];
-				cell.selectionStyle = UITableViewCellSelectionStyleNone;
-				cell.delegate = self;
-			}
-			if (_segmentedControl.selectedSegmentIndex == kSegmentedControlIndexTags) {
-				cell.vote = _tags[indexPath.row];
-			} else if (_segmentedControl.selectedSegmentIndex == kSegmentedControlIndexRegions) {
-				cell.vote = _regions[indexPath.row];
-			}
-			return cell;
-		} else {
-			FDShareAndGiftsCell *cell = [tableView dequeueReusableCellWithIdentifier:kFDShareAndGiftsCellIdentifier];
-			if (!cell) {
-				cell = [[FDShareAndGiftsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFDShareAndGiftsCellIdentifier];
-				cell.selectionStyle = UITableViewCellSelectionStyleNone;
-			}
-			return cell;
+		NSString *title = [self titleForSelectedSegment];
+		Class class = _segmentedControlAttributes[title][keyOfClass];
+		NSString *reuseIdentifier = [class identifier];
+		id cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+		if (!cell) {
+			cell = [[class alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
 		}
+		if ([cell isKindOfClass:[FDCommentCell class]]) {
+			FDCommentCell *commentCell = (FDCommentCell *)cell;
+			commentCell.delegate = self;
+			FDComment *comment = _segmentedControlAttributes[title][keyOfDataSource][indexPath.row];
+			commentCell.comment = comment;
+			commentCell.bMine = [[FDAFHTTPClient shared] userID] == comment.userID;
+		} else if ([cell isKindOfClass:[FDVoteCell class]]) {
+			FDVoteCell *voteCell = (FDVoteCell *)cell;
+			voteCell.delegate = self;
+			FDVote *vote = _segmentedControlAttributes[title][keyOfDataSource][indexPath.row];
+			voteCell.vote = vote;
+		}
+		return cell;
 	}
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (indexPath.section == kSectionOfPhoto) {
-		return _heightOfPhoto + 10;
+		return _heightOfPhoto;
 	} else {
-		if (_segmentedControl.selectedSegmentIndex == kSegmentedControlIndexComments) {
-			FDComment *comment = _comments[indexPath.row];
+		NSString *title = [self titleForSelectedSegment];
+		if ([title isEqualToString:_titleOfComments]) {
+			NSArray *dataSource = _segmentedControlAttributes[_titleOfComments][keyOfDataSource];
+			FDComment *comment = dataSource[indexPath.row];
 			return [FDCommentCell heightForComment:comment];
-		} else if (_segmentedControl.selectedSegmentIndex == kSegmentedControlIndexTags || _segmentedControl.selectedSegmentIndex == kSegmentedControlIndexRegions) {
+		} else if ([title isEqualToString:_titleOfTags] || [title isEqualToString:_titleOfRegions]) {
 			return [FDVoteCell height];
 		} else {
 			return [FDShareAndGiftsCell height];
@@ -319,7 +334,8 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 		return;
 	}
 	if (indexPath.section != kSectionOfPhoto) {
-		if (_segmentedControl.selectedSegmentIndex == kSegmentedControlIndexComments) {
+		NSString *title = [self titleForSelectedSegment];
+		if ([title isEqualToString:_titleOfComments]) {
 			FDCommentCell *cell = (FDCommentCell *)[tableView cellForRowAtIndexPath:indexPath];
 			[cell showOrHideMoreActions];
 		}
@@ -329,7 +345,8 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (indexPath.section != kSectionOfPhoto) {
-		if (_segmentedControl.selectedSegmentIndex == kSegmentedControlIndexComments) {
+		NSString *title = [self titleForSelectedSegment];
+		if ([title isEqualToString:_titleOfComments]) {
 			FDCommentCell *cell = (FDCommentCell *)[tableView cellForRowAtIndexPath:indexPath];
 			[cell hideMoreActions];
 		}
@@ -448,11 +465,12 @@ static NSInteger kSegmentedControlIndexShareAndGifts = 3;
 {
 	[[FDAFHTTPClient shared] vote:@(1) withCompletionBlock:^(BOOL success, NSString *message) {
 		if (success) {
-			for (FDVote *tag in _tags) {
-				tag.voted = @(NO);
-			}
-			vote.voted = @(YES);
-			[_kTableView reloadData];
+			//TODO
+//			for (FDVote *tag in _tags) {
+//				tag.voted = @(NO);
+//			}
+//			vote.voted = @(YES);
+//			[_kTableView reloadData];
 		}
 	}];
 }

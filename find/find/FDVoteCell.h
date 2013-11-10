@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "FDVote.h"
 
-static NSString *kFDVoteCellIdentifier = @"kFDVoteCellIdentifier";
-
 @protocol FDVoteCellDelegate <NSObject>
 
 - (void)willVote:(FDVote *)vote;
@@ -23,5 +21,6 @@ static NSString *kFDVoteCellIdentifier = @"kFDVoteCellIdentifier";
 @property (nonatomic, strong) FDVote *vote;
 
 + (CGFloat)height;
++ (NSString *)identifier;
 
 @end

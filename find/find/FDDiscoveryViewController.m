@@ -131,7 +131,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	//no reuse for remember themecell's scroll position
-	NSString *noReuseIdentiifer = [NSString stringWithFormat:@"%@%@", kFDThemeCellIdentifier, @(indexPath.section)];
+	NSString *noReuseIdentiifer = [NSString stringWithFormat:@"%@%@", [FDThemeCell identifier], @(indexPath.section)];
 	FDThemeCell *cell = [tableView dequeueReusableCellWithIdentifier:noReuseIdentiifer];
 	if (!cell) {
 		cell = [[FDThemeCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:noReuseIdentiifer];

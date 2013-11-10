@@ -23,6 +23,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+		self.selectionStyle = UITableViewCellSelectionStyleNone;
         //self.backgroundColor = [UIColor randomColor];
 		
 		CGFloat gap = 10;
@@ -91,6 +92,12 @@
 + (CGFloat)height
 {
 	return 40;
+}
+
++ (NSString *)identifier
+{
+	static NSString *kFDVoteCellIdentifier = @"kFDVoteCellIdentifier";
+	return kFDVoteCellIdentifier;
 }
 
 @end

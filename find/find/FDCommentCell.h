@@ -9,8 +9,6 @@
 #import "FDPhoto.h"
 #import "FDUser.h"
 
-static NSString *kFDCommentCellIdentifier = @"kFDCommentCellIdentifier";
-
 @protocol FDCommentCellDelegate <NSObject>
 
 - (void)willCommentOrReply:(FDComment *)comment;
@@ -24,6 +22,7 @@ static NSString *kFDCommentCellIdentifier = @"kFDCommentCellIdentifier";
 @property (nonatomic, strong) FDComment *comment;
 @property (nonatomic, assign) BOOL bMine;
 
++ (NSString *)identifier;
 + (CGFloat)heightForComment:(FDComment *)comment;
 - (void)showMoreActions;
 - (void)hideMoreActions;

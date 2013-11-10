@@ -12,6 +12,7 @@
 
 @interface FDPhotoDetailsViewController : FDViewController
 
+@property (nonatomic, assign) BOOL bMemberDetails;
 @property (nonatomic, strong) FDUser *user;
 @property (nonatomic, strong) FDPhoto *photo;
 

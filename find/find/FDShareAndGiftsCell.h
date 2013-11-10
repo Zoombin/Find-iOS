@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-static NSString *kFDShareAndGiftsCellIdentifier = @"kFDShareAndGiftsCellIdentifier";
+@protocol FDShareAndGiftsCellDelegate <NSObject>
+
+- (void)willGifts;
+
+@end
 
 @interface FDShareAndGiftsCell : UITableViewCell
 
+@property (nonatomic, weak) id<FDShareAndGiftsCellDelegate> delegate;
+
 + (CGFloat)height;
++ (NSString *)identifier;
 
 @end
