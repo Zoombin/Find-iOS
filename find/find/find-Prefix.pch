@@ -36,6 +36,7 @@
 #import "UIFont+Find.h"
 #import "FDSize.h"
 #import	"FDTheme.h"
+#import	"UITableViewCell+Find.h"
 
 //cocoapods
 #import "UIImageView+AFNetworking.h"

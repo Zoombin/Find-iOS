@@ -20,7 +20,7 @@ static NSInteger kHeightOfSegmentedControl = 30;
 static NSString *keyOfClass = @"keyOfClass";
 static NSString *keyOfDataSource = @"keyOfDataSource";
 
-@interface FDPhotoDetailsViewController () <UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource, FDCommentCellDelegate, HPGrowingTextViewDelegate, FDVoteCellDelegate>
+@interface FDPhotoDetailsViewController () <UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource, FDCommentCellDelegate, HPGrowingTextViewDelegate, FDVoteCellDelegate, PSUICollectionViewDelegate, PSUICollectionViewDataSource>
 
 @property (readwrite) UITableView *kTableView;
 @property (readwrite) CGFloat heightOfPhoto;
@@ -35,6 +35,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 @property (readwrite) NSString *titleOfTags;
 @property (readwrite) NSString *titleOfRegions;
 @property (readwrite) NSString *titleOfShareAndGifts;
+@property (readwrite) PSUICollectionView *photosCollectionView;
 
 @end
 
@@ -99,7 +100,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	_titleOfRegions = NSLocalizedString(@"Regions", nil);
 	_titleOfShareAndGifts = NSLocalizedString(@"Share&Gifts", nil);
 	
-	//_bMemberDetails = YES;//TODO: Test
+	_bMemberDetails = YES;//TODO: Test
 	
 	if (_bMemberDetails) {
 		_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[_titleOfPhotos, _titleOfComments, _titleOfTags, _titleOfRegions, _titleOfShareAndGifts]];
@@ -111,7 +112,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	_segmentedControl.tintColor = [UIColor grayColor];
 	[_segmentedControl addTarget:self action:@selector(selectedSegment:) forControlEvents:UIControlEventValueChanged];
 	
-	Class photoCellClass = [FDVoteCell class];
+	Class photoCellClass = [UITableViewCell class];
 	Class commentCellClass = [FDCommentCell class];
 	Class tagCellClass = [FDVoteCell class];
 	Class regionCellClass = [FDVoteCell class];
@@ -124,8 +125,16 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 									} mutableCopy];
 	
 	if (_bMemberDetails) {
-		_segmentedControlAttributes[_titleOfPhotos] = [@{keyOfClass : photoCellClass} mutableCopy];
+		_segmentedControlAttributes[_titleOfPhotos] = [@{keyOfClass : photoCellClass, keyOfDataSource : @[@"alwaysHasOne"]} mutableCopy];
 	}
+	
+	_photosCollectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSUICollectionViewFlowLayout aroundPhotoLayout]];
+	_photosCollectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	_photosCollectionView.backgroundColor = [UIColor clearColor];
+	[_photosCollectionView registerClass:[FDPhotoCell class] forCellWithReuseIdentifier:kFDPhotoCellIdentifier];
+	_photosCollectionView.delegate = self;
+	_photosCollectionView.dataSource = self;
+	//[self.view addSubview:_photosCollectionView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -304,7 +313,14 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 			voteCell.delegate = self;
 			FDVote *vote = _segmentedControlAttributes[title][keyOfDataSource][indexPath.row];
 			voteCell.vote = vote;
+		} else if ([cell isKindOfClass:[FDShareAndGiftsCell class]]) {
+			NSLog(@"FDShareAndGiftsCell");
+		} else if ([cell isKindOfClass:[UITableViewCell class]]) {//photos
+			NSLog(@"photos");
+			UITableViewCell *tableViewCell = (UITableViewCell *)cell;
+			[tableViewCell.contentView addSubview:_photosCollectionView];
 		}
+		
 		return cell;
 	}
 }
@@ -321,8 +337,10 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 			return [FDCommentCell heightForComment:comment];
 		} else if ([title isEqualToString:_titleOfTags] || [title isEqualToString:_titleOfRegions]) {
 			return [FDVoteCell height];
-		} else {
+		} else if ([title isEqualToString:_titleOfShareAndGifts]){
 			return [FDShareAndGiftsCell height];
+		} else {
+			return _photosCollectionView.frame.size.height;
 		}
 	}
 }
@@ -351,6 +369,40 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 			[cell hideMoreActions];
 		}
 	}
+}
+
+#pragma mark - PSUICollectionViewDelegate
+
+- (CGSize)collectionView:(PSUICollectionView *)collectionView layout:(PSUICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+	return [FDSize aroundPhotoSize];
+}
+
+- (NSInteger)collectionView:(PSUICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+	return 9;
+}
+
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (PSUICollectionViewCell *)collectionView:(PSUICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+	FDPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDPhotoCellIdentifier forIndexPath:indexPath];
+	//FDPhoto *photo = _photos[indexPath.row];
+	//cell.photo = photo;
+	//FDTweet *tweet = tweets[indexPath.row];
+	//cell.tweet = tweet;
+	//cell.delegate = self;
+	return cell;
+}
+
+- (void)collectionView:(PSUICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+	//	FDPhotoDetailsViewController *photoDetailsViewController = [[FDPhotoDetailsViewController alloc] init];
+	//	FDTweet *tweet = tweets[indexPath.row];
+	//	if (tweet.photos.count) {
+	//		photoDetailsViewController.photo = tweet.photos[0];
+	//	}
+	//	[self.navigationController pushViewController:photoDetailsViewController animated:YES];
 }
 
 #pragma mark - UIActionSheetDelegate

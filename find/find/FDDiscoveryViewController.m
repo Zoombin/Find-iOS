@@ -154,7 +154,7 @@
 		photosViewController.themeID = theme.ID;
 		[self.navigationController pushViewController:photosViewController animated:YES];
 	} else if ([theme.type isEqualToString:kThemeTypeIdentifierUser]) {
-		[self.navigationController pushViewController:[[FDUserProfileViewController alloc] init] animated:YES];
+		//[self.navigationController pushViewController:[[FDUserProfileViewController alloc] init] animated:YES];
 	}
 }
 
