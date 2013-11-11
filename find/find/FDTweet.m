@@ -12,7 +12,7 @@
 
 + (FDTweet *)createWithAttributes:(NSDictionary *)attributes
 {
-	NSAssert(attributes[@"id"], @"A tweet must have an ID!");
+	//NSAssert(attributes[@"id"], @"A tweet must have an ID!");
 	FDTweet *tweet = [[FDTweet alloc] init];
 	tweet.ID = attributes[@"id"];
 	tweet.userID = attributes[@"mid"];

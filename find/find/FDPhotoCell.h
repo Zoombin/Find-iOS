@@ -10,8 +10,7 @@
 #import "FDPhoto.h"
 #import "FDLikesView.h"
 
-#define kFDPhotoCellIdentifier @"kFDPhotoCellIdentifier"
-#define kFDMainPhotoCellIdentifier @"kFDMainPhotoCellIdentifier"
+static NSString *kFDPhotoCellIdentifier = @"kFDPhotoCellIdentifier";
 
 @class FDPhotoCell;
 @protocol FDPhotoCellDelegate <NSObject>

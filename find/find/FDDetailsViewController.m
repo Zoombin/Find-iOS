@@ -107,7 +107,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	} else {
 		_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[_titleOfComments, _titleOfTags, _titleOfRegions, _titleOfShareAndGifts]];
 	}
-	_segmentedControl.selectedSegmentIndex = 0;
+	_segmentedControl.selectedSegmentIndex = 1;
 	_segmentedControl.backgroundColor = _kTableView.backgroundColor;
 	_segmentedControl.tintColor = [UIColor grayColor];
 	[_segmentedControl addTarget:self action:@selector(selectedSegment:) forControlEvents:UIControlEventValueChanged];
@@ -125,7 +125,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 									} mutableCopy];
 	
 	if (_bMemberDetails) {
-		_segmentedControlAttributes[_titleOfPhotos] = [@{keyOfClass : photoCellClass, keyOfDataSource : @[@"alwaysHasOne"]} mutableCopy];
+		_segmentedControlAttributes[_titleOfPhotos] = [@{keyOfClass : photoCellClass} mutableCopy];
 	}
 	
 	_photosCollectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSUICollectionViewFlowLayout aroundPhotoLayout]];
@@ -161,6 +161,14 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	if (!_segmentedControlAttributes[_titleOfRegions][keyOfDataSource]) {
 		[self fetchRegions:nil];
 	}
+	
+	if (_bMemberDetails) {
+		if (!_segmentedControlAttributes[_titleOfPhotos][keyOfDataSource]) {
+			[self fetchPhotos:^{
+				[_photosCollectionView reloadData];
+			}];
+		}
+	}
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -168,6 +176,23 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	[super viewWillDisappear:animated];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)fetchPhotos:(dispatch_block_t)block
+{
+	//TODO: @(1)
+	[[FDAFHTTPClient shared] detailsOfUser:@(1) withCompletionBlock:^(BOOL success, NSString *message, NSDictionary *profileAttributes, NSArray *tweetsData) {
+		if (success) {
+			FDUserProfile *userProfile = [FDUserProfile createWithAttributes:profileAttributes];
+			NSLog(@"userProfile: %@", userProfile);
+			
+			//NSArray *tweets = [FDTweet createMutableWithData:tweetsData];
+			//NSLog(@"tweets: %@", tweets);
+			
+			NSArray *photos = [FDPhoto createTest:11];
+			_segmentedControlAttributes[_titleOfPhotos][keyOfDataSource] = photos;
+		}
+	}];
 }
 
 - (void)fetchComments:(dispatch_block_t)block
@@ -200,7 +225,11 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	[[FDAFHTTPClient shared] regionsOfPhoto:@(1) withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData) {
 	//[[FDAFHTTPClient shared] regionsOfPhoto:_photo.ID withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData) {
 		if (success) {
-			_segmentedControlAttributes[_titleOfRegions][keyOfDataSource] = [FDVote createMutableWithData:votesData];
+			NSArray *regions = [FDVote createMutableWithData:votesData];
+			for (FDVote *vote in regions) {
+				vote.bRegion = @(YES);
+			}
+			_segmentedControlAttributes[_titleOfRegions][keyOfDataSource] = regions;
 			if (block) block ();
 		}
 	}];
@@ -261,6 +290,9 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 		return 1;
 	}
 	NSString *title = [self titleForSelectedSegment];
+	if ([title isEqualToString:_titleOfPhotos]) {
+		return 1;
+	}
 	NSArray *dataSource = _segmentedControlAttributes[title][keyOfDataSource];
 	return dataSource.count;
 }
@@ -320,7 +352,6 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 			UITableViewCell *tableViewCell = (UITableViewCell *)cell;
 			[tableViewCell.contentView addSubview:_photosCollectionView];
 		}
-		
 		return cell;
 	}
 }
@@ -340,7 +371,10 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 		} else if ([title isEqualToString:_titleOfShareAndGifts]){
 			return [FDShareAndGiftsCell height];
 		} else {
-			return _photosCollectionView.frame.size.height;
+			//CGFloat height = MAX(_photosCollectionView.contentSize.height, _photosCollectionView.frame.size.height);
+			NSLog(@"contentSizeHeight: %f", _photosCollectionView.contentSize.height);
+			NSLog(@"frameSizeHeight: %f", _photosCollectionView.frame.size.height);
+			return MAX(_photosCollectionView.contentSize.height, _photosCollectionView.frame.size.height);
 		}
 	}
 }
@@ -380,18 +414,22 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 
 - (NSInteger)collectionView:(PSUICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-	return 9;
+	NSLog(@"return count of data source");
+	NSArray *dataSource = _segmentedControlAttributes[_titleOfPhotos][keyOfDataSource];
+	return dataSource.count;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (PSUICollectionViewCell *)collectionView:(PSUICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+	NSArray *dataSource = _segmentedControlAttributes[_titleOfPhotos][keyOfDataSource];
 	FDPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDPhotoCellIdentifier forIndexPath:indexPath];
-	//FDPhoto *photo = _photos[indexPath.row];
-	//cell.photo = photo;
+	FDPhoto *photo = dataSource[indexPath.row];
+	cell.photo = photo;
 	//FDTweet *tweet = tweets[indexPath.row];
 	//cell.tweet = tweet;
 	//cell.delegate = self;
+	NSLog(@"return cell");
 	return cell;
 }
 
@@ -515,16 +553,29 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 
 - (void)willVote:(FDVote *)vote
 {
-	[[FDAFHTTPClient shared] vote:@(1) withCompletionBlock:^(BOOL success, NSString *message) {
-		if (success) {
-			//TODO
-//			for (FDVote *tag in _tags) {
-//				tag.voted = @(NO);
-//			}
-//			vote.voted = @(YES);
-//			[_kTableView reloadData];
-		}
-	}];
+	NSString *title = [self titleForSelectedSegment];
+	NSArray *votes = _segmentedControlAttributes[title][keyOfDataSource];
+	if (vote.bRegion.boolValue) {//TODO: photoID
+		[[FDAFHTTPClient shared] voteRegion:vote.ID toPhoto:@(1) withCompletionBlock:^(BOOL success, NSString *message) {
+			if (success) {
+				for (FDVote *vote in votes) {
+					vote.voted = @(NO);
+				}
+				vote.voted = @(YES);
+				[_kTableView reloadData];
+			}
+		}];
+	} else {//TODO: photoID
+		[[FDAFHTTPClient shared] voteTag:vote.ID toPhoto:@(1) withCompletionBlock:^(BOOL success, NSString *message) {
+			if (success) {
+				for (FDVote *vote in votes) {
+					vote.voted = @(NO);
+				}
+				vote.voted = @(YES);
+				[_kTableView reloadData];
+			}
+		}];
+	}
 }
 
 @end

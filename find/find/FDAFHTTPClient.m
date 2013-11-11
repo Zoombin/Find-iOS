@@ -510,10 +510,45 @@ static NSString *token;
 	}];
 }
 
-
-- (void)vote:(NSNumber *)voteID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+- (void)voteTag:(NSNumber *)tagID toPhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
 {
-	if (block) block (YES, @"msg");//TODO
+	NSString *path = [NSString stringWithFormat:@"marktag/%@/%@", tagID, photoID];
+	[self postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]]);
+		}
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		if (block) block (NO, [FDErrorMessage messageNetworkError]);
+	}];
+}
+
+- (void)voteRegion:(NSNumber *)regionID toPhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+{
+	NSString *path = [NSString stringWithFormat:@"markcategory/%@/%@", regionID, photoID];
+	[self postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]]);
+		}
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		if (block) block (NO, [FDErrorMessage messageNetworkError]);
+	}];
+}
+
+- (void)detailsOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSDictionary *profileAttributes, NSArray *tweetsData))block
+{
+	NSString *path = [NSString stringWithFormat:@"member/%@", userID];
+	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			NSDictionary *attributes = data[responseKeyData];
+			
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]], attributes, attributes[@"tweets"]);
+		}
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		if (block) block (NO, [FDErrorMessage messageNetworkError], nil, nil);
+	}];
 }
 
 @end

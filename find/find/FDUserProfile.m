@@ -14,9 +14,10 @@
 {
 	NSAssert(attributes[@"id"], @"A profile must have userID!");
 	FDUserProfile *userProfile = [[FDUserProfile alloc] init];
-//	userProfile.userID = attributes[@"id"];//TODO: id now is a string, should be a number
+	userProfile.userID = attributes[@"id"];
 	userProfile.username = attributes[@"username"];
 	//TODO: rest of variables
+	userProfile.gender = attributes[@"gender"];
 	return userProfile;
 }
 

@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSNumber *quantity;
 @property (nonatomic, strong) NSNumber *percentage;
 @property (nonatomic, strong) NSNumber *voted;
+@property (nonatomic, strong) NSNumber *bRegion;
 
 + (instancetype)createWithAttributes:(NSDictionary *)attributes;
 + (NSArray *)createMutableWithData:(NSArray *)data;
