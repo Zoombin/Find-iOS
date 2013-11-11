@@ -22,7 +22,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 
 @interface FDDetailsViewController () <UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource, FDCommentCellDelegate, HPGrowingTextViewDelegate, FDVoteCellDelegate, PSUICollectionViewDelegate, PSUICollectionViewDataSource>
 
-@property (readwrite) UITableView *kTableView;
+@property (readwrite) UITableView *tableView;
 @property (readwrite) CGFloat heightOfPhoto;
 @property (readwrite) NSNumber *reportCommentID;
 @property (readwrite) UIView *containerView;
@@ -58,10 +58,10 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	_heightOfPhoto = fullSize.height;
 	CGFloat heightOfGrowingTextView = 40;
 	
-	_kTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, fullSize.width, fullSize.height - heightOfGrowingTextView) style:UITableViewStylePlain];
-	_kTableView.delegate = self;
-	_kTableView.dataSource = self;
-	[self.view addSubview:_kTableView];
+	_tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, fullSize.width, fullSize.height - heightOfGrowingTextView) style:UITableViewStylePlain];
+	_tableView.delegate = self;
+	_tableView.dataSource = self;
+	[self.view addSubview:_tableView];
 	
 	_containerView = [[UIView alloc] initWithFrame:CGRectMake(0, fullSize.height - heightOfGrowingTextView, fullSize.width, heightOfGrowingTextView)];
 	_containerView.layer.borderWidth = 1;
@@ -108,7 +108,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 		_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[_titleOfComments, _titleOfTags, _titleOfRegions, _titleOfShareAndGifts]];
 	}
 	_segmentedControl.selectedSegmentIndex = 1;
-	_segmentedControl.backgroundColor = _kTableView.backgroundColor;
+	_segmentedControl.backgroundColor = _tableView.backgroundColor;
 	_segmentedControl.tintColor = [UIColor grayColor];
 	[_segmentedControl addTarget:self action:@selector(selectedSegment:) forControlEvents:UIControlEventValueChanged];
 	
@@ -150,7 +150,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	
 	if (!_segmentedControlAttributes[_titleOfComments][keyOfDataSource]) {
 		[self fetchComments:^{
-			[_kTableView reloadData];
+			[_tableView reloadData];
 		}];
 	}
 
@@ -248,15 +248,15 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 
 - (void)selectedSegment:(UISegmentedControl *)segmentedControl
 {
-	CGRect frame = _kTableView.frame;
+	CGRect frame = _tableView.frame;
 	if ([self titleForSelectedSegment] != _titleOfComments) {
 		_containerView.hidden = YES;
 		frame.size.height = self.view.bounds.size.height;
 	} else {
 		frame.size.height = self.view.bounds.size.height - _containerView.bounds.size.height;
 	}
-	_kTableView.frame = frame;
-	[_kTableView reloadData];
+	_tableView.frame = frame;
+	[_tableView reloadData];
 }
 
 #pragma mark - UITableViewDelegate
@@ -562,7 +562,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 					vote.voted = @(NO);
 				}
 				vote.voted = @(YES);
-				[_kTableView reloadData];
+				[_tableView reloadData];
 			}
 		}];
 	} else {//TODO: photoID
@@ -572,7 +572,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 					vote.voted = @(NO);
 				}
 				vote.voted = @(YES);
-				[_kTableView reloadData];
+				[_tableView reloadData];
 			}
 		}];
 	}
