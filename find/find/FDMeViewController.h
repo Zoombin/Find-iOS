@@ -10,4 +10,6 @@
 
 @interface FDMeViewController : FDViewController
 
+@property (nonatomic, assign) BOOL bOther;//是我自己的资料还是别人的资料
+
 @end

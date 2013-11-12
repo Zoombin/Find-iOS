@@ -9,10 +9,13 @@
 #import "FDMeViewController.h"
 #import "FDSignupViewController.h"
 
+//static NSString *keyOfAction = @"keyOfAction";
+
 @interface FDMeViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (readwrite) UITableView *tableView;
 @property (readwrite) NSMutableArray *dataSource;
+@property (readwrite) NSMutableDictionary *actionsDictionary;
 
 @end
 
@@ -37,6 +40,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	_bOther = YES;
+	if (_bOther) {
+		self.title = NSLocalizedString(@"Profile", nil);
+	}
 	
 	_tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
 	_tableView.backgroundColor = [UIColor clearColor];
@@ -45,39 +52,47 @@
 	[self.view addSubview:_tableView];
 	
 	_dataSource = [NSMutableArray array];
-	
-	NSString *avatar = NSLocalizedString(@"Avatar", nil);
-	[_dataSource addObject:avatar];
+	_actionsDictionary = [NSMutableDictionary dictionary];
 	
 	NSString *nickname = NSLocalizedString(@"Nickname", nil);
 	[_dataSource addObject:nickname];
+	_actionsDictionary[nickname] = NSStringFromSelector(@selector(editNickname));
 	
 	NSString *signature = NSLocalizedString(@"Signature", nil);
 	[_dataSource addObject:signature];
+	_actionsDictionary[signature] = NSStringFromSelector(@selector(editSignature));
 	
 	NSString *age = NSLocalizedString(@"Age", nil);
 	[_dataSource addObject:age];
+	_actionsDictionary[age] = NSStringFromSelector(@selector(editAge));
 	
 	NSString *gender = NSLocalizedString(@"Gender", nil);
 	[_dataSource addObject:gender];
+	_actionsDictionary[gender] = NSStringFromSelector(@selector(editGender));
 	
 	NSString *height = NSLocalizedString(@"Height", nil);
 	[_dataSource addObject:height];
+	_actionsDictionary[height] = NSStringFromSelector(@selector(editHeight));
 	
 	NSString *weight = NSLocalizedString(@"Weight", nil);
 	[_dataSource addObject:weight];
+	_actionsDictionary[weight] = NSStringFromSelector(@selector(editHeight));
 	
 	NSString *bust = NSLocalizedString(@"Bust", nil);
 	[_dataSource addObject:bust];
+	_actionsDictionary[bust] = NSStringFromSelector(@selector(editBust));
 	
 	NSString *phone = NSLocalizedString(@"Phone", nil);
 	[_dataSource addObject:phone];
+	_actionsDictionary[phone] = NSStringFromSelector(@selector(editPhone));
 	
-	NSString *qq = NSLocalizedString(@"QQ", nil);
-	[_dataSource addObject:qq];
+	NSString *QQ = NSLocalizedString(@"QQ", nil);
+	[_dataSource addObject:QQ];
+	_actionsDictionary[QQ] = NSStringFromSelector(@selector(editQQ));
 	
-	NSString *weixin = NSLocalizedString(@"Wechat", nil);
-	[_dataSource addObject:weixin];
+	NSString *wechat = NSLocalizedString(@"Wechat", nil);
+	[_dataSource addObject:wechat];
+	_actionsDictionary[wechat] = NSStringFromSelector(@selector(editWechat));
 	
 	NSString *qrcode = NSLocalizedString(@"QRCode", nil);
 	[_dataSource addObject:qrcode];
@@ -91,20 +106,70 @@
 	NSString *gifts = NSLocalizedString(@"Gifts", nil);
 	[_dataSource addObject:gifts];
 	
-	NSString *followers = NSLocalizedString(@"Followers", nil);
-	[_dataSource addObject:followers];
-	
-	NSString *following = NSLocalizedString(@"Following", nil);
-	[_dataSource addObject:following];
-	
-	NSString *privateMessage = NSLocalizedString(@"Private Message", nil);
-	[_dataSource addObject:privateMessage];
-	
-	NSString *photos = NSLocalizedString(@"Manage My Photos", nil);
-	[_dataSource addObject:photos];
-	
-	NSString *settings = NSLocalizedString(@"Settings", nil);
-	[_dataSource addObject:settings];
+	if (!_bOther) {
+		NSString *followers = NSLocalizedString(@"Followers", nil);
+		[_dataSource addObject:followers];
+		
+		NSString *following = NSLocalizedString(@"Following", nil);
+		[_dataSource addObject:following];
+		
+		NSString *privateMessage = NSLocalizedString(@"Private Message", nil);
+		[_dataSource addObject:privateMessage];
+		
+		NSString *manageMyAvatar = NSLocalizedString(@"Manage My Avatar", nil);
+		[_dataSource addObject:manageMyAvatar];
+		
+		NSString *manageMyPhotos = NSLocalizedString(@"Manage My Photos", nil);
+		[_dataSource addObject:manageMyPhotos];
+		
+		NSString *settings = NSLocalizedString(@"Settings", nil);
+		[_dataSource addObject:settings];
+	}
+}
+
+- (void)editNickname
+{
+	NSLog(@"editNickname");
+}
+
+- (void)editSignature
+{
+	NSLog(@"editSignature");
+}
+
+- (void)editAge
+{
+	NSLog(@"editAge");
+}
+
+- (void)editGender
+{
+	NSLog(@"editGender");
+}
+
+- (void)editHeight
+{
+	NSLog(@"editHeight");
+}
+
+- (void)editBust
+{
+	NSLog(@"editBust");
+}
+
+- (void)editPhone
+{
+	NSLog(@"editPhone");
+}
+
+- (void)editQQ
+{
+	NSLog(@"editQQ");
+}
+
+- (void)editWechat
+{
+	NSLog(@"editWechat");
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -148,20 +213,25 @@
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[UITableViewCell identifier]];
 	if (!cell) {
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[UITableViewCell identifier]];
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	}
 	NSString *title = _dataSource[indexPath.row];
 	cell.textLabel.text = title;
 	return cell;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 35;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+	NSString *key = _dataSource[indexPath.row];
+	SEL action = NSSelectorFromString(_actionsDictionary[key]);
+	if (action) {
+		[self performSelector:action withObject:nil afterDelay:0];
+	}
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath

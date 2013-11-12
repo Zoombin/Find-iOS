@@ -183,13 +183,14 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	//TODO: @(1)
 	[[FDAFHTTPClient shared] detailsOfUser:@(1) withCompletionBlock:^(BOOL success, NSString *message, NSDictionary *profileAttributes, NSArray *tweetsData) {
 		if (success) {
-			FDUserProfile *userProfile = [FDUserProfile createWithAttributes:profileAttributes];
+			FDUserProfile *userProfile = [FDUserProfile createWithAttributes:profileAttributes];//TODO
 			NSLog(@"userProfile: %@", userProfile);
 			
-			//NSArray *tweets = [FDTweet createMutableWithData:tweetsData];
-			//NSLog(@"tweets: %@", tweets);
-			
-			NSArray *photos = [FDPhoto createTest:11];
+			NSArray *tweets = [FDTweet createMutableWithData:tweetsData];
+			NSMutableArray *photos = [NSMutableArray array];
+			for (FDTweet *tweet in tweets) {
+				[photos addObjectsFromArray:tweet.photos];
+			}
 			_segmentedControlAttributes[_titleOfPhotos][keyOfDataSource] = photos;
 		}
 	}];

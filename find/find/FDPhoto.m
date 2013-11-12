@@ -14,7 +14,6 @@
 + (FDPhoto *)createWithAttributes:(NSDictionary *)attributes
 {
 	NSAssert(attributes[@"id"], @"A photo must have an ID!");
-	NSLog(@"attributes: %@", attributes);
 	FDPhoto *photo = [[FDPhoto alloc] init];
 	photo.ID = attributes[@"id"];
 	photo.userID = attributes[@"mid"];
