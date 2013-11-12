@@ -8,8 +8,9 @@
 
 #import "FDMeViewController.h"
 #import "FDSignupViewController.h"
-
-//static NSString *keyOfAction = @"keyOfAction";
+#import "FDEditPropertyViewController.h"
+#import "FDEditNicknameCell.h"
+#import "FDEditSignatureCell.h"
 
 @interface FDMeViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -42,7 +43,7 @@
     [super viewDidLoad];
 	_bOther = YES;
 	if (_bOther) {
-		self.title = NSLocalizedString(@"Profile", nil);
+		self.navigationController.title = NSLocalizedString(@"Profile", nil);
 	}
 	
 	_tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
@@ -130,11 +131,17 @@
 - (void)editNickname
 {
 	NSLog(@"editNickname");
+	FDEditPropertyViewController *editPropertyViewController = [[FDEditPropertyViewController alloc] initWithStyle:UITableViewStyleGrouped];
+	editPropertyViewController.cellClass = [FDEditNicknameCell class];
+	[self.navigationController pushViewController:editPropertyViewController animated:YES];
 }
 
 - (void)editSignature
 {
 	NSLog(@"editSignature");
+	FDEditPropertyViewController *editPropertyViewController = [[FDEditPropertyViewController alloc] initWithStyle:UITableViewStyleGrouped];
+	editPropertyViewController.cellClass = [FDEditSignatureCell class];
+	[self.navigationController pushViewController:editPropertyViewController animated:YES];
 }
 
 - (void)editAge

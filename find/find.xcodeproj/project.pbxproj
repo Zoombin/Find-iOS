@@ -19,6 +19,9 @@
 		7734ACE317D8893F003E7BB6 /* FDDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE217D8893F003E7BB6 /* FDDetailsViewController.m */; };
 		7734ACE617D895D1003E7BB6 /* FDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE517D895D1003E7BB6 /* FDViewController.m */; };
 		7734ACE917D8A6C1003E7BB6 /* FDPhotoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE817D8A6C1003E7BB6 /* FDPhotoInfo.m */; };
+		77764B221831EFA20057F8B9 /* FDEditPropertyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764B211831EFA20057F8B9 /* FDEditPropertyViewController.m */; };
+		77764B251831FA100057F8B9 /* FDEditNicknameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764B241831FA100057F8B9 /* FDEditNicknameCell.m */; };
+		77764B2B1831FEEA0057F8B9 /* FDEditSignatureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764B2A1831FEEA0057F8B9 /* FDEditSignatureCell.m */; };
 		777E5E1E17D97A98005AFB67 /* FDThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 777E5E1D17D97A98005AFB67 /* FDThemeCell.m */; };
 		777E5EE817D9BBDA005AFB67 /* FDThemeItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */; };
 		7786715D17E35A98001FDB67 /* CLLocation+NSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786714317E35A98001FDB67 /* CLLocation+NSDictionary.m */; };
@@ -120,6 +123,12 @@
 		7734ACE517D895D1003E7BB6 /* FDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDViewController.m; sourceTree = "<group>"; };
 		7734ACE717D8A6C1003E7BB6 /* FDPhotoInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDPhotoInfo.h; path = find/FDPhotoInfo.h; sourceTree = "<group>"; };
 		7734ACE817D8A6C1003E7BB6 /* FDPhotoInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDPhotoInfo.m; path = find/FDPhotoInfo.m; sourceTree = "<group>"; };
+		77764B201831EFA20057F8B9 /* FDEditPropertyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDEditPropertyViewController.h; sourceTree = "<group>"; };
+		77764B211831EFA20057F8B9 /* FDEditPropertyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDEditPropertyViewController.m; sourceTree = "<group>"; };
+		77764B231831FA100057F8B9 /* FDEditNicknameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDEditNicknameCell.h; path = find/FDEditNicknameCell.h; sourceTree = "<group>"; };
+		77764B241831FA100057F8B9 /* FDEditNicknameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDEditNicknameCell.m; path = find/FDEditNicknameCell.m; sourceTree = "<group>"; };
+		77764B291831FEEA0057F8B9 /* FDEditSignatureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDEditSignatureCell.h; path = find/FDEditSignatureCell.h; sourceTree = "<group>"; };
+		77764B2A1831FEEA0057F8B9 /* FDEditSignatureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDEditSignatureCell.m; path = find/FDEditSignatureCell.m; sourceTree = "<group>"; };
 		777E5E1C17D97A98005AFB67 /* FDThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeCell.h; path = find/FDThemeCell.h; sourceTree = "<group>"; };
 		777E5E1D17D97A98005AFB67 /* FDThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDThemeCell.m; path = find/FDThemeCell.m; sourceTree = "<group>"; };
 		777E5EE617D9BBDA005AFB67 /* FDThemeItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeItemView.h; path = find/FDThemeItemView.h; sourceTree = "<group>"; };
@@ -376,6 +385,8 @@
 				7734ACE217D8893F003E7BB6 /* FDDetailsViewController.m */,
 				77A5F7F517CB30400073E7F9 /* FDMeViewController.h */,
 				77A5F7F617CB30400073E7F9 /* FDMeViewController.m */,
+				77764B201831EFA20057F8B9 /* FDEditPropertyViewController.h */,
+				77764B211831EFA20057F8B9 /* FDEditPropertyViewController.m */,
 				77A5F7C017CB22960073E7F9 /* Images.xcassets */,
 				77A5F7A917CB22960073E7F9 /* Supporting Files */,
 			);
@@ -523,6 +534,10 @@
 		77DA107217E97F5F001F44DF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				77764B231831FA100057F8B9 /* FDEditNicknameCell.h */,
+				77764B241831FA100057F8B9 /* FDEditNicknameCell.m */,
+				77764B291831FEEA0057F8B9 /* FDEditSignatureCell.h */,
+				77764B2A1831FEEA0057F8B9 /* FDEditSignatureCell.m */,
 				77A4AF2918288E1C00B7D65B /* FDVoteCell.h */,
 				77A4AF2A18288E1C00B7D65B /* FDVoteCell.m */,
 				77EC53D8182B45990042B7B3 /* FDShareAndGiftsCell.h */,
@@ -770,6 +785,7 @@
 				77D69700180E540E000BCA07 /* FDSize.m in Sources */,
 				77E94B48182A2F140017FF8E /* FDVote.m in Sources */,
 				77FE43431801040F00B1B5D3 /* FDTestAccountsViewController.m in Sources */,
+				77764B221831EFA20057F8B9 /* FDEditPropertyViewController.m in Sources */,
 				7734ACCE17D85368003E7BB6 /* FDUser.m in Sources */,
 				7734ACE617D895D1003E7BB6 /* FDViewController.m in Sources */,
 				77F5CD5217E966DB006D931F /* FDSignupViewController.m in Sources */,
@@ -780,7 +796,9 @@
 				77CB749518235FB800063B88 /* NSString+Qiniu.m in Sources */,
 				77F88986180B875300D6A45D /* UIFont+Find.m in Sources */,
 				7786716217E35A98001FDB67 /* NSString+ZBUtilites.m in Sources */,
+				77764B2B1831FEEA0057F8B9 /* FDEditSignatureCell.m in Sources */,
 				77C0C8D917CDDBA8008C7FC7 /* GTMBase64.m in Sources */,
+				77764B251831FA100057F8B9 /* FDEditNicknameCell.m in Sources */,
 				77338E7F18090184006DEC3D /* FDErrorMessage.m in Sources */,
 				77C0C96717D198F6008C7FC7 /* FDPhoto.m in Sources */,
 				77C0C96417D18D7C008C7FC7 /* FDPhotoCell.m in Sources */,
