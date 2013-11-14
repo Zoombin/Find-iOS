@@ -650,7 +650,7 @@
 				ORGANIZATIONNAME = ZoomBin;
 				TargetAttributes = {
 					77A5F79E17CB22960073E7F9 = {
-						DevelopmentTeam = JHC5FJN4U9;
+						DevelopmentTeam = 2S362SNNP3;
 					};
 					77A5F7C517CB22960073E7F9 = {
 						TestTargetID = 77A5F79E17CB22960073E7F9;
@@ -954,15 +954,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "find/find-Prefix.pch";
 				INFOPLIST_FILE = "find/find-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "D3E55A66-5310-44E5-96B2-68DF79A6E160";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

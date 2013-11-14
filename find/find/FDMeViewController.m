@@ -12,11 +12,20 @@
 #import "FDEditNicknameCell.h"
 #import "FDEditSignatureCell.h"
 
-@interface FDMeViewController ()<UITableViewDelegate, UITableViewDataSource>
+static NSString *numberOfPickerComponents = @"numberOfPickerComponents";
+static NSString *numberOfPickerRows = @"numberOfPickerRows";
+static NSString *minimumValueOfPicker = @"minimamOfPicker";
+static NSString *maximumValueOfPicker = @"maximumValueOfPicker";
+static NSString *actionOfPickerRow = @"actionOfPickerRow";
+
+@interface FDMeViewController ()<UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (readwrite) UITableView *tableView;
 @property (readwrite) NSMutableArray *dataSource;
 @property (readwrite) NSMutableDictionary *actionsDictionary;
+@property (readwrite) UIPickerView *pickerView;
+@property (readwrite) NSMutableDictionary *pickerDataSource;
+@property (readwrite) NSString *titleOfSelectedCell;
 
 @end
 
@@ -54,46 +63,81 @@
 	
 	_dataSource = [NSMutableArray array];
 	_actionsDictionary = [NSMutableDictionary dictionary];
+	_pickerDataSource = [NSMutableDictionary dictionary];
 	
 	NSString *nickname = NSLocalizedString(@"Nickname", nil);
 	[_dataSource addObject:nickname];
-	_actionsDictionary[nickname] = NSStringFromSelector(@selector(editNickname));
+	_actionsDictionary[nickname] = NSStringFromSelector(@selector(editNickname:));
 	
 	NSString *signature = NSLocalizedString(@"Signature", nil);
 	[_dataSource addObject:signature];
-	_actionsDictionary[signature] = NSStringFromSelector(@selector(editSignature));
+	_actionsDictionary[signature] = NSStringFromSelector(@selector(editSignature:));
 	
 	NSString *age = NSLocalizedString(@"Age", nil);
 	[_dataSource addObject:age];
-	_actionsDictionary[age] = NSStringFromSelector(@selector(editAge));
+	_actionsDictionary[age] = NSStringFromSelector(@selector(editAge:));
+	NSNumber *min = @(10);
+	NSNumber *max = @(40);
+	NSNumber *delta = @(max.integerValue - min.integerValue + 1);
+	_pickerDataSource[age] = @{numberOfPickerComponents : @(1),
+							   numberOfPickerRows : delta,
+							   minimumValueOfPicker : min,
+							   maximumValueOfPicker : max,
+							   actionOfPickerRow : @"printableAge"};
 	
 	NSString *gender = NSLocalizedString(@"Gender", nil);
 	[_dataSource addObject:gender];
-	_actionsDictionary[gender] = NSStringFromSelector(@selector(editGender));
+	_actionsDictionary[gender] = NSStringFromSelector(@selector(editGender:));
 	
 	NSString *height = NSLocalizedString(@"Height", nil);
 	[_dataSource addObject:height];
-	_actionsDictionary[height] = NSStringFromSelector(@selector(editHeight));
+	_actionsDictionary[height] = NSStringFromSelector(@selector(editHeight:));
+	min = @(150);
+	max = @(200);
+	delta = @(max.integerValue - min.integerValue + 1);
+	_pickerDataSource[height] = @{numberOfPickerComponents : @(1),
+							   numberOfPickerRows : delta,
+							   minimumValueOfPicker : min,
+							   maximumValueOfPicker : max,
+							   actionOfPickerRow : @"printableHeight"};
+
 	
 	NSString *weight = NSLocalizedString(@"Weight", nil);
 	[_dataSource addObject:weight];
-	_actionsDictionary[weight] = NSStringFromSelector(@selector(editHeight));
+	_actionsDictionary[weight] = NSStringFromSelector(@selector(editWeight:));
+	min = @(40);
+	max = @(80);
+	delta = @(max.integerValue - min.integerValue + 1);
+	_pickerDataSource[weight] = @{numberOfPickerComponents : @(1),
+							   numberOfPickerRows : delta,
+							   minimumValueOfPicker : min,
+							   maximumValueOfPicker : max,
+							   actionOfPickerRow : @"printableWeight"};
+
 	
 	NSString *bust = NSLocalizedString(@"Bust", nil);
 	[_dataSource addObject:bust];
-	_actionsDictionary[bust] = NSStringFromSelector(@selector(editBust));
+	_actionsDictionary[bust] = NSStringFromSelector(@selector(editBust:));
+	min = @(0);
+	max = @(6);
+	delta = @(max.integerValue - min.integerValue + 1);
+	_pickerDataSource[bust] = @{numberOfPickerComponents : @(1),
+								  numberOfPickerRows : delta,
+								  minimumValueOfPicker : min,
+								  maximumValueOfPicker : max,
+								  actionOfPickerRow : @"printableBust"};
 	
 	NSString *phone = NSLocalizedString(@"Phone", nil);
 	[_dataSource addObject:phone];
-	_actionsDictionary[phone] = NSStringFromSelector(@selector(editPhone));
+	_actionsDictionary[phone] = NSStringFromSelector(@selector(editPhone:));
 	
 	NSString *QQ = NSLocalizedString(@"QQ", nil);
 	[_dataSource addObject:QQ];
-	_actionsDictionary[QQ] = NSStringFromSelector(@selector(editQQ));
+	_actionsDictionary[QQ] = NSStringFromSelector(@selector(editQQ:));
 	
 	NSString *wechat = NSLocalizedString(@"Wechat", nil);
 	[_dataSource addObject:wechat];
-	_actionsDictionary[wechat] = NSStringFromSelector(@selector(editWechat));
+	_actionsDictionary[wechat] = NSStringFromSelector(@selector(editWechat:));
 	
 	NSString *qrcode = NSLocalizedString(@"QRCode", nil);
 	[_dataSource addObject:qrcode];
@@ -126,9 +170,43 @@
 		NSString *settings = NSLocalizedString(@"Settings", nil);
 		[_dataSource addObject:settings];
 	}
+	
+	_pickerView = [[UIPickerView alloc] initWithFrame:self.view.bounds];
+	_pickerView.backgroundColor = [UIColor randomColor];
+	_pickerView.delegate = self;
+	_pickerView.dataSource = self;
+	_pickerView.showsSelectionIndicator = YES;
+	[self.view addSubview:_pickerView];
+	[self hidePickerViewAnimated:NO];
 }
 
-- (void)editNickname
+- (void)hidePickerViewAnimated:(BOOL)animated
+{
+	CGFloat duration = 0;
+	if (animated) {
+		duration = 0.3;
+	}
+	[UIView animateWithDuration:duration animations:^{
+		CGRect frame = _pickerView.frame;
+		frame.origin.y = self.view.bounds.size.height;
+		_pickerView.frame = frame;
+	}];
+}
+
+- (void)showPickerViewAnimated:(BOOL)animated
+{
+	CGFloat duration = 0;
+	if (animated) {
+		duration = 0.3;
+	}
+	[UIView animateWithDuration:duration animations:^{
+		CGRect frame = _pickerView.frame;
+		frame.origin.y = self.view.bounds.size.height - frame.size.height;
+		_pickerView.frame = frame;
+	}];
+}
+
+- (void)editNickname:(NSString *)title
 {
 	NSLog(@"editNickname");
 	FDEditPropertyViewController *editPropertyViewController = [[FDEditPropertyViewController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -136,7 +214,7 @@
 	[self.navigationController pushViewController:editPropertyViewController animated:YES];
 }
 
-- (void)editSignature
+- (void)editSignature:(NSString *)title
 {
 	NSLog(@"editSignature");
 	FDEditPropertyViewController *editPropertyViewController = [[FDEditPropertyViewController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -144,39 +222,57 @@
 	[self.navigationController pushViewController:editPropertyViewController animated:YES];
 }
 
-- (void)editAge
+- (void)editAge:(NSString *)title
 {
-	NSLog(@"editAge");
+	NSLog(@"edit: %@", title);
+	_titleOfSelectedCell = title;
+	[_pickerView reloadAllComponents];
+	[self showPickerViewAnimated:YES];
 }
 
-- (void)editGender
+- (void)editGender:(NSString *)title
 {
-	NSLog(@"editGender");
+	NSLog(@"edit: %@", title);
 }
 
-- (void)editHeight
+- (void)editHeight:(NSString *)title
 {
-	NSLog(@"editHeight");
+	NSLog(@"edit: %@", title);
+	_titleOfSelectedCell = title;
+	[_pickerView reloadAllComponents];
+	[self showPickerViewAnimated:YES];
 }
 
-- (void)editBust
+- (void)editWeight:(NSString *)title
 {
-	NSLog(@"editBust");
+	NSLog(@"edit: %@", title);
+	_titleOfSelectedCell = title;
+	[_pickerView reloadAllComponents];
+	[self showPickerViewAnimated:YES];
+	
 }
 
-- (void)editPhone
+- (void)editBust:(NSString *)title
 {
-	NSLog(@"editPhone");
+	NSLog(@"edit: %@", title);
+	_titleOfSelectedCell = title;
+	[_pickerView reloadAllComponents];
+	[self showPickerViewAnimated:YES];
 }
 
-- (void)editQQ
+- (void)editPhone:(NSString *)title
 {
-	NSLog(@"editQQ");
+	NSLog(@"edit: %@", title);
 }
 
-- (void)editWechat
+- (void)editQQ:(NSString *)title
 {
-	NSLog(@"editWechat");
+	NSLog(@"edit: %@", title);
+}
+
+- (void)editWechat:(NSString *)title
+{
+	NSLog(@"edit: %@", title);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -237,7 +333,7 @@
 	NSString *key = _dataSource[indexPath.row];
 	SEL action = NSSelectorFromString(_actionsDictionary[key]);
 	if (action) {
-		[self performSelector:action withObject:nil afterDelay:0];
+		[self performSelector:action withObject:key afterDelay:0];
 	}
 }
 
@@ -246,5 +342,33 @@
 
 }
 
+#pragma mark - UIPickerViewDelegate
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+	if (_titleOfSelectedCell) {
+		return [_pickerDataSource[_titleOfSelectedCell][numberOfPickerComponents] integerValue];
+	}
+	return 0;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+	if (_titleOfSelectedCell) {
+		return [_pickerDataSource[_titleOfSelectedCell][numberOfPickerRows] integerValue];
+	}
+	return 0;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+	if (_titleOfSelectedCell) {
+		NSNumber *min = _pickerDataSource[_titleOfSelectedCell][minimumValueOfPicker];
+		SEL selector = NSSelectorFromString(_pickerDataSource[_titleOfSelectedCell][actionOfPickerRow]);
+		NSNumber *value = @(min.integerValue + row);
+		return (NSString *)[value performSelector:selector withObject:nil];
+	}
+	return @"";
+}
 
 @end
