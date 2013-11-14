@@ -190,6 +190,10 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 		CGRect frame = _pickerView.frame;
 		frame.origin.y = self.view.bounds.size.height;
 		_pickerView.frame = frame;
+	} completion:^(BOOL finished) {
+		if (finished) {
+			_pickerView.hidden = YES;
+		}
 	}];
 }
 
@@ -199,6 +203,7 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	if (animated) {
 		duration = 0.3;
 	}
+	_pickerView.hidden = NO;
 	[UIView animateWithDuration:duration animations:^{
 		CGRect frame = _pickerView.frame;
 		frame.origin.y = self.view.bounds.size.height - frame.size.height;
@@ -317,6 +322,15 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	if (!cell) {
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[UITableViewCell identifier]];
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		
+		NSString *key = _dataSource[indexPath.row];
+		if ([key isEqualToString:NSLocalizedString(@"Gender", nil)]) {
+			UISegmentedControl *genderSegmentedControl = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Male", nil), NSLocalizedString(@"Female", nil)]];
+			genderSegmentedControl.selectedSegmentIndex = 0;//TODO: should select correctly
+			genderSegmentedControl.userInteractionEnabled = !_bOther;
+			cell.accessoryView = genderSegmentedControl;
+			
+		}
 	}
 	NSString *title = _dataSource[indexPath.row];
 	cell.textLabel.text = title;
@@ -332,6 +346,12 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 {
 	NSString *key = _dataSource[indexPath.row];
 	SEL action = NSSelectorFromString(_actionsDictionary[key]);
+	if (!_pickerDataSource[key]) {
+		if (!_pickerView.hidden) {
+			[self hidePickerViewAnimated:YES];
+			return;
+		}
+	}
 	if (action) {
 		[self performSelector:action withObject:key afterDelay:0];
 	}
