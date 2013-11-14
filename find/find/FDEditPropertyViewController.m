@@ -9,7 +9,7 @@
 #import "FDEditPropertyViewController.h"
 #import "FDEditNicknameCell.h"
 
-@interface FDEditPropertyViewController ()
+@interface FDEditPropertyViewController ()<UITextViewDelegate, UITextFieldDelegate>
 
 @end
 
@@ -20,6 +20,9 @@
     self = [super initWithStyle:style];
     if (self) {
 		self.view.backgroundColor = [UIColor clearColor];
+		
+		[self setLeftBarButtonItemAsBackButton];
+		//[self setRightBarButtonItemAsSaveButtonWithSelector:@selector(save)];
     }
     return self;
 }
@@ -41,6 +44,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)save
+{
+	NSLog(@"save");
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -56,9 +64,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    FDEditCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (!cell) {
 		cell = [[_cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+		[cell setDelegate:self];
 	}
     return cell;
 }
@@ -72,6 +81,23 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
 	return [_cellClass heightOfFooter];
+}
+
+#pragma mark - UITextViewDelegate
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+	[self setRightBarButtonItemAsSaveButtonWithSelector:@selector(save)];
+	NSLog(@"textView did change");
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+	[self setRightBarButtonItemAsSaveButtonWithSelector:@selector(save)];
+	NSLog(@"should change charactersInRange");
+	return YES;
 }
 
 @end

@@ -11,6 +11,4 @@
 
 @interface FDViewController : UIViewController
 
-- (void)setLeftBarButtonItemAsBackButton;
-
 @end

@@ -7,12 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FDEditCell.h"
 
-@interface FDEditNicknameCell : UITableViewCell
-
-- (UIView *)footer;
-+ (CGFloat)height;
-+ (CGFloat)heightOfFooter;
-+ (NSInteger)numberOfRows;
+@interface FDEditNicknameCell : FDEditCell
 
 @end

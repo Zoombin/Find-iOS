@@ -33,18 +33,4 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setLeftBarButtonItemAsBackButton
-{
-	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", nil) style:UIBarButtonItemStylePlain target:self action:@selector(backOrClose)];
-}
-
-- (void)backOrClose
-{
-	if (self.navigationController.viewControllers[0] != self) {
-		[self.navigationController popViewControllerAnimated:YES];
-	} else if (self.navigationController.presentingViewController) {
-		[self dismissViewControllerAnimated:YES completion:nil];
-	}
-}
-
 @end

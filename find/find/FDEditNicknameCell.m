@@ -10,16 +10,22 @@
 
 static NSInteger margin = 10;
 
+@interface FDEditNicknameCell ()
+
+@property (readwrite) UITextField *textField;
+
+@end
+
 @implementation FDEditNicknameCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-		UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(margin, 0, self.bounds.size.width - 2 * margin, [[self class] height])];
-		textField.backgroundColor = [UIColor randomColor];
-		textField.placeholder = NSLocalizedString(@"New Nickname", nil);
-		[self.contentView addSubview:textField];
+		_textField = [[UITextField alloc] initWithFrame:CGRectMake(margin, 0, self.bounds.size.width - 2 * margin, [[self class] height])];
+		_textField.backgroundColor = [UIColor randomColor];
+		_textField.placeholder = NSLocalizedString(@"New Nickname", nil);
+		[self.contentView addSubview:_textField];
     }
     return self;
 }
@@ -55,6 +61,11 @@ static NSInteger margin = 10;
 + (NSInteger)numberOfRows
 {
 	return 1;
+}
+
+- (void)setDelegate:(id<UITextFieldDelegate, UITextViewDelegate>)delegate
+{
+	_textField.delegate = delegate;
 }
 
 @end

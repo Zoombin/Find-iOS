@@ -10,6 +10,12 @@
 
 static NSInteger margin = 10;
 
+@interface FDEditSignatureCell ()
+
+@property (readwrite) UITextView *textView;
+
+@end
+
 @implementation FDEditSignatureCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -17,10 +23,10 @@ static NSInteger margin = 10;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
-        UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(margin, 0, self.bounds.size.width - 2 * margin, [[self class] height])];
-		textView.backgroundColor = [UIColor randomColor];
-		textView.font = [UIFont fdThemeFontOfSize:13];
-		[self.contentView addSubview:textView];
+		_textView = [[UITextView alloc] initWithFrame:CGRectMake(margin, 0, self.bounds.size.width - 2 * margin, [[self class] height])];
+		_textView.backgroundColor = [UIColor randomColor];
+		_textView.font = [UIFont fdThemeFontOfSize:13];
+		[self.contentView addSubview:_textView];
     }
     return self;
 }
@@ -57,5 +63,11 @@ static NSInteger margin = 10;
 {
 	return 1;
 }
+
+- (void)setDelegate:(id<UITextFieldDelegate, UITextViewDelegate>)delegate
+{
+	_textView.delegate = delegate;
+}
+
 
 @end
