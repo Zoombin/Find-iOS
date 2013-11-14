@@ -18,6 +18,6 @@
 @property (nonatomic, strong) NSNumber *bRegion;
 
 + (instancetype)createWithAttributes:(NSDictionary *)attributes;
-+ (NSArray *)createMutableWithData:(NSArray *)data;
++ (NSArray *)createMutableWithData:(NSArray *)data andExtra:(id)extra;
 
 @end

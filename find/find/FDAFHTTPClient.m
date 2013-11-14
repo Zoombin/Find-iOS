@@ -20,6 +20,7 @@ static NSString *responseKeyAct = @"action";
 static NSString *responseKeyLikes = @"likes";
 static NSString *responseKeyToken = @"token";
 static NSString *responseKeyUserID = @"mid";
+static NSString *responseKeyVoted = @"marked";
 static NSString *userDefaultKeyToken = @"fd_token";
 static NSString *userDefaultKeyAccount = @"fd_account";
 static NSString *userDefaultKeyUserID = @"fd_user_id";
@@ -63,7 +64,7 @@ static NSString *token;
 	NSAssert(aUserID, @"userID must not be nil!");
 	[[NSUserDefaults standardUserDefaults] setObject:aUserID forKey:userDefaultKeyUserID];
 	[[NSUserDefaults standardUserDefaults] synchronize];
-	NSLog(@"save user account: %@", aUserID);
+	NSLog(@"save user ID: %@", aUserID);
 }
 
 - (NSString *)cookieValue
@@ -285,6 +286,7 @@ static NSString *token;
 	parameters[@"username"] = username;
 	parameters[@"password"] = password;
 	
+	token = nil;
 	[self postPath:@"signup" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
@@ -313,6 +315,7 @@ static NSString *token;
 	parameters[@"username"] = username;
 	parameters[@"password"] = password;
 	
+	token = nil;
 	[self postPath:@"signin" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
@@ -484,55 +487,55 @@ static NSString *token;
 	}];
 }
 
-- (void)tagsOfPhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *votesData))block
+- (void)tagsOfPhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *votesData, NSNumber *totalVoted))block
 {
 	NSString *path = [NSString stringWithFormat:@"tweet/%@/tag", photoID];
 	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
-			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]], data[responseKeyData]);
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]], data[responseKeyData], data[responseKeyVoted]);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block (NO, [FDErrorMessage messageNetworkError], nil);
+		if (block) block (NO, [FDErrorMessage messageNetworkError], nil, nil);
 	}];
 }
 
-- (void)regionsOfPhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *votesData))block
+- (void)regionsOfPhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *votesData, NSNumber *totalVoted))block
 {
 	NSString *path = [NSString stringWithFormat:@"tweet/%@/category", photoID];
 	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
-			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]], data[responseKeyData]);
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]], data[responseKeyData], data[responseKeyVoted]);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block (NO, [FDErrorMessage messageNetworkError], nil);
+		if (block) block (NO, [FDErrorMessage messageNetworkError], nil, nil);
 	}];
 }
 
-- (void)voteTag:(NSNumber *)tagID toPhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *votesData))block
+- (void)voteTag:(NSNumber *)tagID toPhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *votesData, NSNumber *totalVoted))block
 {
 	NSString *path = [NSString stringWithFormat:@"marktag/%@/%@", tagID, photoID];
 	[self postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
-			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]], data[responseKeyData]);
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]], data[responseKeyData], data[responseKeyVoted]);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block (NO, [FDErrorMessage messageNetworkError], nil);
+		if (block) block (NO, [FDErrorMessage messageNetworkError], nil, nil);
 	}];
 }
 
-- (void)voteRegion:(NSNumber *)regionID toPhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *votesData))block
+- (void)voteRegion:(NSNumber *)regionID toPhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *votesData, NSNumber *totalVoted))block
 {
 	NSString *path = [NSString stringWithFormat:@"markcategory/%@/%@", regionID, photoID];
 	[self postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
-			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]], data[responseKeyData]);
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]], data[responseKeyData], data[responseKeyVoted]);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block (NO, [FDErrorMessage messageNetworkError], nil);
+		if (block) block (NO, [FDErrorMessage messageNetworkError], nil, nil);
 	}];
 }
 

@@ -211,10 +211,9 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 - (void)fetchTags:(dispatch_block_t)block
 {
 	//TODO: test@(1)
-	[[FDAFHTTPClient shared] tagsOfPhoto:@(1) withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData) {
-	//[[FDAFHTTPClient shared] tagsOfPhoto:_photo.ID withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData) {
+	[[FDAFHTTPClient shared] tagsOfPhoto:@(1) withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData, NSNumber *totalVoted) {
 		if (success) {
-			_segmentedControlAttributes[_titleOfTags][keyOfDataSource] = [FDVote createMutableWithData:votesData];
+			_segmentedControlAttributes[_titleOfTags][keyOfDataSource] = [FDVote createMutableWithData:votesData andExtra:totalVoted];
 			if (block) block ();
 		}
 	}];
@@ -223,10 +222,9 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 - (void)fetchRegions:(dispatch_block_t)block
 {
 	//TODO: test@(1)
-	[[FDAFHTTPClient shared] regionsOfPhoto:@(1) withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData) {
-	//[[FDAFHTTPClient shared] regionsOfPhoto:_photo.ID withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData) {
+	[[FDAFHTTPClient shared] regionsOfPhoto:@(1) withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData, NSNumber *totalVoted) {
 		if (success) {
-			NSArray *regions = [FDVote createMutableWithData:votesData];
+			NSArray *regions = [FDVote createMutableWithData:votesData andExtra:totalVoted];
 			for (FDVote *vote in regions) {
 				vote.bRegion = @(YES);
 			}
@@ -556,9 +554,9 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 {
 	NSString *title = [self titleForSelectedSegment];
 	if (vote.bRegion.boolValue) {//TODO: photoID
-		[[FDAFHTTPClient shared] voteRegion:vote.ID toPhoto:@(1) withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData) {
+		[[FDAFHTTPClient shared] voteRegion:vote.ID toPhoto:@(1) withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData, NSNumber *totalVoted) {
 			if (success) {
-				NSArray *votes = [FDVote createMutableWithData:votesData];
+				NSArray *votes = [FDVote createMutableWithData:votesData andExtra:totalVoted];
 				for (FDVote *vote in votes) {
 					vote.bRegion = @(YES);
 				}
@@ -567,9 +565,9 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 			}
 		}];
 	} else {//TODO: photoID
-		[[FDAFHTTPClient shared] voteTag:vote.ID toPhoto:@(1) withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData) {
+		[[FDAFHTTPClient shared] voteTag:vote.ID toPhoto:@(1) withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData, NSNumber *totalVoted) {
 			if (success) {
-				NSArray *votes = [FDVote createMutableWithData:votesData];
+				NSArray *votes = [FDVote createMutableWithData:votesData andExtra:totalVoted];
 				_segmentedControlAttributes[title][keyOfDataSource] = votes;
 				[_tableView reloadData];
 			}

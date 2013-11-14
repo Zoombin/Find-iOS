@@ -24,7 +24,13 @@
 //	NSNumber *number = @(1379575567);//2013-09-19 15:26 = 1379575567
 //	NSLog(@"number: %@", [number printableTimestamp]);
 
-	[[FDAFHTTPClient shared] test];
+//	[[FDAFHTTPClient shared] followOrUnfollowUser:@(1) withCompletionBlock:^(BOOL success, NSString *message) {
+//		if (success) {
+//			NSLog(@"followSuccess");
+//		}
+//	}];
+	
+	//[[FDAFHTTPClient shared] test];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

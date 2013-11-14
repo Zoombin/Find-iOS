@@ -80,7 +80,7 @@
 	if (_vote == vote) return;
 	_vote = vote;
 	_nameLabel.text = _vote.name;
-	_quantityLabel.text = [_vote.quantity stringValue];
+	_quantityLabel.text = [NSString stringWithFormat:@"%@", _vote.quantity];
 	_percentageView.progress = [_vote.percentage floatValue];
 }
 

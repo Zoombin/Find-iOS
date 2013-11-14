@@ -17,17 +17,19 @@
 	
 	vote.ID = attributes[@"id"];
 	vote.name = attributes[@"name"];
-	vote.quantity = attributes[@"quantity"];
-	vote.percentage = attributes[@"percentage"];
+	vote.quantity = attributes[@"marked"];
+	//vote.percentage = attributes[@"percentage"];
 	vote.voted = attributes[@"choosed"];
 	return vote;
 }
 
-+ (NSArray *)createMutableWithData:(NSArray *)data
++ (NSArray *)createMutableWithData:(NSArray *)data andExtra:(id)extra
 {
 	NSMutableArray *votes = [NSMutableArray array];
 	for (NSDictionary *attributes in data) {
 		FDVote *vote = [self createWithAttributes:attributes];
+		NSNumber *total = (NSNumber *)extra;
+		vote.percentage = @(vote.quantity.integerValue / total.floatValue);
 		[votes addObject:vote];
 	}
 	return votes;
