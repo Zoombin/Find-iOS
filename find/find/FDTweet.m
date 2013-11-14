@@ -10,7 +10,7 @@
 
 @implementation FDTweet
 
-+ (FDTweet *)createWithAttributes:(NSDictionary *)attributes
++ (instancetype)createWithAttributes:(NSDictionary *)attributes
 {
 	//NSAssert(attributes[@"id"], @"A tweet must have an ID!");
 	FDTweet *tweet = [[FDTweet alloc] init];

@@ -13,7 +13,7 @@ NSString *kThemeTypeIdentifierUser = @"member";
 
 @implementation FDTheme
 
-+ (FDTheme *)createWithAttributes:(NSDictionary *)attributes
++ (instancetype)createWithAttributes:(NSDictionary *)attributes
 {
 	NSAssert(attributes[@"id"], @"Every event must has an ID!");
 	FDTheme *theme = [[FDTheme alloc] init];

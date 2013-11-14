@@ -10,7 +10,7 @@
 
 @implementation FDComment
 
-+ (FDComment *)createWithAttributes:(NSDictionary *)attributes
++ (instancetype)createWithAttributes:(NSDictionary *)attributes
 {
 	FDComment *comment = [[FDComment alloc] init];
 	NSAssert(attributes[@"id"], @"A comment must have a id!");

@@ -20,7 +20,7 @@ extern NSString *kThemeTypeIdentifierUser;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *style;
 
-+ (FDTheme *)createWithAttributes:(NSDictionary *)attributes;
++ (instancetype)createWithAttributes:(NSDictionary *)attributes;
 + (NSArray *)createMutableWithData:(NSArray *)data;
 
 @end

@@ -10,7 +10,7 @@
 
 @implementation FDPhotoInfo
 
-+ (FDPhotoInfo *)createWithAttributes:(NSDictionary *)attributes
++ (instancetype)createWithAttributes:(NSDictionary *)attributes
 {
 	FDPhotoInfo *info = [[FDPhotoInfo alloc] init];
 	info.format = attributes[@"format"];

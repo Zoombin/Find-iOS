@@ -11,7 +11,7 @@
 
 @implementation FDPhoto
 
-+ (FDPhoto *)createWithAttributes:(NSDictionary *)attributes
++ (instancetype)createWithAttributes:(NSDictionary *)attributes
 {
 	NSAssert(attributes[@"id"], @"A photo must have an ID!");
 	FDPhoto *photo = [[FDPhoto alloc] init];

@@ -21,7 +21,7 @@ extern NSString *kThemeStyleIdentifierBrand;
 @property (nonatomic, strong) NSArray *themes;
 @property (nonatomic, strong) NSString *style;
 
-+ (FDThemeSection *)createWithAttributes:(NSDictionary *)attributes;
++ (instancetype)createWithAttributes:(NSDictionary *)attributes;
 + (NSArray *)createMutableWithData:(NSArray *)data;
 - (BOOL)isEmpty;
 

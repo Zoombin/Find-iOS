@@ -21,7 +21,7 @@
 @property (nonatomic, strong) NSNumber *distance;
 
 
-+ (FDTweet *)createWithAttributes:(NSDictionary *)attributes;
++ (instancetype)createWithAttributes:(NSDictionary *)attributes;
 + (NSArray *)createMutableWithData:(NSArray *)data;
 
 @end

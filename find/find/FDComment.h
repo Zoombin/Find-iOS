@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSNumber *type;
 @property (nonatomic, strong) NSNumber *published;
 
-+ (FDComment *)createWithAttributes:(NSDictionary *)attributes;
++ (instancetype)createWithAttributes:(NSDictionary *)attributes;
 + (NSArray *)createMutableWithData:(NSArray *)data;
 
 @end

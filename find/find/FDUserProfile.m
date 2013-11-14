@@ -10,7 +10,7 @@
 
 @implementation FDUserProfile
 
-+ (FDUserProfile *)createWithAttributes:(NSDictionary *)attributes
++ (instancetype)createWithAttributes:(NSDictionary *)attributes
 {
 	NSAssert(attributes[@"id"], @"A profile must have userID!");
 	FDUserProfile *userProfile = [[FDUserProfile alloc] init];

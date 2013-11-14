@@ -22,7 +22,7 @@
 @property (nonatomic, strong) NSNumber *uploaded;//timestamp
 @property (nonatomic, strong) FDPhotoInfo *info;
 
-+ (FDPhoto *)createWithAttributes:(NSDictionary *)attributes;
++ (instancetype)createWithAttributes:(NSDictionary *)attributes;
 + (NSArray *)createMutableWithData:(NSArray *)data;
 
 - (NSString *)urlString;

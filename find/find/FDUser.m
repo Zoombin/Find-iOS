@@ -10,13 +10,13 @@
 
 @implementation FDUser
 
-+ (FDPhoto *)createWithAttributes:(NSDictionary *)attributes
++ (instancetype)createWithAttributes:(NSDictionary *)attributes
 {
 	NSAssert(attributes[@"mid"], @"UserID shouldn't be nil");
 	FDUser *user = [[FDUser alloc] init];
 	user.ID = attributes[@"mid"];
 	user.name = attributes[@"username"];
-	return nil;
+	return user;
 }
 
 + (NSArray *)createMutableWithData:(NSArray *)data

@@ -15,6 +15,6 @@
 @property (nonatomic, strong) NSNumber *height;
 @property (nonatomic, strong) NSString *colorModel;
 
-+ (FDPhotoInfo *)createWithAttributes:(NSDictionary *)attributes;
++ (instancetype)createWithAttributes:(NSDictionary *)attributes;
 
 @end

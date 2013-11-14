@@ -12,6 +12,7 @@
 		77042967181765D50087F7BF /* FDComment+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 77042966181765D50087F7BF /* FDComment+Test.m */; };
 		77052A3018347643000C2BDF /* UIViewController+ZBUtilites.m in Sources */ = {isa = PBXBuildFile; fileRef = 77052A2F18347643000C2BDF /* UIViewController+ZBUtilites.m */; };
 		77052A331834798B000C2BDF /* FDEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77052A321834798B000C2BDF /* FDEditCell.m */; };
+		77052A361834B150000C2BDF /* FDUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77052A351834B150000C2BDF /* FDUserCell.m */; };
 		772AF353182752E000714745 /* find.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 772AF352182752E000714745 /* find.storyboard */; };
 		772B3D42182F92B9004B1653 /* UITableViewCell+Find.m in Sources */ = {isa = PBXBuildFile; fileRef = 772B3D41182F92B9004B1653 /* UITableViewCell+Find.m */; };
 		77338E7F18090184006DEC3D /* FDErrorMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 77338E7E18090184006DEC3D /* FDErrorMessage.m */; };
@@ -112,6 +113,8 @@
 		77052A2F18347643000C2BDF /* UIViewController+ZBUtilites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZBUtilites.m"; sourceTree = "<group>"; };
 		77052A311834798B000C2BDF /* FDEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDEditCell.h; path = find/FDEditCell.h; sourceTree = "<group>"; };
 		77052A321834798B000C2BDF /* FDEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDEditCell.m; path = find/FDEditCell.m; sourceTree = "<group>"; };
+		77052A341834B150000C2BDF /* FDUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDUserCell.h; path = find/FDUserCell.h; sourceTree = "<group>"; };
+		77052A351834B150000C2BDF /* FDUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDUserCell.m; path = find/FDUserCell.m; sourceTree = "<group>"; };
 		772AF352182752E000714745 /* find.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = find.storyboard; sourceTree = "<group>"; };
 		772B3D40182F92B9004B1653 /* UITableViewCell+Find.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableViewCell+Find.h"; path = "find/UITableViewCell+Find.h"; sourceTree = "<group>"; };
 		772B3D41182F92B9004B1653 /* UITableViewCell+Find.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableViewCell+Find.m"; path = "find/UITableViewCell+Find.m"; sourceTree = "<group>"; };
@@ -562,6 +565,8 @@
 				777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */,
 				77C0C96217D18D7C008C7FC7 /* FDPhotoCell.h */,
 				77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */,
+				77052A341834B150000C2BDF /* FDUserCell.h */,
+				77052A351834B150000C2BDF /* FDUserCell.m */,
 				77DA106E17E97EB0001F44DF /* FDCommentCell.h */,
 				77DA106F17E97EB0001F44DF /* FDCommentCell.m */,
 				778671C117E806BF001FDB67 /* FDLikesView.h */,
@@ -758,6 +763,7 @@
 				7786EDFF181E189F0059868E /* FDPhotosViewController.m in Sources */,
 				77A5F7F417CB2F760073E7F9 /* FDCameraViewController.m in Sources */,
 				77EC53DA182B45990042B7B3 /* FDShareAndGiftsCell.m in Sources */,
+				77052A361834B150000C2BDF /* FDUserCell.m in Sources */,
 				7786716A17E35A98001FDB67 /* ZBViewController.m in Sources */,
 				77A5F7BC17CB22960073E7F9 /* FDAroundViewController.m in Sources */,
 				77A5F7EE17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m in Sources */,

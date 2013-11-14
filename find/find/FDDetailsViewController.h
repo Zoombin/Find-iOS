@@ -12,7 +12,7 @@
 
 @interface FDDetailsViewController : FDViewController
 
-@property (nonatomic, assign) BOOL bMemberDetails;
+@property (nonatomic, assign) BOOL bMemberDetails;//是图片详情还是会员详情
 @property (nonatomic, strong) FDUser *user;
 @property (nonatomic, strong) FDPhoto *photo;
 

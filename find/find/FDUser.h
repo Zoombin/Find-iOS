@@ -15,7 +15,7 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSArray *photos;
 
-+ (FDPhoto *)createWithAttributes:(NSDictionary *)attributes;
++ (instancetype)createWithAttributes:(NSDictionary *)attributes;
 + (NSArray *)createMutableWithData:(NSArray *)data;
 - (FDPhoto *)mainPhoto;
 

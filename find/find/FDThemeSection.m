@@ -15,7 +15,7 @@ NSString *kThemeStyleIdentifierBrand = @"brand";
 
 @implementation FDThemeSection
 
-+ (FDThemeSection *)createWithAttributes:(NSDictionary *)attributes
++ (instancetype)createWithAttributes:(NSDictionary *)attributes
 {
 	NSAssert(attributes[@"id"], @"A themeSection must have a ID!");
 	FDThemeSection *themeSection = [[FDThemeSection alloc] init];

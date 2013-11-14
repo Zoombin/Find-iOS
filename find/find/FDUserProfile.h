@@ -33,6 +33,6 @@
 @property (nonatomic, strong) NSNumber *status;//用户状态 0被禁用 1正常
 @property (nonatomic, strong) NSDate *signined;//注册时间
 
-+ (FDUserProfile *)createWithAttributes:(NSDictionary *)attributes;
++ (instancetype)createWithAttributes:(NSDictionary *)attributes;
 
 @end
