@@ -217,8 +217,7 @@ static NSString *token;
 		if ([data isKindOfClass:[NSDictionary class]]) {
 			BOOL success = [data[responseKeyStatus] boolValue];
 			NSNumber *liked = @([data[responseKeyAct] integerValue] == DOLIKE);
-			NSString *message = [FDErrorMessage messageFromData:data[responseKeyMsg]];
-			if (block) block (success, message, liked, data[responseKeyLikes]);
+			if (block) block (success, [FDErrorMessage messageFromData:data[responseKeyMsg]], liked, data[responseKeyLikes]);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		if (block) block(NO, [FDErrorMessage messageNetworkError], nil, nil);
@@ -384,17 +383,21 @@ static NSString *token;
 	}];
 }
 
-- (void)followOrUnfollowUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+- (void)followOrUnfollowUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSNumber *followed))block
 {
 	NSAssert(userID, @"userID must not be nil when follow or unfollow user!");
 	
 	NSString *path = [NSString stringWithFormat:@"member/%@/follow", userID];
-	
-	//TODO: need return followed or unfollowed
+
 	[self postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-		;
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			BOOL success = [data[responseKeyStatus] boolValue];
+			NSNumber *followed = @([data[responseKeyAct] integerValue] == DOFOLLOW);
+			if (block) block (success, [FDErrorMessage messageFromData:data[responseKeyMsg]], followed);
+		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block (NO, [FDErrorMessage messageNetworkError]);
+		if (block) block (NO, [FDErrorMessage messageNetworkError], nil);
 	}];
 }
 

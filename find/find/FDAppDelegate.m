@@ -24,9 +24,9 @@
 //	NSNumber *number = @(1379575567);//2013-09-19 15:26 = 1379575567
 //	NSLog(@"number: %@", [number printableTimestamp]);
 
-//	[[FDAFHTTPClient shared] followOrUnfollowUser:@(1) withCompletionBlock:^(BOOL success, NSString *message) {
+//	[[FDAFHTTPClient shared] followOrUnfollowUser:@(1) withCompletionBlock:^(BOOL success, NSString *message, NSNumber *followed) {
 //		if (success) {
-//			NSLog(@"followSuccess");
+//			NSLog(@"followed: %@", followed);
 //		}
 //	}];
 	
