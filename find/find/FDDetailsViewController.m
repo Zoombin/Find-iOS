@@ -13,6 +13,7 @@
 #import "FDVote.h"
 #import "FDShareAndGiftsCell.h"
 #import "FDUserCell.h"
+#import "FDMessagesViewController.h"
 
 static NSInteger kSectionOfPhoto = 0;
 static NSInteger kIndexOfReportButtonInActionSheet = 0;
@@ -21,7 +22,7 @@ static NSInteger kHeightOfSegmentedControl = 30;
 static NSString *keyOfClass = @"keyOfClass";
 static NSString *keyOfDataSource = @"keyOfDataSource";
 
-@interface FDDetailsViewController () <UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource, FDCommentCellDelegate, HPGrowingTextViewDelegate, FDVoteCellDelegate, PSUICollectionViewDelegate, PSUICollectionViewDataSource>
+@interface FDDetailsViewController () <UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource, FDCommentCellDelegate, HPGrowingTextViewDelegate, FDVoteCellDelegate, FDShareAndGiftsCellDelegate, PSUICollectionViewDelegate, PSUICollectionViewDataSource>
 
 @property (readwrite) UITableView *tableView;
 @property (readwrite) CGFloat heightOfPhoto;
@@ -373,7 +374,8 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 			FDVote *vote = _segmentedControlAttributes[title][keyOfDataSource][indexPath.row];
 			voteCell.vote = vote;
 		} else if ([cell isKindOfClass:[FDShareAndGiftsCell class]]) {
-			;
+			FDShareAndGiftsCell *shareAndGiftsCell = (FDShareAndGiftsCell *)cell;
+			shareAndGiftsCell.delegate = self;
 		} else if ([cell isKindOfClass:[FDUserCell class]]) {
 			FDUserCell *userCell = (FDUserCell *)cell;
 			userCell.user = _segmentedControlAttributes[title][keyOfDataSource][indexPath.row];
@@ -580,7 +582,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	_reportCommentID = comment.ID;
 }
 
-#pragma mark - FDVoteDelegate
+#pragma mark - FDVoteCellDelegate
 
 - (void)willVote:(FDVote *)vote
 {
@@ -606,5 +608,20 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 		}];
 	}
 }
+
+#pragma mark - FDShareAndGiftsCellDelegate
+
+- (void)willGifts
+{
+	NSLog(@"will gifts");
+}
+
+- (void)willSendPrivateMessage
+{
+	FDMessagesViewController *messagesViewController = [[FDMessagesViewController alloc] init];
+	[self.navigationController pushViewController:messagesViewController animated:YES];
+}
+
+
 
 @end

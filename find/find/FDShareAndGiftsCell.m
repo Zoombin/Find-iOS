@@ -62,8 +62,9 @@ static NSInteger minimumQuantityOfGift = 1;
 		_shareToWeiboButton.frame = CGRectMake(start.x, start.y, size.width, size.height);
 		_shareToWeiboButton.showsTouchWhenHighlighted = YES;
 		_shareToWeiboButton.titleLabel.adjustsFontSizeToFitWidth = YES;
-		[_shareToWeiboButton setTitle:NSLocalizedString(@"Share To Weibo", nil) forState:UIControlStateNormal];
+		[_shareToWeiboButton setTitle:NSLocalizedString(@"Private Message", nil) forState:UIControlStateNormal];
 		_shareToWeiboButton.backgroundColor = [UIColor randomColor];
+		[_shareToWeiboButton addTarget:self action:@selector(willSendPrivateMessage) forControlEvents:UIControlEventTouchUpInside];
 		[self.contentView addSubview:_shareToWeiboButton];
 		
 		start.x = CGRectGetMaxX(_shareToWeiboButton.frame) +gap;
@@ -180,6 +181,11 @@ static NSInteger minimumQuantityOfGift = 1;
 {
 	static NSString *kFDShareAndGiftsCellIdentifier = @"kFDShareAndGiftsCellIdentifier";
 	return kFDShareAndGiftsCellIdentifier;
+}
+
+- (void)willSendPrivateMessage
+{
+	[_delegate willSendPrivateMessage];
 }
 
 @end

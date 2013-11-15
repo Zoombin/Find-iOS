@@ -551,12 +551,26 @@ static NSString *token;
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
 			NSDictionary *attributes = data[responseKeyData];
-			
 			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]], attributes, attributes[@"tweets"]);
 		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		if (block) block (NO, [FDErrorMessage messageNetworkError], nil, nil);
 	}];
 }
+
+- (void)sendPrivateMessage:(NSString *)message toUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+{
+	NSString *path = [NSString stringWithFormat:@"message/send/%@", userID];
+	NSDictionary *parameters = @{@"content" : message};
+	[self postPath:path parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]]);
+		}
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		if (block) block (NO, [FDErrorMessage messageNetworkError]);
+	}];
+}
+
 
 @end

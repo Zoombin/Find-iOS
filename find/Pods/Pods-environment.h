@@ -24,6 +24,12 @@
 #define COCOAPODS_VERSION_MINOR_HPGrowingTextView 0
 #define COCOAPODS_VERSION_PATCH_HPGrowingTextView 1
 
+// JSMessagesViewController
+#define COCOAPODS_POD_AVAILABLE_JSMessagesViewController
+#define COCOAPODS_VERSION_MAJOR_JSMessagesViewController 3
+#define COCOAPODS_VERSION_MINOR_JSMessagesViewController 1
+#define COCOAPODS_VERSION_PATCH_JSMessagesViewController 0
+
 // MBProgressHUD
 #define COCOAPODS_POD_AVAILABLE_MBProgressHUD
 #define COCOAPODS_VERSION_MAJOR_MBProgressHUD 0

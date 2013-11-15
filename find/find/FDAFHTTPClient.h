@@ -80,6 +80,10 @@
 //profile + all photo tweets
 - (void)detailsOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSDictionary *profileAttributes, NSArray *tweetsData))block;
 
+//发送私信
+- (void)sendPrivateMessage:(NSString *)message toUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
+
+
 //test gzip
 - (void)test;
 

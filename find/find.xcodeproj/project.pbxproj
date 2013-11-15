@@ -44,6 +44,7 @@
 		778671C017E74383001FDB67 /* FDTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 778671BF17E74383001FDB67 /* FDTweet.m */; };
 		778671C317E806BF001FDB67 /* FDLikesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 778671C217E806BF001FDB67 /* FDLikesView.m */; };
 		7786EDFF181E189F0059868E /* FDPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786EDFE181E189F0059868E /* FDPhotosViewController.m */; };
+		778FC5391835F4AF00F487FB /* FDMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778FC5381835F4AF00F487FB /* FDMessagesViewController.m */; };
 		779DFF48181602E10013E5F7 /* FDThemeSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 779DFF47181602E10013E5F7 /* FDThemeSection.m */; };
 		77A4AF2B18288E1C00B7D65B /* FDVoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A4AF2A18288E1C00B7D65B /* FDVoteCell.m */; };
 		77A5F7A517CB22960073E7F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A417CB22960073E7F9 /* CoreGraphics.framework */; };
@@ -175,6 +176,8 @@
 		778671C217E806BF001FDB67 /* FDLikesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDLikesView.m; path = find/FDLikesView.m; sourceTree = "<group>"; };
 		7786EDFD181E189F0059868E /* FDPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDPhotosViewController.h; sourceTree = "<group>"; };
 		7786EDFE181E189F0059868E /* FDPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPhotosViewController.m; sourceTree = "<group>"; };
+		778FC5371835F4AF00F487FB /* FDMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDMessagesViewController.h; sourceTree = "<group>"; };
+		778FC5381835F4AF00F487FB /* FDMessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDMessagesViewController.m; sourceTree = "<group>"; };
 		779DFF46181602E10013E5F7 /* FDThemeSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeSection.h; path = find/FDThemeSection.h; sourceTree = "<group>"; };
 		779DFF47181602E10013E5F7 /* FDThemeSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDThemeSection.m; path = find/FDThemeSection.m; sourceTree = "<group>"; };
 		77A4AF2918288E1C00B7D65B /* FDVoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDVoteCell.h; path = find/FDVoteCell.h; sourceTree = "<group>"; };
@@ -394,6 +397,8 @@
 				7786EDFE181E189F0059868E /* FDPhotosViewController.m */,
 				7734ACE117D8893F003E7BB6 /* FDDetailsViewController.h */,
 				7734ACE217D8893F003E7BB6 /* FDDetailsViewController.m */,
+				778FC5371835F4AF00F487FB /* FDMessagesViewController.h */,
+				778FC5381835F4AF00F487FB /* FDMessagesViewController.m */,
 				77A5F7F517CB30400073E7F9 /* FDMeViewController.h */,
 				77A5F7F617CB30400073E7F9 /* FDMeViewController.m */,
 				77764B201831EFA20057F8B9 /* FDEditPropertyViewController.h */,
@@ -665,7 +670,7 @@
 				ORGANIZATIONNAME = ZoomBin;
 				TargetAttributes = {
 					77A5F79E17CB22960073E7F9 = {
-						DevelopmentTeam = 2S362SNNP3;
+						DevelopmentTeam = 7Y7NSKD85B;
 					};
 					77A5F7C517CB22960073E7F9 = {
 						TestTargetID = 77A5F79E17CB22960073E7F9;
@@ -791,6 +796,7 @@
 				77DA107A17E97FA9001F44DF /* FDComment.m in Sources */,
 				7786716817E35A98001FDB67 /* UIViewController+HUD.m in Sources */,
 				778671C317E806BF001FDB67 /* FDLikesView.m in Sources */,
+				778FC5391835F4AF00F487FB /* FDMessagesViewController.m in Sources */,
 				7734ACE917D8A6C1003E7BB6 /* FDPhotoInfo.m in Sources */,
 				7786715F17E35A98001FDB67 /* MBProgressHUD+Appearance.m in Sources */,
 				77F5CD5817E9771A006D931F /* UIColor+Find.m in Sources */,
@@ -958,7 +964,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "find/find-Prefix.pch";
 				INFOPLIST_FILE = "find/find-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -972,15 +978,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "find/find-Prefix.pch";
 				INFOPLIST_FILE = "find/find-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D3E55A66-5310-44E5-96B2-68DF79A6E160";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

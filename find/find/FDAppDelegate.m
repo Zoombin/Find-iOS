@@ -30,6 +30,12 @@
 //		}
 //	}];
 	
+//	[[FDAFHTTPClient shared] sendPrivateMessage:@"test" toUser:@(1) withCompletionBlock:^(BOOL success, NSString *message) {
+//		if (success) {
+//			NSLog(@"Private message send successfully!");
+//		}
+//	}];
+	
 	//[[FDAFHTTPClient shared] test];
 }
 

@@ -11,6 +11,7 @@
 @protocol FDShareAndGiftsCellDelegate <NSObject>
 
 - (void)willGifts;
+- (void)willSendPrivateMessage;
 
 @end
 
