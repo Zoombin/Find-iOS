@@ -8,19 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
-#define SYSTEM_ERROR 1001
-#define USERNAME_EMPTY 2001
-#define PASSWORD_EMPTY 2002
-#define USER_DONOT_EXISTS 2003
-#define PASSWORD_WRONG 2004
-#define USER_EXISTS 2005
-#define USERNAME_ERROR 2006
-#define CANNOT_FOLLOW_SELF 2007
-#define PHOTO_DONOT_EXISTS 3001
-#define CONTENT_EMPTY 3002
-#define DOLIKE 10
-#define DOUNLIKE 11
-#define TAG_DONOT_EXISTS 4001
+extern NSInteger SYSTEM_ERROR;
+extern NSInteger USERNAME_EMPTY;
+extern NSInteger PASSWORD_EMPTY;
+extern NSInteger USER_DONOT_EXISTS;
+extern NSInteger PASSWORD_WRONG;
+extern NSInteger USER_EXISTS;
+extern NSInteger USERNAME_ERROR;
+extern NSInteger CANNOT_FOLLOW_SELF;
+extern NSInteger PHOTO_DONOT_EXISTS;
+extern NSInteger CONTENT_EMPTY;
+extern NSInteger TAG_DONOT_EXISTS;
+extern NSInteger DOLIKE;
+extern NSInteger DOUNLIKE;
+extern NSInteger DOFOLLOW;
+extern NSInteger DOUNFOLLOW;
 
 @interface FDErrorMessage : NSObject
 

@@ -8,6 +8,22 @@
 
 #import "FDErrorMessage.h"
 
+NSInteger SYSTEM_ERROR = 1001;
+NSInteger USERNAME_EMPTY = 2001;
+NSInteger PASSWORD_EMPTY = 2002;
+NSInteger USER_DONOT_EXISTS = 2003;
+NSInteger PASSWORD_WRONG = 2004;
+NSInteger USER_EXISTS = 2005;
+NSInteger USERNAME_ERROR = 2006;
+NSInteger CANNOT_FOLLOW_SELF = 2007;
+NSInteger PHOTO_DONOT_EXISTS = 3001;
+NSInteger CONTENT_EMPTY = 3002;
+NSInteger TAG_DONOT_EXISTS = 4001;
+NSInteger DOLIKE = 10;
+NSInteger DOUNLIKE = 11;
+NSInteger DOFOLLOW = 14;
+NSInteger DOUNFOLLOW = 15;
+
 @implementation FDErrorMessage
 
 static NSDictionary *errorMessageMap;
@@ -26,7 +42,9 @@ static NSDictionary *errorMessageMap;
 							@(CONTENT_EMPTY) : @"内容为空！",
 							@(DOLIKE) : @"喜欢",
 							@(DOUNLIKE) : @"不喜欢",
-							@(TAG_DONOT_EXISTS) : @"标签不存在！"
+							@(TAG_DONOT_EXISTS) : @"标签不存在！",
+							@(DOFOLLOW) : NSLocalizedString(@"Follow", @"关注后返回的结果"),
+							@(DOUNFOLLOW) : NSLocalizedString(@"Unfollow", @"取消关注后返回的结果")
  							};
 	}
 	
