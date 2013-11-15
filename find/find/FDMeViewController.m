@@ -65,6 +65,10 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	_actionsDictionary = [NSMutableDictionary dictionary];
 	_pickerDataSource = [NSMutableDictionary dictionary];
 	
+	NSNumber *min = @(0);
+	NSNumber *max = @(0);
+	NSNumber *delta = @(max.integerValue - min.integerValue + 1);
+	
 	NSString *nickname = NSLocalizedString(@"Nickname", nil);
 	[_dataSource addObject:nickname];
 	_actionsDictionary[nickname] = NSStringFromSelector(@selector(editNickname:));
@@ -73,38 +77,36 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	[_dataSource addObject:signature];
 	_actionsDictionary[signature] = NSStringFromSelector(@selector(editSignature:));
 	
+	NSString *gender = NSLocalizedString(@"Gender", nil);
+	[_dataSource addObject:gender];
+	
 	NSString *age = NSLocalizedString(@"Age", nil);
 	[_dataSource addObject:age];
-	_actionsDictionary[age] = NSStringFromSelector(@selector(editAge:));
-	NSNumber *min = @(10);
-	NSNumber *max = @(40);
-	NSNumber *delta = @(max.integerValue - min.integerValue + 1);
+	_actionsDictionary[age] = NSStringFromSelector(@selector(editPicker:));
+	min = @(10);
+	max = @(40);
+	delta = @(max.integerValue - min.integerValue + 1);
 	_pickerDataSource[age] = @{numberOfPickerComponents : @(1),
 							   numberOfPickerRows : delta,
 							   minimumValueOfPicker : min,
 							   maximumValueOfPicker : max,
 							   actionOfPickerRow : @"printableAge"};
 	
-	NSString *gender = NSLocalizedString(@"Gender", nil);
-	[_dataSource addObject:gender];
-	_actionsDictionary[gender] = NSStringFromSelector(@selector(editGender:));
-	
 	NSString *height = NSLocalizedString(@"Height", nil);
 	[_dataSource addObject:height];
-	_actionsDictionary[height] = NSStringFromSelector(@selector(editHeight:));
+	_actionsDictionary[height] = NSStringFromSelector(@selector(editPicker:));
 	min = @(150);
 	max = @(200);
 	delta = @(max.integerValue - min.integerValue + 1);
 	_pickerDataSource[height] = @{numberOfPickerComponents : @(1),
-							   numberOfPickerRows : delta,
-							   minimumValueOfPicker : min,
-							   maximumValueOfPicker : max,
-							   actionOfPickerRow : @"printableHeight"};
-
+								  numberOfPickerRows : delta,
+								  minimumValueOfPicker : min,
+								  maximumValueOfPicker : max,
+								  actionOfPickerRow : @"printableHeight"};
 	
 	NSString *weight = NSLocalizedString(@"Weight", nil);
 	[_dataSource addObject:weight];
-	_actionsDictionary[weight] = NSStringFromSelector(@selector(editWeight:));
+	_actionsDictionary[weight] = NSStringFromSelector(@selector(editPicker:));
 	min = @(40);
 	max = @(80);
 	delta = @(max.integerValue - min.integerValue + 1);
@@ -117,7 +119,7 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	
 	NSString *bust = NSLocalizedString(@"Bust", nil);
 	[_dataSource addObject:bust];
-	_actionsDictionary[bust] = NSStringFromSelector(@selector(editBust:));
+	_actionsDictionary[bust] = NSStringFromSelector(@selector(editPicker:));
 	min = @(0);
 	max = @(6);
 	delta = @(max.integerValue - min.integerValue + 1);
@@ -227,37 +229,7 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	[self.navigationController pushViewController:editPropertyViewController animated:YES];
 }
 
-- (void)editAge:(NSString *)title
-{
-	NSLog(@"edit: %@", title);
-	_titleOfSelectedCell = title;
-	[_pickerView reloadAllComponents];
-	[self showPickerViewAnimated:YES];
-}
-
-- (void)editGender:(NSString *)title
-{
-	NSLog(@"edit: %@", title);
-}
-
-- (void)editHeight:(NSString *)title
-{
-	NSLog(@"edit: %@", title);
-	_titleOfSelectedCell = title;
-	[_pickerView reloadAllComponents];
-	[self showPickerViewAnimated:YES];
-}
-
-- (void)editWeight:(NSString *)title
-{
-	NSLog(@"edit: %@", title);
-	_titleOfSelectedCell = title;
-	[_pickerView reloadAllComponents];
-	[self showPickerViewAnimated:YES];
-	
-}
-
-- (void)editBust:(NSString *)title
+- (void)editPicker:(NSString *)title
 {
 	NSLog(@"edit: %@", title);
 	_titleOfSelectedCell = title;
