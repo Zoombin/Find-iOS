@@ -50,7 +50,7 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	_bOther = YES;
+	_bOther = NO;
 	if (_bOther) {
 		self.navigationController.title = NSLocalizedString(@"Profile", nil);
 	}
