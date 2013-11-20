@@ -37,6 +37,25 @@
 //	}];
 	
 	//[[FDAFHTTPClient shared] test];
+	
+	//"contact": {
+	//	"qq": 4465618,
+	//	"mobile": "",
+	//	"weibo": "",
+	//	"weixin": ""
+	//},
+	//"userprivacy": {
+	//	"qq": 1,
+	//	"mobile": 0,
+	//	"weibo": 0,
+	//	"weixin": 0,
+	//	"address": 1
+	//},
+	
+	NSDictionary *data = @{@"qq" : @(30135878), @"mobile" : @(18662606288), @"weixin" : @"archer", @"address" : @"国际科技园"};
+	NSDictionary *privacy = @{@"qq" : @(1), @"mobile" : @(2), @"weixin" : @(0), @"address" : @(1)};
+	NSArray *informations = [FDInformation createMutableWithData:data andPrivacy:privacy];
+	NSLog(@"informations: %@", informations);
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

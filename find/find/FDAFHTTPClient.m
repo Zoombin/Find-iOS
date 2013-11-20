@@ -330,27 +330,6 @@ static NSString *token;
 	}];
 }
 
-- (void)profileOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSDictionary *userProfileAttributes))block
-{
-	NSAssert(userID, @"userID must not be nil when fetch profile!");
-	
-	NSString *path = [NSString stringWithFormat:@"member/%@/profile", userID];
-	
-	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-		if ([data isKindOfClass:[NSDictionary class]]) {
-			if (block) block (YES, [FDErrorMessage messageFromData:data[responseKeyMsg]], data);
-		}
-	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block (NO, [FDErrorMessage messageNetworkError], nil);
-	}];
-}
-
-- (void)editProfileOfUser:(NSNumber *)userID profileAttributes:(NSDictionary *)profileAttributes withCompletionBlock:(void (^)(BOOL success, NSString *message))block
-{
-	
-}
-
 - (void)blockUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
 {
 	NSAssert(userID, @"userID must not be nil when block it!");
@@ -563,6 +542,52 @@ static NSString *token;
 	NSString *path = [NSString stringWithFormat:@"message/send/%@", userID];
 	NSDictionary *parameters = @{@"content" : message};
 	[self postPath:path parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]]);
+		}
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		if (block) block (NO, [FDErrorMessage messageNetworkError]);
+	}];
+}
+
+- (void)profileOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSDictionary *userProfileAttributes))block
+{
+	NSAssert(userID, @"userID must not be nil when fetch profile!");
+	
+	NSString *path = [NSString stringWithFormat:@"member/%@/profile", userID];
+	
+	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]], data[responseKeyData]);
+		}
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		if (block) block (NO, [FDErrorMessage messageNetworkError], nil);
+	}];
+}
+
+//我的资料
+- (void)profileWithCompletionBlock:(void (^)(BOOL success, NSString *message, NSDictionary *userProfileAttributes))block
+{
+	NSString *path = [NSString stringWithFormat:@"profile"];
+	
+	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]], data[responseKeyData]);
+		}
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		if (block) block (NO, [FDErrorMessage messageNetworkError], nil);
+	}];
+}
+
+//修改我的资料
+- (void)editProfile:(NSDictionary *)profileAttributes withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+{
+	NSString *path = [NSString stringWithFormat:@"profile"];
+	
+	[self postPath:path parameters:profileAttributes success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
 		if ([data isKindOfClass:[NSDictionary class]]) {
 			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]]);

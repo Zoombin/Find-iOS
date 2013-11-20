@@ -36,10 +36,6 @@
 
 //- (void)changePassword:()
 
-- (void)profileOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSDictionary *userProfileAttributes))block;
-
-- (void)editProfileOfUser:(NSNumber *)userID profileAttributes:(NSDictionary *)profileAttributes withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
-
 //把userID加入黑名单
 - (void)blockUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
 
@@ -82,6 +78,19 @@
 
 //发送私信
 - (void)sendPrivateMessage:(NSString *)message toUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
+
+//用户的资料
+- (void)profileOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSDictionary *userProfileAttributes))block;
+
+
+//我的资料
+- (void)profileWithCompletionBlock:(void (^)(BOOL success, NSString *message, NSDictionary *userProfileAttributes))block;
+
+
+//修改我的资料
+- (void)editProfile:(NSDictionary *)profileAttributes withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
+
+
 
 
 //test gzip

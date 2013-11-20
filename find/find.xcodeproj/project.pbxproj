@@ -22,6 +22,7 @@
 		7734ACE317D8893F003E7BB6 /* FDDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE217D8893F003E7BB6 /* FDDetailsViewController.m */; };
 		7734ACE617D895D1003E7BB6 /* FDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE517D895D1003E7BB6 /* FDViewController.m */; };
 		7734ACE917D8A6C1003E7BB6 /* FDPhotoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE817D8A6C1003E7BB6 /* FDPhotoInfo.m */; };
+		774628CF183CA0530088BD61 /* FDInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 774628CE183CA0530088BD61 /* FDInformation.m */; };
 		77764B221831EFA20057F8B9 /* FDEditPropertyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764B211831EFA20057F8B9 /* FDEditPropertyViewController.m */; };
 		77764B251831FA100057F8B9 /* FDEditNicknameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764B241831FA100057F8B9 /* FDEditNicknameCell.m */; };
 		77764B2B1831FEEA0057F8B9 /* FDEditSignatureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764B2A1831FEEA0057F8B9 /* FDEditSignatureCell.m */; };
@@ -133,6 +134,8 @@
 		7734ACE517D895D1003E7BB6 /* FDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDViewController.m; sourceTree = "<group>"; };
 		7734ACE717D8A6C1003E7BB6 /* FDPhotoInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDPhotoInfo.h; path = find/FDPhotoInfo.h; sourceTree = "<group>"; };
 		7734ACE817D8A6C1003E7BB6 /* FDPhotoInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDPhotoInfo.m; path = find/FDPhotoInfo.m; sourceTree = "<group>"; };
+		774628CD183CA0530088BD61 /* FDInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDInformation.h; path = find/FDInformation.h; sourceTree = "<group>"; };
+		774628CE183CA0530088BD61 /* FDInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDInformation.m; path = find/FDInformation.m; sourceTree = "<group>"; };
 		77764B201831EFA20057F8B9 /* FDEditPropertyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDEditPropertyViewController.h; sourceTree = "<group>"; };
 		77764B211831EFA20057F8B9 /* FDEditPropertyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDEditPropertyViewController.m; sourceTree = "<group>"; };
 		77764B231831FA100057F8B9 /* FDEditNicknameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDEditNicknameCell.h; path = find/FDEditNicknameCell.h; sourceTree = "<group>"; };
@@ -523,6 +526,8 @@
 		77DA107117E97F3D001F44DF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				774628CD183CA0530088BD61 /* FDInformation.h */,
+				774628CE183CA0530088BD61 /* FDInformation.m */,
 				77D696FE180E540E000BCA07 /* FDSize.h */,
 				77D696FF180E540E000BCA07 /* FDSize.m */,
 				779DFF46181602E10013E5F7 /* FDThemeSection.h */,
@@ -783,6 +788,7 @@
 				77C0C8E017CDE32C008C7FC7 /* ZBQNAFHTTPClient.m in Sources */,
 				77B6397F1810E14F00AE8526 /* FDThemeSectionHeaderView.m in Sources */,
 				77052A3018347643000C2BDF /* UIViewController+ZBUtilites.m in Sources */,
+				774628CF183CA0530088BD61 /* FDInformation.m in Sources */,
 				777E5E1E17D97A98005AFB67 /* FDThemeCell.m in Sources */,
 				7786716017E35A98001FDB67 /* NSNumber+PrintableMeasurement.m in Sources */,
 				77C0C8DD17CDDE6A008C7FC7 /* ZBQNPutPolicy.m in Sources */,
