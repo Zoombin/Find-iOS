@@ -293,7 +293,7 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[UITableViewCell identifier]];
 	if (!cell) {
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[UITableViewCell identifier]];
-		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		cell.selectionStyle = UITableViewCellSelectionStyleDefault;
 		
 		NSString *key = _dataSource[indexPath.row];
 		if ([key isEqualToString:NSLocalizedString(@"Gender", nil)]) {
@@ -318,12 +318,13 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 {
 	NSString *key = _dataSource[indexPath.row];
 	SEL action = NSSelectorFromString(_actionsDictionary[key]);
-	if (!_pickerDataSource[key]) {
+	//if (!_pickerDataSource[key]) {//如果这个cell也是picker
 		if (!_pickerView.hidden) {
 			[self hidePickerViewAnimated:YES];
+			[tableView deselectRowAtIndexPath:indexPath animated:YES];
 			return;
 		}
-	}
+	//}
 	if (action) {
 		[self performSelector:action withObject:key afterDelay:0];
 	}
@@ -331,7 +332,7 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+	
 }
 
 #pragma mark - UIPickerViewDelegate
