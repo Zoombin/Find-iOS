@@ -1,5 +1,6 @@
 PODS:
   - AFNetworking (1.3.3)
+  - AviarySDK (3.3.7)
   - Godzippa (0.1.2)
   - HPGrowingTextView (1.0.1)
   - JSMessagesViewController (3.1.0)
@@ -8,6 +9,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 1.3.3)
+  - AviarySDK (~> 3.3.7)
   - Godzippa (~> 0.1.2)
   - HPGrowingTextView (~> 1.0.1)
   - JSMessagesViewController (~> 3.1.0)
@@ -16,10 +18,11 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 0700ec7a58c36ad217173e167f6e4df7270df66b
+  AviarySDK: b5b441fe01f319ff92d2d073fdd1da0f846920c7
   Godzippa: 1634e19b3cf30370a1b8eb5402532188bee6b7bc
   HPGrowingTextView: fd77b93b9096dd1493a312c8856810b652b04dcc
   JSMessagesViewController: 8afcc9c612fa84be46b2058b4529412dbcfd1fad
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   PSTCollectionView: af42b0fb111200a1b87a04aee96181725977f19b
 
-COCOAPODS: 0.27.1
+COCOAPODS: 0.28.0
