@@ -42,13 +42,18 @@
 #import "UIViewController+HUD.h"
 #import "UIColor+Random.h"
 
-//cocoapods
+//Cocoapods
 #import "UIImageView+AFNetworking.h"
 #import "PSTCollectionView.h"
 #import "PSUICollectionViewFlowLayout+FDLayout.h"
 #import "HPGrowingTextView.h"
 #import "HPTextViewInternal.h"
 #import "JSMessagesViewController.h"
+//Aviary
+#import "AFPhotoEditorContext.h"
+#import "AFPhotoEditorController.h"
+#import "AFPhotoEditorControllerOptions.h"
+#import "AFPhotoEditorSession.h"
 
 #define FDDEBUG 1
 //#define QINIU_FIND @"http://find.qiniudn.com/"

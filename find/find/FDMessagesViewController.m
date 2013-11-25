@@ -13,7 +13,7 @@
 #define kSubtitleJobs @"Jobs"
 #define kSubtitleCook @"Mr. Cook"
 
-@interface FDMessagesViewController ()<JSMessagesViewDelegate, JSMessagesViewDataSource>
+@interface FDMessagesViewController () <JSMessagesViewDelegate, JSMessagesViewDataSource>
 
 @property (readwrite) NSMutableArray *messages;
 @property (readwrite) NSMutableArray *timestamps;

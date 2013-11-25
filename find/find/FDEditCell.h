@@ -10,7 +10,8 @@
 
 @interface FDEditCell : UITableViewCell
 
-- (void)setDelegate:(id<UITextFieldDelegate, UITextViewDelegate>)delegate;
+@property (nonatomic, weak) id<UITextFieldDelegate, UITextViewDelegate> delegate;
+@property (nonatomic, strong) NSString *content;
 
 - (UIView *)footer;
 + (CGFloat)height;

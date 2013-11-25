@@ -9,7 +9,7 @@
 #import "FDEditPropertyViewController.h"
 #import "FDEditNicknameCell.h"
 
-@interface FDEditPropertyViewController ()<UITextViewDelegate, UITextFieldDelegate>
+@interface FDEditPropertyViewController () <UITextViewDelegate, UITextFieldDelegate>
 
 @end
 
@@ -22,7 +22,6 @@
 		self.view.backgroundColor = [UIColor clearColor];
 		
 		[self setLeftBarButtonItemAsBackButton];
-		//[self setRightBarButtonItemAsSaveButtonWithSelector:@selector(save)];
     }
     return self;
 }
@@ -47,7 +46,20 @@
 - (void)save
 {
 	NSLog(@"save");
+	
+	[[FDAFHTTPClient shared] editProfile:@{@"signature" : @"fafafa"} withCompletionBlock:^(BOOL success, NSString *message) {
+		if (success) {
+			[self displayHUDTitle:NSLocalizedString(@"Updated", nil) message:nil];
+			[self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.0f];
+		}
+	}];
 }
+
+//- (void)setContent:(NSString *)content
+//{
+//	if (_content == content) return;
+//	_content = content;
+//}
 
 #pragma mark - Table view data source
 
@@ -67,7 +79,8 @@
     FDEditCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (!cell) {
 		cell = [[_cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-		[cell setDelegate:self];
+		cell.delegate = self;
+		cell.content = _content;
 	}
     return cell;
 }

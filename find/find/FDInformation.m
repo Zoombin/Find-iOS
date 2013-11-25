@@ -76,6 +76,16 @@ static NSString *address = @"address";
 	}
 }
 
+- (NSString *)displayPrivacy
+{
+	if ([self isPublic]) {
+		return NSLocalizedString(@"Public", nil);
+	} else if ([self isPartly]) {
+		return NSLocalizedString(@"Partly", nil);
+	}
+	return NSLocalizedString(@"Private", nil);
+}
+
 - (NSString *)description
 {
 	NSString *typeString;

@@ -37,6 +37,11 @@ static NSInteger margin = 10;
     // Configure the view for the selected state
 }
 
+- (void)setContent:(NSString *)content
+{
+	_textField.text = content;
+}
+
 - (UIView *)footer
 {
 	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 30)];

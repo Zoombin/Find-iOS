@@ -65,7 +65,7 @@
 		77A5F7F417CB2F760073E7F9 /* FDCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F317CB2F760073E7F9 /* FDCameraViewController.m */; };
 		77A5F7F717CB30400073E7F9 /* FDMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F617CB30400073E7F9 /* FDMeViewController.m */; };
 		77A5F89017CD95E80073E7F9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F88F17CD95E80073E7F9 /* CFNetwork.framework */; };
-		77A977D2183DF98800678361 /* AFSDKDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A977CF183DF98800678361 /* AFSDKDemoViewController.m */; };
+		77A977D9183F19A500678361 /* FDCameraFlashButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A977D8183F19A500678361 /* FDCameraFlashButton.m */; };
 		77AD927E17DEC88800D2FEBC /* FDAFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AD927D17DEC88800D2FEBC /* FDAFHTTPClient.m */; };
 		77B6397F1810E14F00AE8526 /* FDThemeSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B6397E1810E14F00AE8526 /* FDThemeSectionHeaderView.m */; };
 		77C0242D17F3FB46009634CA /* FDAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0242C17F3FB46009634CA /* FDAvatarView.m */; };
@@ -215,8 +215,8 @@
 		77A5F7F517CB30400073E7F9 /* FDMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDMeViewController.h; sourceTree = "<group>"; };
 		77A5F7F617CB30400073E7F9 /* FDMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDMeViewController.m; sourceTree = "<group>"; };
 		77A5F88F17CD95E80073E7F9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		77A977CE183DF98800678361 /* AFSDKDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSDKDemoViewController.h; sourceTree = "<group>"; };
-		77A977CF183DF98800678361 /* AFSDKDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSDKDemoViewController.m; sourceTree = "<group>"; };
+		77A977D7183F19A500678361 /* FDCameraFlashButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDCameraFlashButton.h; path = find/FDCameraFlashButton.h; sourceTree = "<group>"; };
+		77A977D8183F19A500678361 /* FDCameraFlashButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDCameraFlashButton.m; path = find/FDCameraFlashButton.m; sourceTree = "<group>"; };
 		77AD927C17DEC88800D2FEBC /* FDAFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDAFHTTPClient.h; path = find/FDAFHTTPClient.h; sourceTree = "<group>"; };
 		77AD927D17DEC88800D2FEBC /* FDAFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDAFHTTPClient.m; path = find/FDAFHTTPClient.m; sourceTree = "<group>"; };
 		77B6397D1810E14F00AE8526 /* FDThemeSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeSectionHeaderView.h; path = find/FDThemeSectionHeaderView.h; sourceTree = "<group>"; };
@@ -385,8 +385,6 @@
 		77A5F7A817CB22960073E7F9 /* find */ = {
 			isa = PBXGroup;
 			children = (
-				77A977CE183DF98800678361 /* AFSDKDemoViewController.h */,
-				77A977CF183DF98800678361 /* AFSDKDemoViewController.m */,
 				7734ACE417D895D1003E7BB6 /* FDViewController.h */,
 				7734ACE517D895D1003E7BB6 /* FDViewController.m */,
 				77F5CD5017E966DB006D931F /* FDSignupViewController.h */,
@@ -560,6 +558,8 @@
 		77DA107217E97F5F001F44DF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				77A977D7183F19A500678361 /* FDCameraFlashButton.h */,
+				77A977D8183F19A500678361 /* FDCameraFlashButton.m */,
 				77052A311834798B000C2BDF /* FDEditCell.h */,
 				77052A321834798B000C2BDF /* FDEditCell.m */,
 				77764B231831FA100057F8B9 /* FDEditNicknameCell.h */,
@@ -794,6 +794,7 @@
 				77B6397F1810E14F00AE8526 /* FDThemeSectionHeaderView.m in Sources */,
 				77052A3018347643000C2BDF /* UIViewController+ZBUtilites.m in Sources */,
 				774628CF183CA0530088BD61 /* FDInformation.m in Sources */,
+				77A977D9183F19A500678361 /* FDCameraFlashButton.m in Sources */,
 				777E5E1E17D97A98005AFB67 /* FDThemeCell.m in Sources */,
 				7786716017E35A98001FDB67 /* NSNumber+PrintableMeasurement.m in Sources */,
 				77C0C8DD17CDDE6A008C7FC7 /* ZBQNPutPolicy.m in Sources */,
@@ -803,7 +804,6 @@
 				77D69703180E6D95000BCA07 /* FDTheme.m in Sources */,
 				779DFF48181602E10013E5F7 /* FDThemeSection.m in Sources */,
 				7734ACD117D85605003E7BB6 /* FDUser+Test.m in Sources */,
-				77A977D2183DF98800678361 /* AFSDKDemoViewController.m in Sources */,
 				77F5CD4F17E966BC006D931F /* FDSigninViewController.m in Sources */,
 				77DA107A17E97FA9001F44DF /* FDComment.m in Sources */,
 				7786716817E35A98001FDB67 /* UIViewController+HUD.m in Sources */,

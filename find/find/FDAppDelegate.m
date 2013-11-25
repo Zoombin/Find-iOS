@@ -13,7 +13,6 @@
 #import "FDCameraViewController.h"
 #import "FDMeViewController.h"
 #import "FDAppDelegate+Appearance.h"
-#import "AFSDKDemoViewController.h"
 
 @import iAd.ADBannerView;
 @implementation FDAppDelegate
@@ -76,8 +75,7 @@
 	[viewControllers addObject:[FDAroundViewController new]];
 	[viewControllers addObject:[FDCameraViewController new]];
 	[viewControllers addObject:[FDMeViewController new]];
-	[viewControllers addObject:[AFSDKDemoViewController new]];
-	//[viewControllers addObject:[FDTestAccountsViewController new]];
+	[viewControllers addObject:[FDTestAccountsViewController new]];
 //	[viewControllers addObject:[FDHostViewController new]];
 //	[viewControllers addObject:[FDTestPhotoUploadViewController new]];
 

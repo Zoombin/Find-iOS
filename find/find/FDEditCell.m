@@ -26,4 +26,25 @@
     // Configure the view for the selected state
 }
 
+- (UIView *)footer
+{
+	return nil;
+}
+
++ (CGFloat)height
+{
+	return 0;
+}
+
++ (CGFloat)heightOfFooter
+{
+	return 0;
+}
+
++ (NSInteger)numberOfRows
+{
+	return 0;
+}
+
+
 @end
