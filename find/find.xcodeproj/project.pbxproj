@@ -46,6 +46,7 @@
 		778671C317E806BF001FDB67 /* FDLikesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 778671C217E806BF001FDB67 /* FDLikesView.m */; };
 		7786EDFF181E189F0059868E /* FDPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786EDFE181E189F0059868E /* FDPhotosViewController.m */; };
 		778FC5391835F4AF00F487FB /* FDMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778FC5381835F4AF00F487FB /* FDMessagesViewController.m */; };
+		7798B3281844979400CCA964 /* FDAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 7798B3271844979400CCA964 /* FDAddress.m */; };
 		779DFF48181602E10013E5F7 /* FDThemeSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 779DFF47181602E10013E5F7 /* FDThemeSection.m */; };
 		77A4AF2B18288E1C00B7D65B /* FDVoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A4AF2A18288E1C00B7D65B /* FDVoteCell.m */; };
 		77A5F7A517CB22960073E7F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F7A417CB22960073E7F9 /* CoreGraphics.framework */; };
@@ -182,6 +183,8 @@
 		7786EDFE181E189F0059868E /* FDPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPhotosViewController.m; sourceTree = "<group>"; };
 		778FC5371835F4AF00F487FB /* FDMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDMessagesViewController.h; sourceTree = "<group>"; };
 		778FC5381835F4AF00F487FB /* FDMessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDMessagesViewController.m; sourceTree = "<group>"; };
+		7798B3261844979400CCA964 /* FDAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDAddress.h; path = find/FDAddress.h; sourceTree = "<group>"; };
+		7798B3271844979400CCA964 /* FDAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDAddress.m; path = find/FDAddress.m; sourceTree = "<group>"; };
 		779DFF46181602E10013E5F7 /* FDThemeSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeSection.h; path = find/FDThemeSection.h; sourceTree = "<group>"; };
 		779DFF47181602E10013E5F7 /* FDThemeSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDThemeSection.m; path = find/FDThemeSection.m; sourceTree = "<group>"; };
 		77A4AF2918288E1C00B7D65B /* FDVoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDVoteCell.h; path = find/FDVoteCell.h; sourceTree = "<group>"; };
@@ -531,6 +534,8 @@
 			children = (
 				774628CD183CA0530088BD61 /* FDInformation.h */,
 				774628CE183CA0530088BD61 /* FDInformation.m */,
+				7798B3261844979400CCA964 /* FDAddress.h */,
+				7798B3271844979400CCA964 /* FDAddress.m */,
 				77D696FE180E540E000BCA07 /* FDSize.h */,
 				77D696FF180E540E000BCA07 /* FDSize.m */,
 				779DFF46181602E10013E5F7 /* FDThemeSection.h */,
@@ -813,6 +818,7 @@
 				7786715F17E35A98001FDB67 /* MBProgressHUD+Appearance.m in Sources */,
 				77F5CD5817E9771A006D931F /* UIColor+Find.m in Sources */,
 				7786716117E35A98001FDB67 /* NSString+BundleExtensions.m in Sources */,
+				7798B3281844979400CCA964 /* FDAddress.m in Sources */,
 				7786716717E35A98001FDB67 /* UIDevice+ZBUtilites.m in Sources */,
 				77042967181765D50087F7BF /* FDComment+Test.m in Sources */,
 				7734ACD417D8562F003E7BB6 /* FDPhoto+Test.m in Sources */,

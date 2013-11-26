@@ -32,6 +32,7 @@
 #import	"FDTheme.h"
 #import	"UITableViewCell+Find.h"
 #import "FDInformation.h"
+#import "FDAddress.h"
 
 //ZBUtilities
 #import "UIViewController+ZBUtilites.h"

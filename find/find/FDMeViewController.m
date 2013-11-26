@@ -32,24 +32,6 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 @property (readwrite) NSString *identifierOfSelectedCell;
 @property (readwrite) UISegmentedControl *genderSegmentedControl;
 
-//@property (readwrite) NSString *kNickname;
-//@property (readwrite) NSString *kSignature;
-//@property (readwrite) NSString *kGender;
-//@property (readwrite) NSString *kAge;
-//@property (readwrite) NSString *kHeight;
-//@property (readwrite) NSString *kWeight;
-//@property (readwrite) NSString *kChest;
-//@property (readwrite) NSString *kMobile;
-//@property (readwrite) NSString *kQQ;
-//@property (readwrite) NSString *kWeixin;
-//@property (readwrite) NSString *kAddress;
-//@property (readwrite) NSString *kNumberOfFollowers;
-//@property (readwrite) NSString *kNumberOfFollowing;
-//@property (readwrite) NSString *kPrivateMessages;
-//@property (readwrite) NSString *kAvatar;
-//@property (readwrite) NSString *kPhotos;
-//@property (readwrite) NSString *kSettings;
-
 @end
 
 @implementation FDMeViewController

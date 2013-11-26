@@ -30,8 +30,6 @@ extern NSString *kProfilePhotos;
 extern NSString *kProfilePrivateMessages;
 extern NSString *kProfileSettings;
 
-
-
 @interface FDUserProfile : NSObject
 
 @property (nonatomic, strong) NSNumber *userID;

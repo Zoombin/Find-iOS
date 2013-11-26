@@ -58,7 +58,7 @@ NSString *kProfileSettings = @"settings";
 			} else if (info.type == FDInformationTypeWeixin) {
 				userProfile.weixinInformation = info;
 			} else if (info.type == FDInformationTypeAddress) {
-				//userProfile.addressInformation = info;//TODO: after created address modle
+				userProfile.addressInformation = info;
 			}
 		}
 	}
@@ -101,13 +101,14 @@ NSString *kProfileSettings = @"settings";
 - (NSString *)privacyInfoWithIdentifier:(NSString *)identifier
 {
 	if ([identifier isEqualToString:kProfileQQ]) {
-		return (NSString *)_qqInformation.value;
+		return (NSString *)[_qqInformation.value stringValue];
 	} else if ([identifier isEqualToString:kProfileMobile]) {
-		return (NSString *)_mobileInformation.value;
+		return (NSString *)[_mobileInformation.value stringValue];
 	} else if ([identifier isEqualToString:kProfileWeixin]) {
 		return (NSString *)_weixinInformation.value;
 	} else if ([identifier isEqualToString:kProfileAddress]) {
-		return @"TestAddress";
+		FDAddress *address = [FDAddress createWithAttributes:_addressInformation.value];
+		return address.addr;
 	}
 	return nil;
 }
