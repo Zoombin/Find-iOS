@@ -11,7 +11,7 @@
 @interface FDEditPropertyViewController : UITableViewController
 
 @property (nonatomic, strong) Class cellClass;
-@property (nonatomic, strong) NSString *key;
+@property (nonatomic, strong) NSString *identifier;
 @property (nonatomic, strong) NSString *content;
 
 @end

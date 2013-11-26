@@ -47,19 +47,15 @@
 {
 	NSLog(@"save");
 	
-	[[FDAFHTTPClient shared] editProfile:@{@"signature" : @"fafafa"} withCompletionBlock:^(BOOL success, NSString *message) {
+	if (!_identifier) return;
+	NSLog(@"will save %@: %@", _identifier, _content);
+	[[FDAFHTTPClient shared] editProfile:@{_identifier : _content} withCompletionBlock:^(BOOL success, NSString *message) {
 		if (success) {
 			[self displayHUDTitle:NSLocalizedString(@"Updated", nil) message:nil];
 			[self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.0f];
 		}
 	}];
 }
-
-//- (void)setContent:(NSString *)content
-//{
-//	if (_content == content) return;
-//	_content = content;
-//}
 
 #pragma mark - Table view data source
 
@@ -101,7 +97,7 @@
 - (void)textViewDidChange:(UITextView *)textView
 {
 	[self setRightBarButtonItemAsSaveButtonWithSelector:@selector(save)];
-	NSLog(@"textView did change");
+	_content = textView.text;
 }
 
 #pragma mark - UITextFieldDelegate
@@ -109,7 +105,7 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
 	[self setRightBarButtonItemAsSaveButtonWithSelector:@selector(save)];
-	NSLog(@"should change charactersInRange");
+	_content = textField.text;
 	return YES;
 }
 

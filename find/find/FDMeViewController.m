@@ -18,36 +18,37 @@ static NSString *minimumValueOfPicker = @"minimamOfPicker";
 static NSString *maximumValueOfPicker = @"maximumValueOfPicker";
 static NSString *actionOfPickerRow = @"actionOfPickerRow";
 
+#define kIdentifier @"identifier"
+#define kTitle @"title"
+#define kAction @"action"
+
 @interface FDMeViewController () <UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (readwrite) FDUserProfile *userProfile;
 @property (readwrite) UITableView *tableView;
 @property (readwrite) NSMutableArray *dataSource;
-@property (readwrite) NSMutableDictionary *actionsDictionary;
 @property (readwrite) UIPickerView *pickerView;
 @property (readwrite) NSMutableDictionary *pickerDataSource;
-@property (readwrite) NSString *titleOfSelectedCell;
+@property (readwrite) NSString *identifierOfSelectedCell;
 @property (readwrite) UISegmentedControl *genderSegmentedControl;
 
-@property (readwrite) NSString *kNickname;
-@property (readwrite) NSString *kSignature;
-@property (readwrite) NSString *kGender;
-@property (readwrite) NSString *kAge;
-@property (readwrite) NSString *kHeight;
-@property (readwrite) NSString *kWeight;
-@property (readwrite) NSString *kChest;
-@property (readwrite) NSString *kMobile;
-@property (readwrite) NSString *kQQ;
-@property (readwrite) NSString *kWeixin;
-@property (readwrite) NSString *kAddress;
-//@property (readwrite) NSString *kLevel;
-//@property (readwrite) NSString *kGifts;
+//@property (readwrite) NSString *kNickname;
+//@property (readwrite) NSString *kSignature;
+//@property (readwrite) NSString *kGender;
+//@property (readwrite) NSString *kAge;
+//@property (readwrite) NSString *kHeight;
+//@property (readwrite) NSString *kWeight;
+//@property (readwrite) NSString *kChest;
+//@property (readwrite) NSString *kMobile;
+//@property (readwrite) NSString *kQQ;
+//@property (readwrite) NSString *kWeixin;
+//@property (readwrite) NSString *kAddress;
 //@property (readwrite) NSString *kNumberOfFollowers;
 //@property (readwrite) NSString *kNumberOfFollowing;
-@property (readwrite) NSString *kPrivateMessages;
-@property (readwrite) NSString *kAvatar;
-@property (readwrite) NSString *kPhotos;
-@property (readwrite) NSString *kSettings;
+//@property (readwrite) NSString *kPrivateMessages;
+//@property (readwrite) NSString *kAvatar;
+//@property (readwrite) NSString *kPhotos;
+//@property (readwrite) NSString *kSettings;
 
 @end
 
@@ -84,101 +85,65 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	[self.view addSubview:_tableView];
 	
 	_dataSource = [NSMutableArray array];
-	_actionsDictionary = [NSMutableDictionary dictionary];
 	_pickerDataSource = [NSMutableDictionary dictionary];
+	
+	[_dataSource addObject:@{kIdentifier : kProfileUsername, kTitle : NSLocalizedString(@"Nickname", nil), kAction : NSStringFromSelector(@selector(editNickname:))}];
+	[_dataSource addObject:@{kIdentifier : kProfileSignature, kTitle : NSLocalizedString(@"Signature", nil), kAction : NSStringFromSelector(@selector(editSignature:))}];
+	[_dataSource addObject:@{kIdentifier : kProfileGender, kTitle : NSLocalizedString(@"Gender", nil)}];
+	[_dataSource addObject:@{kIdentifier : kProfileAge, kTitle : NSLocalizedString(@"Age", nil), kAction : NSStringFromSelector(@selector(editPicker:))}];
+	[_dataSource addObject:@{kIdentifier : kProfileHeight, kTitle : NSLocalizedString(@"Height", nil), kAction : NSStringFromSelector(@selector(editPicker:))}];
+	[_dataSource addObject:@{kIdentifier : kProfileWeight, kTitle : NSLocalizedString(@"Weight", nil), kAction : NSStringFromSelector(@selector(editPicker:))}];
+	[_dataSource addObject:@{kIdentifier : kProfileChest, kTitle : NSLocalizedString(@"Chest", nil), kAction : NSStringFromSelector(@selector(editPicker:))}];
+	[_dataSource addObject:@{kIdentifier : kProfileMobile, kTitle : NSLocalizedString(@"Mobile", nil), kAction : NSStringFromSelector(@selector(editPhone:))}];
+	[_dataSource addObject:@{kIdentifier : kProfileQQ, kTitle : NSLocalizedString(@"QQ", nil), kAction : NSStringFromSelector(@selector(editQQ:))}];
+	[_dataSource addObject:@{kIdentifier : kProfileWeixin, kTitle : NSLocalizedString(@"Weixin", nil), kAction : NSStringFromSelector(@selector(editWeixin:))}];
+	[_dataSource addObject:@{kIdentifier : kProfileAddress, kTitle : NSLocalizedString(@"Address", nil)}];
+	[_dataSource addObject:@{kIdentifier : kProfileAvatar, kTitle : NSLocalizedString(@"Avatar", nil)}];
+	[_dataSource addObject:@{kIdentifier : kProfilePhotos, kTitle : NSLocalizedString(@"Photos", nil)}];
+	[_dataSource addObject:@{kIdentifier : kProfilePrivateMessages, kTitle : NSLocalizedString(@"Private Messages", nil)}];
+	if (_bMyself) {
+		[_dataSource addObject:@{kIdentifier : kProfileSettings, kTitle : NSLocalizedString(@"Settings", nil)}];
+	}
+
 	
 	NSNumber *min = @(0);
 	NSNumber *max = @(0);
 	NSNumber *delta = @(max.integerValue - min.integerValue + 1);
-	
-	_kNickname = NSLocalizedString(@"Nickname", nil);
-	[_dataSource addObject:_kNickname];
-	_actionsDictionary[_kNickname] = NSStringFromSelector(@selector(editNickname:));
-	
-	_kSignature = NSLocalizedString(@"Signature", nil);
-	[_dataSource addObject:_kSignature];
-	_actionsDictionary[_kSignature] = NSStringFromSelector(@selector(editSignature:));
-	
-	_kGender = NSLocalizedString(@"Gender", nil);
-	[_dataSource addObject:_kGender];
-	
-	_kAge = NSLocalizedString(@"Age", nil);
-	[_dataSource addObject:_kAge];
-	_actionsDictionary[_kAge] = NSStringFromSelector(@selector(editPicker:));
 	min = @(10);
 	max = @(40);
 	delta = @(max.integerValue - min.integerValue + 1);
-	_pickerDataSource[_kAge] = @{numberOfPickerComponents : @(1),
+	_pickerDataSource[kProfileAge] = @{numberOfPickerComponents : @(1),
 							   numberOfPickerRows : delta,
 							   minimumValueOfPicker : min,
 							   maximumValueOfPicker : max,
 							   actionOfPickerRow : NSStringFromSelector(@selector(printableAge))};
 	
-	_kHeight = NSLocalizedString(@"Height", nil);
-	[_dataSource addObject:_kHeight];
-	_actionsDictionary[_kHeight] = NSStringFromSelector(@selector(editPicker:));
 	min = @(150);
 	max = @(200);
 	delta = @(max.integerValue - min.integerValue + 1);
-	_pickerDataSource[_kHeight] = @{numberOfPickerComponents : @(1),
+	_pickerDataSource[kProfileHeight] = @{numberOfPickerComponents : @(1),
 								  numberOfPickerRows : delta,
 								  minimumValueOfPicker : min,
 								  maximumValueOfPicker : max,
 								  actionOfPickerRow : NSStringFromSelector(@selector(printableHeight))};
 	
-	_kWeight = NSLocalizedString(@"Weight", nil);
-	[_dataSource addObject:_kWeight];
-	_actionsDictionary[_kWeight] = NSStringFromSelector(@selector(editPicker:));
 	min = @(40);
 	max = @(80);
 	delta = @(max.integerValue - min.integerValue + 1);
-	_pickerDataSource[_kWeight] = @{numberOfPickerComponents : @(1),
+	_pickerDataSource[kProfileWeight] = @{numberOfPickerComponents : @(1),
 							   numberOfPickerRows : delta,
 							   minimumValueOfPicker : min,
 							   maximumValueOfPicker : max,
 							   actionOfPickerRow : NSStringFromSelector(@selector(printableWeight))};
 
-	
-	_kChest = NSLocalizedString(@"Chest", nil);
-	[_dataSource addObject:_kChest];
-	_actionsDictionary[_kChest] = NSStringFromSelector(@selector(editPicker:));
 	min = @(0);
 	max = @(6);
 	delta = @(max.integerValue - min.integerValue + 1);
-	_pickerDataSource[_kChest] = @{numberOfPickerComponents : @(1),
+	_pickerDataSource[kProfileChest] = @{numberOfPickerComponents : @(1),
 								  numberOfPickerRows : delta,
 								  minimumValueOfPicker : min,
 								  maximumValueOfPicker : max,
 								  actionOfPickerRow : NSStringFromSelector(@selector(printableChest))};
-	
-	_kMobile = NSLocalizedString(@"Mobile", nil);
-	[_dataSource addObject:_kMobile];
-	_actionsDictionary[_kMobile] = NSStringFromSelector(@selector(editPhone:));
-	
-	_kQQ = NSLocalizedString(@"QQ", nil);
-	[_dataSource addObject:_kQQ];
-	_actionsDictionary[_kQQ] = NSStringFromSelector(@selector(editQQ:));
-	
-	_kWeixin = NSLocalizedString(@"Weixin", nil);
-	[_dataSource addObject:_kWeixin];
-	_actionsDictionary[_kWeixin] = NSStringFromSelector(@selector(editWechat:));
-	
-	_kAddress = NSLocalizedString(@"Address", nil);
-	[_dataSource addObject:_kAddress];
-	
-	_kAvatar = NSLocalizedString(@"Avatar", nil);
-	[_dataSource addObject:_kAvatar];
-	
-	_kPhotos = NSLocalizedString(@"Photos", nil);
-	[_dataSource addObject:_kPhotos];
-	
-	_kPrivateMessages = NSLocalizedString(@"Private Messages", nil);
-	[_dataSource addObject:_kPrivateMessages];
-	
-	if (_bMyself) {
-		_kSettings = NSLocalizedString(@"Settings", nil);
-		[_dataSource addObject:_kSettings];
-	}
 	
 	_pickerView = [[UIPickerView alloc] initWithFrame:self.view.bounds];
 	_pickerView.backgroundColor = [UIColor randomColor];
@@ -222,47 +187,47 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	}];
 }
 
-- (void)editNickname:(NSString *)title
+- (void)editNickname:(NSString *)identifier
 {
-	NSLog(@"edit: %@", title);
+	NSLog(@"edit: %@", identifier);
 	FDEditPropertyViewController *editPropertyViewController = [[FDEditPropertyViewController alloc] initWithStyle:UITableViewStyleGrouped];
 	editPropertyViewController.cellClass = [FDEditNicknameCell class];
-	editPropertyViewController.key = title;
+	editPropertyViewController.identifier = identifier;
 	editPropertyViewController.content = _userProfile.username;
 	[self.navigationController pushViewController:editPropertyViewController animated:YES];
 }
 
-- (void)editSignature:(NSString *)title
+- (void)editSignature:(NSString *)identifier
 {
-	NSLog(@"edit: %@", title);
+	NSLog(@"edit: %@", identifier);
 	FDEditPropertyViewController *editPropertyViewController = [[FDEditPropertyViewController alloc] initWithStyle:UITableViewStyleGrouped];
 	editPropertyViewController.cellClass = [FDEditSignatureCell class];
-	editPropertyViewController.key = title;
+	editPropertyViewController.identifier = identifier;
 	editPropertyViewController.content = _userProfile.signature;
 	[self.navigationController pushViewController:editPropertyViewController animated:YES];
 }
 
-- (void)editPicker:(NSString *)title
+- (void)editPicker:(NSString *)identifier
 {
-	NSLog(@"edit: %@", title);
-	_titleOfSelectedCell = title;
+	NSLog(@"edit: %@", identifier);
+	_identifierOfSelectedCell = identifier;
 	[_pickerView reloadAllComponents];
 	[self showPickerViewAnimated:YES];
 }
 
-- (void)editPhone:(NSString *)title
+- (void)editPhone:(NSString *)identifier
 {
-	NSLog(@"edit: %@", title);
+	NSLog(@"edit: %@", identifier);
 }
 
-- (void)editQQ:(NSString *)title
+- (void)editQQ:(NSString *)identifier
 {
-	NSLog(@"edit: %@", title);
+	NSLog(@"edit: %@", identifier);
 }
 
-- (void)editWechat:(NSString *)title
+- (void)editWeixin:(NSString *)identifier
 {
-	NSLog(@"edit: %@", title);
+	NSLog(@"edit: %@", identifier);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -325,8 +290,8 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[UITableViewCell identifier]];
 		cell.selectionStyle = UITableViewCellSelectionStyleDefault;
 	}
-	NSString *key = _dataSource[indexPath.row];
-	if ([key isEqualToString:_kGender]) {
+	NSString *identifier = _dataSource[indexPath.row][kIdentifier];
+	if ([identifier isEqualToString:kProfileGender]) {
 		if (!_genderSegmentedControl) {
 			_genderSegmentedControl = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Male", nil), NSLocalizedString(@"Female", nil)]];
 		}
@@ -335,57 +300,33 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 		}
 		_genderSegmentedControl.userInteractionEnabled = _bMyself;
 		cell.accessoryView = _genderSegmentedControl;
-	} else if ([key isEqualToString:_kSettings]) {
+	} else if ([identifier isEqualToString:kProfileSettings]) {
 		
-	} else if ([key isEqualToString:_kAvatar]) {
+	} else if ([identifier isEqualToString:kProfileAvatar]) {
 		
-	} else if ([key isEqualToString:_kPrivateMessages]) {
+	} else if ([identifier isEqualToString:kProfilePrivateMessages]) {
 		
 	} else {
-		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-		label.backgroundColor = [UIColor randomColor];
-		label.textAlignment = NSTextAlignmentRight;
-		cell.accessoryView = label;
 		if (_userProfile) {
-			if ([key isEqualToString:_kNickname]) {
-				label.text = _userProfile.username;
-			} else if ([key isEqualToString:_kSignature]) {
-				label.text = _userProfile.signature;
-			} else if ([key isEqualToString:_kAge]) {
-				label.text = [_userProfile.age printableAge];
-			} else if ([key isEqualToString:_kHeight]) {
-				label.text = [_userProfile.height printableHeight];
-			} else if ([key isEqualToString:_kWeight]) {
-				label.text = [_userProfile.weight printableWeight];
-			} else if ([key isEqualToString:_kChest]) {
-				label.text = [_userProfile.chest printableChest];
-			} else if ([key isEqualToString:_kQQ] || [key isEqualToString:_kMobile] || [key isEqualToString:_kWeixin] || [key isEqualToString:_kAddress]) {
-				FDInformation *info;
-				if ([key isEqualToString:_kQQ]) {
-					info = _userProfile.qqInformation;
-				} else if ([key isEqualToString:_kMobile]) {
-					info = _userProfile.mobileInformation;
-				} else if ([key isEqualToString:_kWeixin]) {
-					info = _userProfile.weixinInformation;
-				} else if ([key isEqualToString:_kAddress]) {
-					info = _userProfile.addressInformation;
-				}
-				label.text = [info displayPrivacy];
-				
-				UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, cell.bounds.size.height)];
-				content.backgroundColor = [UIColor randomColor];
-				if ([info.value isKindOfClass:[NSNumber class]]) {
-					content.text = [info.value stringValue];
-				} else if ([info.value isKindOfClass:[NSString class]]) {
-					content.text = info.value;
-				}
-			} else if ([key isEqualToString:_kPhotos]) {
-				label.text = [_userProfile.numberOfPhotos stringValue];
+			NSString *display = [_userProfile displayWithIdentifier:identifier];
+			if (display) {
+				UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+				label.backgroundColor = [UIColor randomColor];
+				label.textAlignment = NSTextAlignmentRight;
+				label.text = display;
+				cell.accessoryView = label;
+			}
+			
+			NSString *privacyInfo = [_userProfile privacyInfoWithIdentifier:identifier];
+			if (privacyInfo) {
+				UILabel *privacyInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, cell.bounds.size.height)];
+				privacyInfoLabel.backgroundColor = [UIColor randomColor];
+				privacyInfoLabel.text = privacyInfo;
 			}
 		}
 	}
 	
-	NSString *title = _dataSource[indexPath.row];
+	NSString *title = _dataSource[indexPath.row][kTitle];
 	cell.textLabel.text = title;
 	return cell;
 }
@@ -397,20 +338,18 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSString *key = _dataSource[indexPath.row];
-	SEL action = NSSelectorFromString(_actionsDictionary[key]);
-	if ([key isEqualToString:_kGender]) {
+	if (!_pickerView.hidden) {
+		[self hidePickerViewAnimated:YES];
+		[tableView deselectRowAtIndexPath:indexPath animated:YES];
+		return;
+	}
+	NSString *identifier = _dataSource[indexPath.row][kIdentifier];
+	SEL action = NSSelectorFromString(_dataSource[indexPath.row][kAction]);
+	if ([identifier isEqualToString:kProfileGender]) {
 		[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	}
-	//if (!_pickerDataSource[key]) {//如果这个cell也是picker
-		if (!_pickerView.hidden) {
-			[self hidePickerViewAnimated:YES];
-			[tableView deselectRowAtIndexPath:indexPath animated:YES];
-			return;
-		}
-	//}
 	if (action) {
-		[self performSelector:action withObject:key afterDelay:0];
+		[self performSelector:action withObject:identifier afterDelay:0];
 	}
 }
 
@@ -423,25 +362,25 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-	if (_titleOfSelectedCell) {
-		return [_pickerDataSource[_titleOfSelectedCell][numberOfPickerComponents] integerValue];
+	if (_identifierOfSelectedCell) {
+		return [_pickerDataSource[_identifierOfSelectedCell][numberOfPickerComponents] integerValue];
 	}
 	return 0;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-	if (_titleOfSelectedCell) {
-		return [_pickerDataSource[_titleOfSelectedCell][numberOfPickerRows] integerValue];
+	if (_identifierOfSelectedCell) {
+		return [_pickerDataSource[_identifierOfSelectedCell][numberOfPickerRows] integerValue];
 	}
 	return 0;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-	if (_titleOfSelectedCell) {
-		NSNumber *min = _pickerDataSource[_titleOfSelectedCell][minimumValueOfPicker];
-		SEL selector = NSSelectorFromString(_pickerDataSource[_titleOfSelectedCell][actionOfPickerRow]);
+	if (_identifierOfSelectedCell) {
+		NSNumber *min = _pickerDataSource[_identifierOfSelectedCell][minimumValueOfPicker];
+		SEL selector = NSSelectorFromString(_pickerDataSource[_identifierOfSelectedCell][actionOfPickerRow]);
 		NSNumber *value = @(min.integerValue + row);
 		return (NSString *)[value performSelector:selector withObject:nil];
 	}

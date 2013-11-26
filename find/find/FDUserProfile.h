@@ -9,12 +9,34 @@
 #import <Foundation/Foundation.h>
 #import	"FDInformation.h"
 
+extern NSString *kProfileUsername;
+extern NSString *kProfileGender;
+extern NSString *kProfileAge;
+extern NSString *kProfileHeight;
+extern NSString *kProfileWeight;
+extern NSString *kProfileChest;
+extern NSString *kProfileNumberOfPhotos;
+extern NSString *kProfileNumberOfFollowers;
+extern NSString *kProfileNumberOfFollowing;
+extern NSString *kProfileViews;
+extern NSString *kProfileSignature;
+extern NSString *kProfileAsignature;
+extern NSString *kProfileQQ;
+extern NSString *kProfileMobile;
+extern NSString *kProfileWeixin;
+extern NSString *kProfileAddress;
+extern NSString *kProfileAvatar;
+extern NSString *kProfilePhotos;
+extern NSString *kProfilePrivateMessages;
+extern NSString *kProfileSettings;
+
+
+
 @interface FDUserProfile : NSObject
 
 @property (nonatomic, strong) NSNumber *userID;
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSNumber *gender;
-@property (nonatomic, strong) NSDate *birthday;
 @property (nonatomic, strong) NSNumber *age;
 @property (nonatomic, strong) NSNumber *height;
 @property (nonatomic, strong) NSNumber *weight;
@@ -26,6 +48,7 @@
 @property (nonatomic, strong) NSString *signature;
 @property (nonatomic, strong) NSString *asignature;//语音签名.这个应该是一个url，是否要做到数据库？听过以后都存下来
 
+//@property (nonatomic, strong) NSDate *birthday;
 //@property (nonatomic, strong) NSString *province;
 //@property (nonatomic, strong) NSString *city;
 //@property (nonatomic, strong) NSString *school;
@@ -35,6 +58,7 @@
 //@property (nonatomic, strong) CLLocation *location;
 //@property (nonatomic, strong) NSNumber *status;//用户状态 0被禁用 1正常
 //@property (nonatomic, strong) NSDate *signined;//注册时间
+
 @property (nonatomic, strong) FDInformation *qqInformation;
 @property (nonatomic, strong) FDInformation *mobileInformation;
 @property (nonatomic, strong) FDInformation *weixinInformation;
@@ -42,5 +66,7 @@
 
 + (instancetype)createWithAttributes:(NSDictionary *)attributes;
 - (BOOL)isFemale;
+- (NSString *)displayWithIdentifier:(NSString *)identifier;
+- (NSString *)privacyInfoWithIdentifier:(NSString *)identifier;
 
 @end
