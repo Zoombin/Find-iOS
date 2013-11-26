@@ -31,6 +31,7 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 @property (readwrite) NSMutableDictionary *pickerDataSource;
 @property (readwrite) NSString *identifierOfSelectedCell;
 @property (readwrite) UISegmentedControl *genderSegmentedControl;
+@property (readwrite) NSDictionary *dataNeedSave;
 
 @end
 
@@ -134,8 +135,11 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	_pickerView.showsSelectionIndicator = YES;
 	[self.view addSubview:_pickerView];
 	[self hidePickerViewAnimated:NO];
-	
-	
+}
+
+- (BOOL)addDataNeedSave:(id)data withIdentifier:(NSString *)identifier
+{
+	return YES;
 }
 
 - (void)hidePickerViewAnimated:(BOOL)animated
@@ -212,25 +216,29 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	NSLog(@"edit: %@", identifier);
 }
 
+- (void)editGender
+{
+	NSLog(@"gender changed!");
+	NSNumber *gender = @(_genderSegmentedControl.selectedSegmentIndex);
+	[[FDAFHTTPClient shared] editProfile:@{kProfileGender : gender} withCompletionBlock:^(BOOL success, NSString *message) {
+		if (!success) {
+			[self displayHUDTitle:nil message:message];
+			_genderSegmentedControl.selectedSegmentIndex = _genderSegmentedControl.selectedSegmentIndex == 0 ? 1 : 0;
+		}
+	}];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	
-	if (_bMyself) {
-		[[FDAFHTTPClient shared] profileWithCompletionBlock:^(BOOL success, NSString *message, NSDictionary *userProfileAttributes) {
-			if (success) {
-				_userProfile = [FDUserProfile createWithAttributes:userProfileAttributes];
-				[_tableView reloadData];
-			}
-		}];
-	} else {
-		[[FDAFHTTPClient shared] profileOfUser:@(2) withCompletionBlock:^(BOOL success, NSString *message, NSDictionary *userProfileAttributes) {
-			if (success) {
-				_userProfile = [FDUserProfile createWithAttributes:userProfileAttributes];
-				[_tableView reloadData];
-			}
-		}];
-	}
+
+	NSNumber *userID = _bMyself ? nil : @(2);//TODO: test
+	[[FDAFHTTPClient shared] profileOfUser:userID withCompletionBlock:^(BOOL success, NSString *message, NSDictionary *userProfileAttributes) {
+		if (success) {
+			_userProfile = [FDUserProfile createWithAttributes:userProfileAttributes];
+			[_tableView reloadData];
+		}
+	}];
 	
 //	BOOL bSigninValid = NO;
 //	if (!bSigninValid) {
@@ -275,12 +283,14 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	NSString *identifier = _dataSource[indexPath.row][kIdentifier];
 	if ([identifier isEqualToString:kProfileGender]) {
 		if (!_genderSegmentedControl) {
-			_genderSegmentedControl = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Male", nil), NSLocalizedString(@"Female", nil)]];
+			_genderSegmentedControl = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Female", nil), NSLocalizedString(@"Male", nil)]];
+			[_genderSegmentedControl addTarget:self action:@selector(editGender) forControlEvents:UIControlEventValueChanged];
+			_genderSegmentedControl.userInteractionEnabled = _bMyself;
 		}
 		if (_userProfile) {
 			_genderSegmentedControl.selectedSegmentIndex = [_userProfile isFemale] ? 0 : 1;
 		}
-		_genderSegmentedControl.userInteractionEnabled = _bMyself;
+		
 		cell.accessoryView = _genderSegmentedControl;
 	} else if ([identifier isEqualToString:kProfileSettings]) {
 		
@@ -301,9 +311,10 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 			
 			NSString *privacyInfo = [_userProfile privacyInfoWithIdentifier:identifier];
 			if (privacyInfo) {
-				UILabel *privacyInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, cell.bounds.size.height)];
+				UILabel *privacyInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, 100, cell.bounds.size.height)];
 				privacyInfoLabel.backgroundColor = [UIColor randomColor];
 				privacyInfoLabel.text = privacyInfo;
+				[cell.contentView addSubview:privacyInfoLabel];
 			}
 		}
 	}
@@ -362,11 +373,30 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 {
 	if (_identifierOfSelectedCell) {
 		NSNumber *min = _pickerDataSource[_identifierOfSelectedCell][minimumValueOfPicker];
-		SEL selector = NSSelectorFromString(_pickerDataSource[_identifierOfSelectedCell][actionOfPickerRow]);
 		NSNumber *value = @(min.integerValue + row);
+		SEL selector = NSSelectorFromString(_pickerDataSource[_identifierOfSelectedCell][actionOfPickerRow]);
 		return (NSString *)[value performSelector:selector withObject:nil];
 	}
 	return @"";
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+	NSLog(@"picker select row: %d, component: %d", row, component);
+	if (_identifierOfSelectedCell) {
+		NSNumber *min = _pickerDataSource[_identifierOfSelectedCell][minimumValueOfPicker];
+		NSNumber *value = @(min.integerValue + row);
+		if ([_identifierOfSelectedCell isEqualToString:kProfileAge]) {
+			_userProfile.age = value;
+		} else if ([_identifierOfSelectedCell isEqualToString:kProfileHeight]) {
+			_userProfile.height = value;
+		} else if ([_identifierOfSelectedCell isEqualToString:kProfileWeight]) {
+			_userProfile.weight = value;
+		} else if ([_identifierOfSelectedCell isEqualToString:kProfileChest]) {
+			_userProfile.chest = value;
+		}
+		[_tableView reloadData];
+	}
 }
 
 @end

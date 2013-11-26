@@ -551,26 +551,13 @@ static NSString *token;
 	}];
 }
 
+//我的资料和其他用户的资料，如果userID==nil则是我的资料
 - (void)profileOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSDictionary *userProfileAttributes))block
 {
-	NSAssert(userID, @"userID must not be nil when fetch profile!");
-	
-	NSString *path = [NSString stringWithFormat:@"member/%@/profile", userID];
-	
-	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-		if ([data isKindOfClass:[NSDictionary class]]) {
-			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]], data[responseKeyData]);
-		}
-	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block (NO, [FDErrorMessage messageNetworkError], nil);
-	}];
-}
-
-//我的资料
-- (void)profileWithCompletionBlock:(void (^)(BOOL success, NSString *message, NSDictionary *userProfileAttributes))block
-{
 	NSString *path = [NSString stringWithFormat:@"profile"];
+	if (userID) {
+		path = [NSString stringWithFormat:@"member/%@/profile", userID];
+	}
 	
 	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
