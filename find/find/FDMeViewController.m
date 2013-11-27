@@ -11,6 +11,7 @@
 #import "FDEditPropertyViewController.h"
 #import "FDEditNicknameCell.h"
 #import "FDEditSignatureCell.h"
+#import "FDSettingsViewController.h"
 
 static NSString *numberOfPickerComponents = @"numberOfPickerComponents";
 static NSString *numberOfPickerRows = @"numberOfPickerRows";
@@ -22,7 +23,7 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 #define kTitle @"title"
 #define kAction @"action"
 
-@interface FDMeViewController () <UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource>
+@interface FDMeViewController () <UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource, UIActionSheetDelegate>
 
 @property (readwrite) FDUserProfile *userProfile;
 @property (readwrite) UITableView *tableView;
@@ -71,21 +72,21 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	_pickerDataSource = [NSMutableDictionary dictionary];
 	
 	[_dataSource addObject:@{kIdentifier : kProfileUsername, kTitle : NSLocalizedString(@"Nickname", nil), kAction : NSStringFromSelector(@selector(editNickname:))}];
-	[_dataSource addObject:@{kIdentifier : kProfileSignature, kTitle : NSLocalizedString(@"Signature", nil), kAction : NSStringFromSelector(@selector(editSignature:))}];
-	[_dataSource addObject:@{kIdentifier : kProfileGender, kTitle : NSLocalizedString(@"Gender", nil)}];
 	[_dataSource addObject:@{kIdentifier : kProfileAge, kTitle : NSLocalizedString(@"Age", nil), kAction : NSStringFromSelector(@selector(editPicker:))}];
 	[_dataSource addObject:@{kIdentifier : kProfileHeight, kTitle : NSLocalizedString(@"Height", nil), kAction : NSStringFromSelector(@selector(editPicker:))}];
 	[_dataSource addObject:@{kIdentifier : kProfileWeight, kTitle : NSLocalizedString(@"Weight", nil), kAction : NSStringFromSelector(@selector(editPicker:))}];
 	[_dataSource addObject:@{kIdentifier : kProfileChest, kTitle : NSLocalizedString(@"Chest", nil), kAction : NSStringFromSelector(@selector(editPicker:))}];
+	[_dataSource addObject:@{kIdentifier : kProfileSignature, kTitle : NSLocalizedString(@"Signature", nil), kAction : NSStringFromSelector(@selector(editSignature:))}];
+	[_dataSource addObject:@{kIdentifier : kProfileGender, kTitle : NSLocalizedString(@"Gender", nil)}];
 	[_dataSource addObject:@{kIdentifier : kProfileMobile, kTitle : NSLocalizedString(@"Mobile", nil), kAction : NSStringFromSelector(@selector(editPhone:))}];
 	[_dataSource addObject:@{kIdentifier : kProfileQQ, kTitle : NSLocalizedString(@"QQ", nil), kAction : NSStringFromSelector(@selector(editQQ:))}];
 	[_dataSource addObject:@{kIdentifier : kProfileWeixin, kTitle : NSLocalizedString(@"Weixin", nil), kAction : NSStringFromSelector(@selector(editWeixin:))}];
 	[_dataSource addObject:@{kIdentifier : kProfileAddress, kTitle : NSLocalizedString(@"Address", nil)}];
-	[_dataSource addObject:@{kIdentifier : kProfileAvatar, kTitle : NSLocalizedString(@"Avatar", nil)}];
+	[_dataSource addObject:@{kIdentifier : kProfileAvatar, kTitle : NSLocalizedString(@"Avatar", nil), kAction : NSStringFromSelector(@selector(editAvatar))}];
 	[_dataSource addObject:@{kIdentifier : kProfilePhotos, kTitle : NSLocalizedString(@"Photos", nil)}];
 	[_dataSource addObject:@{kIdentifier : kProfilePrivateMessages, kTitle : NSLocalizedString(@"Private Messages", nil)}];
 	if (_bMyself) {
-		[_dataSource addObject:@{kIdentifier : kProfileSettings, kTitle : NSLocalizedString(@"Settings", nil)}];
+		[_dataSource addObject:@{kIdentifier : kProfileSettings, kTitle : NSLocalizedString(@"Settings", nil), kAction : NSStringFromSelector(@selector(pushToSettings))}];
 	}
 
 	
@@ -228,6 +229,19 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	}];
 }
 
+- (void)editAvatar
+{
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles:@"Snap a New", @"Pick From Photo Library", nil];
+	[actionSheet showInView:self.view];
+}
+
+- (void)pushToSettings
+{
+	FDSettingsViewController *settingsViewController = [[FDSettingsViewController alloc] init];
+	settingsViewController.hidesBottomBarWhenPushed = YES;
+	[self.navigationController pushViewController:settingsViewController animated:YES];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
@@ -333,7 +347,7 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 {
 	if (!_pickerView.hidden) {
 		[self hidePickerViewAnimated:YES];
-		[tableView deselectRowAtIndexPath:indexPath animated:YES];
+		[tableView deselectRowAtIndexPath:indexPath animated:NO];
 		return;
 	}
 	NSString *identifier = _dataSource[indexPath.row][kIdentifier];
