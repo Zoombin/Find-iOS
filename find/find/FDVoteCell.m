@@ -31,7 +31,7 @@
 		
 		_nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(start.x, start.y, 50, [[self class] height])];
 		_nameLabel.font = [UIFont fdThemeFontOfSize:13];
-		_nameLabel.textAlignment = UITextAlignmentRight;
+		_nameLabel.textAlignment = NSTextAlignmentRight;
 		//_nameLabel.backgroundColor = [UIColor randomColor];//TODO
 		[self.contentView addSubview:_nameLabel];
 		
