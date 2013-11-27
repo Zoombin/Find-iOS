@@ -100,12 +100,13 @@ NSString *kProfileSettings = @"settings";
 
 - (NSString *)privacyInfoWithIdentifier:(NSString *)identifier
 {
+	
 	if ([identifier isEqualToString:kProfileQQ]) {
-		return (NSString *)[_qqInformation.value stringValue];
+		return _qqInformation.value;
 	} else if ([identifier isEqualToString:kProfileMobile]) {
-		return (NSString *)[_mobileInformation.value stringValue];
+		return _mobileInformation.value;
 	} else if ([identifier isEqualToString:kProfileWeixin]) {
-		return (NSString *)_weixinInformation.value;
+		return _weixinInformation.value;
 	} else if ([identifier isEqualToString:kProfileAddress]) {
 		FDAddress *address = [FDAddress createWithAttributes:_addressInformation.value];
 		return address.addr;
