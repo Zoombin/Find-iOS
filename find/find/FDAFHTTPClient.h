@@ -82,9 +82,10 @@
 //我的资料和用户的资料
 - (void)profileOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSDictionary *userProfileAttributes))block;
 
-
 //修改我的资料
 - (void)editProfile:(NSDictionary *)profileAttributes withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
+
+- (void)editAvatarPath:(NSString *)avatarPath withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
 
 //test gzip
 - (void)test;

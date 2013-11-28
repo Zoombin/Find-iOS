@@ -11,7 +11,9 @@
 @interface FDAvatarView : UIImageView
 
 @property (nonatomic, strong) NSNumber *userID;
+@property (nonatomic, strong) NSString *imagePath;
 
 + (CGSize)defaultSize;
++ (CGSize)bigSize;
 
 @end

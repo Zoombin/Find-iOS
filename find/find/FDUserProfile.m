@@ -9,6 +9,7 @@
 #import "FDUserProfile.h"
 
 NSString *kProfileUsername = @"username";
+NSString *kProfileAvatar = @"avatar";
 NSString *kProfileGender = @"gender";
 NSString *kProfileAge = @"age";
 NSString *kProfileHeight = @"stature";
@@ -24,7 +25,6 @@ NSString *kProfileQQ = @"qq";
 NSString *kProfileMobile = @"mobile";
 NSString *kProfileWeixin = @"weixin";
 NSString *kProfileAddress = @"address";
-NSString *kProfileAvatar = @"avatar";
 NSString *kProfilePhotos = @"photos";
 NSString *kProfilePrivateMessages = @"privateMessages";
 NSString *kProfileSettings = @"settings";
@@ -37,7 +37,8 @@ NSString *kProfileSettings = @"settings";
 	FDUserProfile *userProfile = [[FDUserProfile alloc] init];
 	userProfile.userID = attributes[@"id"];
 	userProfile.username = attributes[@"username"];
-	userProfile.gender = attributes[@"gender"];
+	userProfile.avatarPath = attributes[@"avatar"];
+	userProfile.bFemale = [attributes[@"gender"] integerValue] == 0;
 	userProfile.height = attributes[@"stature"];
 	userProfile.signature = attributes[@"signature"];
 //	userProfile.asignature = attributes[@"asignature"];//TODO: return is a number
@@ -63,11 +64,6 @@ NSString *kProfileSettings = @"settings";
 		}
 	}
 	return userProfile;
-}
-
-- (BOOL)isFemale
-{
-	return _gender.integerValue == 0;
 }
 
 - (NSString *)displayWithIdentifier:(NSString *)identifier

@@ -14,7 +14,7 @@
 
 +(instancetype)shared;
 
-- (void)uploadData:(NSData *)data name:(NSString *)name completionBlock:(dispatch_block_t)block;
+- (void)uploadData:(NSData *)data name:(NSString *)name withCompletionBlock:(void (^)(BOOL success))block;
 
 - (void)uploadData:(NSData *)data name:(NSString *)name progressBlock:(void (^)(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite))progress completionBlockWithSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 

@@ -109,6 +109,11 @@ UIImagePickerControllerDelegate
 {
 	// LANDSCAPE TODO: This doesn't handle autorotation
 	
+//	[[NSBundle mainBundle] loadNibNamed:@"OverlayView" owner:self options:nil];
+//	self.overlayView.frame = imagePickerController.cameraOverlayView.frame;
+//	imagePickerController.cameraOverlayView = self.overlayView;
+//	self.overlayView = nil;
+	
 	picker.showsCameraControls = NO;
 	UIView *view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
 	CGSize size = view.bounds.size;
@@ -244,7 +249,7 @@ UIImagePickerControllerDelegate
 	return toolbar;
 }
 
-#pragma makr - UIImagePickerControllerDelegate
+#pragma mark - UIImagePickerControllerDelegate
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {

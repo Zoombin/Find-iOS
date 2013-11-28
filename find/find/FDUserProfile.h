@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import	"FDInformation.h"
 
+typedef NS_ENUM(NSInteger, FDGenderType) {
+	FDGenderTypeFemale,
+	FDGenderTypeMale,
+	FDGenderTypeUnknow
+};
+
 extern NSString *kProfileUsername;
 extern NSString *kProfileGender;
 extern NSString *kProfileAge;
@@ -34,7 +40,8 @@ extern NSString *kProfileSettings;
 
 @property (nonatomic, strong) NSNumber *userID;
 @property (nonatomic, strong) NSString *username;
-@property (nonatomic, strong) NSNumber *gender;
+@property (nonatomic, strong) NSString *avatarPath;
+@property (nonatomic, assign) BOOL bFemale;
 @property (nonatomic, strong) NSNumber *age;
 @property (nonatomic, strong) NSNumber *height;
 @property (nonatomic, strong) NSNumber *weight;
@@ -63,7 +70,6 @@ extern NSString *kProfileSettings;
 @property (nonatomic, strong) FDInformation *addressInformation;
 
 + (instancetype)createWithAttributes:(NSDictionary *)attributes;
-- (BOOL)isFemale;
 - (NSString *)displayWithIdentifier:(NSString *)identifier;
 - (NSString *)privacyInfoWithIdentifier:(NSString *)identifier;
 

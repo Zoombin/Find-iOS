@@ -33,6 +33,7 @@
 #import	"UITableViewCell+Find.h"
 #import "FDInformation.h"
 #import "FDAddress.h"
+#import "NSString+Find.h"
 
 //ZBUtilities
 #import "UIViewController+ZBUtilites.h"

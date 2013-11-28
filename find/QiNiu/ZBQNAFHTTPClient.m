@@ -36,12 +36,14 @@ static NSString *_token;
     return _instance;
 }
 
-- (void)uploadData:(NSData *)data name:(NSString *)name completionBlock:(dispatch_block_t)block
+
+
+- (void)uploadData:(NSData *)data name:(NSString *)name withCompletionBlock:(void (^)(BOOL success))block
 {
 	[self uploadData:data name:name progressBlock:nil completionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-		if (block) block();
+		if (block) block(YES);
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block();
+		if (block) block(NO);
 	}];
 }
 
