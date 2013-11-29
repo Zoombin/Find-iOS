@@ -81,13 +81,13 @@ NSString *kProfileSettings = @"settings";
 	} else if ([identifier isEqualToString:kProfileChest]) {
 		return [_chest printableChest];
 	} else if ([identifier isEqualToString:kProfileQQ]) {
-		return [_qqInformation displayPrivacy];
+		return [_qqInformation displayPrivacyType];
 	} else if ([identifier isEqualToString:kProfileMobile]) {
-		return [_mobileInformation displayPrivacy];
+		return [_mobileInformation displayPrivacyType];
 	} else if ([identifier isEqualToString:kProfileWeixin]) {
-		return [_weixinInformation displayPrivacy];
+		return [_weixinInformation displayPrivacyType];
 	} else if ([identifier isEqualToString:kProfileAddress]) {
-		return [_addressInformation displayPrivacy];
+		return [_addressInformation displayPrivacyType];
 	} else if ([identifier isEqualToString:kProfilePhotos]) {
 		return [_numberOfPhotos stringValue];
 	}
@@ -96,18 +96,17 @@ NSString *kProfileSettings = @"settings";
 
 - (NSString *)privacyInfoWithIdentifier:(NSString *)identifier
 {
-	
+	NSString *value = nil;
 	if ([identifier isEqualToString:kProfileQQ]) {
-		return _qqInformation.value;
+		value = [_qqInformation display];
 	} else if ([identifier isEqualToString:kProfileMobile]) {
-		return _mobileInformation.value;
+		value = [_mobileInformation display];
 	} else if ([identifier isEqualToString:kProfileWeixin]) {
-		return _weixinInformation.value;
+		value = [_weixinInformation display];
 	} else if ([identifier isEqualToString:kProfileAddress]) {
-		FDAddress *address = [FDAddress createWithAttributes:_addressInformation.value];
-		return address.addr;
+		value = [_addressInformation display];
 	}
-	return nil;
+	return value;
 }
 
 - (NSString *)description

@@ -26,6 +26,7 @@ typedef NS_ENUM(NSUInteger, FDInformationType) {
 - (BOOL)isPublic;
 - (BOOL)isPartly;
 - (BOOL)isPrivate;
-- (NSString *)displayPrivacy;
+- (NSString *)displayPrivacyType;
+- (NSString *)display;
 
 @end

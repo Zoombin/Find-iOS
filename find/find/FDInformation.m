@@ -76,7 +76,7 @@ static NSString *address = @"address";
 	}
 }
 
-- (NSString *)displayPrivacy
+- (NSString *)displayPrivacyType
 {
 	if ([self isPublic]) {
 		return NSLocalizedString(@"Public", nil);
@@ -84,6 +84,22 @@ static NSString *address = @"address";
 		return NSLocalizedString(@"Partly", nil);
 	}
 	return NSLocalizedString(@"Private", nil);
+}
+
+- (NSString *)display
+{
+	NSString *v = nil;
+	if	(_type == FDInformationTypeAddress) {
+		FDAddress *address = [FDAddress createWithAttributes:_value];
+		v = address.addr;
+	} else {
+		v = _value;
+	}
+	
+	if ([self isPublic]) {
+		return v;
+	}
+	return [v privatizeWithStyle:FDPrivatizeStyleHideMiddle];
 }
 
 - (NSString *)description

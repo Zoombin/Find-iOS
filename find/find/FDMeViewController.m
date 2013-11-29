@@ -368,14 +368,17 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 				label.backgroundColor = [UIColor randomColor];
 				label.textAlignment = NSTextAlignmentRight;
 				label.text = display;
+				label.font = [UIFont fdBoldThemeFontOfSize:12];
 				cell.accessoryView = label;
 			}
 			
 			NSString *privacyInfo = [_userProfile privacyInfoWithIdentifier:identifier];
 			if (privacyInfo) {
-				UILabel *privacyInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, 100, cell.bounds.size.height)];
+				UILabel *privacyInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, 120, cell.bounds.size.height)];
 				privacyInfoLabel.backgroundColor = [UIColor randomColor];
 				privacyInfoLabel.text = privacyInfo;
+				privacyInfoLabel.font = [UIFont fdThemeFontOfSize:14];
+				privacyInfoLabel.textAlignment = NSTextAlignmentCenter;
 				[cell.contentView addSubview:privacyInfoLabel];
 			}
 		}
