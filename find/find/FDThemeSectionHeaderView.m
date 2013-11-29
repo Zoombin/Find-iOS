@@ -18,18 +18,26 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+		self.backgroundColor = [UIColor lightGrayColor];
+		
 		titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(CELL_LEFT_MARGIN, 0, self.bounds.size.width, self.bounds.size.height)];
 		titleLabel.backgroundColor = [UIColor clearColor];
 		titleLabel.font = [UIFont fdThemeFontOfSize:16];
 		[self addSubview:titleLabel];
 		
-		UILabel *showAllLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width - CELL_LEFT_MARGIN, self.bounds.size.height)];
+		CGFloat widthOfShowAll = 100;
+		UILabel *showAllLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.size.width - widthOfShowAll - CELL_LEFT_MARGIN, 0, widthOfShowAll, self.bounds.size.height)];
 		showAllLabel.backgroundColor = [UIColor clearColor];
-		showAllLabel.text = @"显示全部>";//TODO: 国际化
+		//showAllLabel.backgroundColor = [UIColor randomColor];
+		showAllLabel.text = NSLocalizedString(@"All>", nil);
 		showAllLabel.textAlignment = NSTextAlignmentRight;
 		showAllLabel.textColor = [UIColor grayColor];
 		showAllLabel.font = [UIFont fdThemeFontOfSize:14];
+		showAllLabel.userInteractionEnabled = YES;
 		[self addSubview:showAllLabel];
+		
+		UITapGestureRecognizer *tapGestureRecoginzer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedShowAll)];
+		[showAllLabel addGestureRecognizer:tapGestureRecoginzer];
     }
     return self;
 }
@@ -42,9 +50,14 @@
 	titleLabel.text = _title;
 }
 
+- (void)tappedShowAll
+{
+	[_delegate didTapShowAll];
+}
+
 + (CGFloat)height
 {
-	return 40.0f;
+	return 30.0f;
 }
 
 @end

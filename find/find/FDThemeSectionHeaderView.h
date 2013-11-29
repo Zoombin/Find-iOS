@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol FDThemeSectionHeaderViewDelegate <NSObject>
+
+- (void)didTapShowAll;
+
+@end
+
 @interface FDThemeSectionHeaderView : UIView
 
+@property (nonatomic, weak) id<FDThemeSectionHeaderViewDelegate> delegate;
 @property (nonatomic, strong) NSString *title;
 
 + (CGFloat)height;

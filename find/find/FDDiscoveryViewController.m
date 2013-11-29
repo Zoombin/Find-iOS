@@ -102,6 +102,7 @@
 	if (attributes[kThemeCellAttributeKeyHeaderTitle]) {
 		FDThemeSectionHeaderView *headerView = [[FDThemeSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, [FDThemeSectionHeaderView height])];
 		headerView.title = themeSection.title;
+		headerView.delegate = self;
 		return headerView;
 	}
 	return nil;
@@ -156,6 +157,15 @@
 	} else if ([theme.type isEqualToString:kThemeTypeIdentifierUser]) {
 		[self.navigationController pushViewController:[[FDDetailsViewController alloc] init] animated:YES];
 	}
+}
+
+#pragma mark - FDThemeSectionHeaderViewDelegate
+
+- (void)didTapShowAll
+{
+	FDPhotosViewController *photosViewController = [[FDPhotosViewController alloc] init];
+	//photosViewController.themeID = theme.ID;
+	[self.navigationController pushViewController:photosViewController animated:YES];
 }
 
 @end
