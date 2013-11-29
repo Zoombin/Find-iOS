@@ -104,7 +104,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	_titleOfShareAndGifts = NSLocalizedString(@"Share&Gifts", nil);
 	_titleOfFollowers = NSLocalizedString(@"Followers", nil);
 	
-	_bMemberDetails = YES;//TODO: Test
+	_bMemberDetails = NO;//TODO: Test
 	
 	if (_bMemberDetails) {
 		_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[_titleOfPhotos, _titleOfComments, _titleOfTags, _titleOfRegions, _titleOfShareAndGifts, _titleOfFollowers]];

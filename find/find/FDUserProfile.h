@@ -15,7 +15,7 @@ typedef NS_ENUM(NSInteger, FDGenderType) {
 	FDGenderTypeUnknow
 };
 
-extern NSString *kProfileUsername;
+extern NSString *kProfileNickname;
 extern NSString *kProfileGender;
 extern NSString *kProfileAge;
 extern NSString *kProfileHeight;
@@ -39,7 +39,7 @@ extern NSString *kProfileSettings;
 @interface FDUserProfile : NSObject
 
 @property (nonatomic, strong) NSNumber *userID;
-@property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *nickname;
 @property (nonatomic, strong) NSString *avatarPath;
 @property (nonatomic, assign) BOOL bFemale;
 @property (nonatomic, strong) NSNumber *age;

@@ -77,7 +77,7 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	_pickerDataSource = [NSMutableDictionary dictionary];
 	
 	[_dataSource addObject:@{kIdentifier : kProfileAvatar, kTitle : NSLocalizedString(@"Avatar", nil), kAction : NSStringFromSelector(@selector(editAvatar)), kHeightOfCell : @(60)}];
-	[_dataSource addObject:@{kIdentifier : kProfileUsername, kTitle : NSLocalizedString(@"Nickname", nil), kAction : NSStringFromSelector(@selector(editNickname:))}];
+	[_dataSource addObject:@{kIdentifier : kProfileNickname, kTitle : NSLocalizedString(@"Nickname", nil), kAction : NSStringFromSelector(@selector(editNickname:))}];
 	[_dataSource addObject:@{kIdentifier : kProfileAge, kTitle : NSLocalizedString(@"Age", nil), kAction : NSStringFromSelector(@selector(editPicker:))}];
 	[_dataSource addObject:@{kIdentifier : kProfileHeight, kTitle : NSLocalizedString(@"Height", nil), kAction : NSStringFromSelector(@selector(editPicker:))}];
 	[_dataSource addObject:@{kIdentifier : kProfileWeight, kTitle : NSLocalizedString(@"Weight", nil), kAction : NSStringFromSelector(@selector(editPicker:))}];
@@ -189,7 +189,7 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	FDEditPropertyViewController *editPropertyViewController = [[FDEditPropertyViewController alloc] initWithStyle:UITableViewStyleGrouped];
 	editPropertyViewController.cellClass = [FDEditNicknameCell class];
 	editPropertyViewController.identifier = identifier;
-	editPropertyViewController.content = _userProfile.username;
+	editPropertyViewController.content = _userProfile.nickname;
 	[self.navigationController pushViewController:editPropertyViewController animated:YES];
 }
 

@@ -8,7 +8,7 @@
 
 #import "FDUserProfile.h"
 
-NSString *kProfileUsername = @"username";
+NSString *kProfileNickname = @"nickname";
 NSString *kProfileAvatar = @"avatar";
 NSString *kProfileGender = @"gender";
 NSString *kProfileAge = @"age";
@@ -36,7 +36,7 @@ NSString *kProfileSettings = @"settings";
 	NSAssert(attributes[@"id"], @"A profile must have userID!");
 	FDUserProfile *userProfile = [[FDUserProfile alloc] init];
 	userProfile.userID = attributes[@"id"];
-	userProfile.username = attributes[@"username"];
+	userProfile.nickname = attributes[@"nickname"];
 	userProfile.avatarPath = attributes[@"avatar"];
 	userProfile.bFemale = [attributes[@"gender"] integerValue] == 0;
 	userProfile.height = attributes[@"stature"];
@@ -68,8 +68,8 @@ NSString *kProfileSettings = @"settings";
 
 - (NSString *)displayWithIdentifier:(NSString *)identifier
 {
-	if ([identifier isEqualToString:kProfileUsername]) {
-		return _username;
+	if ([identifier isEqualToString:kProfileNickname]) {
+		return _nickname;
 	} else if ([identifier isEqualToString:kProfileSignature]) {
 		return _signature;
 	} else if ([identifier isEqualToString:kProfileAge]) {
@@ -112,7 +112,7 @@ NSString *kProfileSettings = @"settings";
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"<profile: userID: %@, username: %@>", _userID, _username];
+	return [NSString stringWithFormat:@"<profile: userID: %@, nickname: %@>", _userID, _nickname];
 }
 
 @end
