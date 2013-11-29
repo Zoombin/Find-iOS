@@ -28,7 +28,7 @@
 		UILabel *showAllLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.size.width - widthOfShowAll - CELL_LEFT_MARGIN, 0, widthOfShowAll, self.bounds.size.height)];
 		showAllLabel.backgroundColor = [UIColor clearColor];
 		//showAllLabel.backgroundColor = [UIColor randomColor];
-		showAllLabel.text = NSLocalizedString(@"All>", nil);
+		showAllLabel.text = NSLocalizedString(@"See All >", nil);
 		showAllLabel.textAlignment = NSTextAlignmentRight;
 		showAllLabel.textColor = [UIColor grayColor];
 		showAllLabel.font = [UIFont fdThemeFontOfSize:14];
