@@ -66,6 +66,34 @@ NSString *kProfileSettings = @"settings";
 	return userProfile;
 }
 
+- (id)valueWithIdentifier:(NSString  *)identifier
+{
+	if ([identifier isEqualToString:kProfileNickname]) {
+		return _nickname;
+	} else if ([identifier isEqualToString:kProfileSignature]) {
+		return _signature;
+	} else if ([identifier isEqualToString:kProfileAge]) {
+		return _age;
+	} else if ([identifier isEqualToString:kProfileHeight]) {
+		return _height;
+	} else if ([identifier isEqualToString:kProfileWeight]) {
+		return _weight;
+	} else if ([identifier isEqualToString:kProfileChest]) {
+		return _chest;
+	} else if ([identifier isEqualToString:kProfileQQ]) {
+		return _qqInformation;
+	} else if ([identifier isEqualToString:kProfileMobile]) {
+		return _mobileInformation;
+	} else if ([identifier isEqualToString:kProfileWeixin]) {
+		return _weixinInformation;
+	} else if ([identifier isEqualToString:kProfileAddress]) {
+		return _addressInformation;
+	} else if ([identifier isEqualToString:kProfilePhotos]) {
+		return _numberOfPhotos;
+	}
+	return nil;
+}
+
 - (NSString *)displayWithIdentifier:(NSString *)identifier
 {
 	if ([identifier isEqualToString:kProfileNickname]) {
@@ -107,6 +135,19 @@ NSString *kProfileSettings = @"settings";
 		value = [_addressInformation display];
 	}
 	return value;
+}
+
+- (void)setValue:(NSNumber *)value withIdentifier:(NSString *)identifier
+{
+	if ([identifier isEqualToString:kProfileAge]) {
+		_age = value;
+	} else if ([identifier isEqualToString:kProfileHeight]) {
+		_height = value;
+	} else if ([identifier isEqualToString:kProfileWeight]) {
+		_weight = value;
+	} else if ([identifier isEqualToString:kProfileChest]) {
+		_chest = value;
+	}
 }
 
 - (NSString *)description

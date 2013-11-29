@@ -62,7 +62,7 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	_bMyself = NO;
+	_bMyself = YES;
 	if (!_bMyself) {
 		self.navigationController.title = NSLocalizedString(@"Profile", nil);
 	}
@@ -116,8 +116,8 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 								  maximumValueOfPicker : max,
 								  actionOfPickerRow : NSStringFromSelector(@selector(printableHeight))};
 	
-	min = @(40);
-	max = @(80);
+	min = @(30);
+	max = @(100);
 	delta = @(max.integerValue - min.integerValue + 1);
 	_pickerDataSource[kProfileWeight] = @{numberOfPickerComponents : @(1),
 							   numberOfPickerRows : delta,
@@ -135,7 +135,6 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 								  actionOfPickerRow : NSStringFromSelector(@selector(printableChest))};
 	
 	_pickerView = [[UIPickerView alloc] initWithFrame:self.view.bounds];
-	_pickerView.backgroundColor = [UIColor randomColor];
 	_pickerView.delegate = self;
 	_pickerView.dataSource = self;
 	_pickerView.showsSelectionIndicator = YES;
@@ -177,9 +176,23 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	}
 	_pickerView.hidden = NO;
 	[UIView animateWithDuration:duration animations:^{
+		_pickerView.backgroundColor = [UIColor randomColor];
 		CGRect frame = _pickerView.frame;
 		frame.origin.y = self.view.bounds.size.height - frame.size.height;
 		_pickerView.frame = frame;
+	} completion:^(BOOL finished) {
+		if (_identifierOfSelectedCell) {
+			NSNumber *min = _pickerDataSource[_identifierOfSelectedCell][minimumValueOfPicker];
+			NSNumber *max = _pickerDataSource[_identifierOfSelectedCell][maximumValueOfPicker];
+			NSInteger delta = [max integerValue] - [min integerValue];
+			id value = [_userProfile valueWithIdentifier:_identifierOfSelectedCell];
+			if ([value isKindOfClass:[NSNumber class]]) {
+				NSInteger row = [value integerValue] - [min integerValue];
+				if (row >= 0  && row < delta) {
+					[_pickerView selectRow:row inComponent:0 animated:YES];
+				}
+			}
+		}
 	}];
 }
 
@@ -295,9 +308,17 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	}
 }
 
-- (void)editPickerPropertyWith:(NSString *)identifier inRow:(NSInteger)row
+- (void)editPickerPropertyWith:(NSString *)identifier withValue:(NSNumber *)value
 {
-	NSLog(@"will edit picker: %@ in row: %d", identifier, row);
+	NSLog(@"will editPickerPropertyWith: %@ in withValue: %@", identifier, value);
+	[[FDAFHTTPClient shared] editProfile:@{identifier : value} withCompletionBlock:^(BOOL success, NSString *message) {
+		if (success) {
+			[_userProfile setValue:value withIdentifier:identifier];
+			[_tableView reloadData];
+		} else {
+			[self displayHUDTitle:NSLocalizedString(@"Update Failed", nil) message:message duration:1];
+		}
+	}];
 }
 
 - (void)didReceiveMemoryWarning
@@ -407,14 +428,19 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	if (!_pickerView.hidden) {
 		[self hidePickerViewAnimated:YES];
 		[tableView deselectRowAtIndexPath:indexPath animated:NO];
+		
+		//注意这里一定要用_identifierOfSelectedCell来识别,代表之前选中的picker
+		NSNumber *min = _pickerDataSource[_identifierOfSelectedCell][minimumValueOfPicker];
+		NSNumber *max = _pickerDataSource[_identifierOfSelectedCell][maximumValueOfPicker];
+		NSInteger selectedValue = [min integerValue] + _selectedPickerRow;
+		if (selectedValue >= [min integerValue] && selectedValue <= [max integerValue]) {
+			[self editPickerPropertyWith:_identifierOfSelectedCell withValue:@(selectedValue)];
+		}
+		
 		return;
 	}
 	NSString *identifier = _dataSource[indexPath.row][kIdentifier];
-	if (_pickerDataSource[identifier]) {
-//		if ([_identifierOfSelectedCell isEqualToString:identifier]) {//TODO: 修改picker的值
-//			[self editPickerPropertyWith:identifier inRow:_selectedPickerRow];
-//		}
-	} else {
+	if (!_pickerDataSource[identifier]) {
 		[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	}
 	
@@ -428,10 +454,6 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//	NSString *identifier = _dataSource[indexPath.row];//TODO
-//	if (_pickerDataSource[identifier]) {
-//		[self editPickerPropertyWith:identifier inRow:_selectedPickerRow];
-//	}
 }
 
 #pragma mark - UIPickerViewDelegate

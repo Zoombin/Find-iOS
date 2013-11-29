@@ -70,7 +70,9 @@ extern NSString *kProfileSettings;
 @property (nonatomic, strong) FDInformation *addressInformation;
 
 + (instancetype)createWithAttributes:(NSDictionary *)attributes;
+- (id)valueWithIdentifier:(NSString  *)identifier;
 - (NSString *)displayWithIdentifier:(NSString *)identifier;
 - (NSString *)privacyInfoWithIdentifier:(NSString *)identifier;
+- (void)setValue:(NSNumber *)value withIdentifier:(NSString *)identifier;
 
 @end
