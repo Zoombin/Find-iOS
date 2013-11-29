@@ -14,7 +14,7 @@
 #import "FDPhotosViewController.h"
 #import "FDDetailsViewController.h"
 
-@interface FDDiscoveryViewController () <UITableViewDataSource, UITableViewDelegate, FDThemeCellDelegate>
+@interface FDDiscoveryViewController () <UITableViewDataSource, UITableViewDelegate, FDThemeCellDelegate, FDThemeSectionHeaderViewDelegate>
 
 @end
 

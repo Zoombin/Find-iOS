@@ -8,8 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, FDPrivatizeStyle) {
+	FDPrivatizeStyleHideAll,
+	FDPrivatizeStyleHideHeader,
+	FDPrivatizeStyleHideMiddle,
+	FDPrivatizeStyleHideTail
+};
+
 @interface NSString (Find)
 
 + (instancetype)avatarPathWithUserID:(NSNumber *)userID;
++ (instancetype)randomDigitalStringOfLength:(NSUInteger)length;
+- (instancetype)privatizeWithStyle:(FDPrivatizeStyle)style;
 
 @end
