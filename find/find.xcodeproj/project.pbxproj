@@ -70,7 +70,7 @@
 		77A5F89017CD95E80073E7F9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F88F17CD95E80073E7F9 /* CFNetwork.framework */; };
 		77A977D9183F19A500678361 /* FDCameraFlashButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A977D8183F19A500678361 /* FDCameraFlashButton.m */; };
 		77AD927E17DEC88800D2FEBC /* FDAFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AD927D17DEC88800D2FEBC /* FDAFHTTPClient.m */; };
-		77B6397F1810E14F00AE8526 /* FDThemeSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B6397E1810E14F00AE8526 /* FDThemeSectionHeaderView.m */; };
+		77B6397F1810E14F00AE8526 /* FDThemeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B6397E1810E14F00AE8526 /* FDThemeHeaderView.m */; };
 		77C0242D17F3FB46009634CA /* FDAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0242C17F3FB46009634CA /* FDAvatarView.m */; };
 		77C0C8D917CDDBA8008C7FC7 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8D717CDDBA8008C7FC7 /* GTMBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		77C0C8DD17CDDE6A008C7FC7 /* ZBQNPutPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8DC17CDDE6A008C7FC7 /* ZBQNPutPolicy.m */; };
@@ -228,8 +228,8 @@
 		77A977D8183F19A500678361 /* FDCameraFlashButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDCameraFlashButton.m; path = find/FDCameraFlashButton.m; sourceTree = "<group>"; };
 		77AD927C17DEC88800D2FEBC /* FDAFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDAFHTTPClient.h; path = find/FDAFHTTPClient.h; sourceTree = "<group>"; };
 		77AD927D17DEC88800D2FEBC /* FDAFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDAFHTTPClient.m; path = find/FDAFHTTPClient.m; sourceTree = "<group>"; };
-		77B6397D1810E14F00AE8526 /* FDThemeSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeSectionHeaderView.h; path = find/FDThemeSectionHeaderView.h; sourceTree = "<group>"; };
-		77B6397E1810E14F00AE8526 /* FDThemeSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDThemeSectionHeaderView.m; path = find/FDThemeSectionHeaderView.m; sourceTree = "<group>"; };
+		77B6397D1810E14F00AE8526 /* FDThemeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeHeaderView.h; path = find/FDThemeHeaderView.h; sourceTree = "<group>"; };
+		77B6397E1810E14F00AE8526 /* FDThemeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDThemeHeaderView.m; path = find/FDThemeHeaderView.m; sourceTree = "<group>"; };
 		77C0242B17F3FB46009634CA /* FDAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDAvatarView.h; path = find/FDAvatarView.h; sourceTree = "<group>"; };
 		77C0242C17F3FB46009634CA /* FDAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDAvatarView.m; path = find/FDAvatarView.m; sourceTree = "<group>"; };
 		77C0C8D617CDDBA8008C7FC7 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
@@ -589,8 +589,8 @@
 				77DBC8CC181FA5B500F0A7A8 /* FDImageView.m */,
 				777E5E1C17D97A98005AFB67 /* FDThemeCell.h */,
 				777E5E1D17D97A98005AFB67 /* FDThemeCell.m */,
-				77B6397D1810E14F00AE8526 /* FDThemeSectionHeaderView.h */,
-				77B6397E1810E14F00AE8526 /* FDThemeSectionHeaderView.m */,
+				77B6397D1810E14F00AE8526 /* FDThemeHeaderView.h */,
+				77B6397E1810E14F00AE8526 /* FDThemeHeaderView.m */,
 				777E5EE617D9BBDA005AFB67 /* FDThemeItemView.h */,
 				777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */,
 				77C0C96217D18D7C008C7FC7 /* FDPhotoCell.h */,
@@ -807,7 +807,7 @@
 				777E5EE817D9BBDA005AFB67 /* FDThemeItemView.m in Sources */,
 				77E94B4B182A3E1B0017FF8E /* FDVote+Test.m in Sources */,
 				77C0C8E017CDE32C008C7FC7 /* ZBQNAFHTTPClient.m in Sources */,
-				77B6397F1810E14F00AE8526 /* FDThemeSectionHeaderView.m in Sources */,
+				77B6397F1810E14F00AE8526 /* FDThemeHeaderView.m in Sources */,
 				77052A3018347643000C2BDF /* UIViewController+ZBUtilites.m in Sources */,
 				774628CF183CA0530088BD61 /* FDInformation.m in Sources */,
 				77A977D9183F19A500678361 /* FDCameraFlashButton.m in Sources */,

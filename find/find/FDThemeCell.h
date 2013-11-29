@@ -19,6 +19,7 @@ extern NSString *kThemeCellAttributeKeyHasSeparateLine;
 @protocol FDThemeCellDelegate <NSObject>
 
 - (void)didSelectTheme:(FDTheme *)theme inThemeSection:(FDThemeSection *)themeSection;
+- (void)didSelectShowAllInThemeSection:(FDThemeSection *)themeSection;
 
 @end
 

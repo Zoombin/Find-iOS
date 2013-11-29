@@ -8,13 +8,13 @@
 
 #import "FDDiscoveryViewController.h"
 #import "FDThemeCell.h"
-#import "FDThemeSectionHeaderView.h"
+#import "FDThemeHeaderView.h"
 #import "FDThemeItemView.h"
 #import "FDThemeSection.h"
 #import "FDPhotosViewController.h"
 #import "FDDetailsViewController.h"
 
-@interface FDDiscoveryViewController () <UITableViewDataSource, UITableViewDelegate, FDThemeCellDelegate, FDThemeSectionHeaderViewDelegate>
+@interface FDDiscoveryViewController () <UITableViewDataSource, UITableViewDelegate, FDThemeCellDelegate>
 
 @end
 
@@ -88,23 +88,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-	FDThemeSection *themeSection = [self themeSectionInSection:section];
-	if ([themeSection.style isEqualToString:kThemeStyleIdentifierIcon]) {
-		return [FDThemeSectionHeaderView height];
-	}
 	return 0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-	FDThemeSection *themeSection = [self themeSectionInSection:section];
-	NSDictionary *attributes = [FDThemeCell attributesOfStyle:themeSection.style];
-	if (attributes[kThemeCellAttributeKeyHeaderTitle]) {
-		FDThemeSectionHeaderView *headerView = [[FDThemeSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, [FDThemeSectionHeaderView height])];
-		headerView.title = themeSection.title;
-		headerView.delegate = self;
-		return headerView;
-	}
 	return nil;
 }
 
@@ -119,9 +107,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	CGFloat height = 0;
+	
 	FDThemeSection *themeSection = [self themeSectionInSection:indexPath.section];
 	NSDictionary *attributes = [FDThemeCell attributesOfStyle:themeSection.style];
-	return CGRectFromString(attributes[kThemeCellAttributeKeyBounds]).size.height;
+	height += CGRectFromString(attributes[kThemeCellAttributeKeyBounds]).size.height;
+
+	if (attributes[kThemeCellAttributeKeyHeaderTitle]) {
+		height += [FDThemeHeaderView height];
+	}
+	return height;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -159,9 +154,7 @@
 	}
 }
 
-#pragma mark - FDThemeSectionHeaderViewDelegate
-
-- (void)didTapShowAll
+- (void)didSelectShowAllInThemeSection:(FDThemeSection *)themeSection
 {
 	FDPhotosViewController *photosViewController = [[FDPhotosViewController alloc] init];
 	//photosViewController.themeID = theme.ID;

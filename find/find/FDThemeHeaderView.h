@@ -1,5 +1,5 @@
 //
-//  FDThemeHeader.h
+//  FDThemeHeaderView.h
 //  find
 //
 //  Created by zhangbin on 10/18/13.
@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol FDThemeSectionHeaderViewDelegate <NSObject>
+@protocol FDThemeHeaderViewDelegate <NSObject>
 
 - (void)didTapShowAll;
 
 @end
 
-@interface FDThemeSectionHeaderView : UIView
+@interface FDThemeHeaderView : UIView
 
-@property (nonatomic, weak) id<FDThemeSectionHeaderViewDelegate> delegate;
+@property (nonatomic, weak) id<FDThemeHeaderViewDelegate> delegate;
 @property (nonatomic, strong) NSString *title;
 
 + (CGFloat)height;

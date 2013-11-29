@@ -8,6 +8,7 @@
 
 #import "FDThemeCell.h"
 #import "FDThemeItemView.h"
+#import "FDThemeHeaderView.h"
 
 NSString *kThemeCellAttributeKeyBounds = @"kThemeCellAttributeKeyBounds";
 NSString *kThemeCellAttributeKeyItemWidth = @"kThemeCellAttributeKeyItemWidth";
@@ -19,7 +20,7 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 
 #define kAutoScrollTimeInterval 4.0
 
-@interface FDThemeCell () <UIScrollViewDelegate, FDThemeItemViewDelegate>
+@interface FDThemeCell () <UIScrollViewDelegate, FDThemeItemViewDelegate, FDThemeHeaderViewDelegate>
 
 @property (readwrite) NSUInteger currentPage;
 @property (readwrite) NSUInteger numberOfPages;
@@ -38,7 +39,7 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 		_scrollView = [[UIScrollView alloc] init];
 		_scrollView.backgroundColor = [UIColor clearColor];
 		_scrollView.delegate = self;
-		[self addSubview:_scrollView];
+		[self.contentView addSubview:_scrollView];
     }
     return self;
 }
@@ -82,6 +83,18 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 	if (_attributes[kThemeCellAttributeKeyAutoScrollEnabled]) {
 		[self performSelector:@selector(scrollToNext) withObject:nil afterDelay:kAutoScrollTimeInterval];
 		_autoScroll = YES;
+	}
+	
+	if (_attributes[kThemeCellAttributeKeyHeaderTitle]) {
+		CGRect frame = CGRectMake(0, 0, _scrollView.frame.size.width, [FDThemeHeaderView height]);
+		FDThemeHeaderView *headerView = [[FDThemeHeaderView alloc] initWithFrame:frame];
+		headerView.title = attributes[kThemeCellAttributeKeyHeaderTitle];
+		headerView.delegate = self;
+		[self.contentView addSubview:headerView];
+		
+		frame = _scrollView.frame;
+		frame.origin.y = CGRectGetMaxY(headerView.frame);
+		_scrollView.frame = frame;
 	}
 	
 	if ([_attributes[kThemeCellAttributeKeyHasSeparateLine] boolValue]) {
@@ -198,6 +211,13 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 - (void)didSelectTheme:(FDTheme *)theme
 {
 	[_delegate didSelectTheme:theme inThemeSection:_themeSection];
+}
+
+#pragma mark - FDThemeHeaderViewDelegate
+
+- (void)didTapShowAll
+{
+	[_delegate didSelectShowAllInThemeSection:_themeSection];
 }
 
 

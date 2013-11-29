@@ -1,15 +1,15 @@
 //
-//  FDThemeHeader.m
+//  FDThemeHeaderView.m
 //  find
 //
 //  Created by zhangbin on 10/18/13.
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "FDThemeSectionHeaderView.h"
+#import "FDThemeHeaderView.h"
 #import "FDThemeSection.h"
 
-@implementation FDThemeSectionHeaderView
+@implementation FDThemeHeaderView
 {
 	UILabel *titleLabel;
 }
@@ -18,7 +18,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-		self.backgroundColor = [UIColor lightGrayColor];
 		
 		titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(CELL_LEFT_MARGIN, 0, self.bounds.size.width, self.bounds.size.height)];
 		titleLabel.backgroundColor = [UIColor clearColor];
