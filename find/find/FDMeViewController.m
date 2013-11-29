@@ -62,7 +62,7 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	_bMyself = YES;
+	_bMyself = NO;
 	if (!_bMyself) {
 		self.navigationController.title = NSLocalizedString(@"Profile", nil);
 	}
@@ -386,6 +386,10 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	
 	NSString *title = _dataSource[indexPath.row][kTitle];
 	cell.textLabel.text = title;
+	cell.textLabel.font = [UIFont fdThemeFontOfSize:16];
+	if (!_bMyself) {
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+	}
 	return cell;
 }
 
@@ -414,9 +418,11 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 		[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	}
 	
-	SEL action = NSSelectorFromString(_dataSource[indexPath.row][kAction]);
-	if (action) {
-		[self performSelector:action withObject:identifier afterDelay:0];
+	if (_bMyself) {
+		SEL action = NSSelectorFromString(_dataSource[indexPath.row][kAction]);
+		if (action) {
+			[self performSelector:action withObject:identifier afterDelay:0];
+		}
 	}
 }
 
