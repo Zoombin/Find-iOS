@@ -7,7 +7,8 @@
 //
 
 #import "FDEditPropertyViewController.h"
-#import "FDEditNicknameCell.h"
+#import "FDEditCell.h"
+#import "FDEditSignatureCell.h"
 
 @interface FDEditPropertyViewController () <UITextViewDelegate, UITextFieldDelegate>
 
@@ -40,7 +41,13 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-//	[self canBecomeFirstResponder];
+}
+
+- (void)setPrivacyInfo:(FDInformation *)privacyInfo
+{
+	if (_privacyInfo == privacyInfo) return;
+	_privacyInfo = privacyInfo;
+	
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,6 +77,11 @@
 
 #pragma mark - Table view data source
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+	return 15;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [_cellClass numberOfRows];
@@ -95,7 +107,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-	return [[[_cellClass alloc] init] footer];
+	return [[[_cellClass alloc] init] footerWithText:@"hofhaohfoa"];
 }
 
 

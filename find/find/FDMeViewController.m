@@ -64,7 +64,7 @@ NSString *kSettings = @"kSettings";
 	NSArray *sectionData;
 	
 	sectionData = @[
-				  @{kIdentifier : kMyProfiles, kIcon : @"Avatar", kTitle : NSLocalizedString(@"My Profiles", nil), kHeightOfCell : @(90), kPushTargetClass : NSStringFromClass([FDProfileViewController class])},
+				  @{kIdentifier : kMyProfiles, kTitle : NSLocalizedString(@"My Profiles", nil), kHeightOfCell : @(90), kPushTargetClass : NSStringFromClass([FDProfileViewController class])},
 					];
 	_dataSourceDictionary[@(section)] = sectionData;
 	section++;
@@ -187,9 +187,11 @@ NSString *kSettings = @"kSettings";
 		frame.size = [FDAvatarView bigSize];
 		_avatarView.frame = frame;
 		[cell.contentView addSubview:_avatarView];
-	} else {
-		NSString *imageName = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kIcon];
-		cell.imageView.image = [UIImage imageNamed:imageName];
+	}
+		
+	NSString *iconName = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kIcon];
+	if (iconName) {
+		cell.imageView.image = [UIImage imageNamed:iconName];
 		NSString *title = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kTitle];
 		cell.textLabel.text = title;
 		cell.textLabel.font = [UIFont fdThemeFontOfSize:16];

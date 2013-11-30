@@ -9,7 +9,7 @@
 #import "FDProfileViewController.h"
 #import "FDSignupViewController.h"
 #import "FDEditPropertyViewController.h"
-#import "FDEditNicknameCell.h"
+#import "FDEditCell.h"
 #import "FDEditSignatureCell.h"
 #import "FDSettingsViewController.h"
 #import "FDAvatarView.h"
@@ -71,41 +71,31 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	NSArray *sectionData;
 	
 	sectionData = @[
-				  @{kIdentifier : kProfileAvatar, kTitle : NSLocalizedString(@"Avatar", nil), kAction : NSStringFromSelector(@selector(editAvatar)), kHeightOfCell : @(90)},
+				  @{kIdentifier : kProfileAvatar, kIcon : @"MoreMyAlbum", kTitle : NSLocalizedString(@"Avatar", nil), kAction : NSStringFromSelector(@selector(editAvatar)), kHeightOfCell : @(90)},
 				  
-				  @{kIdentifier : kProfileNickname, kTitle : NSLocalizedString(@"Nickname", nil), kAction : NSStringFromSelector(@selector(editNickname:))},
+				  @{kIdentifier : kProfileNickname, kIcon : @"MoreMyFavorites", kTitle : NSLocalizedString(@"Nickname", nil), kAction : NSStringFromSelector(@selector(editNickname:))},
 				  
-				  @{kIdentifier : kProfileSignature, kTitle : NSLocalizedString(@"Signature", nil), kAction : NSStringFromSelector(@selector(editSignature:))},
+				  @{kIdentifier : kProfileSignature, kIcon : @"MoreMyAlbum", kTitle : NSLocalizedString(@"Signature", nil), kAction : NSStringFromSelector(@selector(editSignature:))},
 				  
-				  @{kIdentifier : kProfileGender, kTitle : NSLocalizedString(@"Gender", nil)},
+				  @{kIdentifier : kProfileGender, kIcon : @"MoreGame", kTitle : NSLocalizedString(@"Gender", nil)},
 				  ];
 	_dataSourceDictionary[@(section)] = sectionData;
 	section++;
 	
 	sectionData = @[
-				  @{kIdentifier : kProfileShape, kTitle : NSLocalizedString(@"Shape", nil)},
+				  @{kIdentifier : kProfileShape, kTitle : NSLocalizedString(@"Shape", nil), kHeightOfCell : @(33)},
 					];
-//	sectionData = @[
-//				  @{kIdentifier : kProfileAge, kTitle : NSLocalizedString(@"Age", nil), kAction : NSStringFromSelector(@selector(editPicker:))},
-//
-//				  @{kIdentifier : kProfileHeight, kTitle : NSLocalizedString(@"Height", nil), kAction : NSStringFromSelector(@selector(editPicker:))},
-//
-//				  @{kIdentifier : kProfileWeight, kTitle : NSLocalizedString(@"Weight", nil), kAction : NSStringFromSelector(@selector(editPicker:))},
-//
-//				  @{kIdentifier : kProfileChest, kTitle : NSLocalizedString(@"Chest", nil), kAction : NSStringFromSelector(@selector(editPicker:))},
-//
-//					];
 	_dataSourceDictionary[@(section)] = sectionData;
 	section++;
 	
 	sectionData = @[
-				  @{kIdentifier : kProfileMobile, kTitle : NSLocalizedString(@"Mobile", nil), kAction : NSStringFromSelector(@selector(editPhone:))},
+				  @{kIdentifier : kProfileMobile, kIcon : @"MoreExpressionShops", kTitle : NSLocalizedString(@"Mobile", nil), kAction : NSStringFromSelector(@selector(editMobile:))},
 				  
-				  @{kIdentifier : kProfileQQ, kTitle : NSLocalizedString(@"QQ", nil), kAction : NSStringFromSelector(@selector(editQQ:))},
+				  @{kIdentifier : kProfileQQ, kIcon : @"MoreMyAlbum", kTitle : NSLocalizedString(@"QQ", nil), kAction : NSStringFromSelector(@selector(editQQ:))},
 				  
-				  @{kIdentifier : kProfileWeixin, kTitle : NSLocalizedString(@"Weixin", nil), kAction : NSStringFromSelector(@selector(editWeixin:))},
+				  @{kIdentifier : kProfileWeixin, kIcon : @"MoreSetting", kTitle : NSLocalizedString(@"Weixin", nil), kAction : NSStringFromSelector(@selector(editWeixin:))},
 				  
-				  @{kIdentifier : kProfileAddress, kTitle : NSLocalizedString(@"Address", nil)},
+				  @{kIdentifier : kProfileAddress, kIcon : @"MoreGame", kTitle : NSLocalizedString(@"Address", nil), kAction : NSStringFromSelector(@selector(editAddress:))},
 				  
 				  ];
 	_dataSourceDictionary[@(section)] = sectionData;
@@ -260,15 +250,27 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 
 - (void)pushEditPropertyViewControllerWithIdentifier:(NSString *)identifier
 {
-	FDEditPropertyViewController *editPropertyViewController = [[FDEditPropertyViewController alloc] initWithStyle:UITableViewStylePlain];
+	FDEditPropertyViewController *editPropertyViewController = [[FDEditPropertyViewController alloc] initWithStyle:UITableViewStyleGrouped];
 	editPropertyViewController.hidesBottomBarWhenPushed = YES;
 	editPropertyViewController.identifier = identifier;
 	if ([identifier isEqualToString:kProfileNickname]) {
-		editPropertyViewController.cellClass = [FDEditNicknameCell class];
+		editPropertyViewController.cellClass = [FDEditCell class];
 		editPropertyViewController.content = _userProfile.nickname;
 	} else if ([identifier isEqualToString:kProfileSignature]) {
 		editPropertyViewController.cellClass = [FDEditSignatureCell class];
 		editPropertyViewController.content = _userProfile.signature;
+	} else if ([identifier isEqualToString:kProfileMobile]) {
+		editPropertyViewController.cellClass = [FDEditCell class];
+		editPropertyViewController.privacyInfo = _userProfile.mobileInformation;
+	} else if ([identifier isEqualToString:kProfileQQ] ) {
+		editPropertyViewController.cellClass = [FDEditCell class];
+		editPropertyViewController.privacyInfo = _userProfile.qqInformation;
+	} else if ([identifier isEqualToString:kProfileWeixin]) {
+		editPropertyViewController.cellClass = [FDEditCell class];
+		editPropertyViewController.privacyInfo = _userProfile.weixinInformation;
+	} else if ([identifier isEqualToString:kProfileAddress]) {
+		editPropertyViewController.cellClass = [FDEditCell class];
+		editPropertyViewController.privacyInfo = _userProfile.addressInformation;
 	}
 	[self.navigationController pushViewController:editPropertyViewController animated:YES];
 }
@@ -295,19 +297,28 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	[self showPickerViewAnimated:YES];
 }
 
-- (void)editPhone:(NSString *)identifier
+- (void)editMobile:(NSString *)identifier
 {
 	NSLog(@"edit: %@", identifier);
+	[self pushEditPropertyViewControllerWithIdentifier:identifier];
 }
 
 - (void)editQQ:(NSString *)identifier
 {
 	NSLog(@"edit: %@", identifier);
+	[self pushEditPropertyViewControllerWithIdentifier:identifier];
 }
 
 - (void)editWeixin:(NSString *)identifier
 {
 	NSLog(@"edit: %@", identifier);
+	[self pushEditPropertyViewControllerWithIdentifier:identifier];
+}
+
+- (void)editAddress:(NSString *)identifier
+{
+	NSLog(@"edit: %@", identifier);
+	[self pushEditPropertyViewControllerWithIdentifier:identifier];
 }
 
 - (void)editGender
@@ -472,7 +483,7 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 			if (display) {
 				CGFloat widthOfLabel = [identifier isEqualToString:kProfileSignature] ? 210 : 85;
 				UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(tableView.bounds.size.width - widthOfLabel - rightMargin, 0, widthOfLabel, cell.bounds.size.height)];
-				label.backgroundColor = [UIColor randomColor];
+				//label.backgroundColor = [UIColor randomColor];
 				label.textAlignment = NSTextAlignmentRight;
 				label.text = display;
 				label.numberOfLines = 0;
@@ -487,13 +498,21 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 			NSString *privacyInfo = [_userProfile privacyInfoWithIdentifier:identifier];
 			if (privacyInfo) {
 				UILabel *privacyInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, 120, cell.bounds.size.height)];
-				privacyInfoLabel.backgroundColor = [UIColor randomColor];
+				//privacyInfoLabel.backgroundColor = [UIColor randomColor];
 				privacyInfoLabel.text = privacyInfo;
 				privacyInfoLabel.font = [UIFont fdThemeFontOfSize:14];
 				privacyInfoLabel.textAlignment = NSTextAlignmentCenter;
 				[cell.contentView addSubview:privacyInfoLabel];
 			}
 		}
+	}
+	
+	NSString *iconName = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kIcon];
+	if (iconName) {
+		cell.imageView.image = [UIImage imageNamed:iconName];
+		NSString *title = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kTitle];
+		cell.textLabel.text = title;
+		cell.textLabel.font = [UIFont fdThemeFontOfSize:16];
 	}
 	
 	return cell;
@@ -514,7 +533,7 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	//		}
 	//	}
 	
-	return 30;
+	return tableView.rowHeight;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

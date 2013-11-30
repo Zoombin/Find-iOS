@@ -26,7 +26,6 @@
 		7734ACE917D8A6C1003E7BB6 /* FDPhotoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE817D8A6C1003E7BB6 /* FDPhotoInfo.m */; };
 		774628CF183CA0530088BD61 /* FDInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 774628CE183CA0530088BD61 /* FDInformation.m */; };
 		77764B221831EFA20057F8B9 /* FDEditPropertyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764B211831EFA20057F8B9 /* FDEditPropertyViewController.m */; };
-		77764B251831FA100057F8B9 /* FDEditNicknameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764B241831FA100057F8B9 /* FDEditNicknameCell.m */; };
 		77764B2B1831FEEA0057F8B9 /* FDEditSignatureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764B2A1831FEEA0057F8B9 /* FDEditSignatureCell.m */; };
 		777E5E1E17D97A98005AFB67 /* FDThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 777E5E1D17D97A98005AFB67 /* FDThemeCell.m */; };
 		777E5EE817D9BBDA005AFB67 /* FDThemeItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */; };
@@ -148,8 +147,6 @@
 		774628CE183CA0530088BD61 /* FDInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDInformation.m; path = find/FDInformation.m; sourceTree = "<group>"; };
 		77764B201831EFA20057F8B9 /* FDEditPropertyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDEditPropertyViewController.h; sourceTree = "<group>"; };
 		77764B211831EFA20057F8B9 /* FDEditPropertyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDEditPropertyViewController.m; sourceTree = "<group>"; };
-		77764B231831FA100057F8B9 /* FDEditNicknameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDEditNicknameCell.h; path = find/FDEditNicknameCell.h; sourceTree = "<group>"; };
-		77764B241831FA100057F8B9 /* FDEditNicknameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDEditNicknameCell.m; path = find/FDEditNicknameCell.m; sourceTree = "<group>"; };
 		77764B291831FEEA0057F8B9 /* FDEditSignatureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDEditSignatureCell.h; path = find/FDEditSignatureCell.h; sourceTree = "<group>"; };
 		77764B2A1831FEEA0057F8B9 /* FDEditSignatureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDEditSignatureCell.m; path = find/FDEditSignatureCell.m; sourceTree = "<group>"; };
 		777E5E1C17D97A98005AFB67 /* FDThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeCell.h; path = find/FDThemeCell.h; sourceTree = "<group>"; };
@@ -587,8 +584,6 @@
 				77A977D8183F19A500678361 /* FDCameraFlashButton.m */,
 				77052A311834798B000C2BDF /* FDEditCell.h */,
 				77052A321834798B000C2BDF /* FDEditCell.m */,
-				77764B231831FA100057F8B9 /* FDEditNicknameCell.h */,
-				77764B241831FA100057F8B9 /* FDEditNicknameCell.m */,
 				77764B291831FEEA0057F8B9 /* FDEditSignatureCell.h */,
 				77764B2A1831FEEA0057F8B9 /* FDEditSignatureCell.m */,
 				77A4AF2918288E1C00B7D65B /* FDVoteCell.h */,
@@ -862,7 +857,6 @@
 				7786716217E35A98001FDB67 /* NSString+ZBUtilites.m in Sources */,
 				77764B2B1831FEEA0057F8B9 /* FDEditSignatureCell.m in Sources */,
 				77C0C8D917CDDBA8008C7FC7 /* GTMBase64.m in Sources */,
-				77764B251831FA100057F8B9 /* FDEditNicknameCell.m in Sources */,
 				77338E7F18090184006DEC3D /* FDErrorMessage.m in Sources */,
 				77C0C96717D198F6008C7FC7 /* FDPhoto.m in Sources */,
 				77C0C96417D18D7C008C7FC7 /* FDPhotoCell.m in Sources */,
