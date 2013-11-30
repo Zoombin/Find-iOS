@@ -14,6 +14,7 @@
 		77052A331834798B000C2BDF /* FDEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77052A321834798B000C2BDF /* FDEditCell.m */; };
 		77052A361834B150000C2BDF /* FDUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77052A351834B150000C2BDF /* FDUserCell.m */; };
 		770561C718498822007608D3 /* FDProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770561C618498822007608D3 /* FDProfileViewController.m */; };
+		770561CA1849A4F5007608D3 /* FDStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770561C91849A4F5007608D3 /* FDStoreViewController.m */; };
 		772AF353182752E000714745 /* find.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 772AF352182752E000714745 /* find.storyboard */; };
 		772B3D42182F92B9004B1653 /* UITableViewCell+Find.m in Sources */ = {isa = PBXBuildFile; fileRef = 772B3D41182F92B9004B1653 /* UITableViewCell+Find.m */; };
 		77338E7F18090184006DEC3D /* FDErrorMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 77338E7E18090184006DEC3D /* FDErrorMessage.m */; };
@@ -124,6 +125,8 @@
 		77052A351834B150000C2BDF /* FDUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDUserCell.m; path = find/FDUserCell.m; sourceTree = "<group>"; };
 		770561C518498822007608D3 /* FDProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDProfileViewController.h; sourceTree = "<group>"; };
 		770561C618498822007608D3 /* FDProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDProfileViewController.m; sourceTree = "<group>"; };
+		770561C81849A4F5007608D3 /* FDStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDStoreViewController.h; sourceTree = "<group>"; };
+		770561C91849A4F5007608D3 /* FDStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDStoreViewController.m; sourceTree = "<group>"; };
 		772AF352182752E000714745 /* find.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = find.storyboard; sourceTree = "<group>"; };
 		772B3D40182F92B9004B1653 /* UITableViewCell+Find.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableViewCell+Find.h"; path = "find/UITableViewCell+Find.h"; sourceTree = "<group>"; };
 		772B3D41182F92B9004B1653 /* UITableViewCell+Find.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableViewCell+Find.m"; path = "find/UITableViewCell+Find.m"; sourceTree = "<group>"; };
@@ -423,6 +426,8 @@
 				770561C618498822007608D3 /* FDProfileViewController.m */,
 				77764B201831EFA20057F8B9 /* FDEditPropertyViewController.h */,
 				77764B211831EFA20057F8B9 /* FDEditPropertyViewController.m */,
+				770561C81849A4F5007608D3 /* FDStoreViewController.h */,
+				770561C91849A4F5007608D3 /* FDStoreViewController.m */,
 				7798B3291844C9F100CCA964 /* FDSettingsViewController.h */,
 				7798B32A1844C9F100CCA964 /* FDSettingsViewController.m */,
 				77A5F7C017CB22960073E7F9 /* Images.xcassets */,
@@ -821,6 +826,7 @@
 				77C0C8DD17CDDE6A008C7FC7 /* ZBQNPutPolicy.m in Sources */,
 				7786715D17E35A98001FDB67 /* CLLocation+NSDictionary.m in Sources */,
 				77AD927E17DEC88800D2FEBC /* FDAFHTTPClient.m in Sources */,
+				770561CA1849A4F5007608D3 /* FDStoreViewController.m in Sources */,
 				77DBC8CD181FA5B500F0A7A8 /* FDImageView.m in Sources */,
 				77D69703180E6D95000BCA07 /* FDTheme.m in Sources */,
 				779DFF48181602E10013E5F7 /* FDThemeSection.m in Sources */,

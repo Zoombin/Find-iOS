@@ -9,14 +9,9 @@
 #import "FDMeViewController.h"
 #import "FDSignupViewController.h"
 #import "FDProfileViewController.h"
+#import "FDStoreViewController.h"
 #import "FDSettingsViewController.h"
 #import "FDAvatarView.h"
-
-NSString *kIdentifier = @"identifier";
-NSString *kIcon = @"icon";
-NSString *kTitle = @"title";
-NSString *kAction = @"action";
-NSString *kHeightOfCell = @"heightOfCell";
 
 NSString *kMyProfiles = @"kMyProfiles";
 NSString *kMyAlbum = @"kMyAlbum";
@@ -63,33 +58,52 @@ NSString *kSettings = @"kSettings";
 	_tableView.dataSource = self;
 	[self.view addSubview:_tableView];
 	
-	NSArray *firstSectionData = @[
-								  @{kIdentifier : kMyProfiles, kIcon : @"Avatar", kTitle : NSLocalizedString(@"My Profiles", nil), kAction : NSStringFromSelector(@selector(pushToProfiles)), kHeightOfCell : @(90)},
-								];
-	
-	NSArray *secondSectionData = @[
-								@{kIdentifier : kMyAlbum, kIcon : @"MoreMyAlbum", kTitle : NSLocalizedString(@"My Album", nil)},
-								@{kIdentifier : kMyPorperties, kIcon : @"MoreMyBankCard", kTitle : NSLocalizedString(@"My Properties", nil)},
-								@{kIdentifier : kMyInterests, kIcon : @"MoreExpressionShops", kTitle : NSLocalizedString(@"My Interests", nil)},
-								@{kIdentifier : kMyMessages, kIcon : @"MoreMyFavorites", kTitle : NSLocalizedString(@"My Messages", nil)},
-								];
-	
-	NSArray *thirdSectionData = @[
-								  @{kIdentifier : kStore, kIcon : @"MoreGame", kTitle : NSLocalizedString(@"Store", nil)},
-								  ];
-	
-	NSArray *fourthSectionData = @[
-								  @{kIdentifier : kSettings, kIcon : @"MoreSetting", kTitle : NSLocalizedString(@"Settings", nil), kAction : NSStringFromSelector(@selector(pushToSettings))},
-								  ];
 	_dataSourceDictionary = [NSMutableDictionary dictionary];
-	_dataSourceDictionary[@(0)] = firstSectionData;
-	_dataSourceDictionary[@(1)] = secondSectionData;
-	_dataSourceDictionary[@(2)] = thirdSectionData;
-	_dataSourceDictionary[@(3)] = fourthSectionData;
 	
-	_avatarView = [[FDAvatarView alloc] initWithFrame:CGRectMake(0, 0, [FDAvatarView bigSize].width, [FDAvatarView bigSize].height)];
+	NSInteger section = 0;
+	NSArray *sectionData;
+	
+	sectionData = @[
+				  @{kIdentifier : kMyProfiles, kIcon : @"Avatar", kTitle : NSLocalizedString(@"My Profiles", nil), kHeightOfCell : @(90), kPushTargetClass : NSStringFromClass([FDProfileViewController class])},
+					];
+	_dataSourceDictionary[@(section)] = sectionData;
+	section++;
+	
+	sectionData = @[
+				  @{kIdentifier : kMyAlbum, kIcon : @"MoreMyAlbum", kTitle : NSLocalizedString(@"My Album", nil)},
+					
+				  @{kIdentifier : kMyPorperties, kIcon : @"MoreMyBankCard", kTitle : NSLocalizedString(@"My Properties", nil)},
+					
+				  @{kIdentifier : kMyInterests, kIcon : @"MoreExpressionShops", kTitle : NSLocalizedString(@"My Interests", nil)},
+					
+				  @{kIdentifier : kMyMessages, kIcon : @"MoreMyFavorites", kTitle : NSLocalizedString(@"My Messages", nil)},
+				  ];
+	_dataSourceDictionary[@(section)] = sectionData;
+	section++;
+	
+	sectionData = @[
+				  @{kIdentifier : kStore, kIcon : @"MoreGame", kTitle : NSLocalizedString(@"Store", nil), kPushTargetClass : NSStringFromClass([FDStoreViewController class])},
+				  ];
+	_dataSourceDictionary[@(section)] = sectionData;
+	section++;
+	
+	sectionData = @[
+				  @{kIdentifier : kSettings, kIcon : @"MoreSetting", kTitle : NSLocalizedString(@"Settings", nil), kPushTargetClass : NSStringFromClass([FDSettingsViewController class])},
+				  ];
+	_dataSourceDictionary[@(section)] = sectionData;
+	section++;
+	
+	_avatarView = [[FDAvatarView alloc] init];
 	
 	[self displayHUD:NSLocalizedString(@"Loading...", nil)];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchProfileThenReloadTableView) name:ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	
 	[self fetchProfile:^{
 		[self hideHUD:YES];
 		
@@ -99,27 +113,6 @@ NSString *kSettings = @"kSettings";
 		
 		[_tableView reloadData];
 	}];
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchProfileThenReloadTableView) name:ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
-}
-
-- (void)pushToProfiles
-{
-	FDProfileViewController *profileViewController = [[FDProfileViewController alloc] init];
-	profileViewController.hidesBottomBarWhenPushed = YES;
-	[self.navigationController pushViewController:profileViewController animated:YES];
-}
-
-- (void)pushToSettings
-{
-	FDSettingsViewController *settingsViewController = [[FDSettingsViewController alloc] init];
-	settingsViewController.hidesBottomBarWhenPushed = YES;
-	[self.navigationController pushViewController:settingsViewController animated:YES];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-	[super viewDidAppear:animated];
 	
 //	BOOL bSigninValid = NO;
 //	if (!bSigninValid) {
@@ -191,6 +184,7 @@ NSString *kSettings = @"kSettings";
 		CGRect frame = _avatarView.frame;
 		frame.origin.x = cell.indentationWidth;
 		frame.origin.y = (cell.bounds.size.height - _avatarView.bounds.size.height) / 2;
+		frame.size = [FDAvatarView bigSize];
 		_avatarView.frame = frame;
 		[cell.contentView addSubview:_avatarView];
 	} else {
@@ -214,17 +208,13 @@ NSString *kSettings = @"kSettings";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSString *identifier = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kIdentifier];
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	
-	SEL action = NSSelectorFromString(_dataSourceDictionary[@(indexPath.section)][indexPath.row][kAction]);
-	if (action) {
-		[self performSelector:action withObject:identifier afterDelay:0];
+	Class class = NSClassFromString(_dataSourceDictionary[@(indexPath.section)][indexPath.row][kPushTargetClass]);
+	if (class) {
+		UIViewController *viewController = [[class alloc] init];
+		viewController.hidesBottomBarWhenPushed = YES;
+		[self.navigationController pushViewController:viewController animated:YES];
 	}
-}
-
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
 }
 
 @end

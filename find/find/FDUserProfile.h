@@ -15,6 +15,14 @@ typedef NS_ENUM(NSInteger, FDGenderType) {
 	FDGenderTypeUnknow
 };
 
+typedef NS_ENUM(NSInteger, FDShapeType) {
+	FDShapeTypeAge,
+	FDShapeTypeHeight,
+	FDShapeTypeWeight,
+	FDShapeTypeChest
+};
+
+extern NSString *kProfileShape;
 extern NSString *kProfileNickname;
 extern NSString *kProfileGender;
 extern NSString *kProfileAge;

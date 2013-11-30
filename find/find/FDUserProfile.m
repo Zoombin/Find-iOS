@@ -8,6 +8,7 @@
 
 #import "FDUserProfile.h"
 
+NSString *kProfileShape = @"privacyinfo";
 NSString *kProfileNickname = @"nickname";
 NSString *kProfileAvatar = @"avatar";
 NSString *kProfileGender = @"gender";
