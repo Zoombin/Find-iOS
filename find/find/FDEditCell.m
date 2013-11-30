@@ -31,6 +31,11 @@
 	return nil;
 }
 
+- (void)becomeFirstResponder
+{
+	
+}
+
 + (CGFloat)height
 {
 	return 0;

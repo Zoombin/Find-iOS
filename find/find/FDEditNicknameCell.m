@@ -24,6 +24,7 @@ static NSInteger margin = 10;
     if (self) {
 		_textField = [[UITextField alloc] initWithFrame:CGRectMake(margin, 0, self.bounds.size.width - 2 * margin, [[self class] height])];
 		_textField.backgroundColor = [UIColor randomColor];
+		_textField.returnKeyType = UIReturnKeyDone;
 		_textField.placeholder = NSLocalizedString(@"New Nickname", nil);
 		[self.contentView addSubview:_textField];
     }
@@ -51,6 +52,11 @@ static NSInteger margin = 10;
 	label.textAlignment = NSTextAlignmentCenter;
 	label.backgroundColor = [UIColor randomColor];
 	return label;
+}
+
+- (void)becomeFirstResponder
+{
+	[_textField becomeFirstResponder];
 }
 
 + (CGFloat)height

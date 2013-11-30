@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSString *content;
 
 - (UIView *)footer;
+- (void)becomeFirstResponder;
 + (CGFloat)height;
 + (CGFloat)heightOfFooter;
 + (NSInteger)numberOfRows;

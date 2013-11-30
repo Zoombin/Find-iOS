@@ -25,6 +25,7 @@ static NSInteger margin = 10;
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
 		_textView = [[UITextView alloc] initWithFrame:CGRectMake(margin, 0, self.bounds.size.width - 2 * margin, [[self class] height])];
 		_textView.backgroundColor = [UIColor randomColor];
+		_textView.returnKeyType = UIReturnKeyDone;
 		_textView.font = [UIFont fdThemeFontOfSize:13];
 		[self.contentView addSubview:_textView];
     }
@@ -52,6 +53,11 @@ static NSInteger margin = 10;
 	label.textAlignment = NSTextAlignmentCenter;
 	label.backgroundColor = [UIColor randomColor];
 	return label;
+}
+
+- (void)becomeFirstResponder
+{
+	[_textView becomeFirstResponder];
 }
 
 + (CGFloat)height

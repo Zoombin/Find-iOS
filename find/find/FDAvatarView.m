@@ -50,7 +50,7 @@
 
 + (CGSize)bigSize
 {
-	return CGSizeMake(50, 50);
+	return CGSizeMake(65, 65);
 }
 
 @end

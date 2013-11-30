@@ -37,6 +37,12 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+//	[self canBecomeFirstResponder];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -48,11 +54,16 @@
 	NSLog(@"save");
 	
 	if (!_identifier) return;
+	
 	NSLog(@"will save %@: %@", _identifier, _content);
-	[[FDAFHTTPClient shared] editProfile:@{_identifier : _content} withCompletionBlock:^(BOOL success, NSString *message) {
+	
+	NSString *stringWithoutNewline = [_content stringByReplacingOccurrencesOfString: @"\r" withString:@""];
+	stringWithoutNewline = [stringWithoutNewline stringByReplacingOccurrencesOfString: @"\n" withString:@""];
+	[[FDAFHTTPClient shared] editProfile:@{_identifier : stringWithoutNewline} withCompletionBlock:^(BOOL success, NSString *message) {
 		if (success) {
 			[self displayHUDTitle:NSLocalizedString(@"Updated", nil) message:nil];
 			[self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.0f];
+			[[NSNotificationCenter defaultCenter] postNotificationName:ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
 		}
 	}];
 }
@@ -77,6 +88,7 @@
 		cell = [[_cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 		cell.delegate = self;
 		cell.content = _content;
+		[cell becomeFirstResponder];
 	}
     return cell;
 }
@@ -94,10 +106,34 @@
 
 #pragma mark - UITextViewDelegate
 
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+	if (textView.text.length > 10) {
+		return NO;
+	}
+	return YES;
+}
+
 - (void)textViewDidChange:(UITextView *)textView
 {
 	[self setRightBarButtonItemAsSaveButtonWithSelector:@selector(save)];
+//	if (textView.text.length > 10) {
+//		textView.text = [textView.text substringToIndex:30];
+//	}
 	_content = textView.text;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+	if (range.length == 0) {//表示不是删除后退键
+		if (textView.text.length >= 10) {
+			return NO;
+		}
+	}
+	if ([text isEqualToString:@"\r"] || [text isEqualToString:@"\n"] || [text isEqualToString:@"\r\n"] || [text isEqualToString:@"\n\r"]) {
+		return NO;
+	}
+	return YES;
 }
 
 #pragma mark - UITextFieldDelegate
