@@ -73,9 +73,9 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	sectionData = @[
 				  @{kIdentifier : kProfileAvatar, kIcon : @"MoreMyAlbum", kTitle : NSLocalizedString(@"Avatar", nil), kAction : NSStringFromSelector(@selector(editAvatar)), kHeightOfCell : @(90)},
 				  
-				  @{kIdentifier : kProfileNickname, kIcon : @"MoreMyFavorites", kTitle : NSLocalizedString(@"Nickname", nil), kAction : NSStringFromSelector(@selector(editNickname:))},
+				  @{kIdentifier : kProfileNickname, kIcon : @"MoreMyFavorites", kTitle : NSLocalizedString(@"Nickname", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
 				  
-				  @{kIdentifier : kProfileSignature, kIcon : @"MoreMyAlbum", kTitle : NSLocalizedString(@"Signature", nil), kAction : NSStringFromSelector(@selector(editSignature:))},
+				  @{kIdentifier : kProfileSignature, kIcon : @"MoreMyAlbum", kTitle : NSLocalizedString(@"Signature", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
 				  
 				  @{kIdentifier : kProfileGender, kIcon : @"MoreGame", kTitle : NSLocalizedString(@"Gender", nil)},
 				  ];
@@ -89,13 +89,13 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	section++;
 	
 	sectionData = @[
-				  @{kIdentifier : kProfileMobile, kIcon : @"MoreExpressionShops", kTitle : NSLocalizedString(@"Mobile", nil), kAction : NSStringFromSelector(@selector(editMobile:))},
+				  @{kIdentifier : kProfileMobile, kIcon : @"MoreExpressionShops", kTitle : NSLocalizedString(@"Mobile", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
 				  
-				  @{kIdentifier : kProfileQQ, kIcon : @"MoreMyAlbum", kTitle : NSLocalizedString(@"QQ", nil), kAction : NSStringFromSelector(@selector(editQQ:))},
+				  @{kIdentifier : kProfileQQ, kIcon : @"MoreMyAlbum", kTitle : NSLocalizedString(@"QQ", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
 				  
-				  @{kIdentifier : kProfileWeixin, kIcon : @"MoreSetting", kTitle : NSLocalizedString(@"Weixin", nil), kAction : NSStringFromSelector(@selector(editWeixin:))},
+				  @{kIdentifier : kProfileWeixin, kIcon : @"MoreSetting", kTitle : NSLocalizedString(@"Weixin", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
 				  
-				  @{kIdentifier : kProfileAddress, kIcon : @"MoreGame", kTitle : NSLocalizedString(@"Address", nil), kAction : NSStringFromSelector(@selector(editAddress:))},
+				  @{kIdentifier : kProfileAddress, kIcon : @"MoreGame", kTitle : NSLocalizedString(@"Address", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
 				  
 				  ];
 	_dataSourceDictionary[@(section)] = sectionData;
@@ -236,23 +236,21 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	}];
 }
 
-- (void)editNickname:(NSString *)identifier
-{
-	NSLog(@"edit: %@", identifier);
-	[self pushEditPropertyViewControllerWithIdentifier:identifier];
-}
-
-- (void)editSignature:(NSString *)identifier
-{
-	NSLog(@"edit: %@", identifier);
-	[self pushEditPropertyViewControllerWithIdentifier:identifier];
-}
-
 - (void)pushEditPropertyViewControllerWithIdentifier:(NSString *)identifier
 {
 	FDEditPropertyViewController *editPropertyViewController = [[FDEditPropertyViewController alloc] initWithStyle:UITableViewStyleGrouped];
 	editPropertyViewController.hidesBottomBarWhenPushed = YES;
 	editPropertyViewController.identifier = identifier;
+	
+	NSArray *values = _dataSourceDictionary.allValues;
+	for (NSArray *array in values) {
+		for (NSDictionary *dict in array) {
+			if ([identifier isEqualToString:dict[kIdentifier]]) {
+				editPropertyViewController.title = dict[kTitle];
+			}
+		}
+	}
+	
 	if ([identifier isEqualToString:kProfileNickname]) {
 		editPropertyViewController.cellClass = [FDEditCell class];
 		editPropertyViewController.content = _userProfile.nickname;
@@ -275,6 +273,26 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	[self.navigationController pushViewController:editPropertyViewController animated:YES];
 }
 
+- (void)editAvatar
+{
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles:@"Snap a New", @"Pick From Photo Library", nil];
+	[actionSheet showInView:self.view];
+}
+
+- (void)editGender
+{
+	NSLog(@"gender changed!");
+	NSNumber *gender = @(_genderSegmentedControl.selectedSegmentIndex);
+	[[FDAFHTTPClient shared] editProfile:@{kProfileGender : gender} withCompletionBlock:^(BOOL success, NSString *message) {
+		if (success) {
+			_userProfile.bFemale = _genderSegmentedControl.selectedSegmentIndex == FDGenderTypeFemale ? YES : NO;
+		} else {
+			[self displayHUDTitle:nil message:message];
+			_genderSegmentedControl.selectedSegmentIndex = _userProfile.bFemale ? FDGenderTypeFemale : FDGenderTypeMale;
+		}
+	}];
+}
+
 - (void)editShape
 {
 	NSString *identifier = kProfileAge;
@@ -295,50 +313,6 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	_identifierOfSelectedCell = identifier;
 	[_pickerView reloadAllComponents];
 	[self showPickerViewAnimated:YES];
-}
-
-- (void)editMobile:(NSString *)identifier
-{
-	NSLog(@"edit: %@", identifier);
-	[self pushEditPropertyViewControllerWithIdentifier:identifier];
-}
-
-- (void)editQQ:(NSString *)identifier
-{
-	NSLog(@"edit: %@", identifier);
-	[self pushEditPropertyViewControllerWithIdentifier:identifier];
-}
-
-- (void)editWeixin:(NSString *)identifier
-{
-	NSLog(@"edit: %@", identifier);
-	[self pushEditPropertyViewControllerWithIdentifier:identifier];
-}
-
-- (void)editAddress:(NSString *)identifier
-{
-	NSLog(@"edit: %@", identifier);
-	[self pushEditPropertyViewControllerWithIdentifier:identifier];
-}
-
-- (void)editGender
-{
-	NSLog(@"gender changed!");
-	NSNumber *gender = @(_genderSegmentedControl.selectedSegmentIndex);
-	[[FDAFHTTPClient shared] editProfile:@{kProfileGender : gender} withCompletionBlock:^(BOOL success, NSString *message) {
-		if (success) {
-			_userProfile.bFemale = _genderSegmentedControl.selectedSegmentIndex == FDGenderTypeFemale ? YES : NO;
-		} else {
-			[self displayHUDTitle:nil message:message];
-			_genderSegmentedControl.selectedSegmentIndex = _userProfile.bFemale ? FDGenderTypeFemale : FDGenderTypeMale;
-		}
-	}];
-}
-
-- (void)editAvatar
-{
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles:@"Snap a New", @"Pick From Photo Library", nil];
-	[actionSheet showInView:self.view];
 }
 
 - (void)pushToSettings
