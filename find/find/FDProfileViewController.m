@@ -480,7 +480,7 @@ static NSInteger tagOfPrivacyLabel = 'priv';
 			
 			NSString *privacyInfo = [_userProfile privacyInfoWithIdentifier:identifier];
 			if (privacyInfo) {
-				UILabel *privacyInfoLabel = (UILabel *)[cell viewWithTag:tagOfProfileLabel];
+				UILabel *privacyInfoLabel = (UILabel *)[cell viewWithTag:tagOfPrivacyLabel];
 				if (!privacyInfoLabel) {
 					privacyInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, 120, cell.bounds.size.height)];
 					//privacyInfoLabel.backgroundColor = [UIColor randomColor];
