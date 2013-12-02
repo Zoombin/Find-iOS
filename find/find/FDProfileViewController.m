@@ -155,6 +155,7 @@ static NSInteger tagOfPrivacyLabel = 'priv';
 		NSString *female = NSLocalizedString(@"Female", nil);
 		NSString *male = NSLocalizedString(@"Male", nil);
 		_genderSegmentedControl = [[UISegmentedControl alloc] initWithItems:@[female, male]];
+		_genderSegmentedControl.tintColor = [UIColor fdThemeRed];
 		_genderSegmentedControl.selectedSegmentIndex = 0;
 		[_genderSegmentedControl addTarget:self action:@selector(editGender) forControlEvents:UIControlEventValueChanged];
 		_genderSegmentedControl.userInteractionEnabled = _bMyself;
@@ -166,6 +167,7 @@ static NSInteger tagOfPrivacyLabel = 'priv';
 		_weight = NSLocalizedString(@"Weight", nil);
 		_chest = NSLocalizedString(@"Chest", nil);
 		_shapeSegmentedControl = [[UISegmentedControl alloc] initWithItems:@[_age, _height, _weight, _chest]];
+		_shapeSegmentedControl.tintColor = [UIColor fdThemeRed];
 		[_shapeSegmentedControl addTarget:self action:@selector(editShape) forControlEvents:UIControlEventValueChanged];
 		_shapeSegmentedControl.userInteractionEnabled = _bMyself;
 	}

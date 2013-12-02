@@ -39,6 +39,7 @@
 	NSString *stuff = NSLocalizedString(@"Stuff", nil);
 	NSString *records = NSLocalizedString(@"Records", nil);
 	UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[virtual, stuff, records]];
+	segmentedControl.tintColor = [UIColor whiteColor];
 	segmentedControl.selectedSegmentIndex = 0;
 	self.navigationItem.titleView = segmentedControl;
 #endif

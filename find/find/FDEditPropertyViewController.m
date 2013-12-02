@@ -50,6 +50,9 @@ static NSInteger sectionOfUser = 1;
 	NSString *partly = NSLocalizedString(@"Partly", nil);
 	NSString *private = NSLocalizedString(@"Private", nil);
 	_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[public, partly, private]];
+	_segmentedControl.frame = CGRectMake(0, 0, 180, 30);
+	_segmentedControl.tintColor = [UIColor whiteColor];
+	_segmentedControl.apportionsSegmentWidthsByContent = YES;
 	[_segmentedControl addTarget:self action:@selector(privacyChanged:) forControlEvents:UIControlEventValueChanged];
 	
 	_searchBar = [[UISearchBar alloc] init];
