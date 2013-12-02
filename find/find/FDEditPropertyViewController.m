@@ -9,8 +9,14 @@
 #import "FDEditPropertyViewController.h"
 #import "FDLabelEditCell.h"
 #import "FDTextViewEditCell.h"
+#import "FDUserCell.h"
+
+static NSInteger sectionOfEdit = 0;
+static NSInteger sectionOfUser = 1;
 
 @interface FDEditPropertyViewController () <UITextViewDelegate, UITextFieldDelegate>
+
+@property (readwrite) UISegmentedControl *segmentedControl;
 
 @end
 
@@ -36,11 +42,33 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	
+	NSString *public = NSLocalizedString(@"Public", nil);
+	NSString *partly = NSLocalizedString(@"Partly", nil);
+	NSString *private = NSLocalizedString(@"Private", nil);
+	_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[public, partly, private]];
+	[_segmentedControl addTarget:self action:@selector(privacyChanged:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
+
+	if (_privacyInfo) {
+		NSInteger index = 0;
+		if ([_privacyInfo isPartly]) {
+			index = 1;
+		} else if ([_privacyInfo isPrivate]) {
+			index = 2;
+		}
+		_segmentedControl.selectedSegmentIndex = index;
+		self.navigationItem.titleView = _segmentedControl;
+	}
+}
+
+- (void)privacyChanged:(id)sender
+{
+	
 }
 
 - (void)setPrivacyInfo:(FDInformation *)privacyInfo
@@ -77,14 +105,26 @@
 
 #pragma mark - Table view data source
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	if (_privacyInfo) return 2;
+	return 1;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-	return 15;
+	if (section == sectionOfEdit) {
+		return 15;
+	}
+	return 35;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_cellClass numberOfRows];
+	if (section == sectionOfEdit) {
+		return [_cellClass numberOfRows];
+	}
+    return 5;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -94,26 +134,51 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    FDLabelEditCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	if (!cell) {
-		cell = [[_cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-		cell.delegate = self;
-		cell.content = _content;
-		[cell becomeFirstResponder];
+	if (indexPath.section == sectionOfEdit) {
+		FDEditCell *cell = [tableView dequeueReusableCellWithIdentifier:[FDEditCell identifier]];
+		if (!cell) {
+			cell = [[_cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[FDEditCell identifier]];
+			cell.delegate = self;
+			cell.content = _content;
+			[cell becomeFirstResponder];
+		}
+		return cell;
+	} else {
+		FDUserCell *cell = [tableView dequeueReusableCellWithIdentifier:[FDUserCell identifier]];
+		if (!cell) {
+			cell = [[_cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[FDUserCell identifier]];
+//			cell.delegate = self;
+//			cell.content = _content;
+//			[cell becomeFirstResponder];
+		}
+		return cell;
 	}
-    return cell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+	if (section == sectionOfUser) {
+		UISearchBar *searchBar = [[UISearchBar alloc] init];
+		return searchBar;
+	}
+	return nil;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-	return [[[_cellClass alloc] init] footerWithText:_footerText];
+	if (section == sectionOfEdit) {
+		return [[[_cellClass alloc] init] footerWithText:_footerText];
+	}
+	return nil;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-	return [_cellClass heightOfFooter];
+	if (section == sectionOfEdit) {
+		return [_cellClass heightOfFooter];
+	}
+	return 1;
 }
 
 #pragma mark - UITextViewDelegate
@@ -132,7 +197,7 @@
 //	if (textView.text.length > 10) {
 //		textView.text = [textView.text substringToIndex:30];
 //	}
-	_content = textView.text;
+	_content = textView.text;//TODO:限定字数，参照微信
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text

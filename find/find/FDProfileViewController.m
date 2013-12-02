@@ -20,6 +20,9 @@ static NSString *minimumValueOfPicker = @"minimamOfPicker";
 static NSString *maximumValueOfPicker = @"maximumValueOfPicker";
 static NSString *actionOfPickerRow = @"actionOfPickerRow";
 
+static NSInteger tagOfProfileLabel = 'prof';
+static NSInteger tagOfPrivacyLabel = 'priv';
+
 @interface FDProfileViewController () <UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AFPhotoEditorControllerDelegate>
 
 @property (readwrite) FDUserProfile *userProfile;
@@ -83,7 +86,7 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	section++;
 	
 	sectionData = @[
-				  @{kIdentifier : kProfileShape, kTitle : NSLocalizedString(@"Shape", nil), kHeightOfCell : @(33)},
+				  @{kIdentifier : kProfileShape, kHeightOfCell : @(33)},
 					];
 	_dataSourceDictionary[@(section)] = sectionData;
 	section++;
@@ -436,10 +439,6 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
 		cell.selectionStyle = _bMyself ? UITableViewCellSelectionStyleDefault : UITableViewCellSelectionStyleNone;
 		cell.accessoryType = _bMyself ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
-		
-		NSString *title = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kTitle];
-		cell.textLabel.text = title;
-		cell.textLabel.font = [UIFont fdThemeFontOfSize:16];
 	}
 	
 	if ([identifier isEqualToString:kProfileAvatar]) {
@@ -455,37 +454,50 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 		_shapeSegmentedControl.frame = CGRectMake(0, 0, cell.bounds.size.width, cell.bounds.size.height);
 		[cell.contentView addSubview:_shapeSegmentedControl];
 		cell.accessoryType = UITableViewCellAccessoryNone;
-		cell.textLabel.text = nil;
 	} else if ([identifier isEqualToString:kProfileAvatar]) {
 		_avatarView.imagePath = _userProfile.avatarPath;
 	} else {
 		if (_userProfile) {
 			NSString *display = [_userProfile displayWithIdentifier:identifier];
 			if (display) {
-				CGFloat widthOfLabel = [identifier isEqualToString:kProfileSignature] ? 210 : 85;
-				UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(tableView.bounds.size.width - widthOfLabel - rightMargin, 0, widthOfLabel, cell.bounds.size.height)];
-				//label.backgroundColor = [UIColor randomColor];
-				label.textAlignment = NSTextAlignmentRight;
-				label.text = display;
-				label.numberOfLines = 0;
-				label.lineBreakMode = NSLineBreakByCharWrapping;
-				label.font = [UIFont fdBoldThemeFontOfSize:12];
-				[cell.contentView addSubview:label];
-				if ([identifier isEqualToString:kProfileSignature]) {
-					_signatureLabel = label;
+				UILabel *label = (UILabel *)[cell viewWithTag:tagOfProfileLabel];
+				if (!label) {
+					CGFloat widthOfLabel = [identifier isEqualToString:kProfileSignature] ? 210 : 85;
+					label = [[UILabel alloc] initWithFrame:CGRectMake(tableView.bounds.size.width - widthOfLabel - rightMargin, 0, widthOfLabel, cell.bounds.size.height)];
+					//label.backgroundColor = [UIColor randomColor];
+					label.textAlignment = NSTextAlignmentRight;
+					label.numberOfLines = 0;
+					label.tag = tagOfProfileLabel;
+					label.lineBreakMode = NSLineBreakByCharWrapping;
+					label.font = [UIFont fdBoldThemeFontOfSize:12];
+					[cell.contentView addSubview:label];
+					if ([identifier isEqualToString:kProfileSignature]) {
+						_signatureLabel = label;
+					}
 				}
+				label.text = display;
 			}
 			
 			NSString *privacyInfo = [_userProfile privacyInfoWithIdentifier:identifier];
 			if (privacyInfo) {
-				UILabel *privacyInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, 120, cell.bounds.size.height)];
-				//privacyInfoLabel.backgroundColor = [UIColor randomColor];
+				UILabel *privacyInfoLabel = (UILabel *)[cell viewWithTag:tagOfProfileLabel];
+				if (!privacyInfoLabel) {
+					privacyInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, 120, cell.bounds.size.height)];
+					//privacyInfoLabel.backgroundColor = [UIColor randomColor];
+					privacyInfoLabel.font = [UIFont fdThemeFontOfSize:14];
+					privacyInfoLabel.textAlignment = NSTextAlignmentCenter;
+					privacyInfoLabel.tag = tagOfPrivacyLabel;
+					[cell.contentView addSubview:privacyInfoLabel];
+				}
 				privacyInfoLabel.text = privacyInfo;
-				privacyInfoLabel.font = [UIFont fdThemeFontOfSize:14];
-				privacyInfoLabel.textAlignment = NSTextAlignmentCenter;
-				[cell.contentView addSubview:privacyInfoLabel];
 			}
 		}
+	}
+		
+	NSString *title = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kTitle];
+	if (title) {
+		cell.textLabel.text = title;
+		cell.textLabel.font = [UIFont fdThemeFontOfSize:16];
 	}
 	
 	NSString *iconName = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kIcon];

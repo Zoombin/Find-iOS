@@ -40,17 +40,6 @@
 	_textField.text = content;
 }
 
-- (UIView *)footerWithText:(NSString *)text
-{
-	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 30)];
-	label.numberOfLines = 0;
-	label.text = text;//NSLocalizedString(@"Please input your nickname!", nil);
-	label.font = [UIFont fdThemeFontOfSize:13];
-	label.textAlignment = NSTextAlignmentCenter;
-	label.backgroundColor = [UIColor randomColor];
-	return label;
-}
-
 - (void)becomeFirstResponder
 {
 	[_textField becomeFirstResponder];

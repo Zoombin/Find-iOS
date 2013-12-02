@@ -13,6 +13,7 @@
 @property (nonatomic, weak) id<UITextFieldDelegate, UITextViewDelegate> delegate;
 @property (nonatomic, strong) NSString *content;
 
+- (NSString *)identifier;
 - (UIView *)footerWithText:(NSString *)text;
 - (void)becomeFirstResponder;
 + (CGFloat)height;

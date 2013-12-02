@@ -26,9 +26,21 @@
     // Configure the view for the selected state
 }
 
+- (NSString *)identifier
+{
+	static NSString *identifier = @"FDEditCellIdentifer";
+	return identifier;
+}
+
 - (UIView *)footerWithText:(NSString *)text
 {
-	return nil;
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 30)];
+	label.numberOfLines = 0;
+	label.text = text;
+	label.font = [UIFont fdThemeFontOfSize:13];
+	label.textAlignment = NSTextAlignmentCenter;
+	//label.backgroundColor = [UIColor randomColor];
+	return label;
 }
 
 - (void)becomeFirstResponder
