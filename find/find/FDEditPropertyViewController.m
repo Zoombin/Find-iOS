@@ -107,7 +107,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-	return [[[_cellClass alloc] init] footerWithText:@"hofhaohfoa"];
+	return [[[_cellClass alloc] init] footerWithText:_footerText];
 }
 
 

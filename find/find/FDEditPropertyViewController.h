@@ -14,6 +14,7 @@
 @property (nonatomic, strong) Class cellClass;
 @property (nonatomic, strong) NSString *identifier;
 @property (nonatomic, strong) NSString *content;
+@property (nonatomic, strong) NSString *footerText;
 @property (nonatomic, strong) FDInformation *privacyInfo;
 
 @end
