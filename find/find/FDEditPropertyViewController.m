@@ -14,9 +14,11 @@
 static NSInteger sectionOfEdit = 0;
 static NSInteger sectionOfUser = 1;
 
-@interface FDEditPropertyViewController () <UITextViewDelegate, UITextFieldDelegate>
+@interface FDEditPropertyViewController () <UITextViewDelegate, UITextFieldDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
 
 @property (readwrite) UISegmentedControl *segmentedControl;
+@property (readwrite) UISearchBar *searchBar;
+@property (readwrite) NSArray *candidates;
 
 @end
 
@@ -27,6 +29,7 @@ static NSInteger sectionOfUser = 1;
     self = [super initWithStyle:style];
     if (self) {
 		self.view.backgroundColor = [UIColor clearColor];
+		[self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 		
 		[self setLeftBarButtonItemAsBackButton];
     }
@@ -48,6 +51,10 @@ static NSInteger sectionOfUser = 1;
 	NSString *private = NSLocalizedString(@"Private", nil);
 	_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[public, partly, private]];
 	[_segmentedControl addTarget:self action:@selector(privacyChanged:) forControlEvents:UIControlEventValueChanged];
+	
+	_searchBar = [[UISearchBar alloc] init];
+	_searchBar.showsCancelButton = YES;
+	_searchBar.delegate = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -114,9 +121,9 @@ static NSInteger sectionOfUser = 1;
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
 	if (section == sectionOfEdit) {
-		return 15;
+		return 25;
 	}
-	return 35;
+	return 44;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -124,7 +131,7 @@ static NSInteger sectionOfUser = 1;
 	if (section == sectionOfEdit) {
 		return [_cellClass numberOfRows];
 	}
-    return 5;
+    return _candidates.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -146,39 +153,44 @@ static NSInteger sectionOfUser = 1;
 	} else {
 		FDUserCell *cell = [tableView dequeueReusableCellWithIdentifier:[FDUserCell identifier]];
 		if (!cell) {
-			cell = [[_cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[FDUserCell identifier]];
-//			cell.delegate = self;
-//			cell.content = _content;
-//			[cell becomeFirstResponder];
+			cell = [[FDUserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[FDUserCell identifier]];
 		}
+		cell.user = _candidates[indexPath.row];
 		return cell;
 	}
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+	if (section == sectionOfEdit) {
+		UIView *view = [[[_cellClass alloc] init] footerWithText:_footerText];
+		UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
+		[view addGestureRecognizer:tapGestureRecognizer];
+		return view;
+	}
 	if (section == sectionOfUser) {
-		UISearchBar *searchBar = [[UISearchBar alloc] init];
-		return searchBar;
+		return _searchBar;
 	}
 	return nil;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-	if (section == sectionOfEdit) {
-		return [[[_cellClass alloc] init] footerWithText:_footerText];
-	}
+//	if (section == sectionOfEdit) {
+//		UIView *view = [[[_cellClass alloc] init] footerWithText:_footerText];
+//		UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
+//		[view addGestureRecognizer:tapGestureRecognizer];
+//		return view;
+//	}
 	return nil;
 }
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
 	if (section == sectionOfEdit) {
-		return [_cellClass heightOfFooter];
+		return 5;
 	}
-	return 1;
+	return 0;
 }
 
 #pragma mark - UITextViewDelegate
@@ -221,5 +233,25 @@ static NSInteger sectionOfUser = 1;
 	_content = textField.text;
 	return YES;
 }
+
+#pragma mark - UISearchBarDelegate
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+	[searchBar resignFirstResponder];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+	[searchBar resignFirstResponder];
+	//TODO: should search now
+	[self displayHUD:NSLocalizedString(@"Searching", nil)];
+	[[FDAFHTTPClient shared] themeListWithCompletionBlock:^(BOOL success, NSString *message, NSArray *themesData) {
+		_candidates = [FDUser createTest:3];
+		[self hideHUD:YES];
+		[self.tableView reloadData];
+	}];
+}
+
 
 @end

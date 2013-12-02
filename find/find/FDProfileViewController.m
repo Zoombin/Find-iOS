@@ -241,7 +241,7 @@ static NSInteger tagOfPrivacyLabel = 'priv';
 
 - (void)pushEditPropertyViewControllerWithIdentifier:(NSString *)identifier
 {
-	FDEditPropertyViewController *editPropertyViewController = [[FDEditPropertyViewController alloc] initWithStyle:UITableViewStyleGrouped];
+	FDEditPropertyViewController *editPropertyViewController = [[FDEditPropertyViewController alloc] initWithStyle:UITableViewStylePlain];
 	editPropertyViewController.hidesBottomBarWhenPushed = YES;
 	editPropertyViewController.identifier = identifier;
 	

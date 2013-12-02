@@ -39,6 +39,7 @@
 	label.text = text;
 	label.font = [UIFont fdThemeFontOfSize:13];
 	label.textAlignment = NSTextAlignmentCenter;
+	label.userInteractionEnabled = YES;
 	//label.backgroundColor = [UIColor randomColor];
 	return label;
 }
