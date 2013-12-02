@@ -88,18 +88,22 @@ static NSString *address = @"address";
 
 - (NSString *)display
 {
-	NSString *v = nil;
+	if ([self isPublic]) {
+		[self valueString];
+	}
+	return [[self valueString] privatizeWithStyle:FDPrivatizeStyleHideMiddle];
+}
+
+- (NSString *)valueString
+{
+	NSString *vString = nil;
 	if	(_type == FDInformationTypeAddress) {
 		FDAddress *address = [FDAddress createWithAttributes:_value];
-		v = address.addr;
+		vString = address.addr;
 	} else {
-		v = _value;
+		vString = _value;
 	}
-	
-	if ([self isPublic]) {
-		return v;
-	}
-	return [v privatizeWithStyle:FDPrivatizeStyleHideMiddle];
+	return vString;
 }
 
 - (NSString *)description
