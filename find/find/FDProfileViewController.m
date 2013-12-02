@@ -9,7 +9,7 @@
 #import "FDProfileViewController.h"
 #import "FDSignupViewController.h"
 #import "FDEditPropertyViewController.h"
-#import "FDEditCell.h"
+#import "FDLabelEditCell.h"
 #import "FDEditSignatureCell.h"
 #import "FDSettingsViewController.h"
 #import "FDAvatarView.h"
@@ -243,7 +243,7 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 	editPropertyViewController.identifier = identifier;
 	
 	if ([identifier isEqualToString:kProfileNickname]) {
-		editPropertyViewController.cellClass = [FDEditCell class];
+		editPropertyViewController.cellClass = [FDLabelEditCell class];
 		editPropertyViewController.content = _userProfile.nickname;
 		editPropertyViewController.footerText = NSLocalizedString(@"Place input your nickname", nil);
 		editPropertyViewController.title = NSLocalizedString(@"Nickname", nil);
@@ -253,22 +253,22 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 		editPropertyViewController.footerText = NSLocalizedString(@"Place input your signature", nil);
 		editPropertyViewController.title = NSLocalizedString(@"Signature", nil);
 	} else if ([identifier isEqualToString:kProfileMobile]) {
-		editPropertyViewController.cellClass = [FDEditCell class];
+		editPropertyViewController.cellClass = [FDLabelEditCell class];
 		editPropertyViewController.privacyInfo = _userProfile.mobileInformation;
 		editPropertyViewController.footerText = NSLocalizedString(@"Place input your mobile", nil);
 		editPropertyViewController.title = NSLocalizedString(@"Mobile", nil);
 	} else if ([identifier isEqualToString:kProfileQQ] ) {
-		editPropertyViewController.cellClass = [FDEditCell class];
+		editPropertyViewController.cellClass = [FDLabelEditCell class];
 		editPropertyViewController.privacyInfo = _userProfile.qqInformation;
 		editPropertyViewController.footerText = NSLocalizedString(@"Place input your QQ", nil);
 		editPropertyViewController.title = NSLocalizedString(@"QQ", nil);
 	} else if ([identifier isEqualToString:kProfileWeixin]) {
-		editPropertyViewController.cellClass = [FDEditCell class];
+		editPropertyViewController.cellClass = [FDLabelEditCell class];
 		editPropertyViewController.privacyInfo = _userProfile.weixinInformation;
 		editPropertyViewController.footerText = NSLocalizedString(@"Place input your Weixin", nil);
 		editPropertyViewController.title = NSLocalizedString(@"Weixin", nil);
 	} else if ([identifier isEqualToString:kProfileAddress]) {
-		editPropertyViewController.cellClass = [FDEditCell class];
+		editPropertyViewController.cellClass = [FDLabelEditCell class];
 		editPropertyViewController.privacyInfo = _userProfile.addressInformation;
 		editPropertyViewController.footerText = NSLocalizedString(@"Place input your address", nil);
 		editPropertyViewController.title = NSLocalizedString(@"Address", nil);

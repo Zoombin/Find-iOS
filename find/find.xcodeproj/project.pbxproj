@@ -11,7 +11,7 @@
 		77042964181676E30087F7BF /* PSUICollectionViewFlowLayout+FDLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 77042963181676E30087F7BF /* PSUICollectionViewFlowLayout+FDLayout.m */; };
 		77042967181765D50087F7BF /* FDComment+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 77042966181765D50087F7BF /* FDComment+Test.m */; };
 		77052A3018347643000C2BDF /* UIViewController+ZBUtilites.m in Sources */ = {isa = PBXBuildFile; fileRef = 77052A2F18347643000C2BDF /* UIViewController+ZBUtilites.m */; };
-		77052A331834798B000C2BDF /* FDEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77052A321834798B000C2BDF /* FDEditCell.m */; };
+		77052A331834798B000C2BDF /* FDLabelEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77052A321834798B000C2BDF /* FDLabelEditCell.m */; };
 		77052A361834B150000C2BDF /* FDUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77052A351834B150000C2BDF /* FDUserCell.m */; };
 		770561C718498822007608D3 /* FDProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770561C618498822007608D3 /* FDProfileViewController.m */; };
 		770561CA1849A4F5007608D3 /* FDStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770561C91849A4F5007608D3 /* FDStoreViewController.m */; };
@@ -118,8 +118,8 @@
 		77042966181765D50087F7BF /* FDComment+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FDComment+Test.m"; path = "Test/FDComment+Test.m"; sourceTree = "<group>"; };
 		77052A2E18347643000C2BDF /* UIViewController+ZBUtilites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZBUtilites.h"; sourceTree = "<group>"; };
 		77052A2F18347643000C2BDF /* UIViewController+ZBUtilites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZBUtilites.m"; sourceTree = "<group>"; };
-		77052A311834798B000C2BDF /* FDEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDEditCell.h; path = find/FDEditCell.h; sourceTree = "<group>"; };
-		77052A321834798B000C2BDF /* FDEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDEditCell.m; path = find/FDEditCell.m; sourceTree = "<group>"; };
+		77052A311834798B000C2BDF /* FDLabelEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDLabelEditCell.h; path = find/FDLabelEditCell.h; sourceTree = "<group>"; };
+		77052A321834798B000C2BDF /* FDLabelEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDLabelEditCell.m; path = find/FDLabelEditCell.m; sourceTree = "<group>"; };
 		77052A341834B150000C2BDF /* FDUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDUserCell.h; path = find/FDUserCell.h; sourceTree = "<group>"; };
 		77052A351834B150000C2BDF /* FDUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDUserCell.m; path = find/FDUserCell.m; sourceTree = "<group>"; };
 		770561C518498822007608D3 /* FDProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDProfileViewController.h; sourceTree = "<group>"; };
@@ -582,8 +582,8 @@
 			children = (
 				77A977D7183F19A500678361 /* FDCameraFlashButton.h */,
 				77A977D8183F19A500678361 /* FDCameraFlashButton.m */,
-				77052A311834798B000C2BDF /* FDEditCell.h */,
-				77052A321834798B000C2BDF /* FDEditCell.m */,
+				77052A311834798B000C2BDF /* FDLabelEditCell.h */,
+				77052A321834798B000C2BDF /* FDLabelEditCell.m */,
 				77764B291831FEEA0057F8B9 /* FDEditSignatureCell.h */,
 				77764B2A1831FEEA0057F8B9 /* FDEditSignatureCell.m */,
 				77A4AF2918288E1C00B7D65B /* FDVoteCell.h */,
@@ -860,7 +860,7 @@
 				77338E7F18090184006DEC3D /* FDErrorMessage.m in Sources */,
 				77C0C96717D198F6008C7FC7 /* FDPhoto.m in Sources */,
 				77C0C96417D18D7C008C7FC7 /* FDPhotoCell.m in Sources */,
-				77052A331834798B000C2BDF /* FDEditCell.m in Sources */,
+				77052A331834798B000C2BDF /* FDLabelEditCell.m in Sources */,
 				77C0242D17F3FB46009634CA /* FDAvatarView.m in Sources */,
 				7786716517E35A98001FDB67 /* UIColor+Hex.m in Sources */,
 				772B3D42182F92B9004B1653 /* UITableViewCell+Find.m in Sources */,

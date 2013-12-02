@@ -1,5 +1,5 @@
 //
-//  FDEditCell.h
+//  FDLabelEditCell.h
 //  find
 //
 //  Created by zhangbin on 11/14/13.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FDEditCell : UITableViewCell
+@interface FDLabelEditCell : UITableViewCell
 
 @property (nonatomic, weak) id<UITextFieldDelegate, UITextViewDelegate> delegate;
 @property (nonatomic, strong) UITextField *textField;

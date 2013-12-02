@@ -1,20 +1,20 @@
 //
-//  FDEditCell.m
+//  FDLabelEditCell.m
 //  find
 //
 //  Created by zhangbin on 11/14/13.
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "FDEditCell.h"
+#import "FDLabelEditCell.h"
 
 static NSInteger margin = 10;
 
-@interface FDEditCell ()
+@interface FDLabelEditCell ()
 
 @end
 
-@implementation FDEditCell
+@implementation FDLabelEditCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

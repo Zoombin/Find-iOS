@@ -7,7 +7,7 @@
 //
 
 #import "FDEditPropertyViewController.h"
-#import "FDEditCell.h"
+#import "FDLabelEditCell.h"
 #import "FDEditSignatureCell.h"
 
 @interface FDEditPropertyViewController () <UITextViewDelegate, UITextFieldDelegate>
@@ -95,7 +95,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    FDEditCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    FDLabelEditCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (!cell) {
 		cell = [[_cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 		cell.delegate = self;
