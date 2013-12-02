@@ -13,7 +13,7 @@
 #import "FDSettingsViewController.h"
 #import "FDAvatarView.h"
 
-NSString *kMyProfiles = @"kMyProfiles";
+NSString *kMyProfile = @"kMyProfile";
 NSString *kMyAlbum = @"kMyAlbum";
 NSString *kMyPorperties = @"kMyPorperties";
 NSString *kMyInterests = @"kMyInterests";
@@ -64,7 +64,7 @@ NSString *kSettings = @"kSettings";
 	NSArray *sectionData;
 	
 	sectionData = @[
-				  @{kIdentifier : kMyProfiles, kTitle : NSLocalizedString(@"My Profiles", nil), kHeightOfCell : @(90), kPushTargetClass : NSStringFromClass([FDProfileViewController class])},
+				  @{kIdentifier : kMyProfile, kTitle : NSLocalizedString(@"My Profile", nil), kHeightOfCell : @(90), kPushTargetClass : NSStringFromClass([FDProfileViewController class])},
 					];
 	_dataSourceDictionary[@(section)] = sectionData;
 	section++;
@@ -180,7 +180,7 @@ NSString *kSettings = @"kSettings";
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
 	
-	if ([identifier isEqualToString:kMyProfiles]) {
+	if ([identifier isEqualToString:kMyProfile]) {
 		CGRect frame = _avatarView.frame;
 		frame.origin.x = cell.indentationWidth;
 		frame.origin.y = (cell.bounds.size.height - _avatarView.bounds.size.height) / 2;

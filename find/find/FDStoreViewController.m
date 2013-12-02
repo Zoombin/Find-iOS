@@ -83,7 +83,7 @@
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
 //	
-//	if ([identifier isEqualToString:kMyProfiles]) {
+//	if ([identifier isEqualToString:kMyProfile]) {
 //		CGRect frame = _avatarView.frame;
 //		frame.origin.x = cell.indentationWidth;
 //		frame.origin.y = (cell.bounds.size.height - _avatarView.bounds.size.height) / 2;
