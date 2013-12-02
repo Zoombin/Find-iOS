@@ -8,8 +8,6 @@
 
 #import "FDTextViewEditCell.h"
 
-static NSInteger margin = 10;
-
 @interface FDTextViewEditCell ()
 
 @property (readwrite) UITextView *textView;
@@ -24,9 +22,7 @@ static NSInteger margin = 10;
     if (self) {
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
 		
-		[self.textField removeFromSuperview];
-		
-		_textView = [[UITextView alloc] initWithFrame:CGRectMake(margin, 0, self.bounds.size.width - 2 * margin, [[self class] height])];
+		_textView = [[UITextView alloc] initWithFrame:CGRectMake(self.indentationWidth, 0, self.bounds.size.width - 2 * self.indentationWidth, [[self class] height])];
 		//_textView.backgroundColor = [UIColor randomColor];
 		_textView.returnKeyType = UIReturnKeyDone;
 		_textView.font = [UIFont fdThemeFontOfSize:13];
@@ -51,7 +47,7 @@ static NSInteger margin = 10;
 {
 	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 30)];
 	label.numberOfLines = 0;
-	label.text = text;//NSLocalizedString(@"Please input your signature!", nil);
+	label.text = text;
 	label.font = [UIFont fdThemeFontOfSize:13];
 	label.textAlignment = NSTextAlignmentCenter;
 	label.backgroundColor = [UIColor randomColor];

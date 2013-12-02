@@ -7,17 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FDEditCell.h"
 
-@interface FDLabelEditCell : UITableViewCell
-
-@property (nonatomic, weak) id<UITextFieldDelegate, UITextViewDelegate> delegate;
-@property (nonatomic, strong) UITextField *textField;
-@property (nonatomic, strong) NSString *content;
-
-- (UIView *)footerWithText:(NSString *)text;
-- (void)becomeFirstResponder;
-+ (CGFloat)height;
-+ (CGFloat)heightOfFooter;
-+ (NSInteger)numberOfRows;
+@interface FDLabelEditCell : FDEditCell
 
 @end

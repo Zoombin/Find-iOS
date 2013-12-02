@@ -8,9 +8,9 @@
 
 #import "FDLabelEditCell.h"
 
-static NSInteger margin = 10;
-
 @interface FDLabelEditCell ()
+
+@property (nonatomic, strong) UITextField *textField;
 
 @end
 
@@ -20,7 +20,7 @@ static NSInteger margin = 10;
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        _textField = [[UITextField alloc] initWithFrame:CGRectMake(margin, 0, self.bounds.size.width - 2 * margin, [[self class] height])];
+        _textField = [[UITextField alloc] initWithFrame:CGRectMake(self.indentationWidth, 0, self.bounds.size.width - 2 * self.indentationWidth, [[self class] height])];
 		//_textField.backgroundColor = [UIColor randomColor];
 		_textField.returnKeyType = UIReturnKeyDone;
 		[self.contentView addSubview:_textField];

@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FDLabelEditCell.h"
+#import "FDEditCell.h"
 
-@interface FDTextViewEditCell : FDLabelEditCell
+@interface FDTextViewEditCell : FDEditCell
 
 @end
