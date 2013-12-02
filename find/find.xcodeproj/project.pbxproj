@@ -26,7 +26,7 @@
 		7734ACE917D8A6C1003E7BB6 /* FDPhotoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACE817D8A6C1003E7BB6 /* FDPhotoInfo.m */; };
 		774628CF183CA0530088BD61 /* FDInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 774628CE183CA0530088BD61 /* FDInformation.m */; };
 		77764B221831EFA20057F8B9 /* FDEditPropertyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764B211831EFA20057F8B9 /* FDEditPropertyViewController.m */; };
-		77764B2B1831FEEA0057F8B9 /* FDEditSignatureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764B2A1831FEEA0057F8B9 /* FDEditSignatureCell.m */; };
+		77764B2B1831FEEA0057F8B9 /* FDTextViewEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764B2A1831FEEA0057F8B9 /* FDTextViewEditCell.m */; };
 		777E5E1E17D97A98005AFB67 /* FDThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 777E5E1D17D97A98005AFB67 /* FDThemeCell.m */; };
 		777E5EE817D9BBDA005AFB67 /* FDThemeItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */; };
 		7786715D17E35A98001FDB67 /* CLLocation+NSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786714317E35A98001FDB67 /* CLLocation+NSDictionary.m */; };
@@ -147,8 +147,8 @@
 		774628CE183CA0530088BD61 /* FDInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDInformation.m; path = find/FDInformation.m; sourceTree = "<group>"; };
 		77764B201831EFA20057F8B9 /* FDEditPropertyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDEditPropertyViewController.h; sourceTree = "<group>"; };
 		77764B211831EFA20057F8B9 /* FDEditPropertyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDEditPropertyViewController.m; sourceTree = "<group>"; };
-		77764B291831FEEA0057F8B9 /* FDEditSignatureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDEditSignatureCell.h; path = find/FDEditSignatureCell.h; sourceTree = "<group>"; };
-		77764B2A1831FEEA0057F8B9 /* FDEditSignatureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDEditSignatureCell.m; path = find/FDEditSignatureCell.m; sourceTree = "<group>"; };
+		77764B291831FEEA0057F8B9 /* FDTextViewEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDTextViewEditCell.h; path = find/FDTextViewEditCell.h; sourceTree = "<group>"; };
+		77764B2A1831FEEA0057F8B9 /* FDTextViewEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDTextViewEditCell.m; path = find/FDTextViewEditCell.m; sourceTree = "<group>"; };
 		777E5E1C17D97A98005AFB67 /* FDThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeCell.h; path = find/FDThemeCell.h; sourceTree = "<group>"; };
 		777E5E1D17D97A98005AFB67 /* FDThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDThemeCell.m; path = find/FDThemeCell.m; sourceTree = "<group>"; };
 		777E5EE617D9BBDA005AFB67 /* FDThemeItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeItemView.h; path = find/FDThemeItemView.h; sourceTree = "<group>"; };
@@ -584,8 +584,8 @@
 				77A977D8183F19A500678361 /* FDCameraFlashButton.m */,
 				77052A311834798B000C2BDF /* FDLabelEditCell.h */,
 				77052A321834798B000C2BDF /* FDLabelEditCell.m */,
-				77764B291831FEEA0057F8B9 /* FDEditSignatureCell.h */,
-				77764B2A1831FEEA0057F8B9 /* FDEditSignatureCell.m */,
+				77764B291831FEEA0057F8B9 /* FDTextViewEditCell.h */,
+				77764B2A1831FEEA0057F8B9 /* FDTextViewEditCell.m */,
 				77A4AF2918288E1C00B7D65B /* FDVoteCell.h */,
 				77A4AF2A18288E1C00B7D65B /* FDVoteCell.m */,
 				77EC53D8182B45990042B7B3 /* FDShareAndGiftsCell.h */,
@@ -855,7 +855,7 @@
 				77CB749518235FB800063B88 /* NSString+Qiniu.m in Sources */,
 				77F88986180B875300D6A45D /* UIFont+Find.m in Sources */,
 				7786716217E35A98001FDB67 /* NSString+ZBUtilites.m in Sources */,
-				77764B2B1831FEEA0057F8B9 /* FDEditSignatureCell.m in Sources */,
+				77764B2B1831FEEA0057F8B9 /* FDTextViewEditCell.m in Sources */,
 				77C0C8D917CDDBA8008C7FC7 /* GTMBase64.m in Sources */,
 				77338E7F18090184006DEC3D /* FDErrorMessage.m in Sources */,
 				77C0C96717D198F6008C7FC7 /* FDPhoto.m in Sources */,

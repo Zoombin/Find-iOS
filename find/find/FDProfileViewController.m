@@ -10,7 +10,7 @@
 #import "FDSignupViewController.h"
 #import "FDEditPropertyViewController.h"
 #import "FDLabelEditCell.h"
-#import "FDEditSignatureCell.h"
+#import "FDTextViewEditCell.h"
 #import "FDSettingsViewController.h"
 #import "FDAvatarView.h"
 
@@ -248,7 +248,7 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 		editPropertyViewController.footerText = NSLocalizedString(@"Place input your nickname", nil);
 		editPropertyViewController.title = NSLocalizedString(@"Nickname", nil);
 	} else if ([identifier isEqualToString:kProfileSignature]) {
-		editPropertyViewController.cellClass = [FDEditSignatureCell class];
+		editPropertyViewController.cellClass = [FDTextViewEditCell class];
 		editPropertyViewController.content = _userProfile.signature;
 		editPropertyViewController.footerText = NSLocalizedString(@"Place input your signature", nil);
 		editPropertyViewController.title = NSLocalizedString(@"Signature", nil);

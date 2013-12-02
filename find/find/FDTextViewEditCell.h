@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "FDLabelEditCell.h"
 
-@interface FDEditSignatureCell : FDLabelEditCell
+@interface FDTextViewEditCell : FDLabelEditCell
 
 @end

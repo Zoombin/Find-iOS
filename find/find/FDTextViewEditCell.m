@@ -6,17 +6,17 @@
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "FDEditSignatureCell.h"
+#import "FDTextViewEditCell.h"
 
 static NSInteger margin = 10;
 
-@interface FDEditSignatureCell ()
+@interface FDTextViewEditCell ()
 
 @property (readwrite) UITextView *textView;
 
 @end
 
-@implementation FDEditSignatureCell
+@implementation FDTextViewEditCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

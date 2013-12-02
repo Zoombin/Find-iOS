@@ -8,7 +8,7 @@
 
 #import "FDEditPropertyViewController.h"
 #import "FDLabelEditCell.h"
-#import "FDEditSignatureCell.h"
+#import "FDTextViewEditCell.h"
 
 @interface FDEditPropertyViewController () <UITextViewDelegate, UITextFieldDelegate>
 
