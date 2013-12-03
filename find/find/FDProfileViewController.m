@@ -13,6 +13,7 @@
 #import "FDTextViewEditCell.h"
 #import "FDSettingsViewController.h"
 #import "FDAvatarView.h"
+#import "FDMeCell.h"
 
 static NSString *numberOfPickerComponents = @"numberOfPickerComponents";
 static NSString *numberOfPickerRows = @"numberOfPickerRows";
@@ -74,7 +75,7 @@ static NSInteger tagOfPrivacyLabel = 'priv';
 	NSArray *sectionData;
 	
 	sectionData = @[
-				  @{kIdentifier : kProfileAvatar, kIcon : @"MoreMyAlbum", kTitle : NSLocalizedString(@"Avatar", nil), kAction : NSStringFromSelector(@selector(editAvatar)), kHeightOfCell : @(90)},
+				  @{kIdentifier : kProfileAvatar, kIcon : @"MoreMyAlbum", kTitle : NSLocalizedString(@"Avatar", nil), kAction : NSStringFromSelector(@selector(editAvatar)), kHeightOfCell : @([FDMeCell height])},
 				  
 				  @{kIdentifier : kProfileNickname, kIcon : @"MoreMyFavorites", kTitle : NSLocalizedString(@"Nickname", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
 				  

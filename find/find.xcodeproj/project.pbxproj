@@ -28,6 +28,7 @@
 		77764B221831EFA20057F8B9 /* FDEditPropertyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764B211831EFA20057F8B9 /* FDEditPropertyViewController.m */; };
 		77764B2B1831FEEA0057F8B9 /* FDTextViewEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764B2A1831FEEA0057F8B9 /* FDTextViewEditCell.m */; };
 		777A6924184C3A1500B903C1 /* FDEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 777A6923184C3A1500B903C1 /* FDEditCell.m */; };
+		777A6927184D761000B903C1 /* FDMeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 777A6926184D761000B903C1 /* FDMeCell.m */; };
 		777E5E1E17D97A98005AFB67 /* FDThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 777E5E1D17D97A98005AFB67 /* FDThemeCell.m */; };
 		777E5EE817D9BBDA005AFB67 /* FDThemeItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */; };
 		7786715D17E35A98001FDB67 /* CLLocation+NSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786714317E35A98001FDB67 /* CLLocation+NSDictionary.m */; };
@@ -152,6 +153,8 @@
 		77764B2A1831FEEA0057F8B9 /* FDTextViewEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDTextViewEditCell.m; path = find/FDTextViewEditCell.m; sourceTree = "<group>"; };
 		777A6922184C3A1500B903C1 /* FDEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDEditCell.h; path = find/FDEditCell.h; sourceTree = "<group>"; };
 		777A6923184C3A1500B903C1 /* FDEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDEditCell.m; path = find/FDEditCell.m; sourceTree = "<group>"; };
+		777A6925184D761000B903C1 /* FDMeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDMeCell.h; path = find/FDMeCell.h; sourceTree = "<group>"; };
+		777A6926184D761000B903C1 /* FDMeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDMeCell.m; path = find/FDMeCell.m; sourceTree = "<group>"; };
 		777E5E1C17D97A98005AFB67 /* FDThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeCell.h; path = find/FDThemeCell.h; sourceTree = "<group>"; };
 		777E5E1D17D97A98005AFB67 /* FDThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDThemeCell.m; path = find/FDThemeCell.m; sourceTree = "<group>"; };
 		777E5EE617D9BBDA005AFB67 /* FDThemeItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeItemView.h; path = find/FDThemeItemView.h; sourceTree = "<group>"; };
@@ -552,6 +555,8 @@
 		77DA107117E97F3D001F44DF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				777A6925184D761000B903C1 /* FDMeCell.h */,
+				777A6926184D761000B903C1 /* FDMeCell.m */,
 				774628CD183CA0530088BD61 /* FDInformation.h */,
 				774628CE183CA0530088BD61 /* FDInformation.m */,
 				7798B3261844979400CCA964 /* FDAddress.h */,
@@ -836,6 +841,7 @@
 				77DA107A17E97FA9001F44DF /* FDComment.m in Sources */,
 				7786716817E35A98001FDB67 /* UIViewController+HUD.m in Sources */,
 				778671C317E806BF001FDB67 /* FDLikesView.m in Sources */,
+				777A6927184D761000B903C1 /* FDMeCell.m in Sources */,
 				778FC5391835F4AF00F487FB /* FDMessagesViewController.m in Sources */,
 				7734ACE917D8A6C1003E7BB6 /* FDPhotoInfo.m in Sources */,
 				777A6924184C3A1500B903C1 /* FDEditCell.m in Sources */,

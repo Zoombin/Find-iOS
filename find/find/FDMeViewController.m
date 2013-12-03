@@ -11,7 +11,7 @@
 #import "FDProfileViewController.h"
 #import "FDStoreViewController.h"
 #import "FDSettingsViewController.h"
-#import "FDAvatarView.h"
+#import "FDMeCell.h"
 
 NSString *kMyProfile = @"kMyProfile";
 NSString *kMyAlbum = @"kMyAlbum";
@@ -26,7 +26,6 @@ NSString *kSettings = @"kSettings";
 @property (readwrite) FDUserProfile *userProfile;
 @property (readwrite) UITableView *tableView;
 @property (readwrite) NSMutableDictionary *dataSourceDictionary;
-@property (readwrite) FDAvatarView *avatarView;
 
 @end
 
@@ -64,7 +63,7 @@ NSString *kSettings = @"kSettings";
 	NSArray *sectionData;
 	
 	sectionData = @[
-				  @{kIdentifier : kMyProfile, kTitle : NSLocalizedString(@"My Profile", nil), kHeightOfCell : @(90), kPushTargetClass : NSStringFromClass([FDProfileViewController class])},
+				  @{kIdentifier : kMyProfile, kTitle : NSLocalizedString(@"My Profile", nil), kHeightOfCell : @([FDMeCell height]), kPushTargetClass : NSStringFromClass([FDProfileViewController class])},
 					];
 	_dataSourceDictionary[@(section)] = sectionData;
 	section++;
@@ -93,8 +92,6 @@ NSString *kSettings = @"kSettings";
 	_dataSourceDictionary[@(section)] = sectionData;
 	section++;
 	
-	_avatarView = [[FDAvatarView alloc] init];
-	
 	[self displayHUD:NSLocalizedString(@"Loading...", nil)];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchProfileThenReloadTableView) name:ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
@@ -106,11 +103,6 @@ NSString *kSettings = @"kSettings";
 	
 	[self fetchProfile:^{
 		[self hideHUD:YES];
-		
-		if (_userProfile.avatarPath) {
-			_avatarView.imagePath = _userProfile.avatarPath;
-		}
-		
 		[_tableView reloadData];
 	}];
 	
@@ -175,18 +167,17 @@ NSString *kSettings = @"kSettings";
 	NSString *identifier = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kIdentifier];
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 	if (!cell) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+		if ([identifier isEqualToString:kMyProfile]) {
+			cell = [[FDMeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+		} else {
+			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+		}
 		cell.selectionStyle = UITableViewCellSelectionStyleDefault;
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
 	
 	if ([identifier isEqualToString:kMyProfile]) {
-		CGRect frame = _avatarView.frame;
-		frame.origin.x = cell.indentationWidth;
-		frame.origin.y = (cell.bounds.size.height - _avatarView.bounds.size.height) / 2;
-		frame.size = [FDAvatarView bigSize];
-		_avatarView.frame = frame;
-		[cell.contentView addSubview:_avatarView];
+		((FDMeCell *)cell).profile = _userProfile;
 	}
 		
 	NSString *iconName = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kIcon];
