@@ -19,6 +19,7 @@ static NSInteger sectionOfUser = 1;
 @property (readwrite) UISegmentedControl *segmentedControl;
 @property (readwrite) UISearchBar *searchBar;
 @property (readwrite) NSArray *candidates;
+@property (readwrite) NSInteger numberOfSections;
 
 @end
 
@@ -83,6 +84,14 @@ static NSInteger sectionOfUser = 1;
 	[[FDAFHTTPClient shared] editProfile:@{key : @(index)} withCompletionBlock:^(BOOL success, NSString *message) {
 		if (success) {
 			[[NSNotificationCenter defaultCenter] postNotificationName:ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
+			if (index == FDInformationLevelPartly) {
+				_numberOfSections = 2;
+				_searchBar.hidden = NO;
+			} else {
+				_numberOfSections = 1;
+				_searchBar.hidden = YES;
+			}
+			[self.tableView reloadData];
 		} else {
 			[self displayHUDTitle:nil message:message];
 		}
@@ -91,6 +100,8 @@ static NSInteger sectionOfUser = 1;
 
 - (void)setPrivacyInfo:(FDInformation *)privacyInfo
 {
+	_numberOfSections = [privacyInfo isPartly] ? 2 : 1;
+	_searchBar.hidden = [privacyInfo isPartly] ? NO : YES;
 	if (_privacyInfo == privacyInfo) return;
 	_privacyInfo = privacyInfo;
 	
@@ -122,8 +133,7 @@ static NSInteger sectionOfUser = 1;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	if (_privacyInfo) return 2;
-	return 1;
+	return _numberOfSections;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -272,7 +282,7 @@ static NSInteger sectionOfUser = 1;
 	//TODO: should search now
 	[self displayHUD:NSLocalizedString(@"Searching", nil)];
 	[[FDAFHTTPClient shared] themeListWithCompletionBlock:^(BOOL success, NSString *message, NSArray *themesData) {
-		_candidates = [FDUser createTest:3];
+		_candidates = [FDUser createTest:30];
 		[self hideHUD:YES];
 		[self.tableView reloadData];
 	}];
