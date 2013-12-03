@@ -54,7 +54,7 @@ static NSString *address = @"address";
 - (BOOL)isPublic
 {
 	if (_privacy) {
-		return _privacy.integerValue == 0;
+		return _privacy.integerValue == FDInformationLevelPublic;
 	}
 	return NO;
 }
@@ -62,7 +62,7 @@ static NSString *address = @"address";
 - (BOOL)isPartly
 {
 	if (_privacy) {
-		return _privacy.integerValue == 1;
+		return _privacy.integerValue == FDInformationLevelPartly;
 	}
 	return NO;
 }
@@ -72,7 +72,7 @@ static NSString *address = @"address";
 	if (!_privacy) {
 		return YES;//默认是私密的
 	} else {
-		return _privacy.integerValue == 2;
+		return _privacy.integerValue == FDInformationLevelPrivate;
 	}
 }
 

@@ -15,6 +15,11 @@ typedef NS_ENUM(NSUInteger, FDInformationType) {
 	FDInformationTypeAddress
 };
 
+typedef NS_ENUM(NSInteger, FDInformationLevel) {//和服务器对应public是0
+	FDInformationLevelPublic,
+	FDInformationLevelPartly,
+	FDInformationLevelPrivate
+};
 
 @interface FDInformation : NSObject
 
