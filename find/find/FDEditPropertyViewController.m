@@ -53,7 +53,7 @@ static NSInteger sectionOfUser = 1;
 	_segmentedControl.frame = CGRectMake(0, 0, 180, 30);
 	_segmentedControl.tintColor = [UIColor whiteColor];
 	_segmentedControl.apportionsSegmentWidthsByContent = YES;
-	[_segmentedControl addTarget:self action:@selector(privacyChanged:) forControlEvents:UIControlEventValueChanged];
+	[_segmentedControl addTarget:self action:@selector(privacyLevelChanged:) forControlEvents:UIControlEventValueChanged];
 	
 	_searchBar = [[UISearchBar alloc] init];
 	_searchBar.showsCancelButton = YES;
@@ -76,9 +76,17 @@ static NSInteger sectionOfUser = 1;
 	}
 }
 
-- (void)privacyChanged:(id)sender
+- (void)privacyLevelChanged:(id)sender
 {
-	
+	NSInteger index = _segmentedControl.selectedSegmentIndex;
+	NSString *key = [NSString stringWithFormat:@"userprivacy-%@", _identifier];
+	[[FDAFHTTPClient shared] editProfile:@{key : @(index)} withCompletionBlock:^(BOOL success, NSString *message) {
+		if (success) {
+			[[NSNotificationCenter defaultCenter] postNotificationName:ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
+		} else {
+			[self displayHUDTitle:nil message:message];
+		}
+	}];
 }
 
 - (void)setPrivacyInfo:(FDInformation *)privacyInfo
