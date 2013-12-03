@@ -41,6 +41,12 @@ static NSString *token;
 	return _instance;
 }
 
+- (BOOL)isSessionValid
+{
+	return YES;//TODO: force valid, need delete this code
+	return (token != nil);
+}
+
 - (void)saveToken:(NSString *)aToken
 {
 	if ([token isEqualToString:aToken]) return;
@@ -91,6 +97,11 @@ static NSString *token;
 		userID = @(1);
 	}
 	return userID;
+}
+
+- (void)signout
+{
+	token = nil;
 }
 
 - (void)printResponseObject:(id)responseObject

@@ -72,7 +72,10 @@
 #define kIcon @"kIcon"
 #define kTitle @"kTitle"
 #define kAction @"kAction"
+#define kCellClass @"kCellClass"
 #define kPushTargetClass @"kPushTargetClass"
+#define kNeedSigninAlert @"kNeedSigninAlert"
+#define kPresentTargetClass @"kPresentTargetClass"
 #define kHeightOfCell @"kHeightOfCell"
 
 //TEST

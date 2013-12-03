@@ -20,6 +20,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.view.backgroundColor = [UIColor grayColor];
+		self.title = NSLocalizedString(@"Signup", nil);
+		
+		[self setLeftBarButtonItemAsBackButton];
     }
     return self;
 }
@@ -33,8 +36,9 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	FDSigninViewController *signinViewController = [[FDSigninViewController alloc] init];
-	[self.navigationController pushViewController:signinViewController animated:YES];
+	
+//	FDSigninViewController *signinViewController = [[FDSigninViewController alloc] init];
+//	[self.navigationController pushViewController:signinViewController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

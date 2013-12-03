@@ -12,6 +12,7 @@
 #import "FDStoreViewController.h"
 #import "FDSettingsViewController.h"
 #import "FDMeCell.h"
+#import "FDSessionInvalidCell.h"
 
 NSString *kMyProfile = @"kMyProfile";
 NSString *kMyAlbum = @"kMyAlbum";
@@ -62,20 +63,26 @@ NSString *kSettings = @"kSettings";
 	NSInteger section = 0;
 	NSArray *sectionData;
 	
-	sectionData = @[
-				  @{kIdentifier : kMyProfile, kTitle : NSLocalizedString(@"My Profile", nil), kHeightOfCell : @([FDMeCell height]), kPushTargetClass : NSStringFromClass([FDProfileViewController class])},
-					];
+	if ([[FDAFHTTPClient shared] isSessionValid]) {
+		sectionData = @[
+						@{kIdentifier : kMyProfile, kCellClass : [FDMeCell class], kTitle : NSLocalizedString(@"My Profile", nil), kHeightOfCell : @([FDMeCell height]), kPushTargetClass : NSStringFromClass([FDProfileViewController class])},
+						];
+	} else {
+		sectionData = @[
+						@{kIdentifier : kMyProfile, kCellClass : [FDSessionInvalidCell class], kHeightOfCell : @([FDSessionInvalidCell height]), kPresentTargetClass : NSStringFromClass([FDSignupViewController class])},
+						];
+	}
 	_dataSourceDictionary[@(section)] = sectionData;
 	section++;
 	
 	sectionData = @[
-				  @{kIdentifier : kMyAlbum, kIcon : @"MoreMyAlbum", kTitle : NSLocalizedString(@"My Album", nil)},
+					@{kIdentifier : kMyAlbum, kIcon : @"MoreMyAlbum", kTitle : NSLocalizedString(@"My Album", nil), kNeedSigninAlert : @(YES)},
 					
-				  @{kIdentifier : kMyPorperties, kIcon : @"MoreMyBankCard", kTitle : NSLocalizedString(@"My Properties", nil)},
+					@{kIdentifier : kMyPorperties, kIcon : @"MoreMyBankCard", kTitle : NSLocalizedString(@"My Properties", nil), kNeedSigninAlert : @(YES)},
 					
-				  @{kIdentifier : kMyInterests, kIcon : @"MoreExpressionShops", kTitle : NSLocalizedString(@"My Interests", nil)},
+					@{kIdentifier : kMyInterests, kIcon : @"MoreExpressionShops", kTitle : NSLocalizedString(@"My Interests", nil), kNeedSigninAlert : @(YES)},
 					
-				  @{kIdentifier : kMyMessages, kIcon : @"MoreMyFavorites", kTitle : NSLocalizedString(@"My Messages", nil)},
+					@{kIdentifier : kMyMessages, kIcon : @"MoreMyFavorites", kTitle : NSLocalizedString(@"My Messages", nil), kNeedSigninAlert : @(YES)},
 				  ];
 	_dataSourceDictionary[@(section)] = sectionData;
 	section++;
@@ -105,12 +112,6 @@ NSString *kSettings = @"kSettings";
 		[self hideHUD:YES];
 		[_tableView reloadData];
 	}];
-	
-//	BOOL bSigninValid = NO;
-//	if (!bSigninValid) {
-//		FDSignupViewController *signupViewController = [[FDSignupViewController alloc] init];
-//		[self.navigationController pushViewController:signupViewController animated:YES];
-//	}
 }
 
 - (void)fetchProfileThenReloadTableView
@@ -168,16 +169,24 @@ NSString *kSettings = @"kSettings";
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 	if (!cell) {
 		if ([identifier isEqualToString:kMyProfile]) {
-			cell = [[FDMeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+			if ([[FDAFHTTPClient shared] isSessionValid]) {
+				cell = (FDMeCell *)[[FDMeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+				cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			} else {
+				cell = (FDSessionInvalidCell *)[[FDSessionInvalidCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+				cell.accessoryType = UITableViewCellAccessoryNone;
+			}
 		} else {
 			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		}
 		cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
 	
 	if ([identifier isEqualToString:kMyProfile]) {
-		((FDMeCell *)cell).profile = _userProfile;
+		if ([[FDAFHTTPClient shared] isSessionValid]) {
+			((FDMeCell *)cell).profile = _userProfile;
+		}
 	}
 		
 	NSString *iconName = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kIcon];
@@ -202,11 +211,27 @@ NSString *kSettings = @"kSettings";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
+	NSNumber *needSigninAlert = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kNeedSigninAlert];
+	if (needSigninAlert.boolValue && ![[FDAFHTTPClient shared] isSessionValid]) {
+		[self displayHUDTitle:NSLocalizedString(@"Need Signin", nil) message:NSLocalizedString(@"You have to signin first!", nil)];
+		return;
+	}
+	
 	Class class = NSClassFromString(_dataSourceDictionary[@(indexPath.section)][indexPath.row][kPushTargetClass]);
 	if (class) {
 		UIViewController *viewController = [[class alloc] init];
 		viewController.hidesBottomBarWhenPushed = YES;
 		[self.navigationController pushViewController:viewController animated:YES];
+		return;
+	}
+	
+	class = NSClassFromString(_dataSourceDictionary[@(indexPath.section)][indexPath.row][kPresentTargetClass]);
+	if (class) {
+		UIViewController *viewController = [[class alloc] init];
+		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+		[self.navigationController presentViewController:navigationController animated:YES completion:nil];
+		return;
 	}
 }
 

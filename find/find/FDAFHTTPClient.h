@@ -13,8 +13,10 @@
 
 +(instancetype)shared;
 
+- (BOOL)isSessionValid;
 - (NSString *)account;
 - (NSNumber *)userID;
+- (void)signout;
 
 - (void)infoOfPhoto:(NSString *)photoInfoUrlString completionBlockWithSuccess:(void (^)(NSDictionary *infoAttributes))success;
 
