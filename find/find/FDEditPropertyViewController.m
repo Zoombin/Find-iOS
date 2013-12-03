@@ -10,16 +10,20 @@
 #import "FDLabelEditCell.h"
 #import "FDTextViewEditCell.h"
 #import "FDUserCell.h"
+#import "FDWebViewController.h"
 
 static NSInteger sectionOfEdit = 0;
 static NSInteger sectionOfUser = 1;
+static NSInteger indexOfAlertOK = 0;
+static NSInteger indexOfAlertDetails = 1;
 
-@interface FDEditPropertyViewController () <UITextViewDelegate, UITextFieldDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
+@interface FDEditPropertyViewController () <UITextViewDelegate, UITextFieldDelegate, UISearchBarDelegate, UISearchDisplayDelegate, CLLocationManagerDelegate, UIAlertViewDelegate>
 
 @property (readwrite) UISegmentedControl *segmentedControl;
 @property (readwrite) UISearchBar *searchBar;
 @property (readwrite) NSArray *candidates;
 @property (readwrite) NSInteger numberOfSections;
+@property (readwrite) CLLocationManager *locationManager;
 
 @end
 
@@ -74,6 +78,13 @@ static NSInteger sectionOfUser = 1;
 		}
 		_segmentedControl.selectedSegmentIndex = index;
 		self.navigationItem.titleView = _segmentedControl;
+
+		if (_privacyInfo.type == FDInformationTypeAddress) {
+			_locationManager = [[CLLocationManager alloc] init];
+			_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+			_locationManager.delegate = self;
+			[_locationManager startUpdatingLocation];
+		}
 	}
 }
 
@@ -282,5 +293,41 @@ static NSInteger sectionOfUser = 1;
 	}];
 }
 
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+	if (locations.count) {
+		NSLog(@"first location: %@", [locations[0] coordinateString]);
+	}
+}
+
+//ios6
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+	NSLog(@"newLocation: %@", [newLocation coordinateString]);
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    [manager stopUpdatingLocation];
+	
+	if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Location Service Is Not Available", nil) message:NSLocalizedString(@"You need open location service in Settings.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:NSLocalizedString(@"View Details", nil), nil];
+		alertView.delegate = self;
+		[alertView show];
+	}
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex == indexOfAlertDetails) {
+		FDWebViewController *webViewController = [[FDWebViewController alloc] init];
+		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
+		[self.navigationController presentViewController:navigationController animated:YES completion:nil];
+	}
+}
 
 @end
