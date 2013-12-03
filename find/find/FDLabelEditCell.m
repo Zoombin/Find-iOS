@@ -65,4 +65,9 @@
 	_textField.delegate = delegate;
 }
 
+- (void)setKeyboardType:(UIKeyboardType)keyboardType
+{
+	_textField.keyboardType = keyboardType;
+}
+
 @end

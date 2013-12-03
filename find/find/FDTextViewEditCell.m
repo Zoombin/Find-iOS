@@ -68,5 +68,9 @@
 	_textView.delegate = delegate;
 }
 
+- (void)setKeyboardType:(UIKeyboardType)keyboardType
+{
+	_textView.keyboardType = keyboardType;
+}
 
 @end

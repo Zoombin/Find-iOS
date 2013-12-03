@@ -264,12 +264,14 @@ static NSInteger tagOfPrivacyLabel = 'priv';
 		editPropertyViewController.privacyInfo = _userProfile.mobileInformation;
 		editPropertyViewController.footerText = NSLocalizedString(@"Place input your mobile", nil);
 		editPropertyViewController.title = NSLocalizedString(@"Mobile", nil);
+		editPropertyViewController.keyboardType = UIKeyboardTypeNumberPad;
 	} else if ([identifier isEqualToString:kProfileQQ] ) {
 		editPropertyViewController.cellClass = [FDLabelEditCell class];
 		editPropertyViewController.content = [_userProfile.qqInformation valueString];
 		editPropertyViewController.privacyInfo = _userProfile.qqInformation;
 		editPropertyViewController.footerText = NSLocalizedString(@"Place input your QQ", nil);
 		editPropertyViewController.title = NSLocalizedString(@"QQ", nil);
+		editPropertyViewController.keyboardType = UIKeyboardTypeNumberPad;
 	} else if ([identifier isEqualToString:kProfileWeixin]) {
 		editPropertyViewController.cellClass = [FDLabelEditCell class];
 		editPropertyViewController.content = [_userProfile.weixinInformation valueString];

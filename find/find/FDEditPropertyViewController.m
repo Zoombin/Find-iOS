@@ -96,15 +96,12 @@ static NSInteger sectionOfUser = 1;
 
 - (void)save
 {
-	NSLog(@"save");
-	
-	if (!_identifier) return;
-	
+	if (!_identifier) return;	
 	NSLog(@"will save %@: %@", _identifier, _content);
 	
-	NSString *stringWithoutNewline = [_content stringByReplacingOccurrencesOfString: @"\r" withString:@""];
-	stringWithoutNewline = [stringWithoutNewline stringByReplacingOccurrencesOfString: @"\n" withString:@""];
-	[[FDAFHTTPClient shared] editProfile:@{_identifier : stringWithoutNewline} withCompletionBlock:^(BOOL success, NSString *message) {
+	//NSString *stringWithoutNewline = [_content stringByReplacingOccurrencesOfString: @"\r" withString:@""];
+	//stringWithoutNewline = [stringWithoutNewline stringByReplacingOccurrencesOfString: @"\n" withString:@""];
+	[[FDAFHTTPClient shared] editProfile:@{_identifier : _content} withCompletionBlock:^(BOOL success, NSString *message) {
 		if (success) {
 			[self displayHUDTitle:NSLocalizedString(@"Updated", nil) message:nil];
 			[self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.0f];
@@ -150,6 +147,7 @@ static NSInteger sectionOfUser = 1;
 			cell = [[_cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[FDEditCell identifier]];
 			cell.delegate = self;
 			cell.content = _content;
+			cell.keyboardType = _keyboardType;
 			[cell becomeFirstResponder];
 		}
 		return cell;
@@ -200,9 +198,9 @@ static NSInteger sectionOfUser = 1;
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-	if (textView.text.length > 10) {
-		return NO;
-	}
+//	if (textView.text.length > 10) {
+//		return NO;
+//	}
 	return YES;
 }
 
@@ -217,14 +215,14 @@ static NSInteger sectionOfUser = 1;
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-	if (range.length == 0) {//表示不是删除后退键
-		if (textView.text.length >= 10) {
-			return NO;
-		}
-	}
-	if ([text isEqualToString:@"\r"] || [text isEqualToString:@"\n"] || [text isEqualToString:@"\r\n"] || [text isEqualToString:@"\n\r"]) {
-		return NO;
-	}
+//	if (range.length == 0) {//表示不是删除后退键
+//		if (textView.text.length >= 10) {
+//			return NO;
+//		}
+//	}
+//	if ([text isEqualToString:@"\r"] || [text isEqualToString:@"\n"] || [text isEqualToString:@"\r\n"] || [text isEqualToString:@"\n\r"]) {
+//		return NO;
+//	}
 	return YES;
 }
 
@@ -232,8 +230,24 @@ static NSInteger sectionOfUser = 1;
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-	[self setRightBarButtonItemAsSaveButtonWithSelector:@selector(save)];
+	return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+	//[self setRightBarButtonItemAsSaveButtonWithSelector:@selector(save)];
+	//_content = textField.text;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+	
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
 	_content = textField.text;
+	[self save];
 	return YES;
 }
 

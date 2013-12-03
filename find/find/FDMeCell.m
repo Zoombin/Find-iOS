@@ -93,6 +93,7 @@
 - (void)setProfile:(FDUserProfile *)profile
 {
 	_profile = profile;
+	if (!_profile) return;
 	[_avatar setImageWithURL:[NSURL URLWithString:_profile.avatarPath]];
 	_genderIcon.image = _profile.bFemale ? [UIImage imageNamed:@"IconFemale"] : [UIImage imageNamed:@"IconMale"];
 	_nicknameLabel.text = _profile.nickname;

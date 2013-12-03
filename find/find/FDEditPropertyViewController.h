@@ -16,5 +16,6 @@
 @property (nonatomic, strong) NSString *content;
 @property (nonatomic, strong) NSString *footerText;
 @property (nonatomic, strong) FDInformation *privacyInfo;
+@property (nonatomic, assign) UIKeyboardType keyboardType;
 
 @end
