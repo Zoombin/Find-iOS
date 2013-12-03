@@ -195,12 +195,6 @@ static NSInteger sectionOfUser = 1;
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-//	if (section == sectionOfEdit) {
-//		UIView *view = [[[_cellClass alloc] init] footerWithText:_footerText];
-//		UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
-//		[view addGestureRecognizer:tapGestureRecognizer];
-//		return view;
-//	}
 	return nil;
 }
 
