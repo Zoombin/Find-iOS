@@ -70,4 +70,9 @@
 	_textField.keyboardType = keyboardType;
 }
 
+- (NSString *)content
+{
+	return _textField.text;
+}
+
 @end

@@ -31,6 +31,7 @@
 		777A6927184D761000B903C1 /* FDMeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 777A6926184D761000B903C1 /* FDMeCell.m */; };
 		777A692A184DB05F00B903C1 /* FDSessionInvalidCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 777A6929184DB05F00B903C1 /* FDSessionInvalidCell.m */; };
 		777A692D184DDFBF00B903C1 /* FDWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777A692C184DDFBF00B903C1 /* FDWebViewController.m */; };
+		777A6933184E0BCE00B903C1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 777A6932184E0BCE00B903C1 /* MapKit.framework */; };
 		777E5E1E17D97A98005AFB67 /* FDThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 777E5E1D17D97A98005AFB67 /* FDThemeCell.m */; };
 		777E5EE817D9BBDA005AFB67 /* FDThemeItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */; };
 		7786715D17E35A98001FDB67 /* CLLocation+NSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786714317E35A98001FDB67 /* CLLocation+NSDictionary.m */; };
@@ -161,6 +162,7 @@
 		777A6929184DB05F00B903C1 /* FDSessionInvalidCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDSessionInvalidCell.m; path = find/FDSessionInvalidCell.m; sourceTree = "<group>"; };
 		777A692B184DDFBF00B903C1 /* FDWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDWebViewController.h; sourceTree = "<group>"; };
 		777A692C184DDFBF00B903C1 /* FDWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDWebViewController.m; sourceTree = "<group>"; };
+		777A6932184E0BCE00B903C1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		777E5E1C17D97A98005AFB67 /* FDThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeCell.h; path = find/FDThemeCell.h; sourceTree = "<group>"; };
 		777E5E1D17D97A98005AFB67 /* FDThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDThemeCell.m; path = find/FDThemeCell.m; sourceTree = "<group>"; };
 		777E5EE617D9BBDA005AFB67 /* FDThemeItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeItemView.h; path = find/FDThemeItemView.h; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				777A6933184E0BCE00B903C1 /* MapKit.framework in Frameworks */,
 				77A5F89017CD95E80073E7F9 /* CFNetwork.framework in Frameworks */,
 				77A5F7A517CB22960073E7F9 /* CoreGraphics.framework in Frameworks */,
 				45D1109202E547CCB807D5B8 /* libPods.a in Frameworks */,
@@ -396,6 +399,7 @@
 		77A5F7A117CB22960073E7F9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				777A6932184E0BCE00B903C1 /* MapKit.framework */,
 				77A5F88F17CD95E80073E7F9 /* CFNetwork.framework */,
 				77A5F7A217CB22960073E7F9 /* Foundation.framework */,
 				77A5F7A417CB22960073E7F9 /* CoreGraphics.framework */,

@@ -11,10 +11,10 @@
 #import "FDTextViewEditCell.h"
 #import "FDUserCell.h"
 #import "FDWebViewController.h"
+@import MapKit;
 
 static NSInteger sectionOfEdit = 0;
 static NSInteger sectionOfUser = 1;
-static NSInteger indexOfAlertOK = 0;
 static NSInteger indexOfAlertDetails = 1;
 
 @interface FDEditPropertyViewController () <UITextViewDelegate, UITextFieldDelegate, UISearchBarDelegate, UISearchDisplayDelegate, CLLocationManagerDelegate, UIAlertViewDelegate>
@@ -24,6 +24,7 @@ static NSInteger indexOfAlertDetails = 1;
 @property (readwrite) NSArray *candidates;
 @property (readwrite) NSInteger numberOfSections;
 @property (readwrite) CLLocationManager *locationManager;
+@property (readwrite) FDEditCell *cellInstance;
 
 @end
 
@@ -37,6 +38,8 @@ static NSInteger indexOfAlertDetails = 1;
 		[self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 		
 		[self setLeftBarButtonItemAsBackButton];
+		
+		_numberOfSections = 1;
     }
     return self;
 }
@@ -126,12 +129,12 @@ static NSInteger indexOfAlertDetails = 1;
 
 - (void)save
 {
-	if (!_identifier) return;	
-	NSLog(@"will save %@: %@", _identifier, _content);
+	if (!_identifier) return;
+	NSLog(@"will save %@: %@", _identifier, [_cellInstance content]);
 	
 	//NSString *stringWithoutNewline = [_content stringByReplacingOccurrencesOfString: @"\r" withString:@""];
 	//stringWithoutNewline = [stringWithoutNewline stringByReplacingOccurrencesOfString: @"\n" withString:@""];
-	[[FDAFHTTPClient shared] editProfile:@{_identifier : _content} withCompletionBlock:^(BOOL success, NSString *message) {
+	[[FDAFHTTPClient shared] editProfile:@{_identifier : [_cellInstance content]} withCompletionBlock:^(BOOL success, NSString *message) {
 		if (success) {
 			[self displayHUDTitle:NSLocalizedString(@"Updated", nil) message:nil];
 			[self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.0f];
@@ -178,6 +181,7 @@ static NSInteger indexOfAlertDetails = 1;
 			cell.content = _content;
 			cell.keyboardType = _keyboardType;
 			[cell becomeFirstResponder];
+			_cellInstance = cell;
 		}
 		return cell;
 	} else {
@@ -206,15 +210,78 @@ static NSInteger indexOfAlertDetails = 1;
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-	return nil;
+	
+//	- (void)setAddress:(NSString *)address
+//	{
+//		for (UIView *view in _contentView.subviews) {
+//			[view removeFromSuperview];
+//		}
+//		float startY = 0.0f;
+//		float width = _contentView.bounds.size.width;
+//		if (!address) {
+//			CGRect frame = _contentView.frame;
+//			frame.size.height = startY;
+//			_contentView.frame = frame;
+//			frame = self.frame;
+//			frame.size.height = CGRectGetMaxY(_contentView.frame);
+//			self.frame = frame;
+//			return;
+//		}
+//		UIFont *font = [UIFont demiBoldApplicationFontOfSize:14.0f];
+//		CGSize size = [address sizeWithFont:font constrainedToSize:CGSizeMake(width - 2 * MARGIN, 9999)];
+//		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(MARGIN, startY, width - 2 * MARGIN, size.height + 20.0f)];
+//		label.backgroundColor = [UIColor clearColor];
+//		label.textColor = [UIColor colorWithHexWhite:0x70];
+//		label.text = address;
+//		label.numberOfLines = 0;
+//		label.font = font;
+//		[_contentView addSubview:label];
+//		startY += label.bounds.size.height;
+    
+		MKMapView *mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0.0f, 0, 320, 130.0f)];
+		//[_contentView addSubview:mapView];
+		//mapView.userInteractionEnabled = NO;
+//		startY += 130;
+		
+//		CGRect frame = _contentView.frame;
+//		frame.size.height = startY;
+//		_contentView.frame = frame;
+//		frame = self.frame;
+//		frame.size.height = CGRectGetMaxY(_contentView.frame);
+//		self.frame = frame;
+		
+		CLGeocoder *_geocoder;
+		if (!_geocoder) {
+			_geocoder = [[CLGeocoder alloc] init];
+		}
+		if (_geocoder.geocoding) {
+			[_geocoder cancelGeocode];
+		}
+		
+		[_geocoder geocodeAddressString:@"国际科技园" completionHandler:^(NSArray *placemarks, NSError *error) {
+			if (error) {
+				return;
+			}
+			if (!placemarks.count) {
+				return;
+			}
+			CLPlacemark *mark  = placemarks[0];
+			[mapView setCenterCoordinate:mark.location.coordinate animated:YES];
+			[mapView setRegion:MKCoordinateRegionMakeWithDistance(mark.location.coordinate, 2000, 2000) animated:YES];
+			
+			MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+			annotation.coordinate = mark.location.coordinate;
+			[mapView addAnnotation:annotation];
+		}];
+	return mapView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-	if (section == sectionOfEdit) {
-		return 5;
-	}
-	return 0;
+//	if (section == sectionOfEdit) {
+//		return 5;
+//	}
+	return 150;
 }
 
 #pragma mark - UITextViewDelegate
@@ -233,7 +300,7 @@ static NSInteger indexOfAlertDetails = 1;
 //	if (textView.text.length > 10) {
 //		textView.text = [textView.text substringToIndex:30];
 //	}
-	_content = textView.text;//TODO:限定字数，参照微信
+	//_content = textView.text;//TODO:限定字数，参照微信
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
@@ -253,23 +320,30 @@ static NSInteger indexOfAlertDetails = 1;
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+	[self setRightBarButtonItemAsSaveButtonWithSelector:@selector(save)];
+	return YES;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
 	return YES;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-	//[self setRightBarButtonItemAsSaveButtonWithSelector:@selector(save)];
-	//_content = textField.text;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+	return YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-	
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-	_content = textField.text;
 	[self save];
 	return YES;
 }

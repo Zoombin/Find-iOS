@@ -73,4 +73,9 @@
 	_textView.keyboardType = keyboardType;
 }
 
+- (NSString *)content
+{
+	return _textView.text;
+}
+
 @end

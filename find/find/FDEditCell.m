@@ -64,4 +64,9 @@
 	return 1;
 }
 
+- (NSString *)content
+{
+	return @"";
+}
+
 @end
