@@ -38,21 +38,21 @@
 		
 		frame.origin.x = CGRectGetMaxX(_genderIcon.frame);
 		frame.size.width = 200;
-		frame.size.height = 25;
+		frame.size.height = 30;
 		
 		_nicknameLabel = [[UILabel alloc] initWithFrame:frame];
 		//_nicknameLabel.backgroundColor = [UIColor randomColor];//TODO: test
-		_nicknameLabel.font = [UIFont fdThemeFontOfSize:13];
+		_nicknameLabel.font = [UIFont fdThemeFontOfSize:15];
 		[self.contentView addSubview:_nicknameLabel];
 		
 		frame.origin.x = CGRectGetMinX(_genderIcon.frame);
 		frame.origin.y = CGRectGetMaxY(_nicknameLabel.frame);
 		frame.size.width = 220;
-		frame.size.height = 20;
+		frame.size.height = 15;
 		
 		_signatureLabel = [[UILabel alloc] initWithFrame:frame];
 		//_signatureLabel.backgroundColor = [UIColor randomColor];//TODO: test
-		_signatureLabel.font = [UIFont fdThemeFontOfSize:11];
+		_signatureLabel.font = [UIFont fdThemeFontOfSize:9];
 		[self.contentView addSubview:_signatureLabel];
 		
 		frame.origin.y = CGRectGetMaxY(_signatureLabel.frame);
@@ -98,8 +98,10 @@
 	_genderIcon.image = _profile.bFemale ? [UIImage imageNamed:@"IconFemale"] : [UIImage imageNamed:@"IconMale"];
 	_nicknameLabel.text = _profile.nickname;
 	_signatureLabel.text = _profile.signature;
+	//_shapeLabel.text = [NSString stringWithFormat:@"%@/%@/%@/%@", NSLocalizedString(@"Age", nil), NSLocalizedString(@"Height", nil), NSLocalizedString(@"Weight", nil), NSLocalizedString(@"Chest", nil)];
+	_privacyLabel.text = [NSString stringWithFormat:@"%@/%@/%@/%@", NSLocalizedString(@"Mobile", nil), NSLocalizedString(@"QQ", nil), NSLocalizedString(@"Weixin", nil), NSLocalizedString(@"Address", nil)];
 	_shapeLabel.text = [NSString stringWithFormat:@"%@%@/%@%@/%@%@/%@%@", NSLocalizedString(@"Age", nil), [_profile.age printableAge], NSLocalizedString(@"Height", nil), [_profile.height printableHeight], NSLocalizedString(@"Weight", nil), [_profile.weight printableWeight], NSLocalizedString(@"Chest", nil), [_profile.chest printableChest]];
-	_privacyLabel.text = [NSString stringWithFormat:@"%@%@/%@%@/%@%@/%@%@", NSLocalizedString(@"Mobile", nil), [_profile.mobileInformation displayPrivacyType], NSLocalizedString(@"QQ", nil), [_profile.qqInformation displayPrivacyType], NSLocalizedString(@"Weixin", nil), [_profile.weixinInformation displayPrivacyType], NSLocalizedString(@"Address", nil), [_profile.addressInformation displayPrivacyType]];
+	//_privacyLabel.text = [NSString stringWithFormat:@"%@%@/%@%@/%@%@/%@%@", NSLocalizedString(@"Mobile", nil), [_profile.mobileInformation displayPrivacyType], NSLocalizedString(@"QQ", nil), [_profile.qqInformation displayPrivacyType], NSLocalizedString(@"Weixin", nil), [_profile.weixinInformation displayPrivacyType], NSLocalizedString(@"Address", nil), [_profile.addressInformation displayPrivacyType]];
 }
 
 + (CGFloat)height
