@@ -16,6 +16,7 @@
 static NSInteger sectionOfEdit = 0;
 static NSInteger sectionOfUser = 1;
 static NSInteger indexOfAlertDetails = 1;
+static NSInteger heightOfMap = 150;
 
 @interface FDEditPropertyViewController () <UITextViewDelegate, UITextFieldDelegate, UISearchBarDelegate, UISearchDisplayDelegate, CLLocationManagerDelegate, UIAlertViewDelegate>
 
@@ -25,6 +26,7 @@ static NSInteger indexOfAlertDetails = 1;
 @property (readwrite) NSInteger numberOfSections;
 @property (readwrite) CLLocationManager *locationManager;
 @property (readwrite) FDEditCell *cellInstance;
+@property (readwrite) MKMapView *mapView;
 
 @end
 
@@ -66,6 +68,9 @@ static NSInteger indexOfAlertDetails = 1;
 	_searchBar = [[UISearchBar alloc] init];
 	_searchBar.showsCancelButton = YES;
 	_searchBar.delegate = self;
+	
+	_mapView = [[MKMapView alloc] init];
+	_mapView.userInteractionEnabled = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -210,97 +215,39 @@ static NSInteger indexOfAlertDetails = 1;
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-	
-//	- (void)setAddress:(NSString *)address
-//	{
-//		for (UIView *view in _contentView.subviews) {
-//			[view removeFromSuperview];
-//		}
-//		float startY = 0.0f;
-//		float width = _contentView.bounds.size.width;
-//		if (!address) {
-//			CGRect frame = _contentView.frame;
-//			frame.size.height = startY;
-//			_contentView.frame = frame;
-//			frame = self.frame;
-//			frame.size.height = CGRectGetMaxY(_contentView.frame);
-//			self.frame = frame;
-//			return;
-//		}
-//		UIFont *font = [UIFont demiBoldApplicationFontOfSize:14.0f];
-//		CGSize size = [address sizeWithFont:font constrainedToSize:CGSizeMake(width - 2 * MARGIN, 9999)];
-//		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(MARGIN, startY, width - 2 * MARGIN, size.height + 20.0f)];
-//		label.backgroundColor = [UIColor clearColor];
-//		label.textColor = [UIColor colorWithHexWhite:0x70];
-//		label.text = address;
-//		label.numberOfLines = 0;
-//		label.font = font;
-//		[_contentView addSubview:label];
-//		startY += label.bounds.size.height;
-    
-		MKMapView *mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0.0f, 0, 320, 130.0f)];
-		//[_contentView addSubview:mapView];
-		//mapView.userInteractionEnabled = NO;
-//		startY += 130;
-		
-//		CGRect frame = _contentView.frame;
-//		frame.size.height = startY;
-//		_contentView.frame = frame;
-//		frame = self.frame;
-//		frame.size.height = CGRectGetMaxY(_contentView.frame);
-//		self.frame = frame;
-		
-		CLGeocoder *_geocoder;
-		if (!_geocoder) {
-			_geocoder = [[CLGeocoder alloc] init];
-		}
-		if (_geocoder.geocoding) {
-			[_geocoder cancelGeocode];
-		}
-		
-		[_geocoder geocodeAddressString:@"国际科技园" completionHandler:^(NSArray *placemarks, NSError *error) {
-			if (error) {
-				return;
-			}
-			if (!placemarks.count) {
-				return;
-			}
-			CLPlacemark *mark  = placemarks[0];
-			[mapView setCenterCoordinate:mark.location.coordinate animated:YES];
-			[mapView setRegion:MKCoordinateRegionMakeWithDistance(mark.location.coordinate, 2000, 2000) animated:YES];
-			
-			MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-			annotation.coordinate = mark.location.coordinate;
-			[mapView addAnnotation:annotation];
-		}];
-	return mapView;
+    if (_privacyInfo.type == FDInformationTypeAddress) {
+		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, heightOfMap)];
+		view.backgroundColor = [UIColor clearColor];
+		_mapView.frame = CGRectMake(_cellInstance.indentationWidth, 0, view.bounds.size.width - 2 * _cellInstance.indentationWidth, view.bounds.size.height);
+		[view addSubview:_mapView];
+		return view;
+	}
+	return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-//	if (section == sectionOfEdit) {
-//		return 5;
-//	}
-	return 150;
+	if (section == sectionOfEdit) {
+		if (_privacyInfo.type == FDInformationTypeAddress) {
+			return heightOfMap;
+		}
+		return 0;
+	} else {
+		return 0;
+	}
 }
 
 #pragma mark - UITextViewDelegate
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-//	if (textView.text.length > 10) {
-//		return NO;
-//	}
 	return YES;
 }
 
 - (void)textViewDidChange:(UITextView *)textView
 {
 	[self setRightBarButtonItemAsSaveButtonWithSelector:@selector(save)];
-//	if (textView.text.length > 10) {
-//		textView.text = [textView.text substringToIndex:30];
-//	}
-	//_content = textView.text;//TODO:限定字数，参照微信
+	//TODO:限定字数，参照微信
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
@@ -373,6 +320,20 @@ static NSInteger indexOfAlertDetails = 1;
 {
 	if (locations.count) {
 		NSLog(@"first location: %@", [locations[0] coordinateString]);
+		
+		CLLocation *location = locations[0];
+		
+		[_mapView setCenterCoordinate:location.coordinate animated:YES];
+		[_mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 2000, 2000) animated:YES];
+
+		MKPointAnnotation *annotation;
+		if (_mapView.annotations.count == 0) {
+			annotation = [[MKPointAnnotation alloc] init];
+			[_mapView addAnnotation:annotation];
+		} else {
+			annotation = _mapView.annotations[0];
+		}
+		annotation.coordinate = location.coordinate;
 	}
 }
 
