@@ -12,7 +12,6 @@
 @interface FDPhotosViewController () <PSUICollectionViewDelegate, PSUICollectionViewDataSource>
 
 @property (readwrite) PSUICollectionView *photosCollectionView;
-
 @property (readwrite) NSArray *photos;
 
 @end

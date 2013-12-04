@@ -24,7 +24,16 @@ static NSString *actionOfPickerRow = @"actionOfPickerRow";
 static NSInteger tagOfProfileLabel = 'prof';
 static NSInteger tagOfPrivacyLabel = 'priv';
 
-@interface FDProfileViewController () <UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AFPhotoEditorControllerDelegate>
+@interface FDProfileViewController ()
+<
+UINavigationControllerDelegate,
+UIImagePickerControllerDelegate,
+UIActionSheetDelegate,
+UITableViewDelegate,
+UITableViewDataSource,
+UIPickerViewDelegate,
+UIPickerViewDataSource
+>
 
 @property (readwrite) FDUserProfile *userProfile;
 @property (readwrite) UITableView *tableView;
@@ -220,26 +229,25 @@ static NSInteger tagOfPrivacyLabel = 'priv';
 	if (animated) {
 		duration = 0.3;
 	}
+	if (_identifierOfSelectedCell) {
+		NSNumber *min = _pickerDataSource[_identifierOfSelectedCell][minimumValueOfPicker];
+		NSNumber *max = _pickerDataSource[_identifierOfSelectedCell][maximumValueOfPicker];
+		NSInteger delta = [max integerValue] - [min integerValue];
+		id value = [_userProfile valueWithIdentifier:_identifierOfSelectedCell];
+		if ([value isKindOfClass:[NSNumber class]]) {
+			NSInteger row = [value integerValue] - [min integerValue];
+			if (row >= 0  && row < delta) {
+				[_pickerView selectRow:row inComponent:0 animated:NO];
+			}
+		}
+	}
 	_pickerView.hidden = NO;
 	[UIView animateWithDuration:duration animations:^{
 		_pickerView.backgroundColor = [UIColor randomColor];
 		CGRect frame = _pickerView.frame;
 		frame.origin.y = self.view.bounds.size.height - frame.size.height;
 		_pickerView.frame = frame;
-	} completion:^(BOOL finished) {
-		if (_identifierOfSelectedCell) {
-			NSNumber *min = _pickerDataSource[_identifierOfSelectedCell][minimumValueOfPicker];
-			NSNumber *max = _pickerDataSource[_identifierOfSelectedCell][maximumValueOfPicker];
-			NSInteger delta = [max integerValue] - [min integerValue];
-			id value = [_userProfile valueWithIdentifier:_identifierOfSelectedCell];
-			if ([value isKindOfClass:[NSNumber class]]) {
-				NSInteger row = [value integerValue] - [min integerValue];
-				if (row >= 0  && row < delta) {
-					[_pickerView selectRow:row inComponent:0 animated:YES];
-				}
-			}
-		}
-	}];
+	} completion:nil];
 }
 
 - (void)pushEditPropertyViewControllerWithIdentifier:(NSString *)identifier
@@ -290,8 +298,7 @@ static NSInteger tagOfPrivacyLabel = 'priv';
 
 - (void)editAvatar
 {
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles:@"Snap a New", @"Pick From Photo Library", nil];
-	[actionSheet showInView:self.view];
+	[self choosePickerWithDelegate:self];
 }
 
 - (void)editGender
@@ -310,6 +317,7 @@ static NSInteger tagOfPrivacyLabel = 'priv';
 
 - (void)editShape
 {
+	NSLog(@"editShape");
 	NSString *identifier = kProfileAge;
 	if (_shapeSegmentedControl.selectedSegmentIndex == FDShapeTypeAge) {
 		identifier = kProfileAge;
@@ -340,12 +348,6 @@ static NSInteger tagOfPrivacyLabel = 'priv';
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	
-	//	BOOL bSigninValid = NO;
-	//	if (!bSigninValid) {
-	//		FDSignupViewController *signupViewController = [[FDSignupViewController alloc] init];
-	//		[self.navigationController pushViewController:signupViewController animated:YES];
-	//	}
 }
 
 - (void)fetchProfileThenReloadTableView
@@ -364,27 +366,6 @@ static NSInteger tagOfPrivacyLabel = 'priv';
 		}
 		if (block) block ();
 	}];
-}
-
-- (void)startCamera
-{
-	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-		UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-		imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-		imagePickerController.delegate = self;
-		imagePickerController.allowsEditing = YES;
-		[self presentViewController:imagePickerController animated:YES completion:nil];
-	}
-}
-
-- (void)startPhotoLibrary
-{
-	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-		UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-		imagePickerController.delegate = self;
-		imagePickerController.allowsEditing = YES;
-		[self presentViewController:imagePickerController animated:YES completion:nil];
-	}
 }
 
 - (void)editPickerPropertyWith:(NSString *)identifier withValue:(NSNumber *)value
@@ -620,9 +601,9 @@ static NSInteger tagOfPrivacyLabel = 'priv';
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
 	if (buttonIndex == 0) {
-		[self startCamera];
+		[self startCameraWithDelegate:self allowsEditing:YES];
 	} else if (buttonIndex == 1) {
-		[self startPhotoLibrary];
+		[self startPhotoLibraryWithDelegate:self allowsEditing:YES];
 	}
 }
 

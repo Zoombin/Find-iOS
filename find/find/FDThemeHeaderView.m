@@ -30,8 +30,8 @@
 		//showAllLabel.backgroundColor = [UIColor randomColor];
 		showAllLabel.text = NSLocalizedString(@"See All >", nil);
 		showAllLabel.textAlignment = NSTextAlignmentRight;
-		showAllLabel.textColor = [UIColor grayColor];
-		showAllLabel.font = [UIFont fdThemeFontOfSize:14];
+		//showAllLabel.textColor = [UIColor grayColor];
+		showAllLabel.font = [UIFont fdThemeFontOfSize:11];
 		showAllLabel.userInteractionEnabled = YES;
 		[self addSubview:showAllLabel];
 		

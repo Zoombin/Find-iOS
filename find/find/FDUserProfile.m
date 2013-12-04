@@ -8,7 +8,7 @@
 
 #import "FDUserProfile.h"
 
-NSString *kProfileShape = @"privacyinfo";
+NSString *kProfileShape = @"shape";
 NSString *kProfileNickname = @"nickname";
 NSString *kProfileAvatar = @"avatar";
 NSString *kProfileGender = @"gender";
@@ -22,10 +22,10 @@ NSString *kProfileNumberOfFollowing = @"numberOfFollowing";
 NSString *kProfileViews = @"views";
 NSString *kProfileSignature = @"signature";
 NSString *kProfileAsignature = @"asignature";
-NSString *kProfileQQ = @"privacyinfo-qq";
-NSString *kProfileMobile = @"privacyinfo-mobile";
-NSString *kProfileWeixin = @"privacyinfo-weixin";
-NSString *kProfileAddress = @"privacyinfo-address";
+NSString *kProfileQQ = @"qq";
+NSString *kProfileMobile = @"mobile";
+NSString *kProfileWeixin = @"weixin";
+NSString *kProfileAddress = @"address";
 NSString *kProfilePhotos = @"photos";
 NSString *kProfilePrivateMessages = @"privateMessages";
 NSString *kProfileSettings = @"settings";
@@ -149,6 +149,49 @@ NSString *kProfileSettings = @"settings";
 	} else if ([identifier isEqualToString:kProfileChest]) {
 		_chest = value;
 	}
+}
+
++ (NSString *)apiParameterKeyWithIdentifier:(NSString *)identifier
+{
+	if ([identifier isEqualToString:kProfileNickname]) {
+		return kProfileNickname;
+	} else if ([identifier isEqualToString:kProfileSignature]) {
+		return kProfileSignature;
+	} else if ([identifier isEqualToString:kProfileGender]) {
+		return kProfileGender;
+	} else if ([identifier isEqualToString:kProfileAge]) {
+		return kProfileAge;
+	} else if ([identifier isEqualToString:kProfileHeight]) {
+		return kProfileHeight;
+	} else if ([identifier isEqualToString:kProfileWeight]) {
+		return kProfileWeight;
+	} else if ([identifier isEqualToString:kProfileChest]) {
+		return kProfileChest;
+	} else if ([identifier isEqualToString:kProfileQQ]) {
+		return [NSString stringWithFormat:@"%@%@", @"privacyinfo-", kProfileQQ];
+	} else if ([identifier isEqualToString:kProfileMobile]) {
+		return [NSString stringWithFormat:@"%@%@", @"privacyinfo-", kProfileMobile];
+	} else if ([identifier isEqualToString:kProfileWeixin]) {
+		return [NSString stringWithFormat:@"%@%@", @"privacyinfo-", kProfileWeixin];
+	} else if ([identifier isEqualToString:kProfileAddress]) {
+		return [NSString stringWithFormat:@"%@%@", @"privacyinfo-", kProfileAddress];
+	}
+	return nil;
+}
+
++ (NSString *)apiParameterPrivacyLevelKeyWithIdentifier:(NSString *)identifier
+{
+	//目前只有这4个值有privacylevel
+	if ([identifier isEqualToString:kProfileQQ]) {
+		return [NSString stringWithFormat:@"%@%@", @"userprivacy-", kProfileQQ];
+	} else if ([identifier isEqualToString:kProfileMobile]) {
+		return [NSString stringWithFormat:@"%@%@", @"userprivacy-", kProfileMobile];
+	} else if ([identifier isEqualToString:kProfileWeixin]) {
+		return [NSString stringWithFormat:@"%@%@", @"userprivacy-", kProfileWeixin];
+	} else if ([identifier isEqualToString:kProfileAddress]) {
+		return [NSString stringWithFormat:@"%@%@", @"userprivacy-", kProfileAddress];
+	}
+	return nil;
 }
 
 - (NSString *)description

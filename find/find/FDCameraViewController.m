@@ -7,16 +7,21 @@
 //
 
 #import "FDCameraViewController.h"
-#import "FDCameraFlashButton.h"
+#import "FDPhotoCell.h"
+#import "FDAddTweetCell.h"
 
-@interface FDCameraViewController () <
-AFPhotoEditorControllerDelegate,
+@interface FDCameraViewController ()
+<
 UINavigationControllerDelegate,
-UIImagePickerControllerDelegate
+UIImagePickerControllerDelegate,
+UIActionSheetDelegate,
+PSUICollectionViewDelegate,
+PSUICollectionViewDataSource,
+FDAddTweetCellDelegate
 >
 
-@property (readwrite) UIImageView *imageView;
-@property (readwrite) UIImagePickerController *imagePicker;
+@property (readwrite) PSUICollectionView *photosCollectionView;
+@property (readwrite) NSArray *tweets;
 
 @end
 
@@ -35,7 +40,7 @@ UIImagePickerControllerDelegate
 			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Camera"] tag:0];
 		}
 		
-		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(startCamera)];
+		//self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(startCamera)];
     }
     return self;
 }
@@ -43,18 +48,30 @@ UIImagePickerControllerDelegate
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+	self.view.backgroundColor = [UIColor whiteColor];
 	
-	[self startCamera];
+	_photosCollectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSUICollectionViewFlowLayout smallSquaresLayout]];
+	_photosCollectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	_photosCollectionView.backgroundColor = [UIColor clearColor];
+	[_photosCollectionView registerClass:[FDPhotoCell class] forCellWithReuseIdentifier:kFDPhotoCellIdentifier];
+	[_photosCollectionView registerClass:[FDAddTweetCell class] forCellWithReuseIdentifier:kFDAddTweetCellIdentifier];
+	_photosCollectionView.delegate = self;
+	_photosCollectionView.dataSource = self;
+	[self.view addSubview:_photosCollectionView];
+	
+	if ([[FDAFHTTPClient shared] isSessionValid]) {
+		[[FDAFHTTPClient shared] tweetsByPublished:nil WithCompletionBlock:^(BOOL success, NSString *message, NSNumber *published, NSArray *tweetsData) {
+			if (success) {
+				_tweets = [FDTweet createMutableWithData:tweetsData];
+				[_photosCollectionView reloadData];
+			}
+		}];
+	}
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	
-	_imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-	_imageView.backgroundColor = [UIColor randomColor];
-	[self.view addSubview:_imageView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,246 +80,107 @@ UIImagePickerControllerDelegate
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL)startCamera
+- (void)addTweet
 {
-	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-		_imagePicker = [[UIImagePickerController alloc] init];
-		_imagePicker.delegate = self;
-		_imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-		if ([UIImagePickerController isFlashAvailableForCameraDevice:_imagePicker.cameraDevice]) {
-			_imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
-		}
-		_imagePicker.cameraOverlayView = [self overlayViewForImagePicker:_imagePicker];
-		[self presentViewController:_imagePicker animated:YES completion:nil];
-		return YES;
-	}
-	return NO;
+	[self choosePickerWithDelegate:self];
 }
 
-- (BOOL)startPhotoLibrary
+#pragma mark - PSUICollectionViewDelegate
+
+- (CGSize)collectionView:(PSUICollectionView *)collectionView layout:(PSUICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-		void(^present)() = ^() {
-			UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-			imagePicker.delegate = self;
-			[self presentViewController:_imagePicker = imagePicker animated:YES completion:nil];
-		};
-		if (self.presentedViewController) {
-			[self.presentedViewController dismissViewControllerAnimated:YES completion:present];
-		} else {
-			present();
-		}
-		return YES;
-	}
-	return NO;
+	return [FDSize tweetPhotoSize];
 }
 
-- (void)startAviaryEditorWithPhoto:(UIImage *)image
+- (NSInteger)collectionView:(PSUICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-	AFPhotoEditorController *editorController = [[AFPhotoEditorController alloc] initWithImage:image];
-	editorController.delegate = self;
-	UIViewController *parent = self.presentedViewController ?: self;
-	[parent presentViewController:editorController animated:YES completion:nil];
+	return _tweets.count + 1;
 }
 
-- (UIView *)overlayViewForImagePicker:(UIImagePickerController *)picker
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (PSUICollectionViewCell *)collectionView:(PSUICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	// LANDSCAPE TODO: This doesn't handle autorotation
-	
-//	[[NSBundle mainBundle] loadNibNamed:@"OverlayView" owner:self options:nil];
-//	self.overlayView.frame = imagePickerController.cameraOverlayView.frame;
-//	imagePickerController.cameraOverlayView = self.overlayView;
-//	self.overlayView = nil;
-	
-	picker.showsCameraControls = NO;
-	UIView *view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-	CGSize size = view.bounds.size;
-	view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	CGFloat x = roundf((size.width - self.destinationImageSize.width) / 2);
-	CGFloat statusbarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
-	
-	UIToolbar *topBar = [self cameraToolbarForPicker:picker];
-	// this might be a bug in iOS6
-	CGRect frame = topBar.frame;
-	frame.origin.y = 15;
-	frame.origin.x = 5;
-	frame.size.width = size.width - frame.origin.x * 2;
-	if ([UIDevice currentDevice].systemVersion.floatValue < 7.f) {
-		frame.origin.y += statusbarHeight;
-	}
-	topBar.frame = frame;
-	[view addSubview:topBar];
-	
-//	UIEdgeInsets bottomCenterInsets;
-	
-	CGFloat bottomBarHeight = 58;
-	UIView *bottomBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width, bottomBarHeight)];
-	bottomBar.backgroundColor = [UIColor fdThemeRed];
-	bottomBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
-	
-	//if (bottomCenterInsets) *bottomCenterInsets = UIEdgeInsetsMake(0, 45, bottomBarHeight / 2, width - 45);
-	//return bottomBar;
-	//UIView *bottomBar = [UIView bottomBarWidth:size.width style:TFBottomBarStyleLarge edgeInsets:&bottomCenterInsets];
-	bottomBar.frame = CGRectOffset(bottomBar.frame, 0, size.height - bottomBar.bounds.size.height);
-
-	CAShapeLayer *layer = [CAShapeLayer layer];
-	layer.frame = CGRectMake(0, 0, size.width, size.height - bottomBar.frame.size.height);
-	UIBezierPath *path = [UIBezierPath bezierPathWithRect:layer.bounds];
-	CGRect scrollFrame = CGRectMake(x, x + CGRectGetMaxY(topBar.frame), self.destinationImageSize.width, self.destinationImageSize.height);
-	[path appendPath:[UIBezierPath bezierPathWithRect:scrollFrame]];
-	layer.path = path.CGPath;
-	layer.fillRule = kCAFillRuleEvenOdd;
-	layer.fillColor = [[UIColor colorWithWhite:0.0f alpha:0.0] CGColor];//[[RSMoveAndScaleView appearance] maskForegroundColor].CGColor;
-	[view.layer addSublayer:layer];
-
-	// translate is not working, so enlarge it for extra top.
-	// center  = size.width / 2 / .75
-	// center' = size.height - bottomBar.bounds.size.height - statusbarHeight - center
-	// scale = center' / center;
-	CGSize imageFrameSize = CGSizeMake(size.width, size.width / .75f);
-	CGFloat halfImageHeight = imageFrameSize.height / 2;
-	CGFloat scale = MAX((size.height - statusbarHeight - bottomBar.bounds.size.height) / halfImageHeight - 1, 1);
-	// (iphone5 ios7) scale = 1.240625
-
-	CGFloat extraX = imageFrameSize.width * (scale - 1) / 2;
-	CGFloat extraY = imageFrameSize.height * (scale - 1) / 2;
-
-	CGFloat left = extraX + scrollFrame.origin.x;
-	CGFloat top = scrollFrame.origin.y; // 70.25
-	CGFloat bottom = (scale + 1) * halfImageHeight - scrollFrame.size.height - top; //122.75
-	//_croppingAreaInsets = UIEdgeInsetsMake(extraY + top, left, bottom, left);
-	picker.cameraViewTransform = CGAffineTransformMakeScale(scale, scale);
-	[view addSubview:bottomBar];
-	
-	UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	cancelButton.frame = CGRectMake(60, 20, 44, 44);
-//	cancelButton.center = CGPointMake(60, 20);
-	cancelButton.showsTouchWhenHighlighted = YES;
-	cancelButton.titleLabel.font = [UIFont fdBoldThemeFontOfSize:11];
-	[cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-	[cancelButton setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
-	cancelButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-	[cancelButton addTarget:self action:@selector(cancelCamera) forControlEvents:UIControlEventTouchUpInside];
-	[bottomBar addSubview:cancelButton];
-
-	UIButton *takeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	UIImage *buttonImageOn = [UIImage imageNamed:@"camera-button-on"];
-	UIImage *buttonImage = [UIImage imageNamed:@"camera-button"];
-	takeButton.bounds = CGRectMake(0, 0, buttonImage.size.width * 1.6f, buttonImage.size.height * 1.6f);
-	takeButton.center = CGPointMake(size.width / 2, 20);
-	[takeButton setImage:buttonImage forState:UIControlStateNormal];
-	[takeButton setImage:buttonImageOn forState:UIControlStateHighlighted];
-	takeButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-	[takeButton addTarget:picker action:@selector(takePicture) forControlEvents:UIControlEventTouchUpInside];
-	[bottomBar addSubview:takeButton];
-
-	UIButton *openPhotosLibrary = [UIButton buttonWithType:UIButtonTypeCustom];
-	openPhotosLibrary.bounds = CGRectMake(0, 0, 44, 44);
-	openPhotosLibrary.center = CGPointMake(size.width - 60, 20);
-	openPhotosLibrary.showsTouchWhenHighlighted = YES;
-	openPhotosLibrary.titleLabel.font = [UIFont fdBoldThemeFontOfSize:11];
-	[openPhotosLibrary setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-	[openPhotosLibrary setImage:[UIImage imageNamed:@"photolibrary-camera"] forState:UIControlStateNormal];
-	openPhotosLibrary.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-	[openPhotosLibrary addTarget:self action:@selector(startPhotoLibrary) forControlEvents:UIControlEventTouchUpInside];
-	[bottomBar addSubview:openPhotosLibrary];
-	
-	return view;
-}
-
-- (CGSize)destinationImageSize
-{
-	CGFloat width = roundf(MIN(self.view.bounds.size.width, self.view.bounds.size.height)  * (285.f / 320.f));
-	return CGSizeMake(width, width);
-}
-
-- (UIToolbar *)cameraToolbarForPicker:(UIImagePickerController *)picker
-{
-	CGRect buttonFrame = CGRectMake(0, 0, 57, 33);
-	UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 33)];
-	//toolbar.tintColor = GetAppDelegate().window.tintColor;
-	[toolbar setBackgroundImage:[UIImage imageFromColor:[UIColor clearColor]] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
-	FDCameraFlashButton *flashToggleButton = [[FDCameraFlashButton alloc] initWithFrame:buttonFrame];
-	[flashToggleButton addTarget:self action:@selector(changeFlashMode:) forControlEvents:UIControlEventTouchUpInside];
-	if ([UIImagePickerController isFlashAvailableForCameraDevice:picker.cameraDevice]) {
-		flashToggleButton.flashMode = picker.cameraFlashMode;
+	if (indexPath.row == 0) {
+		FDAddTweetCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDAddTweetCellIdentifier forIndexPath:indexPath];
+		cell.delegate = self;
+		return cell;
 	} else {
-		flashToggleButton.flashMode = 0;
+		FDPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDPhotoCellIdentifier forIndexPath:indexPath];
+		[cell hideDetails];
+		FDTweet *tweet = _tweets[indexPath.row - 1];
+		cell.tweet = tweet;
+		return cell;
 	}
-	NSMutableArray *items = [NSMutableArray arrayWithCapacity:3];
-	UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:flashToggleButton];
-	[items addObject:leftItem];
-	[items addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]];
-	
-	flashToggleButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
-	if ([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront] && [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear]) {
-		UIButton *deviceToggleButton = [[UIButton alloc] initWithFrame:buttonFrame];
-		[deviceToggleButton setImage:[UIImage imageNamed:@"camera-rotate-alpha"] forState:UIControlStateNormal];
-		[deviceToggleButton addTarget:self action:@selector(changeCameraDevice:) forControlEvents:UIControlEventTouchUpInside];
-		deviceToggleButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin;
-		[deviceToggleButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-		[deviceToggleButton cameraButtonStyle];
-		UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:deviceToggleButton];
-		[items addObject:rightItem];
+	//cell.delegate = self;
+}
+
+- (void)collectionView:(PSUICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+	//	FDPhotoDetailsViewController *photoDetailsViewController = [[FDPhotoDetailsViewController alloc] init];
+	//	FDTweet *tweet = tweets[indexPath.row];
+	//	if (tweet.photos.count) {
+	//		photoDetailsViewController.photo = tweet.photos[0];
+	//	}
+	//	[self.navigationController pushViewController:photoDetailsViewController animated:YES];
+}
+
+#pragma mark - FDAddTweetCellDelegate
+
+- (void)willAddTweet
+{
+	NSLog(@"add tweet");
+	if ([[FDAFHTTPClient shared] isSessionValid]) {
+		[self addTweet];
+	} else {
+		[self displayHUDTitle:NSLocalizedString(@"Need Login", nil) message:NSLocalizedString(@"You must login first.", nil)];
 	}
-	[toolbar setItems:items];
-	return toolbar;
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex == 0) {
+		[self startCameraWithDelegate:self allowsEditing:NO];
+	} else if (buttonIndex == 1) {
+		[self startPhotoLibraryWithDelegate:self allowsEditing:NO];
+	}
 }
 
 #pragma mark - UIImagePickerControllerDelegate
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-	[self dismissViewControllerAnimated:YES completion:^{
-		//_imageView.backgroundColor = [UIColor randomColor];
-	}];
+	[picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-	[self dismissViewControllerAnimated:YES completion:^{
-		[self startAviaryEditorWithPhoto:info[UIImagePickerControllerOriginalImage]];
+	[picker dismissViewControllerAnimated:YES completion:^{
 	}];
+//	[self displayHUD:NSLocalizedString(@"Uploading Avatar", nil)];
+//	[picker dismissViewControllerAnimated:YES completion:^{
+//		UIImage *avatarImage = info[UIImagePickerControllerEditedImage];
+//		NSString *avatarPath = [NSString avatarPathWithUserID:[[FDAFHTTPClient shared] userID]];
+//		NSData *imageData = UIImagePNGRepresentation(avatarImage);
+//		[[ZBQNAFHTTPClient shared] uploadData:imageData name:avatarPath withCompletionBlock:^(BOOL success) {
+//			if (success) {
+//				[[FDAFHTTPClient shared] editAvatarPath:avatarPath withCompletionBlock:^(BOOL success, NSString *message) {
+//					if (success) {
+//						[self displayHUDTitle:nil message:NSLocalizedString(@"Update Succeed!", nil) duration:1];
+//						_userProfile.avatarPath = avatarPath;
+//						_avatarView.image = avatarImage;
+//					} else {
+//						[self displayHUDTitle:nil message:message];
+//					}
+//				}];
+//			} else {
+//				[self hideHUD:YES];
+//			}
+//		}];
+//	}];
 }
 
-#pragma mark - AFPhotoEditorControllerDelegate
 
-- (void)photoEditor:(AFPhotoEditorController *)editor finishedWithImage:(UIImage *)image
-{
-	[self dismissViewControllerAnimated:YES completion:^{
-		_imageView.image = image;
-	}];
-}
-
-- (void)photoEditorCanceled:(AFPhotoEditorController *)editor
-{
-	[self dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark Camera Actions
-
-- (void)cancelCamera
-{
-	[self.imagePicker.delegate imagePickerControllerDidCancel:self.imagePicker];
-}
-
-- (void)changeFlashMode:(FDCameraFlashButton *)button
-{
-	if ([UIImagePickerController isFlashAvailableForCameraDevice:self.imagePicker.cameraDevice]) {
-		self.imagePicker.cameraFlashMode = button.flashMode = -self.imagePicker.cameraFlashMode;
-	}
-}
-
-- (void)changeCameraDevice:(UIButton *)button
-{
-	if (self.imagePicker.cameraDevice == UIImagePickerControllerCameraDeviceRear) {
-		self.imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
-	} else {
-		self.imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-	}
-	if ([UIImagePickerController isFlashAvailableForCameraDevice:self.imagePicker.cameraDevice]) {
-		self.imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
-	}
-}
 
 @end

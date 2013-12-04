@@ -11,7 +11,6 @@
 @interface FDSize : NSObject
 
 + (CGSize)aroundPhotoSize;
-+ (CGSize)profilePhotoSize;
-+ (CGSize)profileOtherPhotoSize;
++ (CGSize)tweetPhotoSize;
 
 @end

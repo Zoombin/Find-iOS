@@ -609,5 +609,22 @@ static NSString *token;
 	}];
 }
 
+- (void)tweetsByPublished:(NSNumber *)published WithCompletionBlock:(void (^)(BOOL success, NSString *message, NSNumber *published, NSArray *tweetsData))block;
+{
+	NSMutableString *path = [NSMutableString stringWithFormat:@"tweet"];
+	if (published) {
+		[path appendFormat:@"?published=%@", published];
+	}
+	
+	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]], data[@"published"], data[responseKeyData]);
+		}
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		if (block) block (NO, [FDErrorMessage messageNetworkError], nil, nil);
+	}];
+}
+
 
 @end

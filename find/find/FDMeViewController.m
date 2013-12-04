@@ -13,6 +13,7 @@
 #import "FDSettingsViewController.h"
 #import "FDMeCell.h"
 #import "FDSessionInvalidCell.h"
+#import "FDCameraViewController.h"
 
 NSString *kMyProfile = @"kMyProfile";
 NSString *kMyAlbum = @"kMyAlbum";
@@ -76,7 +77,7 @@ NSString *kSettings = @"kSettings";
 	section++;
 	
 	sectionData = @[
-					@{kIdentifier : kMyAlbum, kIcon : @"IconAlbum", kTitle : NSLocalizedString(@"My Album", nil), kNeedSigninAlert : @(YES)},
+					@{kIdentifier : kMyAlbum, kIcon : @"IconAlbum", kTitle : NSLocalizedString(@"My Album", nil), kNeedSigninAlert : @(YES), kPushTargetClass : NSStringFromClass([FDCameraViewController class])},
 					
 					@{kIdentifier : kMyWealth, kIcon : @"IconWealth", kTitle : NSLocalizedString(@"My Properties", nil), kNeedSigninAlert : @(YES)},
 					

@@ -21,14 +21,9 @@
 	return CGSizeMake(150, 180);
 }
 
-+ (CGSize)profilePhotoSize
++ (CGSize)tweetPhotoSize
 {
-	return CGSizeMake(305, 305);
-}
-
-+ (CGSize)profileOtherPhotoSize
-{
-	return CGSizeMake(100, 100);
+	return CGSizeMake(kThumbnailSmallSquareWidth, kThumbnailSmallSquareWidth);
 }
 
 @end

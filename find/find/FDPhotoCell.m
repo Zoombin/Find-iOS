@@ -12,6 +12,7 @@
 
 @property (readwrite) UIImageView *photoView;
 @property (readwrite) UILabel *distanceLabel;
+@property (readwrite) UIImageView *distanceIcon;
 
 @end
 
@@ -30,28 +31,28 @@
 		_photoView = [[UIImageView alloc] initWithFrame:CGRectMake(start.x, start.y, self.bounds.size.width, self.bounds.size.width)];
 		_photoView.contentMode = UIViewContentModeScaleAspectFit;
 		_photoView.userInteractionEnabled = YES;
-		[self addSubview:_photoView];
+		[self.contentView addSubview:_photoView];
 		
 		start = CGPointMake(5, CGRectGetMaxY(_photoView.frame));
 		
-		UIImageView *distanceIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Location"]];
-		distanceIcon.contentMode = UIViewContentModeScaleAspectFit;
-		distanceIcon.frame = CGRectMake(start.x, start.y, 22, 27);
-		[self addSubview:distanceIcon];
+		_distanceIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Location"]];
+		_distanceIcon.contentMode = UIViewContentModeScaleAspectFit;
+		_distanceIcon.frame = CGRectMake(start.x, start.y, 22, 27);
+		[self.contentView addSubview:_distanceIcon];
 		
-		start = CGPointMake(CGRectGetMaxX(distanceIcon.frame), CGRectGetMaxY(_photoView.frame));
+		start = CGPointMake(CGRectGetMaxX(_distanceIcon.frame), CGRectGetMaxY(_photoView.frame));
 		
 		_distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(start.x, start.y, self.bounds.size.width - start.x, self.bounds.size.height - start.y)];
 		_distanceLabel.backgroundColor = [UIColor clearColor];
 		_distanceLabel.font = [UIFont fdThemeFontOfSize:18];
 		_distanceLabel.adjustsFontSizeToFitWidth = YES;
-		[self addSubview:_distanceLabel];
+		[self.contentView addSubview:_distanceLabel];
 		
 		start = CGPointMake(CGRectGetMaxX(self.bounds) - [FDLikesView size].width, CGRectGetMaxY(_photoView.frame) - 7);
 		
 		_likesView = [[FDLikesView alloc] initWithFrame:CGRectMake(start.x, start.y, [FDLikesView size].width, [FDLikesView size].height)];
 		_likesView.delegate = self;
-		[self addSubview:_likesView];
+		[self.contentView addSubview:_likesView];
     }
     return self;
 }
@@ -110,6 +111,13 @@
 	NSString *displayedInfo = [NSString stringWithFormat:@"%@ pid: %@", [_tweet.distance printableDistance], _photo.ID];
 	//NSString *displayedInfo = [_tweet.distance printableDistance];
 	_distanceLabel.text = displayedInfo;
+}
+
+- (void)hideDetails
+{
+	_likesView.hidden = YES;
+	_distanceIcon.hidden = YES;
+	_distanceLabel.hidden = YES;
 }
 
 #pragma mark - FDLikesViewDelegate

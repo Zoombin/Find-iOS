@@ -99,7 +99,7 @@ static NSInteger heightOfMap = 150;
 - (void)privacyLevelChanged:(id)sender
 {
 	NSInteger index = _segmentedControl.selectedSegmentIndex;
-	NSString *key = [NSString stringWithFormat:@"userprivacy-%@", _identifier];
+	NSString *key = [FDUserProfile apiParameterPrivacyLevelKeyWithIdentifier:_identifier];
 	[[FDAFHTTPClient shared] editProfile:@{key : @(index)} withCompletionBlock:^(BOOL success, NSString *message) {
 		if (success) {
 			[[NSNotificationCenter defaultCenter] postNotificationName:ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
@@ -139,7 +139,21 @@ static NSInteger heightOfMap = 150;
 	
 	//NSString *stringWithoutNewline = [_content stringByReplacingOccurrencesOfString: @"\r" withString:@""];
 	//stringWithoutNewline = [stringWithoutNewline stringByReplacingOccurrencesOfString: @"\n" withString:@""];
-	[[FDAFHTTPClient shared] editProfile:@{_identifier : [_cellInstance content]} withCompletionBlock:^(BOOL success, NSString *message) {
+	NSString *key = [FDUserProfile apiParameterKeyWithIdentifier:_identifier];
+	NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+	parameters[key] = [_cellInstance content];
+	
+	CLLocation *location;
+	if (_mapView.annotations.count) {
+		MKPointAnnotation *annotation = _mapView.annotations[0];
+		location = [[CLLocation alloc] initWithLatitude:annotation.coordinate.latitude longitude:annotation.coordinate.longitude];
+	}
+	
+	if (location) {
+		parameters[@"lat"] = @(location.coordinate.latitude);
+		parameters[@"lng"] = @(location.coordinate.longitude);
+	}
+	[[FDAFHTTPClient shared] editProfile:parameters withCompletionBlock:^(BOOL success, NSString *message) {
 		if (success) {
 			[self displayHUDTitle:NSLocalizedString(@"Updated", nil) message:nil];
 			[self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.0f];

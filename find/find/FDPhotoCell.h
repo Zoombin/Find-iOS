@@ -28,6 +28,7 @@ static NSString *kFDPhotoCellIdentifier = @"kFDPhotoCellIdentifier";
 @property (nonatomic, strong) FDPhoto *photo;
 @property (nonatomic, strong) FDLikesView *likesView;
 
+- (void)hideDetails;
 //- (void)setPhoto:(FDPhoto *)photo scaleFitWidth:(CGFloat)width completionBlock:(dispatch_block_t)block;
 
 @end

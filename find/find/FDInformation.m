@@ -89,7 +89,7 @@ static NSString *address = @"address";
 - (NSString *)display
 {
 	if ([self isPublic]) {
-		[self valueString];
+		return [self valueString];
 	}
 	return [[self valueString] privatizeWithStyle:FDPrivatizeStyleHideMiddle];
 }
