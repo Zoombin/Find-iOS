@@ -16,7 +16,7 @@
 
 NSString *kMyProfile = @"kMyProfile";
 NSString *kMyAlbum = @"kMyAlbum";
-NSString *kMyPorperties = @"kMyPorperties";
+NSString *kMyWealth = @"kMyWealth";
 NSString *kMyInterests = @"kMyInterests";
 NSString *kMyMessages = @"kMyMessages";
 NSString *kStore = @"kStore";
@@ -76,25 +76,25 @@ NSString *kSettings = @"kSettings";
 	section++;
 	
 	sectionData = @[
-					@{kIdentifier : kMyAlbum, kIcon : @"MoreMyAlbum", kTitle : NSLocalizedString(@"My Album", nil), kNeedSigninAlert : @(YES)},
+					@{kIdentifier : kMyAlbum, kIcon : @"IconAlbum", kTitle : NSLocalizedString(@"My Album", nil), kNeedSigninAlert : @(YES)},
 					
-					@{kIdentifier : kMyPorperties, kIcon : @"MoreMyBankCard", kTitle : NSLocalizedString(@"My Properties", nil), kNeedSigninAlert : @(YES)},
+					@{kIdentifier : kMyWealth, kIcon : @"IconWealth", kTitle : NSLocalizedString(@"My Properties", nil), kNeedSigninAlert : @(YES)},
 					
-					@{kIdentifier : kMyInterests, kIcon : @"MoreExpressionShops", kTitle : NSLocalizedString(@"My Interests", nil), kNeedSigninAlert : @(YES)},
+					@{kIdentifier : kMyInterests, kIcon : @"IconInterests", kTitle : NSLocalizedString(@"My Interests", nil), kNeedSigninAlert : @(YES)},
 					
-					@{kIdentifier : kMyMessages, kIcon : @"MoreMyFavorites", kTitle : NSLocalizedString(@"My Messages", nil), kNeedSigninAlert : @(YES)},
+					@{kIdentifier : kMyMessages, kIcon : @"IconMessages", kTitle : NSLocalizedString(@"My Messages", nil), kNeedSigninAlert : @(YES)},
 				  ];
 	_dataSourceDictionary[@(section)] = sectionData;
 	section++;
 	
 	sectionData = @[
-				  @{kIdentifier : kStore, kIcon : @"MoreGame", kTitle : NSLocalizedString(@"Store", nil), kPushTargetClass : NSStringFromClass([FDStoreViewController class])},
+				  @{kIdentifier : kStore, kIcon : @"IconStore", kTitle : NSLocalizedString(@"Store", nil), kPushTargetClass : NSStringFromClass([FDStoreViewController class])},
 				  ];
 	_dataSourceDictionary[@(section)] = sectionData;
 	section++;
 	
 	sectionData = @[
-				  @{kIdentifier : kSettings, kIcon : @"MoreSetting", kTitle : NSLocalizedString(@"Settings", nil), kPushTargetClass : NSStringFromClass([FDSettingsViewController class])},
+				  @{kIdentifier : kSettings, kIcon : @"IconSettings", kTitle : NSLocalizedString(@"Settings", nil), kPushTargetClass : NSStringFromClass([FDSettingsViewController class])},
 				  ];
 	_dataSourceDictionary[@(section)] = sectionData;
 	section++;

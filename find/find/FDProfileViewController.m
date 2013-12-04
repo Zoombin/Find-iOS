@@ -75,13 +75,13 @@ static NSInteger tagOfPrivacyLabel = 'priv';
 	NSArray *sectionData;
 	
 	sectionData = @[
-				  @{kIdentifier : kProfileAvatar, kIcon : @"MoreMyAlbum", kTitle : NSLocalizedString(@"Avatar", nil), kAction : NSStringFromSelector(@selector(editAvatar)), kHeightOfCell : @([FDMeCell height])},
+				  @{kIdentifier : kProfileAvatar, kIcon : @"IconAvatar", kTitle : NSLocalizedString(@"Avatar", nil), kAction : NSStringFromSelector(@selector(editAvatar)), kHeightOfCell : @([FDMeCell height])},
 				  
-				  @{kIdentifier : kProfileNickname, kIcon : @"MoreMyFavorites", kTitle : NSLocalizedString(@"Nickname", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
+				  @{kIdentifier : kProfileNickname, kIcon : @"IconNickname", kTitle : NSLocalizedString(@"Nickname", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
 				  
-				  @{kIdentifier : kProfileSignature, kIcon : @"MoreMyAlbum", kTitle : NSLocalizedString(@"Signature", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
+				  @{kIdentifier : kProfileSignature, kIcon : @"IconSignature", kTitle : NSLocalizedString(@"Signature", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
 				  
-				  @{kIdentifier : kProfileGender, kIcon : @"MoreGame", kTitle : NSLocalizedString(@"Gender", nil)},
+				  @{kIdentifier : kProfileGender, kIcon : @"IconGender", kTitle : NSLocalizedString(@"Gender", nil)},
 				  ];
 	_dataSourceDictionary[@(section)] = sectionData;
 	section++;
@@ -93,13 +93,13 @@ static NSInteger tagOfPrivacyLabel = 'priv';
 	section++;
 	
 	sectionData = @[
-				  @{kIdentifier : kProfileMobile, kIcon : @"MoreExpressionShops", kTitle : NSLocalizedString(@"Mobile", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
+				  @{kIdentifier : kProfileMobile, kIcon : @"IconMobile", kTitle : NSLocalizedString(@"Mobile", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
 				  
-				  @{kIdentifier : kProfileQQ, kIcon : @"MoreMyAlbum", kTitle : NSLocalizedString(@"QQ", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
+				  @{kIdentifier : kProfileQQ, kIcon : @"IconQQ", kTitle : NSLocalizedString(@"QQ", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
 				  
-				  @{kIdentifier : kProfileWeixin, kIcon : @"MoreSetting", kTitle : NSLocalizedString(@"Weixin", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
+				  @{kIdentifier : kProfileWeixin, kIcon : @"IconWeixin", kTitle : NSLocalizedString(@"Weixin", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
 				  
-				  @{kIdentifier : kProfileAddress, kIcon : @"MoreGame", kTitle : NSLocalizedString(@"Address", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
+				  @{kIdentifier : kProfileAddress, kIcon : @"IconLocation", kTitle : NSLocalizedString(@"Address", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
 				  
 				  ];
 	_dataSourceDictionary[@(section)] = sectionData;
