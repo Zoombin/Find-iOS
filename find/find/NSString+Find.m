@@ -10,6 +10,15 @@
 
 @implementation NSString (Find)
 
++ (instancetype)photoPathWithUserID:(NSNumber *)userID
+{
+	NSAssert(userID, @"UserID can not be nil!");
+	NSDate *date = [NSDate date];
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	dateFormatter.dateFormat = @"yyyy-MM-dd-HH-mm-ss";
+	return [NSString stringWithFormat:@"photo-%@-%@-%@.jpg", userID, [dateFormatter stringFromDate:date], [self randomDigitalStringOfLength:4]];
+}
+
 + (instancetype)avatarPathWithUserID:(NSNumber *)userID
 {
 	NSAssert(userID, @"UserID can not be nil!");

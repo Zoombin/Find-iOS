@@ -17,6 +17,7 @@ typedef NS_ENUM(NSInteger, FDPrivatizeStyle) {
 
 @interface NSString (Find)
 
++ (instancetype)photoPathWithUserID:(NSNumber *)userID;
 + (instancetype)avatarPathWithUserID:(NSNumber *)userID;
 + (instancetype)randomDigitalStringOfLength:(NSUInteger)length;
 - (instancetype)privatizeWithStyle:(FDPrivatizeStyle)style;

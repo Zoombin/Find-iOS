@@ -162,6 +162,21 @@ static NSInteger heightOfMap = 150;
 	}];
 }
 
+- (void)addAnnotationWithLocation:(CLLocation *)location
+{
+	[_mapView setCenterCoordinate:location.coordinate animated:YES];
+	[_mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 2000, 2000) animated:YES];
+	
+	MKPointAnnotation *annotation;
+	if (_mapView.annotations.count == 0) {
+		annotation = [[MKPointAnnotation alloc] init];
+		[_mapView addAnnotation:annotation];
+	} else {
+		annotation = _mapView.annotations[0];
+	}
+	annotation.coordinate = location.coordinate;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -334,20 +349,8 @@ static NSInteger heightOfMap = 150;
 {
 	if (locations.count) {
 		NSLog(@"first location: %@", [locations[0] coordinateString]);
-		
 		CLLocation *location = locations[0];
-		
-		[_mapView setCenterCoordinate:location.coordinate animated:YES];
-		[_mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 2000, 2000) animated:YES];
-
-		MKPointAnnotation *annotation;
-		if (_mapView.annotations.count == 0) {
-			annotation = [[MKPointAnnotation alloc] init];
-			[_mapView addAnnotation:annotation];
-		} else {
-			annotation = _mapView.annotations[0];
-		}
-		annotation.coordinate = location.coordinate;
+		[self addAnnotationWithLocation:location];
 	}
 }
 
@@ -355,6 +358,7 @@ static NSInteger heightOfMap = 150;
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
 	NSLog(@"newLocation: %@", [newLocation coordinateString]);
+	[self addAnnotationWithLocation:newLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error

@@ -618,16 +618,16 @@ UIPickerViewDataSource
 {
 	[self displayHUD:NSLocalizedString(@"Uploading Avatar", nil)];
 	[picker dismissViewControllerAnimated:YES completion:^{
-		UIImage *avatarImage = info[UIImagePickerControllerEditedImage];
-		NSString *avatarPath = [NSString avatarPathWithUserID:[[FDAFHTTPClient shared] userID]];
-		NSData *imageData = UIImagePNGRepresentation(avatarImage);
-		[[ZBQNAFHTTPClient shared] uploadData:imageData name:avatarPath withCompletionBlock:^(BOOL success) {
+		UIImage *image = info[UIImagePickerControllerEditedImage];
+		NSString *path = [NSString avatarPathWithUserID:[[FDAFHTTPClient shared] userID]];
+		NSData *imageData = UIImagePNGRepresentation(image);
+		[[ZBQNAFHTTPClient shared] uploadData:imageData name:path withCompletionBlock:^(BOOL success) {
 			if (success) {
-				[[FDAFHTTPClient shared] editAvatarPath:avatarPath withCompletionBlock:^(BOOL success, NSString *message) {
+				[[FDAFHTTPClient shared] editAvatarPath:path withCompletionBlock:^(BOOL success, NSString *message) {
 					if (success) {
 						[self displayHUDTitle:nil message:NSLocalizedString(@"Update Succeed!", nil) duration:1];
-						_userProfile.avatarPath = avatarPath;
-						_avatarView.image = avatarImage;
+						_userProfile.avatarPath = path;
+						_avatarView.image = image;
 					} else {
 						[self displayHUDTitle:nil message:message];
 					}

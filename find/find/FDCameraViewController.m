@@ -17,11 +17,15 @@ UIImagePickerControllerDelegate,
 UIActionSheetDelegate,
 PSUICollectionViewDelegate,
 PSUICollectionViewDataSource,
-FDAddTweetCellDelegate
+FDAddTweetCellDelegate,
+CLLocationManagerDelegate
 >
 
 @property (readwrite) PSUICollectionView *photosCollectionView;
 @property (readwrite) NSArray *tweets;
+@property (readwrite) CLLocationManager *locationManager;
+@property (readwrite) CLLocation *location;
+@property (readwrite) NSString *address;
 
 @end
 
@@ -85,6 +89,23 @@ FDAddTweetCellDelegate
 	[self choosePickerWithDelegate:self];
 }
 
+- (void)parseToAddressWithLocation:(CLLocation *)loation
+{
+	CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+	[geocoder reverseGeocodeLocation:loation completionHandler:^(NSArray *placemarks, NSError *error) {
+		NSLog(@"reverseGeocodeLocation:completionHandler: Completion Handler called!");
+		if (error){
+			NSLog(@"Geocode failed with error: %@", error);
+			return;
+		}
+		if(placemarks.count) {
+			CLPlacemark *topResult = placemarks[0];
+			_address = [NSString stringWithFormat:@"%@ %@,%@ %@", [topResult subThoroughfare], [topResult thoroughfare], [topResult locality], [topResult administrativeArea]];
+			NSLog(@"_address: %@", _address);
+		}
+	}];
+}
+
 #pragma mark - PSUICollectionViewDelegate
 
 - (CGSize)collectionView:(PSUICollectionView *)collectionView layout:(PSUICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -130,6 +151,12 @@ FDAddTweetCellDelegate
 {
 	NSLog(@"add tweet");
 	if ([[FDAFHTTPClient shared] isSessionValid]) {
+		if (!_locationManager) {
+			_locationManager = [[CLLocationManager alloc] init];
+			_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+			_locationManager.delegate = self;
+			[_locationManager startUpdatingLocation];
+		}
 		[self addTweet];
 	} else {
 		[self displayHUDTitle:NSLocalizedString(@"Need Login", nil) message:NSLocalizedString(@"You must login first.", nil)];
@@ -156,31 +183,56 @@ FDAddTweetCellDelegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+	[self displayHUD:NSLocalizedString(@"Uploading", nil)];
 	[picker dismissViewControllerAnimated:YES completion:^{
+		UIImage *image = info[UIImagePickerControllerOriginalImage];
+		NSString *path = [NSString photoPathWithUserID:[[FDAFHTTPClient shared] userID]];
+		NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+		[[ZBQNAFHTTPClient shared] uploadData:imageData name:path withCompletionBlock:^(BOOL success) {
+			if (success) {
+				[[FDAFHTTPClient shared] tweetPhotos:@[path] atLocation:_location address:_address withCompletionBlock:^(BOOL success, NSString *message) {
+					[self displayHUDTitle:@"Upload successfully" message:nil];
+					
+				}];
+			} else {
+				[self hideHUD:YES];
+			}
+		}];
 	}];
-//	[self displayHUD:NSLocalizedString(@"Uploading Avatar", nil)];
-//	[picker dismissViewControllerAnimated:YES completion:^{
-//		UIImage *avatarImage = info[UIImagePickerControllerEditedImage];
-//		NSString *avatarPath = [NSString avatarPathWithUserID:[[FDAFHTTPClient shared] userID]];
-//		NSData *imageData = UIImagePNGRepresentation(avatarImage);
-//		[[ZBQNAFHTTPClient shared] uploadData:imageData name:avatarPath withCompletionBlock:^(BOOL success) {
-//			if (success) {
-//				[[FDAFHTTPClient shared] editAvatarPath:avatarPath withCompletionBlock:^(BOOL success, NSString *message) {
-//					if (success) {
-//						[self displayHUDTitle:nil message:NSLocalizedString(@"Update Succeed!", nil) duration:1];
-//						_userProfile.avatarPath = avatarPath;
-//						_avatarView.image = avatarImage;
-//					} else {
-//						[self displayHUDTitle:nil message:message];
-//					}
-//				}];
-//			} else {
-//				[self hideHUD:YES];
-//			}
-//		}];
-//	}];
 }
-
-
+		 
+#pragma mark - CLLocationManagerDelegate
+		 
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+	if (locations.count) {
+		NSLog(@"first location: %@", [locations[0] coordinateString]);
+		_location = locations[0];
+		[self parseToAddressWithLocation:_location];
+		[manager stopUpdatingLocation];
+	}
+}
+ 
+//ios6
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+	_location = newLocation;
+	[self parseToAddressWithLocation:_location];
+	[manager stopUpdatingLocation];
+	NSLog(@"newLocation: %@", [newLocation coordinateString]);
+}
+ 
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+	[manager stopUpdatingLocation];
+	_location = nil;
+	_address = nil;
+	
+	if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Location Service Is Not Available", nil) message:NSLocalizedString(@"You need open location service in Settings.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:NSLocalizedString(@"View Details", nil), nil];
+		alertView.delegate = self;
+		[alertView show];
+	}
+}
 
 @end
