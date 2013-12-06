@@ -609,11 +609,15 @@ static NSString *token;
 	}];
 }
 
-- (void)tweetsByPublished:(NSNumber *)published WithCompletionBlock:(void (^)(BOOL success, NSString *message, NSNumber *published, NSArray *tweetsData))block;
+- (void)tweetsPublished:(NSNumber *)published limit:(NSNumber *)limit withCompletionBlock:(void (^)(BOOL success, NSString *message, NSNumber *published, NSArray *tweetsData))block
 {
 	NSMutableString *path = [NSMutableString stringWithFormat:@"tweet"];
 	if (published) {
 		[path appendFormat:@"?published=%@", published];
+	}
+	
+	if (limit) {
+		[path appendFormat:@"?limit=%@", limit];
 	}
 	
 	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {

@@ -88,7 +88,7 @@
 - (void)editAvatarPath:(NSString *)avatarPath withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
 
 //用户的照片流//published是timestamp最后的时间用来分页的//published＝nil的话返回一定数量的tweets,由服务器控制
-- (void)tweetsByPublished:(NSNumber *)published WithCompletionBlock:(void (^)(BOOL success, NSString *message, NSNumber *published, NSArray *tweetsData))block;
+- (void)tweetsPublished:(NSNumber *)published limit:(NSNumber *)limit withCompletionBlock:(void (^)(BOOL success, NSString *message, NSNumber *published, NSArray *tweetsData))block;
 
 //test gzip
 - (void)test;

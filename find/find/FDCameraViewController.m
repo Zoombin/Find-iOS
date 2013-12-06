@@ -9,6 +9,9 @@
 #import "FDCameraViewController.h"
 #import "FDPhotoCell.h"
 #import "FDAddTweetCell.h"
+#import "FDWebViewController.h"
+
+static NSInteger indexOfAlertDetails = 1;
 
 @interface FDCameraViewController ()
 <
@@ -64,7 +67,7 @@ CLLocationManagerDelegate
 	[self.view addSubview:_photosCollectionView];
 	
 	if ([[FDAFHTTPClient shared] isSessionValid]) {
-		[[FDAFHTTPClient shared] tweetsByPublished:nil WithCompletionBlock:^(BOOL success, NSString *message, NSNumber *published, NSArray *tweetsData) {
+		[[FDAFHTTPClient shared] tweetsPublished:nil limit:@(20) withCompletionBlock:^(BOOL success, NSString *message, NSNumber *published, NSArray *tweetsData) {
 			if (success) {
 				_tweets = [FDTweet createMutableWithData:tweetsData];
 				[_photosCollectionView reloadData];
@@ -232,6 +235,17 @@ CLLocationManagerDelegate
 		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Location Service Is Not Available", nil) message:NSLocalizedString(@"You need open location service in Settings.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:NSLocalizedString(@"View Details", nil), nil];
 		alertView.delegate = self;
 		[alertView show];
+	}
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex == indexOfAlertDetails) {
+		FDWebViewController *webViewController = [[FDWebViewController alloc] init];
+		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
+		[self.navigationController presentViewController:navigationController animated:YES completion:nil];
 	}
 }
 
