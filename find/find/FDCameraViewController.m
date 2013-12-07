@@ -46,8 +46,6 @@ CLLocationManagerDelegate
 		} else {
 			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Camera"] tag:0];
 		}
-		
-		//self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(startCamera)];
     }
     return self;
 }
@@ -103,7 +101,34 @@ CLLocationManagerDelegate
 		}
 		if(placemarks.count) {
 			CLPlacemark *topResult = placemarks[0];
-			_address = [NSString stringWithFormat:@"%@ %@,%@ %@", [topResult subThoroughfare], [topResult thoroughfare], [topResult locality], [topResult administrativeArea]];
+			
+			NSLog(@"name: %@", [topResult name]);
+			NSLog(@"thoroughfare: %@", [topResult thoroughfare]);
+			NSLog(@"subThoroughfare: %@", [topResult subThoroughfare]);
+			NSLog(@"locality: %@", [topResult locality]);
+			NSLog(@"subLocality: %@", [topResult subLocality]);
+			NSLog(@"administrativeArea: %@", [topResult administrativeArea]);
+			NSLog(@"subAdministrativeArea: %@", [topResult subAdministrativeArea]);
+			NSLog(@"postalCode: %@", [topResult postalCode]);
+			NSLog(@"ISOcountryCode: %@", [topResult ISOcountryCode]);
+			NSLog(@"country: %@", [topResult country]);
+			NSLog(@"inlandWater: %@", [topResult inlandWater]);
+			NSLog(@"ocean: %@", [topResult ocean]);
+			NSLog(@"areasOfInterest: %@", [topResult areasOfInterest]);
+			
+			NSMutableString *addr = [NSMutableString stringWithFormat:@""];
+			if ([topResult subLocality]) {
+				[addr appendFormat:@"%@", [topResult subLocality]];
+			}
+			if ([topResult thoroughfare]) {
+				[addr appendFormat:@" %@", [topResult thoroughfare]];
+			}
+			if ([topResult name]) {
+				if ([[topResult name] interestingPlace]) {
+					[addr appendFormat:@" %@", [topResult name]];
+				}
+			}
+			_address = addr;
 			NSLog(@"_address: %@", _address);
 		}
 	}];

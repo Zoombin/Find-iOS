@@ -37,6 +37,24 @@
 	return randomDigitalString;
 }
 
+- (BOOL)interestingPlace
+{
+	BOOL interesting = NO;
+	static NSArray *interestingPlaces;
+	if (!interestingPlaces) {
+		interestingPlaces = @[@"酒吧", @"ktv", @"会所", @"娱乐", @"桑拿", @"温泉", @"按摩", @"足浴", @"美容", @"贵宾"];
+	}
+	NSRange range;
+	for (NSString *place in interestingPlaces) {
+		range = [self.lowercaseString rangeOfString:place];
+		if (range.location != NSNotFound) {
+			interesting = YES;
+			break;
+		}
+	}
+	return interesting;
+}
+
 - (instancetype)privatizeWithStyle:(FDPrivatizeStyle)style
 {
 	if (self.length == 0) {
