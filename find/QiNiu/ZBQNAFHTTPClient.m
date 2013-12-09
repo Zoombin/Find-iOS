@@ -20,20 +20,20 @@
 
 @implementation ZBQNAFHTTPClient
 
-static ZBQNAFHTTPClient *_instance;
 static NSString *_token;
 
 +(instancetype)shared
 {
-    if(!_instance){
-        _instance = [[ZBQNAFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kQiniuUpHost]];
-		[_instance setDefaultHeader:@"User-Agent" value:kQiniuUserAgent];
+	static ZBQNAFHTTPClient *instance;
+    if(!instance){
+        instance = [[ZBQNAFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kQiniuUpHost]];
+		[instance setDefaultHeader:@"User-Agent" value:kQiniuUserAgent];
 		
 		ZBQNPutPolicy *policy = [[ZBQNPutPolicy alloc] init];
 		policy.scope = kQiniuBucketFind;
 		_token = [policy makeToken:kQiniuAccessKey secretKey:kQiniuSecretKey];
     }
-    return _instance;
+    return instance;
 }
 
 
@@ -49,7 +49,7 @@ static NSString *_token;
 
 - (void)uploadData:(NSData *)data name:(NSString *)name progressBlock:(void (^)(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite))progress completionBlockWithSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
-	NSMutableURLRequest *request = [_instance multipartFormRequestWithMethod:@"POST" path:nil parameters:@{@"token" : _token, @"key" : name} constructingBodyWithBlock: ^(id <AFMultipartFormData>formData) {
+	NSMutableURLRequest *request = [self multipartFormRequestWithMethod:@"POST" path:nil parameters:@{@"token" : _token, @"key" : name} constructingBodyWithBlock: ^(id <AFMultipartFormData>formData) {
 					[formData appendPartWithFileData:data name:@"file" fileName:name mimeType:@""];
 				}];
 	
@@ -64,7 +64,7 @@ static NSString *_token;
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		if (failure) failure(operation, error);
 	}];
-	[_instance enqueueHTTPRequestOperation:operation];
+	[self enqueueHTTPRequestOperation:operation];
 }
 
 @end
