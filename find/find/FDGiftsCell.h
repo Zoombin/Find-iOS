@@ -1,5 +1,5 @@
 //
-//  FDShareAndGiftsCell.h
+//  FDGiftsCell.h
 //  find
 //
 //  Created by zhangbin on 11/7/13.
@@ -8,16 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol FDShareAndGiftsCellDelegate <NSObject>
+@protocol FDGiftsCellDelegate <NSObject>
 
 - (void)willGifts;
 - (void)willSendPrivateMessage;
 
 @end
 
-@interface FDShareAndGiftsCell : UITableViewCell
+@interface FDGiftsCell : UITableViewCell
 
-@property (nonatomic, weak) id<FDShareAndGiftsCellDelegate> delegate;
+@property (nonatomic, weak) id<FDGiftsCellDelegate> delegate;
 
 + (CGFloat)height;
 + (NSString *)identifier;

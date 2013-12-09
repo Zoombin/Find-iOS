@@ -1,21 +1,21 @@
 //
-//  FDShareAndGiftsCell.m
+//  FDGiftsCell.m
 //  find
 //
 //  Created by zhangbin on 11/7/13.
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "FDShareAndGiftsCell.h"
+#import "FDGiftsCell.h"
 
 static NSInteger minimumQuantityOfGift = 1;
 
-@interface FDShareAndGiftsCell ()
+@interface FDGiftsCell ()
 
-@property (readwrite) UIButton *favPhotoButton;
-@property (readwrite) UIButton *favUserButton;
-@property (readwrite) UIButton *shareToWeiboButton;
-@property (readwrite) UIButton *shareToWeixinButton;
+//@property (readwrite) UIButton *favPhotoButton;
+//@property (readwrite) UIButton *favUserButton;
+//@property (readwrite) UIButton *shareToWeiboButton;
+//@property (readwrite) UIButton *shareToWeixinButton;
 @property (readwrite) UITextField *diamondQuantityTextField;
 @property (readwrite) UIButton *giftDiamondButton;
 @property (readwrite) UIStepper *diamondStepper;
@@ -25,7 +25,7 @@ static NSInteger minimumQuantityOfGift = 1;
 
 @end
 
-@implementation FDShareAndGiftsCell
+@implementation FDGiftsCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -38,48 +38,48 @@ static NSInteger minimumQuantityOfGift = 1;
 		CGFloat gap = 20;
 		CGSize size = CGSizeMake(100, 40);
 		
-		_favPhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		_favPhotoButton.frame = CGRectMake(start.x, start.y, size.width, size.height);
-		_favPhotoButton.showsTouchWhenHighlighted = YES;
-		_favPhotoButton.titleLabel.adjustsFontSizeToFitWidth = YES;
-		[_favPhotoButton setTitle:NSLocalizedString(@"Favor It", nil) forState:UIControlStateNormal];
-		_favPhotoButton.backgroundColor = [UIColor randomColor];//TODO
-		[self.contentView addSubview:_favPhotoButton];
-		
-		start.x = CGRectGetMaxX(_favPhotoButton.frame) + gap;
-		
-		_favUserButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		_favUserButton.frame = CGRectMake(start.x, start.y, size.width, size.height);
-		_favUserButton.showsTouchWhenHighlighted = YES;
-		_favUserButton.titleLabel.adjustsFontSizeToFitWidth = YES;
-		[_favUserButton setTitle:NSLocalizedString(@"Follow Her/Him", nil) forState:UIControlStateNormal];
-		_favUserButton.backgroundColor = [UIColor randomColor];//TODO
-		[self.contentView addSubview:_favUserButton];
-		
-		start = CGPointMake(CGRectGetMinX(_favPhotoButton.frame), CGRectGetMaxY(_favPhotoButton.frame) + gap);
-		
-		_shareToWeiboButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		_shareToWeiboButton.frame = CGRectMake(start.x, start.y, size.width, size.height);
-		_shareToWeiboButton.showsTouchWhenHighlighted = YES;
-		_shareToWeiboButton.titleLabel.adjustsFontSizeToFitWidth = YES;
-		[_shareToWeiboButton setTitle:NSLocalizedString(@"Private Message", nil) forState:UIControlStateNormal];
-		_shareToWeiboButton.backgroundColor = [UIColor randomColor];
-		[_shareToWeiboButton addTarget:self action:@selector(willSendPrivateMessage) forControlEvents:UIControlEventTouchUpInside];
-		[self.contentView addSubview:_shareToWeiboButton];
-		
-		start.x = CGRectGetMaxX(_shareToWeiboButton.frame) +gap;
-		
-		_shareToWeixinButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		_shareToWeixinButton.frame = CGRectMake(start.x, start.y, size.width, size.height);
-		_shareToWeixinButton.showsTouchWhenHighlighted = YES;
-		_shareToWeixinButton.titleLabel.adjustsFontSizeToFitWidth = YES;
-		_shareToWeixinButton.backgroundColor = [UIColor randomColor];
-		[_shareToWeixinButton setTitle:NSLocalizedString(@"Share To Weixin", nil) forState:UIControlStateNormal];
-		[self.contentView addSubview:_shareToWeixinButton];
-		
-		start = CGPointMake(CGRectGetMinX(_shareToWeiboButton.frame), CGRectGetMaxY(_shareToWeiboButton.frame) + gap);
-		
-		size = CGSizeMake(50, 30);
+//		_favPhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//		_favPhotoButton.frame = CGRectMake(start.x, start.y, size.width, size.height);
+//		_favPhotoButton.showsTouchWhenHighlighted = YES;
+//		_favPhotoButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+//		[_favPhotoButton setTitle:NSLocalizedString(@"Favor It", nil) forState:UIControlStateNormal];
+//		_favPhotoButton.backgroundColor = [UIColor randomColor];//TODO
+//		[self.contentView addSubview:_favPhotoButton];
+//		
+//		start.x = CGRectGetMaxX(_favPhotoButton.frame) + gap;
+//		
+//		_favUserButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//		_favUserButton.frame = CGRectMake(start.x, start.y, size.width, size.height);
+//		_favUserButton.showsTouchWhenHighlighted = YES;
+//		_favUserButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+//		[_favUserButton setTitle:NSLocalizedString(@"Follow Her/Him", nil) forState:UIControlStateNormal];
+//		_favUserButton.backgroundColor = [UIColor randomColor];//TODO
+//		[self.contentView addSubview:_favUserButton];
+//		
+//		start = CGPointMake(CGRectGetMinX(_favPhotoButton.frame), CGRectGetMaxY(_favPhotoButton.frame) + gap);
+//		
+//		_shareToWeiboButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//		_shareToWeiboButton.frame = CGRectMake(start.x, start.y, size.width, size.height);
+//		_shareToWeiboButton.showsTouchWhenHighlighted = YES;
+//		_shareToWeiboButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+//		[_shareToWeiboButton setTitle:NSLocalizedString(@"Private Message", nil) forState:UIControlStateNormal];
+//		_shareToWeiboButton.backgroundColor = [UIColor randomColor];
+//		[_shareToWeiboButton addTarget:self action:@selector(willSendPrivateMessage) forControlEvents:UIControlEventTouchUpInside];
+//		[self.contentView addSubview:_shareToWeiboButton];
+//		
+//		start.x = CGRectGetMaxX(_shareToWeiboButton.frame) +gap;
+//		
+//		_shareToWeixinButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//		_shareToWeixinButton.frame = CGRectMake(start.x, start.y, size.width, size.height);
+//		_shareToWeixinButton.showsTouchWhenHighlighted = YES;
+//		_shareToWeixinButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+//		_shareToWeixinButton.backgroundColor = [UIColor randomColor];
+//		[_shareToWeixinButton setTitle:NSLocalizedString(@"Share To Weixin", nil) forState:UIControlStateNormal];
+//		[self.contentView addSubview:_shareToWeixinButton];
+//		
+//		start = CGPointMake(CGRectGetMinX(_shareToWeiboButton.frame), CGRectGetMaxY(_shareToWeiboButton.frame) + gap);
+//		
+//		size = CGSizeMake(50, 30);
 		
 		UILabel *giftDiamondLabel = [[UILabel alloc] initWithFrame:CGRectMake(start.x, start.y, size.width, size.height)];
 		giftDiamondLabel.text = NSLocalizedString(@"Gift Diamonds", nil);
@@ -179,8 +179,8 @@ static NSInteger minimumQuantityOfGift = 1;
 
 + (NSString *)identifier
 {
-	static NSString *kFDShareAndGiftsCellIdentifier = @"kFDShareAndGiftsCellIdentifier";
-	return kFDShareAndGiftsCellIdentifier;
+	static NSString *kFDGiftsCellIdentifier = @"kFDGiftsCellIdentifier";
+	return kFDGiftsCellIdentifier;
 }
 
 - (void)willSendPrivateMessage

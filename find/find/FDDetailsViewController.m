@@ -11,7 +11,7 @@
 #import "FDCommentCell.h"
 #import "FDVoteCell.h"
 #import "FDVote.h"
-#import "FDShareAndGiftsCell.h"
+#import "FDGiftsCell.h"
 #import "FDUserCell.h"
 #import "FDMessagesViewController.h"
 
@@ -22,7 +22,7 @@ static NSInteger kHeightOfSegmentedControl = 30;
 static NSString *keyOfClass = @"keyOfClass";
 static NSString *keyOfDataSource = @"keyOfDataSource";
 
-@interface FDDetailsViewController () <UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource, FDCommentCellDelegate, HPGrowingTextViewDelegate, FDVoteCellDelegate, FDShareAndGiftsCellDelegate, PSUICollectionViewDelegate, PSUICollectionViewDataSource>
+@interface FDDetailsViewController () <UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource, FDCommentCellDelegate, HPGrowingTextViewDelegate, FDVoteCellDelegate, FDGiftsCellDelegate, PSUICollectionViewDelegate, PSUICollectionViewDataSource>
 
 @property (readwrite) UITableView *tableView;
 @property (readwrite) CGFloat heightOfPhoto;
@@ -36,7 +36,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 @property (readwrite) NSString *titleOfComments;
 @property (readwrite) NSString *titleOfTags;
 @property (readwrite) NSString *titleOfRegions;
-@property (readwrite) NSString *titleOfShareAndGifts;
+@property (readwrite) NSString *titleOfGifts;
 @property (readwrite) NSString *titleOfFollowers;
 @property (readwrite) PSUICollectionView *photosCollectionView;
 
@@ -101,15 +101,15 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	_titleOfComments = NSLocalizedString(@"Comments", nil);
 	_titleOfTags = NSLocalizedString(@"Tags", nil);
 	_titleOfRegions = NSLocalizedString(@"Regions", nil);
-	_titleOfShareAndGifts = NSLocalizedString(@"Share&Gifts", nil);
+	_titleOfGifts = NSLocalizedString(@"Gifts", nil);
 	_titleOfFollowers = NSLocalizedString(@"Followers", nil);
 	
 	_bMemberDetails = NO;//TODO: Test
 	
 	if (_bMemberDetails) {
-		_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[_titleOfPhotos, _titleOfComments, _titleOfTags, _titleOfRegions, _titleOfShareAndGifts, _titleOfFollowers]];
+		_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[_titleOfPhotos, _titleOfComments, _titleOfTags, _titleOfRegions, _titleOfGifts, _titleOfFollowers]];
 	} else {
-		_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[_titleOfComments, _titleOfTags, _titleOfRegions, _titleOfShareAndGifts, _titleOfFollowers]];
+		_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[_titleOfComments, _titleOfTags, _titleOfRegions, _titleOfGifts, _titleOfFollowers]];
 	}
 	_segmentedControl.selectedSegmentIndex = 1;
 	_segmentedControl.backgroundColor = _tableView.backgroundColor;
@@ -120,13 +120,13 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	Class commentCellClass = [FDCommentCell class];
 	Class tagCellClass = [FDVoteCell class];
 	Class regionCellClass = [FDVoteCell class];
-	Class shareAndGiftsCellClass = [FDShareAndGiftsCell class];
+	Class giftsCellClass = [FDGiftsCell class];
 	Class followerCellClass = [FDUserCell class];
 
 	_segmentedControlAttributes = [@{_titleOfComments : [@{keyOfClass : commentCellClass} mutableCopy],
 									 _titleOfTags : [@{keyOfClass : tagCellClass} mutableCopy],
 									 _titleOfRegions : [@{keyOfClass : regionCellClass} mutableCopy],
-									 _titleOfShareAndGifts : [@{keyOfClass : shareAndGiftsCellClass, keyOfDataSource : @[@"alwaysHasOne"]} mutableCopy],
+									 _titleOfGifts : [@{keyOfClass : giftsCellClass, keyOfDataSource : @[@"alwaysHasOne"]} mutableCopy],
 									 _titleOfFollowers : [@{keyOfClass : followerCellClass} mutableCopy]
 									} mutableCopy];
 	
@@ -373,9 +373,9 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 			voteCell.delegate = self;
 			FDVote *vote = _segmentedControlAttributes[title][keyOfDataSource][indexPath.row];
 			voteCell.vote = vote;
-		} else if ([cell isKindOfClass:[FDShareAndGiftsCell class]]) {
-			FDShareAndGiftsCell *shareAndGiftsCell = (FDShareAndGiftsCell *)cell;
-			shareAndGiftsCell.delegate = self;
+		} else if ([cell isKindOfClass:[FDGiftsCell class]]) {
+			FDGiftsCell *giftsCell = (FDGiftsCell *)cell;
+			giftsCell.delegate = self;
 		} else if ([cell isKindOfClass:[FDUserCell class]]) {
 			FDUserCell *userCell = (FDUserCell *)cell;
 			userCell.user = _segmentedControlAttributes[title][keyOfDataSource][indexPath.row];
@@ -398,8 +398,8 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 			return [FDCommentCell heightForComment:comment];
 		} else if ([title isEqualToString:_titleOfTags] || [title isEqualToString:_titleOfRegions]) {
 			return [FDVoteCell height];
-		} else if ([title isEqualToString:_titleOfShareAndGifts]){
-			return [FDShareAndGiftsCell height];
+		} else if ([title isEqualToString:_titleOfGifts]){
+			return [FDGiftsCell height];
 		} else if ([title isEqualToString:_titleOfPhotos]){
 			//CGFloat height = MAX(_photosCollectionView.contentSize.height, _photosCollectionView.frame.size.height);
 			NSLog(@"contentSizeHeight: %f", _photosCollectionView.contentSize.height);
@@ -609,7 +609,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	}
 }
 
-#pragma mark - FDShareAndGiftsCellDelegate
+#pragma mark - FDGiftsCellDelegate
 
 - (void)willGifts
 {
