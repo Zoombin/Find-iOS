@@ -144,7 +144,7 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 		attributes[kThemeCellAttributeKeyBounds] = NSStringFromCGRect(rect);
 		attributes[kThemeCellAttributeKeyItemWidth] = @(320);
 		attributes[kThemeCellAttributeKeyPagingEnabled] = @(YES);
-		attributes[kThemeCellAttributeKeyAutoScrollEnabled] = @(YES);
+		//attributes[kThemeCellAttributeKeyAutoScrollEnabled] = @(YES);//TODO: should auto scroll, stop now for testing
 		attributesOfSlideStyle = [NSDictionary dictionaryWithDictionary:attributes];
 	}
 	return attributesOfSlideStyle;

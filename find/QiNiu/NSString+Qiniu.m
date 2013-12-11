@@ -53,7 +53,6 @@
 - (NSString *)qnCropFromCenterToSize:(CGSize)size
 {
 	return [NSString stringWithFormat:@"%@?imageView/1/w/%d/h/%d", self, (NSInteger)size.width, (NSInteger)size.height];
-//	return [NSString stringWithFormat:@"%@?imageMogr/v2/gravity/center/crop/!%fx%f", self, size.width, size.height];
 }
 
 @end
