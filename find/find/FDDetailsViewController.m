@@ -38,6 +38,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 @property (readwrite) NSString *titleOfRegions;
 @property (readwrite) NSString *titleOfGifts;
 @property (readwrite) NSString *titleOfFollowers;
+@property (readwrite) NSArray *allPhotos;
 
 @end
 
@@ -207,14 +208,13 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 		step = 1;
 	}
 	
-	NSArray *photos = _segmentedControlAttributes[_titleOfPhotos][keyOfDataSource];
 	FDPhoto *anotherPhoto = nil;
-	for	(int i = 0; i < photos.count; i++) {
-		FDPhoto *photo = photos[i];
+	for	(int i = 0; i < _allPhotos.count; i++) {
+		FDPhoto *photo = _allPhotos[i];
 		if (photo.ID.integerValue == _photo.ID.integerValue) {
 			NSInteger index = step + i;
-			if (index >= 0 && index < photos.count) {
-				anotherPhoto = photos[index];
+			if (index >= 0 && index < _allPhotos.count) {
+				anotherPhoto = _allPhotos[index];
 			}
 			break;
 		}
@@ -243,13 +243,16 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 			
 			NSArray *tweets = [FDTweet createMutableWithData:tweetsData];
 			NSMutableArray *photos = [NSMutableArray array];
+			NSMutableArray *allPhotos = [NSMutableArray array];
 			for (FDTweet *tweet in tweets) {
+				[allPhotos addObjectsFromArray:tweet.photos];
 				for (FDPhoto *photo in tweet.photos) {
 					if (photo.ID.integerValue != _photo.ID.integerValue) {//过滤掉当前这张照片
 						[photos addObject:photo];
 					}
 				}
 			}
+			_allPhotos = allPhotos;
 			_segmentedControlAttributes[_titleOfPhotos][keyOfDataSource] = photos;
 			if (block) block ();
 		}
@@ -432,9 +435,8 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 			userCell.user = _segmentedControlAttributes[title][keyOfDataSource][indexPath.row];
 		} else if ([cell isKindOfClass:[FDPhotoCell class]]) {
 			FDPhoto *photo = _segmentedControlAttributes[_titleOfPhotos][keyOfDataSource][indexPath.row];
-			
-			FDPhotoCell *photoCell = (FDPhotoCell *)cell;
-			photoCell.photo = photo;
+				FDPhotoCell *photoCell = (FDPhotoCell *)cell;
+				photoCell.photo = photo;
 		}
 		[self maximumContentSize:tableView];
 		return cell;

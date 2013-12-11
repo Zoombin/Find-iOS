@@ -24,7 +24,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-		self.selectionStyle = UITableViewCellSelectionStyleNone;
+		//self.selectionStyle = UITableViewCellSelectionStyleNone;
 		self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		
 		CGPoint start = CGPointMake(self.indentationWidth, 0);
