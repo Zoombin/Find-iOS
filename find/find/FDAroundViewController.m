@@ -7,12 +7,12 @@
 //
 
 #import "FDAroundViewController.h"
-#import "FDPhotoCell.h"
+#import "FDPhotoCollectionViewCell.h"
 #import "FDUser.h"
 #import "FDLikesView.h"
 #import "FDDetailsViewController.h"
 
-@interface FDAroundViewController () <PSUICollectionViewDelegate, PSUICollectionViewDataSource, FDPhotoCellDelegate>
+@interface FDAroundViewController () <PSUICollectionViewDelegate, PSUICollectionViewDataSource, FDPhotoCollectionViewCellDelegate>
 
 @property (readwrite) NSArray *tweets;
 @property (readwrite) PSUICollectionView *photosCollectionView;
@@ -33,8 +33,6 @@
 		} else {
 			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Around"] tag:0];
 		}
-		
-		//self.navigationController.hidesBottomBarWhenPushed = YES;
     }
     return self;
 }
@@ -47,7 +45,7 @@
 	_photosCollectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSUICollectionViewFlowLayout aroundPhotoLayout]];
 	_photosCollectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_photosCollectionView.backgroundColor = [UIColor clearColor];
-	[_photosCollectionView registerClass:[FDPhotoCell class] forCellWithReuseIdentifier:kFDPhotoCellIdentifier];
+	[_photosCollectionView registerClass:[FDPhotoCollectionViewCell class] forCellWithReuseIdentifier:kFDPhotoCollectionViewCellIdentifier];
 	_photosCollectionView.delegate = self;
 	_photosCollectionView.dataSource = self;
 	[self.view addSubview:_photosCollectionView];
@@ -68,9 +66,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - FDPhotoCellDelegate
+#pragma mark - FDPhotoCollectionViewCellDelegate
 
-- (void)photoCell:(FDPhotoCell *)photoCell willLikeOrUnlikePhoto:(FDPhoto *)photo
+- (void)photoCell:(FDPhotoCollectionViewCell *)photoCell willLikeOrUnlikePhoto:(FDPhoto *)photo
 {
 	[[FDAFHTTPClient shared] likeOrUnlikePhoto:photo.ID withCompletionBlock:^(BOOL success, NSString *message, NSNumber *liked, NSNumber *likes) {
 		if (success) {
@@ -96,7 +94,7 @@
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (PSUICollectionViewCell *)collectionView:(PSUICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	FDPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDPhotoCellIdentifier forIndexPath:indexPath];
+	FDPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDPhotoCollectionViewCellIdentifier forIndexPath:indexPath];
 	FDTweet *tweet = _tweets[indexPath.row];
 	cell.tweet = tweet;
 	cell.delegate = self;
@@ -106,7 +104,7 @@
 - (void)collectionView:(PSUICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	FDDetailsViewController *detailsViewController = [[FDDetailsViewController alloc] init];
-	detailsViewController.hidesBottomBarWhenPushed = YES;
+	//detailsViewController.hidesBottomBarWhenPushed = YES;
 	FDTweet *tweet = _tweets[indexPath.row];
 	if (tweet.photos.count) {
 		detailsViewController.photo = tweet.photos[0];

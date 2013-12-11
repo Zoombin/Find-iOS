@@ -7,7 +7,7 @@
 //
 
 #import "FDPhotosViewController.h"
-#import "FDPhotoCell.h"
+#import "FDPhotoCollectionViewCell.h"
 
 @interface FDPhotosViewController () <PSUICollectionViewDelegate, PSUICollectionViewDataSource>
 
@@ -35,7 +35,7 @@
 	_photosCollectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSUICollectionViewFlowLayout aroundPhotoLayout]];
 	_photosCollectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_photosCollectionView.backgroundColor = [UIColor clearColor];
-	[_photosCollectionView registerClass:[FDPhotoCell class] forCellWithReuseIdentifier:kFDPhotoCellIdentifier];
+	[_photosCollectionView registerClass:[FDPhotoCollectionViewCell class] forCellWithReuseIdentifier:kFDPhotoCollectionViewCellIdentifier];
 	_photosCollectionView.delegate = self;
 	_photosCollectionView.dataSource = self;
 	[self.view addSubview:_photosCollectionView];
@@ -77,7 +77,7 @@
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (PSUICollectionViewCell *)collectionView:(PSUICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	FDPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDPhotoCellIdentifier forIndexPath:indexPath];
+	FDPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDPhotoCollectionViewCellIdentifier forIndexPath:indexPath];
 	FDPhoto *photo = _photos[indexPath.row];
 	cell.photo = photo;
 	//FDTweet *tweet = tweets[indexPath.row];

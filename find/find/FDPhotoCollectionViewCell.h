@@ -1,5 +1,5 @@
 //
-//  FDPhotoCell.h
+//  FDPhotoCollectionViewCell.h
 //  find
 //
 //  Created by zhangbin on 8/31/13.
@@ -10,19 +10,19 @@
 #import "FDPhoto.h"
 #import "FDLikesView.h"
 
-static NSString *kFDPhotoCellIdentifier = @"kFDPhotoCellIdentifier";
+static NSString *kFDPhotoCollectionViewCellIdentifier = @"kFDPhotoCollectionViewCellIdentifier";
 
-@class FDPhotoCell;
-@protocol FDPhotoCellDelegate <NSObject>
+@class FDPhotoCollectionViewCell;
+@protocol FDPhotoCollectionViewCellDelegate <NSObject>
 
-- (void)photoCell:(FDPhotoCell *)photoCell willLikeOrUnlikePhoto:(FDPhoto *)photo;
+- (void)photoCell:(FDPhotoCollectionViewCell *)photoCell willLikeOrUnlikePhoto:(FDPhoto *)photo;
 
 @end
 
 
-@interface FDPhotoCell : PSUICollectionViewCell
+@interface FDPhotoCollectionViewCell : PSUICollectionViewCell
 
-@property (nonatomic, weak) id<FDPhotoCellDelegate> delegate;
+@property (nonatomic, weak) id<FDPhotoCollectionViewCellDelegate> delegate;
 @property (nonatomic, strong) FDTweet *tweet;
 @property (nonatomic, strong) FDUser *user;
 @property (nonatomic, strong) FDPhoto *photo;

@@ -7,7 +7,7 @@
 //
 
 #import "FDCameraViewController.h"
-#import "FDPhotoCell.h"
+#import "FDPhotoCollectionViewCell.h"
 #import "FDAddTweetCell.h"
 #import "FDWebViewController.h"
 
@@ -58,7 +58,7 @@ CLLocationManagerDelegate
 	_photosCollectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSUICollectionViewFlowLayout smallSquaresLayout]];
 	_photosCollectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_photosCollectionView.backgroundColor = [UIColor clearColor];
-	[_photosCollectionView registerClass:[FDPhotoCell class] forCellWithReuseIdentifier:kFDPhotoCellIdentifier];
+	[_photosCollectionView registerClass:[FDPhotoCollectionViewCell class] forCellWithReuseIdentifier:kFDPhotoCollectionViewCellIdentifier];
 	[_photosCollectionView registerClass:[FDAddTweetCell class] forCellWithReuseIdentifier:kFDAddTweetCellIdentifier];
 	_photosCollectionView.delegate = self;
 	_photosCollectionView.dataSource = self;
@@ -154,7 +154,7 @@ CLLocationManagerDelegate
 		cell.delegate = self;
 		return cell;
 	} else {
-		FDPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDPhotoCellIdentifier forIndexPath:indexPath];
+		FDPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDPhotoCollectionViewCellIdentifier forIndexPath:indexPath];
 		[cell hideDetails];
 		FDTweet *tweet = _tweets[indexPath.row - 1];
 		cell.tweet = tweet;

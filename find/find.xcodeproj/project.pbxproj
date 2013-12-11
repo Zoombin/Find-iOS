@@ -82,7 +82,7 @@
 		77C0C8DD17CDDE6A008C7FC7 /* ZBQNPutPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8DC17CDDE6A008C7FC7 /* ZBQNPutPolicy.m */; };
 		77C0C8E017CDE32C008C7FC7 /* ZBQNAFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C8DF17CDE32C008C7FC7 /* ZBQNAFHTTPClient.m */; };
 		77C0C91D17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C91C17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m */; };
-		77C0C96417D18D7C008C7FC7 /* FDPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */; };
+		77C0C96417D18D7C008C7FC7 /* FDPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C96317D18D7C008C7FC7 /* FDPhotoCollectionViewCell.m */; };
 		77C0C96717D198F6008C7FC7 /* FDPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0C96617D198F6008C7FC7 /* FDPhoto.m */; };
 		77CB749518235FB800063B88 /* NSString+Qiniu.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CB749418235FB800063B88 /* NSString+Qiniu.m */; };
 		77D69700180E540E000BCA07 /* FDSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D696FF180E540E000BCA07 /* FDSize.m */; };
@@ -260,8 +260,8 @@
 		77C0C91B17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDTestPhotoUploadViewController.h; path = Test/FDTestPhotoUploadViewController.h; sourceTree = "<group>"; };
 		77C0C91C17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDTestPhotoUploadViewController.m; path = Test/FDTestPhotoUploadViewController.m; sourceTree = "<group>"; };
 		77C0C91E17CE1A51008C7FC7 /* FDTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDTest.h; path = Test/FDTest.h; sourceTree = "<group>"; };
-		77C0C96217D18D7C008C7FC7 /* FDPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDPhotoCell.h; path = find/FDPhotoCell.h; sourceTree = "<group>"; };
-		77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDPhotoCell.m; path = find/FDPhotoCell.m; sourceTree = "<group>"; };
+		77C0C96217D18D7C008C7FC7 /* FDPhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDPhotoCollectionViewCell.h; path = find/FDPhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		77C0C96317D18D7C008C7FC7 /* FDPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDPhotoCollectionViewCell.m; path = find/FDPhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		77C0C96517D198F6008C7FC7 /* FDPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDPhoto.h; path = find/FDPhoto.h; sourceTree = "<group>"; };
 		77C0C96617D198F6008C7FC7 /* FDPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDPhoto.m; path = find/FDPhoto.m; sourceTree = "<group>"; };
 		77CB749318235FB800063B88 /* NSString+Qiniu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Qiniu.h"; path = "QiNiu/NSString+Qiniu.h"; sourceTree = "<group>"; };
@@ -622,8 +622,8 @@
 				77B6397E1810E14F00AE8526 /* FDThemeHeaderView.m */,
 				777E5EE617D9BBDA005AFB67 /* FDThemeItemView.h */,
 				777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */,
-				77C0C96217D18D7C008C7FC7 /* FDPhotoCell.h */,
-				77C0C96317D18D7C008C7FC7 /* FDPhotoCell.m */,
+				77C0C96217D18D7C008C7FC7 /* FDPhotoCollectionViewCell.h */,
+				77C0C96317D18D7C008C7FC7 /* FDPhotoCollectionViewCell.m */,
 				77052A341834B150000C2BDF /* FDUserCell.h */,
 				77052A351834B150000C2BDF /* FDUserCell.m */,
 				77DA106E17E97EB0001F44DF /* FDCommentCell.h */,
@@ -887,7 +887,7 @@
 				77C0C8D917CDDBA8008C7FC7 /* GTMBase64.m in Sources */,
 				77338E7F18090184006DEC3D /* FDErrorMessage.m in Sources */,
 				77C0C96717D198F6008C7FC7 /* FDPhoto.m in Sources */,
-				77C0C96417D18D7C008C7FC7 /* FDPhotoCell.m in Sources */,
+				77C0C96417D18D7C008C7FC7 /* FDPhotoCollectionViewCell.m in Sources */,
 				77052A331834798B000C2BDF /* FDLabelEditCell.m in Sources */,
 				77C0242D17F3FB46009634CA /* FDAvatarView.m in Sources */,
 				7786716517E35A98001FDB67 /* UIColor+Hex.m in Sources */,

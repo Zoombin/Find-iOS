@@ -1,14 +1,14 @@
 //
-//  FDPhotoCell.m
+//  FDPhotoCollectionViewCell.m
 //  find
 //
 //  Created by zhangbin on 8/31/13.
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "FDPhotoCell.h"
+#import "FDPhotoCollectionViewCell.h"
 
-@interface FDPhotoCell () <FDLikesViewDelegate>
+@interface FDPhotoCollectionViewCell () <FDLikesViewDelegate>
 
 @property (readwrite) UIImageView *photoView;
 @property (readwrite) UILabel *distanceLabel;
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation FDPhotoCell
+@implementation FDPhotoCollectionViewCell
 
 - (id)initWithFrame:(CGRect)frame
 {
