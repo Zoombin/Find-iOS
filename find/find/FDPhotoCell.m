@@ -10,6 +10,8 @@
 #import "FDAvatarView.h"
 #import "FDLikesView.h"
 
+#define kGap 2
+
 @interface FDPhotoCell ()
 
 @property (readwrite) UIImageView *photoView;
@@ -27,8 +29,9 @@
 		//self.selectionStyle = UITableViewCellSelectionStyleNone;
 		self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		
-		CGPoint start = CGPointMake(self.indentationWidth, 0);
-		_photoView = [[UIImageView alloc] initWithFrame:CGRectMake(start.x, 0, [[self class] height] - 2, [[self class] height] - 2)];
+		CGPoint start = CGPointMake(self.indentationWidth, kGap);
+		_photoView = [[UIImageView alloc] initWithFrame:CGRectMake(start.x, start.y, [[self class] height] - kGap * 2, [[self class] height] - kGap * 2)];
+		_photoView.backgroundColor = [UIColor randomColor];
 		[self.contentView addSubview:_photoView];
 		
 		start = CGPointMake(CGRectGetMaxX(_photoView.frame) + 10, 0);
@@ -60,7 +63,9 @@
 - (void)prepareForReuse
 {
 	[super prepareForReuse];
+	_photoView.image = nil;
 	_photo = nil;
+	_photo.path = nil;
 	_addressLabel.text = nil;
 	_likesView.liked = nil;
 	_likesView.likes = nil;
@@ -68,10 +73,9 @@
 
 - (void)setPhoto:(FDPhoto *)photo
 {
-	if (_photo == photo) return;
 	_photo = photo;
 	if (_photo.path) {
-		[_photoView setImageWithURL:[NSURL URLWithString:[_photo urlstringCropToSize:CGSizeMake(_photoView.bounds.size.height, _photoView.bounds.size.height)]]];
+		[_photoView setImageWithURL:[NSURL URLWithString:[_photo urlstringCropToSize:CGSizeMake([[self class] height] - kGap * 2, [[self class] height] - kGap * 2)]]];
 	}
 	_addressLabel.text = [_photo.ID stringValue];//TODO: should address
 	_likesView.liked = _photo.liked;
