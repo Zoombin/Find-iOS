@@ -28,7 +28,7 @@
 		self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		
 		CGPoint start = CGPointMake(self.indentationWidth, 0);
-		_photoView = [[UIImageView alloc] initWithFrame:CGRectMake(start.x, 0, [[self class] height], [[self class] height])];
+		_photoView = [[UIImageView alloc] initWithFrame:CGRectMake(start.x, 0, [[self class] height] - 2, [[self class] height] - 2)];
 		[self.contentView addSubview:_photoView];
 		
 		start = CGPointMake(CGRectGetMaxX(_photoView.frame) + 10, 0);

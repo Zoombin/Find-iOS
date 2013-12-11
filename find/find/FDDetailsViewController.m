@@ -70,6 +70,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	_containerView.layer.borderColor = [[UIColor grayColor] CGColor];
 	_containerView.backgroundColor = [UIColor randomColor];
 	_containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+	_containerView.hidden = YES;
 	[self.view addSubview:_containerView];
 	
 	_sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -94,7 +95,6 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
     _growingTextView.internalTextView.scrollIndicatorInsets = UIEdgeInsetsMake(5, 0, 5, 0);
     _growingTextView.backgroundColor = [UIColor randomColor];
     _growingTextView.placeholder = NSLocalizedString(@"Comment This Photo", nil);
-	_growingTextView.hidden = YES;
 	[_containerView addSubview:_growingTextView];
 	
 	_titleOfPhotos = NSLocalizedString(@"Photos", nil);
@@ -115,11 +115,6 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	_segmentedControl.backgroundColor = _tableView.backgroundColor;
 	_segmentedControl.tintColor = [UIColor grayColor];
 	[_segmentedControl addTarget:self action:@selector(selectedSegment:) forControlEvents:UIControlEventValueChanged];
-	
-	NSString *firstTitle = [_segmentedControl titleForSegmentAtIndex:_segmentedControl.selectedSegmentIndex];
-	if ([firstTitle isEqualToString:_titleOfComments]) {
-		_containerView.hidden = NO;//隐藏输入框
-	}
 	
 	Class photoCellClass = [FDPhotoCell class];
 	Class commentCellClass = [FDCommentCell class];
@@ -190,6 +185,8 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 			[_tableView reloadData];
 		}];
 	}
+	
+	[self selectedSegment:_segmentedControl];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
