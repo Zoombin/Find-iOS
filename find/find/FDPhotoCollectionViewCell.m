@@ -82,6 +82,7 @@
 	if (_photo == photo) return;
 	_photo = photo;
 	CGSize pxSize = CGSizeMake(_photoView.bounds.size.width * 2, _photoView.bounds.size.height * 2);
+	NSLog(@"urlstringCropToSize: %@", [_photo urlstringCropToSize:pxSize]);
 	[_photoView setImageWithURL:[NSURL URLWithString:[_photo urlstringCropToSize:pxSize]]];
 	
 	[self setPhotoInfo];

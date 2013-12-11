@@ -28,8 +28,8 @@
 - (NSString *)urlString;
 - (NSURL *)url;
 - (NSString *)urlStringInfo;
-- (NSString *)urlStringScaleAspectFit:(CGSize)size;
-- (NSString *)urlStringScaleFitWidth:(CGFloat)width;
+//- (NSString *)urlStringScaleAspectFit:(CGSize)size;
+//- (NSString *)urlStringScaleFitWidth:(CGFloat)width;
 - (NSURL *)urlScaleFitWidth:(CGFloat)width;
 - (NSString *)urlstringCropToSize:(CGSize)size;
 

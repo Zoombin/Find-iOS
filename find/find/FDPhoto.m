@@ -51,10 +51,10 @@
 	return [[self urlString] qnImageInfo];
 }
 
-- (NSString *)urlStringScaleAspectFit:(CGSize)size
-{
-	return [[self urlString] qnScaleAspectFit:size];
-}
+//- (NSString *)urlStringScaleAspectFit:(CGSize)size
+//{
+//	return [[self urlString] qnScaleAspectFit:size];
+//}
 
 - (NSString *)urlStringScaleFitWidth:(CGFloat)width
 {
