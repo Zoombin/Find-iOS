@@ -35,7 +35,7 @@
 
 		CGPoint startPoint = CGPointZero;
 		
-		startPoint.x = kGap;
+		startPoint.x = self.indentationWidth;
 		startPoint.y = kGap;
 		
 		CGSize avatarSize = [FDAvatarView defaultSize];

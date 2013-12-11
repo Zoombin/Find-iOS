@@ -7,12 +7,12 @@
 //
 
 #import "FDDetailsViewController.h"
-#import "FDPhotoCollectionViewCell.h"
 #import "FDCommentCell.h"
 #import "FDVoteCell.h"
 #import "FDVote.h"
 #import "FDGiftsCell.h"
 #import "FDUserCell.h"
+#import "FDPhotoCell.h"
 #import "FDMessagesViewController.h"
 
 static NSInteger kSectionOfPhoto = 0;
@@ -22,7 +22,7 @@ static NSInteger kHeightOfSegmentedControl = 30;
 static NSString *keyOfClass = @"keyOfClass";
 static NSString *keyOfDataSource = @"keyOfDataSource";
 
-@interface FDDetailsViewController () <UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource, FDCommentCellDelegate, HPGrowingTextViewDelegate, FDVoteCellDelegate, FDGiftsCellDelegate, PSUICollectionViewDelegate, PSUICollectionViewDataSource>
+@interface FDDetailsViewController () <UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource, FDCommentCellDelegate, HPGrowingTextViewDelegate, FDVoteCellDelegate, FDGiftsCellDelegate>
 
 @property (readwrite) UITableView *tableView;
 @property (readwrite) CGFloat heightOfPhoto;
@@ -38,7 +38,6 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 @property (readwrite) NSString *titleOfRegions;
 @property (readwrite) NSString *titleOfGifts;
 @property (readwrite) NSString *titleOfFollowers;
-@property (readwrite) PSUICollectionView *photosCollectionView;
 
 @end
 
@@ -64,7 +63,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	_tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, fullSize.width, fullSize.height - heightOfGrowingTextView) style:UITableViewStylePlain];
 	_tableView.delegate = self;
 	_tableView.dataSource = self;
-	//[self.view addSubview:_tableView];
+	[self.view addSubview:_tableView];
 	
 	_containerView = [[UIView alloc] initWithFrame:CGRectMake(0, fullSize.height - heightOfGrowingTextView, fullSize.width, heightOfGrowingTextView)];
 	_containerView.layer.borderWidth = 1;
@@ -116,7 +115,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	_segmentedControl.tintColor = [UIColor grayColor];
 	[_segmentedControl addTarget:self action:@selector(selectedSegment:) forControlEvents:UIControlEventValueChanged];
 	
-	Class photoCellClass = [UITableViewCell class];
+	Class photoCellClass = [FDPhotoCell class];
 	Class commentCellClass = [FDCommentCell class];
 	Class tagCellClass = [FDVoteCell class];
 	Class regionCellClass = [FDVoteCell class];
@@ -133,14 +132,6 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	if (_bMemberDetails) {
 		_segmentedControlAttributes[_titleOfPhotos] = [@{keyOfClass : photoCellClass} mutableCopy];
 	}
-	
-	_photosCollectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSUICollectionViewFlowLayout aroundPhotoLayout]];
-	_photosCollectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	_photosCollectionView.backgroundColor = [UIColor clearColor];
-	[_photosCollectionView registerClass:[FDPhotoCollectionViewCell class] forCellWithReuseIdentifier:kFDPhotoCollectionViewCellIdentifier];
-	_photosCollectionView.delegate = self;
-	_photosCollectionView.dataSource = self;
-	//[self.view addSubview:_photosCollectionView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -175,7 +166,6 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	if (_bMemberDetails) {
 		if (!_segmentedControlAttributes[_titleOfPhotos][keyOfDataSource]) {
 			[self fetchPhotos:^{
-				[_photosCollectionView reloadData];
 				[_tableView reloadData];
 			}];
 		}
@@ -327,9 +317,6 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 		return 1;
 	}
 	NSString *title = [self titleForSelectedSegment];
-	if ([title isEqualToString:_titleOfPhotos]) {
-		return 1;
-	}
 	NSArray *dataSource = _segmentedControlAttributes[title][keyOfDataSource];
 	return dataSource.count;
 }
@@ -373,15 +360,17 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 			cell = [[class alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
 		}
 		if ([cell isKindOfClass:[FDCommentCell class]]) {
+			FDComment *comment = _segmentedControlAttributes[title][keyOfDataSource][indexPath.row];
+			
 			FDCommentCell *commentCell = (FDCommentCell *)cell;
 			commentCell.delegate = self;
-			FDComment *comment = _segmentedControlAttributes[title][keyOfDataSource][indexPath.row];
 			commentCell.comment = comment;
 			commentCell.bMine = [[FDAFHTTPClient shared] userID] == comment.userID;
 		} else if ([cell isKindOfClass:[FDVoteCell class]]) {
+			FDVote *vote = _segmentedControlAttributes[title][keyOfDataSource][indexPath.row];
+			
 			FDVoteCell *voteCell = (FDVoteCell *)cell;
 			voteCell.delegate = self;
-			FDVote *vote = _segmentedControlAttributes[title][keyOfDataSource][indexPath.row];
 			voteCell.vote = vote;
 		} else if ([cell isKindOfClass:[FDGiftsCell class]]) {
 			FDGiftsCell *giftsCell = (FDGiftsCell *)cell;
@@ -389,9 +378,11 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 		} else if ([cell isKindOfClass:[FDUserCell class]]) {
 			FDUserCell *userCell = (FDUserCell *)cell;
 			userCell.user = _segmentedControlAttributes[title][keyOfDataSource][indexPath.row];
-		} else if ([cell isKindOfClass:[UITableViewCell class]]) {//photos
-			UITableViewCell *tableViewCell = (UITableViewCell *)cell;
-			[tableViewCell.contentView addSubview:_photosCollectionView];
+		} else if ([cell isKindOfClass:[FDPhotoCell class]]) {
+			FDPhoto *photo = _segmentedControlAttributes[_titleOfPhotos][keyOfDataSource][indexPath.row];
+			
+			FDPhotoCell *photoCell = (FDPhotoCell *)cell;
+			photoCell.photo = photo;
 		}
 		[self maximumContentSize:tableView];
 		return cell;
@@ -413,9 +404,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 		} else if ([title isEqualToString:_titleOfGifts]){
 			return [FDGiftsCell height];
 		} else if ([title isEqualToString:_titleOfPhotos]){
-			NSLog(@"contentSizeHeight: %f", _photosCollectionView.contentSize.height);
-			NSLog(@"frameSizeHeight: %f", _photosCollectionView.frame.size.height);
-			return MAX(_photosCollectionView.contentSize.height, _photosCollectionView.frame.size.height);
+			return [FDPhotoCell height];
 		} else if ([title isEqualToString:_titleOfFollowers]) {
 			return _tableView.rowHeight;
 		}
@@ -447,43 +436,6 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 			[cell hideMoreActions];
 		}
 	}
-}
-
-#pragma mark - PSUICollectionViewDelegate
-
-- (CGSize)collectionView:(PSUICollectionView *)collectionView layout:(PSUICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-	return [FDSize aroundPhotoSize];
-}
-
-- (NSInteger)collectionView:(PSUICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-	NSLog(@"return count of data source");
-	NSArray *dataSource = _segmentedControlAttributes[_titleOfPhotos][keyOfDataSource];
-	return dataSource.count;
-}
-
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
-- (PSUICollectionViewCell *)collectionView:(PSUICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-	NSArray *dataSource = _segmentedControlAttributes[_titleOfPhotos][keyOfDataSource];
-	FDPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDPhotoCollectionViewCellIdentifier forIndexPath:indexPath];
-	FDPhoto *photo = dataSource[indexPath.row];
-	cell.photo = photo;
-	//FDTweet *tweet = tweets[indexPath.row];
-	//cell.tweet = tweet;
-	//cell.delegate = self;
-	return cell;
-}
-
-- (void)collectionView:(PSUICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-	//	FDPhotoDetailsViewController *photoDetailsViewController = [[FDPhotoDetailsViewController alloc] init];
-	//	FDTweet *tweet = tweets[indexPath.row];
-	//	if (tweet.photos.count) {
-	//		photoDetailsViewController.photo = tweet.photos[0];
-	//	}
-	//	[self.navigationController pushViewController:photoDetailsViewController animated:YES];
 }
 
 #pragma mark - UIActionSheetDelegate

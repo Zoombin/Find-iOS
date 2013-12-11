@@ -82,20 +82,6 @@
 		cell.selectionStyle = UITableViewCellSelectionStyleDefault;
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
-//	
-//	if ([identifier isEqualToString:kMyProfile]) {
-//		CGRect frame = _avatarView.frame;
-//		frame.origin.x = cell.indentationWidth;
-//		frame.origin.y = (cell.bounds.size.height - _avatarView.bounds.size.height) / 2;
-//		_avatarView.frame = frame;
-//		[cell.contentView addSubview:_avatarView];
-//	} else {
-//		NSString *imageName = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kIcon];
-//		cell.imageView.image = [UIImage imageNamed:imageName];
-//		NSString *title = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kTitle];
-//		cell.textLabel.text = title;
-//		cell.textLabel.font = [UIFont fdThemeFontOfSize:16];
-//	}
 	return cell;
 }
 

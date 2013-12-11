@@ -27,7 +27,7 @@
         //self.backgroundColor = [UIColor randomColor];
 		
 		CGFloat gap = 10;
-		CGPoint start = CGPointZero;
+		CGPoint start = CGPointMake(self.indentationWidth, 0);
 		
 		_nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(start.x, start.y, 50, [[self class] height])];
 		_nameLabel.font = [UIFont fdThemeFontOfSize:13];

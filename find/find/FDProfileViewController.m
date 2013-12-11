@@ -43,7 +43,7 @@ UIPickerViewDataSource
 @property (readwrite) NSString *identifierOfSelectedCell;
 @property (readwrite) UISegmentedControl *genderSegmentedControl;
 @property (readwrite) UISegmentedControl *shapeSegmentedControl;
-@property (readwrite) FDAvatarView *avatarView;
+@property (readwrite) FDAvatarView *avatar;
 @property (readwrite) NSInteger selectedPickerRow;
 @property (readwrite) UILabel *signatureLabel;
 
@@ -431,9 +431,9 @@ UIPickerViewDataSource
 		CGSize avatarSize = [FDAvatarView bigSize];
 		NSNumber *heightOfCell = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kHeightOfCell];
 		CGRect frame = CGRectMake(tableView.bounds.size.width - avatarSize.width - rightMargin, (heightOfCell.floatValue - avatarSize.height) / 2, avatarSize.width, avatarSize.height);
-		_avatarView = [[FDAvatarView alloc] initWithFrame:frame];
-		_avatarView.imagePath = _userProfile.avatarPath;
-		[cell.contentView addSubview:_avatarView];
+		_avatar = [[FDAvatarView alloc] initWithFrame:frame];
+		_avatar.imagePath = _userProfile.avatarPath;
+		[cell.contentView addSubview:_avatar];
 	} else if ([identifier isEqualToString:kProfileGender]) {
 		cell.accessoryView = _genderSegmentedControl;
 	} else if ([identifier isEqualToString:kProfileShape]) {
@@ -441,7 +441,7 @@ UIPickerViewDataSource
 		[cell.contentView addSubview:_shapeSegmentedControl];
 		cell.accessoryType = UITableViewCellAccessoryNone;
 	} else if ([identifier isEqualToString:kProfileAvatar]) {
-		_avatarView.imagePath = _userProfile.avatarPath;
+		_avatar.imagePath = _userProfile.avatarPath;
 	} else {
 		if (_userProfile) {
 			NSString *display = [_userProfile displayWithIdentifier:identifier];
@@ -627,7 +627,7 @@ UIPickerViewDataSource
 					if (success) {
 						[self displayHUDTitle:nil message:NSLocalizedString(@"Update Succeed!", nil) duration:1];
 						_userProfile.avatarPath = path;
-						_avatarView.image = image;
+						_avatar.image = image;
 					} else {
 						[self displayHUDTitle:nil message:message];
 					}
