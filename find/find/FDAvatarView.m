@@ -37,10 +37,12 @@
 		return;
 	};
 	_imagePath = imagePath;
-	[[[UIImageView alloc] init] setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_imagePath]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-		[self setImage:image];
-	} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-	}];
+	if (_imagePath) {
+		[[[UIImageView alloc] init] setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_imagePath]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+			[self setImage:image];
+		} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+		}];
+	}
 }
 
 + (CGSize)defaultSize

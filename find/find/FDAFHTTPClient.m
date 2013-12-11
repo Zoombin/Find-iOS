@@ -630,5 +630,20 @@ static NSString *token;
 	}];
 }
 
+- (void)candidatesWithCompletionBlock:(void (^)(BOOL success, NSString *message, NSNumber *published, NSArray *usersData))block
+{
+	NSMutableString *path = [NSMutableString stringWithFormat:@"choosemember"];
+	
+	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]], data[@"published"], data[responseKeyData]);
+		}
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		if (block) block (NO, [FDErrorMessage messageNetworkError], nil, nil);
+	}];
+
+}
+
 
 @end

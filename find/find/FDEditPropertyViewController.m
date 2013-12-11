@@ -71,6 +71,13 @@ static NSInteger heightOfMap = 150;
 	
 	_mapView = [[MKMapView alloc] init];
 	_mapView.userInteractionEnabled = NO;
+	
+	[[FDAFHTTPClient shared] candidatesWithCompletionBlock:^(BOOL success, NSString *message, NSNumber *published, NSArray *usersData) {
+		if (success) {
+			_candidates = [FDUser createMutableWithData:usersData];
+			[self.tableView reloadData];
+		}
+	}];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -197,7 +204,12 @@ static NSInteger heightOfMap = 150;
 	if (section == sectionOfEdit) {
 		return [_cellClass numberOfRows];
 	}
-    return _candidates.count;
+//	NSInteger index = _segmentedControl.selectedSegmentIndex;
+//	if (index == 1) {//部分可见
+//		return _candidates.count;
+//	}
+//	return 0;
+	return _candidates.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -335,12 +347,12 @@ static NSInteger heightOfMap = 150;
 {
 	[searchBar resignFirstResponder];
 	//TODO: should search now
-	[self displayHUD:NSLocalizedString(@"Searching", nil)];
-	[[FDAFHTTPClient shared] themeListWithCompletionBlock:^(BOOL success, NSString *message, NSArray *themesData) {
-		_candidates = [FDUser createTest:30];
-		[self hideHUD:YES];
-		[self.tableView reloadData];
-	}];
+//	[self displayHUD:NSLocalizedString(@"Searching", nil)];
+//	[[FDAFHTTPClient shared] themeListWithCompletionBlock:^(BOOL success, NSString *message, NSArray *themesData) {
+//		_candidates = [FDUser createTest:30];
+//		[self hideHUD:YES];
+//		[self.tableView reloadData];
+//	}];
 }
 
 #pragma mark - CLLocationManagerDelegate

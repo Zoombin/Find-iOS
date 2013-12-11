@@ -90,6 +90,9 @@
 //用户的照片流//published是timestamp最后的时间用来分页的//published＝nil的话返回一定数量的tweets,由服务器控制
 - (void)tweetsPublished:(NSNumber *)published limit:(NSNumber *)limit withCompletionBlock:(void (^)(BOOL success, NSString *message, NSNumber *published, NSArray *tweetsData))block;
 
+//获取推荐的用户（公开，私密信息的时候用到）
+- (void)candidatesWithCompletionBlock:(void (^)(BOOL success, NSString *message, NSNumber *published, NSArray *usersData))block;
+
 //test gzip
 - (void)test;
 

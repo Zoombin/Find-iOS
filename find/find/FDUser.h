@@ -12,7 +12,8 @@
 @interface FDUser : NSObject
 
 @property (nonatomic, strong) NSNumber *ID;
-@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *nickname;
+@property (nonatomic, strong) NSString *avatarPath;
 @property (nonatomic, strong) NSArray *photos;
 
 + (instancetype)createWithAttributes:(NSDictionary *)attributes;

@@ -12,10 +12,14 @@
 
 + (instancetype)createWithAttributes:(NSDictionary *)attributes
 {
-	NSAssert(attributes[@"mid"], @"UserID shouldn't be nil");
+	//NSAssert(attributes[@"mid"], @"UserID shouldn't be nil");
 	FDUser *user = [[FDUser alloc] init];
 	user.ID = attributes[@"mid"];
-	user.name = attributes[@"username"];
+	if ([attributes[@"nickname"] isKindOfClass:[NSString class]]) {
+		user.nickname = attributes[@"nickname"];//TODO: now remote server returns number
+	}
+//	user.nickname = attributes[@"nickname"];//TODO: now remote server returns number
+	user.avatarPath = attributes[@"avatar"];
 	return user;
 }
 

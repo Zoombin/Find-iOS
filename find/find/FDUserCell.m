@@ -24,12 +24,12 @@
     if (self) {
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
 		CGSize avatarSize = [FDAvatarView defaultSize];
-		CGPoint start = CGPointMake(10, (self.bounds.size.height - avatarSize.height) / 2);
+		CGPoint start = CGPointMake(self.indentationWidth, (self.bounds.size.height - avatarSize.height) / 2);
 		
 		_avatar = [[FDAvatarView alloc] initWithFrame:CGRectMake(start.x, start.y, avatarSize.width, avatarSize.height)];
 		[self.contentView addSubview:_avatar];
 		
-		start = CGPointMake(CGRectGetMaxX(_avatar.frame), 0);
+		start = CGPointMake(CGRectGetMaxX(_avatar.frame) + 5, 0);
 		_nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(start.x, start.y, self.bounds.size.width - start.x, self.bounds.size.height)];
 		_nameLabel.backgroundColor = [UIColor randomColor];//TODO
 		_nameLabel.font = [UIFont fdThemeFontOfSize:9];
@@ -58,7 +58,7 @@
 	if (_user == user) return;
 	_user = user;
 	_avatar.userID = _user.ID;
-	_nameLabel.text = _user.name;
+	_nameLabel.text = _user.nickname;
 }
 
 + (NSString *)identifier
