@@ -48,7 +48,8 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		//[self setLeftBarButtonItemAsBackButtonToRoot];
+		[self setLeftBarButtonItemAsBackButtonToRoot];
+		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ProfileInfo"] style:UIBarButtonItemStylePlain target:self action:nil];
     }
     return self;
 }
@@ -105,7 +106,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	_titleOfGifts = NSLocalizedString(@"Gifts", nil);
 	_titleOfFollowers = NSLocalizedString(@"Followers", nil);
 	
-	_bMemberDetails = YES;//TODO: Test
+	//_bMemberDetails = YES;//TODO: Test
 	
 	if (_bMemberDetails) {
 		_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[_titleOfPhotos, _titleOfComments, _titleOfTags, _titleOfRegions, _titleOfGifts, _titleOfFollowers]];

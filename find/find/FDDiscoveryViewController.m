@@ -147,6 +147,7 @@
 	NSLog(@"select theme: %@ in themeSection: %@", theme, themeSection);
 	if ([theme.type isEqualToString:kThemeTypeIdentifierPhoto]) {
 		FDPhotosViewController *photosViewController = [[FDPhotosViewController alloc] init];
+		photosViewController.hidesBottomBarWhenPushed = YES;
 		photosViewController.themeID = theme.ID;
 		[self.navigationController pushViewController:photosViewController animated:YES];
 	} else if ([theme.type isEqualToString:kThemeTypeIdentifierUser]) {

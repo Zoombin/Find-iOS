@@ -8,6 +8,7 @@
 
 #import "FDPhotosViewController.h"
 #import "FDPhotoCollectionViewCell.h"
+#import "FDDetailsViewController.h"
 
 @interface FDPhotosViewController () <PSUICollectionViewDelegate, PSUICollectionViewDataSource>
 
@@ -88,12 +89,10 @@
 
 - (void)collectionView:(PSUICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//	FDPhotoDetailsViewController *photoDetailsViewController = [[FDPhotoDetailsViewController alloc] init];
-//	FDTweet *tweet = tweets[indexPath.row];
-//	if (tweet.photos.count) {
-//		photoDetailsViewController.photo = tweet.photos[0];
-//	}
-//	[self.navigationController pushViewController:photoDetailsViewController animated:YES];
+	FDDetailsViewController *detailsViewController = [[FDDetailsViewController alloc] init];
+	FDPhoto *photo = _photos[indexPath.row];
+	detailsViewController.photo = photo;
+	[self.navigationController pushViewController:detailsViewController animated:YES];
 }
 
 

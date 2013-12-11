@@ -40,6 +40,7 @@ static NSInteger heightOfMap = 150;
 		[self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 		
 		[self setLeftBarButtonItemAsBackButton];
+		[self.navigationController popToRootViewControllerAnimated:YES];
 		
 		_numberOfSections = 1;
     }
