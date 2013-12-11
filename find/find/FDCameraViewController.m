@@ -8,7 +8,7 @@
 
 #import "FDCameraViewController.h"
 #import "FDPhotoCollectionViewCell.h"
-#import "FDAddTweetCell.h"
+#import "FDAddTweetCollectionViewCell.h"
 #import "FDWebViewController.h"
 
 static NSInteger indexOfAlertDetails = 1;
@@ -20,7 +20,7 @@ UIImagePickerControllerDelegate,
 UIActionSheetDelegate,
 PSUICollectionViewDelegate,
 PSUICollectionViewDataSource,
-FDAddTweetCellDelegate,
+FDAddTweetCollectionViewCellDelegate,
 CLLocationManagerDelegate
 >
 
@@ -59,7 +59,7 @@ CLLocationManagerDelegate
 	_photosCollectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_photosCollectionView.backgroundColor = [UIColor clearColor];
 	[_photosCollectionView registerClass:[FDPhotoCollectionViewCell class] forCellWithReuseIdentifier:kFDPhotoCollectionViewCellIdentifier];
-	[_photosCollectionView registerClass:[FDAddTweetCell class] forCellWithReuseIdentifier:kFDAddTweetCellIdentifier];
+	[_photosCollectionView registerClass:[FDAddTweetCollectionViewCell class] forCellWithReuseIdentifier:kFDAddTweetCollectionViewCellIdentifier];
 	_photosCollectionView.delegate = self;
 	_photosCollectionView.dataSource = self;
 	[self.view addSubview:_photosCollectionView];
@@ -150,7 +150,7 @@ CLLocationManagerDelegate
 - (PSUICollectionViewCell *)collectionView:(PSUICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (indexPath.row == 0) {
-		FDAddTweetCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDAddTweetCellIdentifier forIndexPath:indexPath];
+		FDAddTweetCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDAddTweetCollectionViewCellIdentifier forIndexPath:indexPath];
 		cell.delegate = self;
 		return cell;
 	} else {
@@ -173,7 +173,7 @@ CLLocationManagerDelegate
 	//	[self.navigationController pushViewController:photoDetailsViewController animated:YES];
 }
 
-#pragma mark - FDAddTweetCellDelegate
+#pragma mark - FDAddTweetCollectionViewCellDelegate
 
 - (void)willAddTweet
 {

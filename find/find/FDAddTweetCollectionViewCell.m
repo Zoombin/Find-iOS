@@ -1,14 +1,14 @@
 //
-//  FDAddTweetCell.m
+//  FDAddTweetCollectionViewCell.m
 //  find
 //
 //  Created by zhangbin on 12/4/13.
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "FDAddTweetCell.h"
+#import "FDAddTweetCollectionViewCell.h"
 
-@implementation FDAddTweetCell
+@implementation FDAddTweetCollectionViewCell
 
 - (id)initWithFrame:(CGRect)frame
 {

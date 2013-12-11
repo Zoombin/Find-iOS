@@ -32,7 +32,7 @@
 		777A692A184DB05F00B903C1 /* FDSessionInvalidCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 777A6929184DB05F00B903C1 /* FDSessionInvalidCell.m */; };
 		777A692D184DDFBF00B903C1 /* FDWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777A692C184DDFBF00B903C1 /* FDWebViewController.m */; };
 		777A6933184E0BCE00B903C1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 777A6932184E0BCE00B903C1 /* MapKit.framework */; };
-		777A6939184F261A00B903C1 /* FDAddTweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 777A6938184F261A00B903C1 /* FDAddTweetCell.m */; };
+		777A6939184F261A00B903C1 /* FDAddTweetCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 777A6938184F261A00B903C1 /* FDAddTweetCollectionViewCell.m */; };
 		777E5E1E17D97A98005AFB67 /* FDThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 777E5E1D17D97A98005AFB67 /* FDThemeCell.m */; };
 		777E5EE817D9BBDA005AFB67 /* FDThemeItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */; };
 		7786715D17E35A98001FDB67 /* CLLocation+NSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786714317E35A98001FDB67 /* CLLocation+NSDictionary.m */; };
@@ -163,8 +163,8 @@
 		777A692B184DDFBF00B903C1 /* FDWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDWebViewController.h; sourceTree = "<group>"; };
 		777A692C184DDFBF00B903C1 /* FDWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDWebViewController.m; sourceTree = "<group>"; };
 		777A6932184E0BCE00B903C1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		777A6937184F261A00B903C1 /* FDAddTweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDAddTweetCell.h; path = find/FDAddTweetCell.h; sourceTree = "<group>"; };
-		777A6938184F261A00B903C1 /* FDAddTweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDAddTweetCell.m; path = find/FDAddTweetCell.m; sourceTree = "<group>"; };
+		777A6937184F261A00B903C1 /* FDAddTweetCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDAddTweetCollectionViewCell.h; path = find/FDAddTweetCollectionViewCell.h; sourceTree = "<group>"; };
+		777A6938184F261A00B903C1 /* FDAddTweetCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDAddTweetCollectionViewCell.m; path = find/FDAddTweetCollectionViewCell.m; sourceTree = "<group>"; };
 		777E5E1C17D97A98005AFB67 /* FDThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeCell.h; path = find/FDThemeCell.h; sourceTree = "<group>"; };
 		777E5E1D17D97A98005AFB67 /* FDThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDThemeCell.m; path = find/FDThemeCell.m; sourceTree = "<group>"; };
 		777E5EE617D9BBDA005AFB67 /* FDThemeItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDThemeItemView.h; path = find/FDThemeItemView.h; sourceTree = "<group>"; };
@@ -598,8 +598,8 @@
 		77DA107217E97F5F001F44DF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				777A6937184F261A00B903C1 /* FDAddTweetCell.h */,
-				777A6938184F261A00B903C1 /* FDAddTweetCell.m */,
+				777A6937184F261A00B903C1 /* FDAddTweetCollectionViewCell.h */,
+				777A6938184F261A00B903C1 /* FDAddTweetCollectionViewCell.m */,
 				777A6928184DB05F00B903C1 /* FDSessionInvalidCell.h */,
 				777A6929184DB05F00B903C1 /* FDSessionInvalidCell.m */,
 				777A6925184D761000B903C1 /* FDMeCell.h */,
@@ -825,7 +825,7 @@
 				77052A361834B150000C2BDF /* FDUserCell.m in Sources */,
 				7798B32B1844C9F100CCA964 /* FDSettingsViewController.m in Sources */,
 				7786716A17E35A98001FDB67 /* ZBViewController.m in Sources */,
-				777A6939184F261A00B903C1 /* FDAddTweetCell.m in Sources */,
+				777A6939184F261A00B903C1 /* FDAddTweetCollectionViewCell.m in Sources */,
 				77A5F7BC17CB22960073E7F9 /* FDAroundViewController.m in Sources */,
 				77A5F7EE17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m in Sources */,
 				7786716917E35A98001FDB67 /* ZBTextValidate.m in Sources */,
