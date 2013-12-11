@@ -14,13 +14,12 @@
 
 @interface FDAroundViewController () <PSUICollectionViewDelegate, PSUICollectionViewDataSource, FDPhotoCellDelegate>
 
+@property (readwrite) NSArray *tweets;
+@property (readwrite) PSUICollectionView *photosCollectionView;
+
 @end
 
 @implementation FDAroundViewController
-{
-	NSArray *tweets;
-	PSUICollectionView *photosCollectionView;
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,19 +44,19 @@
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor whiteColor];
 
-	photosCollectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSUICollectionViewFlowLayout aroundPhotoLayout]];
-	photosCollectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	photosCollectionView.backgroundColor = [UIColor clearColor];
-	[photosCollectionView registerClass:[FDPhotoCell class] forCellWithReuseIdentifier:kFDPhotoCellIdentifier];
-	photosCollectionView.delegate = self;
-	photosCollectionView.dataSource = self;
-	[self.view addSubview:photosCollectionView];
+	_photosCollectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSUICollectionViewFlowLayout aroundPhotoLayout]];
+	_photosCollectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	_photosCollectionView.backgroundColor = [UIColor clearColor];
+	[_photosCollectionView registerClass:[FDPhotoCell class] forCellWithReuseIdentifier:kFDPhotoCellIdentifier];
+	_photosCollectionView.delegate = self;
+	_photosCollectionView.dataSource = self;
+	[self.view addSubview:_photosCollectionView];
 	
 	//TODO: 9999 is a test number
 	[[FDAFHTTPClient shared] aroundPhotosAtLocation:[CLLocation fakeLocation] limit:@(9999) distance:nil withCompletionBlock:^(BOOL success, NSString *message, NSArray *tweetsData, NSNumber *distance) {
 		if (success) {
-			tweets = [FDTweet createMutableWithData:tweetsData];
-			[photosCollectionView reloadData];
+			_tweets = [FDTweet createMutableWithData:tweetsData];
+			[_photosCollectionView reloadData];
 		}
 	}];
 }
@@ -91,14 +90,14 @@
 
 - (NSInteger)collectionView:(PSUICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-	return tweets.count;
+	return _tweets.count;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (PSUICollectionViewCell *)collectionView:(PSUICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	FDPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDPhotoCellIdentifier forIndexPath:indexPath];
-	FDTweet *tweet = tweets[indexPath.row];
+	FDTweet *tweet = _tweets[indexPath.row];
 	cell.tweet = tweet;
 	cell.delegate = self;
 	return cell;
@@ -108,7 +107,7 @@
 {
 	FDDetailsViewController *detailsViewController = [[FDDetailsViewController alloc] init];
 	detailsViewController.hidesBottomBarWhenPushed = YES;
-	FDTweet *tweet = tweets[indexPath.row];
+	FDTweet *tweet = _tweets[indexPath.row];
 	if (tweet.photos.count) {
 		detailsViewController.photo = tweet.photos[0];
 	}
