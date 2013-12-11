@@ -1,6 +1,3 @@
-[submodule "find/Libraries/ZBUtilities"]
-	path = find/Libraries/ZBUtilities
-	url = https://github.com/qq30135878/ZBUtilities.git
 [submodule "find/Libraries/GTMBase64"]
 	path = find/Libraries/GTMBase64
 	url = https://github.com/isaced/GTMBase64.git
