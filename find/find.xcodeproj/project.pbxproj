@@ -373,6 +373,8 @@
 				77A5F7EC17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.h */,
 				77A5F7ED17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m */,
 				77DA107B17E981FD001F44DF /* Services */,
+				77DE2D0D18581A7B00157234 /* CollectionViewCells */,
+				77DE2D0E18581A9000157234 /* TableViewCells */,
 				77DA107117E97F3D001F44DF /* Models */,
 				77DA107217E97F5F001F44DF /* Views */,
 				77A5F7A817CB22960073E7F9 /* find */,
@@ -598,34 +600,12 @@
 		77DA107217E97F5F001F44DF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				777A6937184F261A00B903C1 /* FDAddTweetCollectionViewCell.h */,
-				777A6938184F261A00B903C1 /* FDAddTweetCollectionViewCell.m */,
-				777A6928184DB05F00B903C1 /* FDSessionInvalidCell.h */,
-				777A6929184DB05F00B903C1 /* FDSessionInvalidCell.m */,
-				777A6925184D761000B903C1 /* FDMeCell.h */,
-				777A6926184D761000B903C1 /* FDMeCell.m */,
-				777A6922184C3A1500B903C1 /* FDEditCell.h */,
-				777A6923184C3A1500B903C1 /* FDEditCell.m */,
-				77052A311834798B000C2BDF /* FDLabelEditCell.h */,
-				77052A321834798B000C2BDF /* FDLabelEditCell.m */,
-				77764B291831FEEA0057F8B9 /* FDTextViewEditCell.h */,
-				77764B2A1831FEEA0057F8B9 /* FDTextViewEditCell.m */,
-				77A4AF2918288E1C00B7D65B /* FDVoteCell.h */,
-				77A4AF2A18288E1C00B7D65B /* FDVoteCell.m */,
-				77EC53D8182B45990042B7B3 /* FDGiftsCell.h */,
-				77EC53D9182B45990042B7B3 /* FDGiftsCell.m */,
 				77DBC8CB181FA5B500F0A7A8 /* FDImageView.h */,
 				77DBC8CC181FA5B500F0A7A8 /* FDImageView.m */,
-				777E5E1C17D97A98005AFB67 /* FDThemeCell.h */,
-				777E5E1D17D97A98005AFB67 /* FDThemeCell.m */,
 				77B6397D1810E14F00AE8526 /* FDThemeHeaderView.h */,
 				77B6397E1810E14F00AE8526 /* FDThemeHeaderView.m */,
 				777E5EE617D9BBDA005AFB67 /* FDThemeItemView.h */,
 				777E5EE717D9BBDA005AFB67 /* FDThemeItemView.m */,
-				77C0C96217D18D7C008C7FC7 /* FDPhotoCollectionViewCell.h */,
-				77C0C96317D18D7C008C7FC7 /* FDPhotoCollectionViewCell.m */,
-				77052A341834B150000C2BDF /* FDUserCell.h */,
-				77052A351834B150000C2BDF /* FDUserCell.m */,
 				77DA106E17E97EB0001F44DF /* FDCommentCell.h */,
 				77DA106F17E97EB0001F44DF /* FDCommentCell.m */,
 				778671C117E806BF001FDB67 /* FDLikesView.h */,
@@ -645,6 +625,42 @@
 				77AD927D17DEC88800D2FEBC /* FDAFHTTPClient.m */,
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		77DE2D0D18581A7B00157234 /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				77C0C96217D18D7C008C7FC7 /* FDPhotoCollectionViewCell.h */,
+				77C0C96317D18D7C008C7FC7 /* FDPhotoCollectionViewCell.m */,
+				777A6937184F261A00B903C1 /* FDAddTweetCollectionViewCell.h */,
+				777A6938184F261A00B903C1 /* FDAddTweetCollectionViewCell.m */,
+			);
+			name = CollectionViewCells;
+			sourceTree = "<group>";
+		};
+		77DE2D0E18581A9000157234 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				777A6928184DB05F00B903C1 /* FDSessionInvalidCell.h */,
+				777A6929184DB05F00B903C1 /* FDSessionInvalidCell.m */,
+				777A6925184D761000B903C1 /* FDMeCell.h */,
+				777A6926184D761000B903C1 /* FDMeCell.m */,
+				777A6922184C3A1500B903C1 /* FDEditCell.h */,
+				777A6923184C3A1500B903C1 /* FDEditCell.m */,
+				77052A311834798B000C2BDF /* FDLabelEditCell.h */,
+				77052A321834798B000C2BDF /* FDLabelEditCell.m */,
+				77764B291831FEEA0057F8B9 /* FDTextViewEditCell.h */,
+				77764B2A1831FEEA0057F8B9 /* FDTextViewEditCell.m */,
+				77A4AF2918288E1C00B7D65B /* FDVoteCell.h */,
+				77A4AF2A18288E1C00B7D65B /* FDVoteCell.m */,
+				77EC53D8182B45990042B7B3 /* FDGiftsCell.h */,
+				77EC53D9182B45990042B7B3 /* FDGiftsCell.m */,
+				777E5E1C17D97A98005AFB67 /* FDThemeCell.h */,
+				777E5E1D17D97A98005AFB67 /* FDThemeCell.m */,
+				77052A341834B150000C2BDF /* FDUserCell.h */,
+				77052A351834B150000C2BDF /* FDUserCell.m */,
+			);
+			name = TableViewCells;
 			sourceTree = "<group>";
 		};
 		77F88987180B888100D6A45D /* Fonts */ = {
