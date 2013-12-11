@@ -56,12 +56,13 @@
 		
 		_voteButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		_voteButton.titleLabel.font = [UIFont fdThemeFontOfSize:13];
-		[_voteButton setTitle:NSLocalizedString(@"Vote", nil) forState:UIControlStateNormal];
 		_voteButton.showsTouchWhenHighlighted = YES;
+		[_voteButton setTitle:NSLocalizedString(@"Vote", nil) forState:UIControlStateNormal];
+		[_voteButton setTitleColor:[UIColor fdThemeRed] forState:UIControlStateNormal];
 		[_voteButton setTitle:NSLocalizedString(@"Voted", nil) forState:UIControlStateSelected];
+		[_voteButton setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
 		_voteButton.frame = CGRectMake(start.x, start.y, self.bounds.size.width - start.x, [[self class] height]);
 		//_voteButton.backgroundColor = [UIColor randomColor];//TODO
-		[_voteButton setTitleColor:[UIColor fdThemeRed] forState:UIControlStateNormal];
 		[_voteButton addTarget:self action:@selector(willVote) forControlEvents:UIControlEventTouchUpInside];
 		[self.contentView addSubview:_voteButton];
     }

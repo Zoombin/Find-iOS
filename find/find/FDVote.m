@@ -18,7 +18,6 @@
 	vote.ID = attributes[@"id"];
 	vote.name = attributes[@"name"];
 	vote.quantity = attributes[@"marked"];
-	//vote.percentage = attributes[@"percentage"];
 	vote.voted = attributes[@"choosed"];
 	return vote;
 }
@@ -29,7 +28,11 @@
 	for (NSDictionary *attributes in data) {
 		FDVote *vote = [self createWithAttributes:attributes];
 		NSNumber *total = (NSNumber *)extra;
-		vote.percentage = @(vote.quantity.integerValue / total.floatValue);
+		if (total.floatValue != 0) {
+			vote.percentage = @(vote.quantity.integerValue / total.floatValue);
+		} else {
+			vote.percentage = @(0);
+		}
 		[votes addObject:vote];
 	}
 	return votes;
