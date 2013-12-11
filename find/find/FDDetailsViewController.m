@@ -14,6 +14,7 @@
 #import "FDUserCell.h"
 #import "FDPhotoCell.h"
 #import "FDMessagesViewController.h"
+#import "FDProfileViewController.h"
 
 static NSInteger kSectionOfPhoto = 0;
 static NSInteger kIndexOfReportButtonInActionSheet = 0;
@@ -49,7 +50,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
 		[self setLeftBarButtonItemAsBackButtonToRoot];
-		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ProfileInfo"] style:UIBarButtonItemStylePlain target:self action:nil];
+		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ProfileInfo"] style:UIBarButtonItemStylePlain target:self action:@selector(pushToProfile)];
     }
     return self;
 }
@@ -106,9 +107,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	_titleOfGifts = NSLocalizedString(@"Gifts", nil);
 	_titleOfFollowers = NSLocalizedString(@"Followers", nil);
 	
-	//_bMemberDetails = YES;//TODO: Test
-	
-	if (_bMemberDetails) {
+	if (_photo.userID) {
 		_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[_titleOfPhotos, _titleOfComments, _titleOfTags, _titleOfRegions, _titleOfGifts, _titleOfFollowers]];
 	} else {
 		_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[_titleOfComments, _titleOfTags, _titleOfRegions, _titleOfGifts, _titleOfFollowers]];
@@ -132,7 +131,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 									 _titleOfFollowers : [@{keyOfClass : followerCellClass} mutableCopy]
 									} mutableCopy];
 	
-	if (_bMemberDetails) {
+	if (_photo.userID) {
 		_segmentedControlAttributes[_titleOfPhotos] = [@{keyOfClass : photoCellClass} mutableCopy];
 		
 		UISwipeGestureRecognizer *leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(anotherPhoto:)];
@@ -174,7 +173,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 		}];
 	}
 	
-	if (_bMemberDetails) {
+	if (_photo.userID) {
 		if (!_segmentedControlAttributes[_titleOfPhotos][keyOfDataSource]) {
 			[self fetchPhotos:^{
 				[_tableView reloadData];
@@ -236,8 +235,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 
 - (void)fetchPhotos:(dispatch_block_t)block
 {
-	//TODO: @(1)
-	[[FDAFHTTPClient shared] detailsOfUser:@(1) withCompletionBlock:^(BOOL success, NSString *message, NSDictionary *profileAttributes, NSArray *tweetsData) {
+	[[FDAFHTTPClient shared] detailsOfUser:_photo.userID withCompletionBlock:^(BOOL success, NSString *message, NSDictionary *profileAttributes, NSArray *tweetsData) {
 		if (success) {
 			FDUserProfile *userProfile = [FDUserProfile createWithAttributes:profileAttributes];//TODO
 			NSLog(@"userProfile: %@", userProfile);
@@ -274,8 +272,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 
 - (void)fetchTags:(dispatch_block_t)block
 {
-	//TODO: test@(1)
-	[[FDAFHTTPClient shared] tagsOfPhoto:@(1) withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData, NSNumber *totalVoted) {
+	[[FDAFHTTPClient shared] tagsOfPhoto:_photo.ID withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData, NSNumber *totalVoted) {
 		if (success) {
 			_segmentedControlAttributes[_titleOfTags][keyOfDataSource] = [FDVote createMutableWithData:votesData andExtra:totalVoted];
 			if (block) block ();
@@ -285,8 +282,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 
 - (void)fetchRegions:(dispatch_block_t)block
 {
-	//TODO: test@(1)
-	[[FDAFHTTPClient shared] regionsOfPhoto:@(1) withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData, NSNumber *totalVoted) {
+	[[FDAFHTTPClient shared] regionsOfPhoto:_photo.ID withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData, NSNumber *totalVoted) {
 		if (success) {
 			NSArray *regions = [FDVote createMutableWithData:votesData andExtra:totalVoted];
 			for (FDVote *vote in regions) {
@@ -300,8 +296,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 
 - (void)fetchFollowers:(dispatch_block_t)block
 {
-	//TODO: test@(2)
-	[[FDAFHTTPClient shared] followerListOfUser:@(2) withCompletionBlock:^(BOOL success, NSString *message, NSArray *usersData) {
+	[[FDAFHTTPClient shared] followerListOfUser:_photo.userID withCompletionBlock:^(BOOL success, NSString *message, NSArray *usersData) {
 		if (success) {
 			NSArray *users = [FDUser createMutableWithData:usersData];
 			_segmentedControlAttributes[_titleOfFollowers][keyOfDataSource] = users;
@@ -333,8 +328,16 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 {
 	CGSize contentSize = tableView.contentSize;
 	contentSize = tableView.contentSize;
-	contentSize.height = MAX(tableView.bounds.size.height * 1.7, contentSize.height);
+	contentSize.height = MAX(tableView.bounds.size.height * 1.5, contentSize.height);
 	tableView.contentSize = contentSize;
+}
+
+- (void)pushToProfile
+{
+	FDProfileViewController *profileViewController = [[FDProfileViewController alloc] init];
+	profileViewController.hidesBottomBarWhenPushed = YES;
+	profileViewController.bMyself = _photo.userID.integerValue == [[[FDAFHTTPClient shared] userID] integerValue];
+	[self.navigationController pushViewController:profileViewController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -436,8 +439,8 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 			userCell.user = _segmentedControlAttributes[title][keyOfDataSource][indexPath.row];
 		} else if ([cell isKindOfClass:[FDPhotoCell class]]) {
 			FDPhoto *photo = _segmentedControlAttributes[_titleOfPhotos][keyOfDataSource][indexPath.row];
-				FDPhotoCell *photoCell = (FDPhotoCell *)cell;
-				photoCell.photo = photo;
+			FDPhotoCell *photoCell = (FDPhotoCell *)cell;
+			photoCell.photo = photo;
 		}
 		[self maximumContentSize:tableView];
 		return cell;
@@ -587,12 +590,14 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	dateFormatter.dateFormat = @"YYYY-mm-dd HH:MM:SS";
 	NSString *tweetString = [NSString stringWithFormat:@"comment at:%@", [dateFormatter stringFromDate:now]];
-	
-	//	[[FDAFHTTPClient shared] commentPhoto:_photo.ID content:tweetString withCompletionBlock:^(BOOL success, NSString *message) {
-	//		if (success) {
-	//			[self fetchComments];
-	//		}
-	//	}];
+
+	[[FDAFHTTPClient shared] commentPhoto:_photo.ID content:tweetString withCompletionBlock:^(BOOL success, NSString *message) {
+		if (success) {
+			[self fetchComments:^{
+				[_tableView reloadData];
+			}];
+		}
+	}];
 }
 
 - (void)willReport:(FDComment *)comment
@@ -607,8 +612,8 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 - (void)willVote:(FDVote *)vote
 {
 	NSString *title = [self titleForSelectedSegment];
-	if (vote.bRegion.boolValue) {//TODO: photoID
-		[[FDAFHTTPClient shared] voteRegion:vote.ID toPhoto:@(1) withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData, NSNumber *totalVoted) {
+	if (vote.bRegion.boolValue) {
+		[[FDAFHTTPClient shared] voteRegion:vote.ID toPhoto:_photo.ID withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData, NSNumber *totalVoted) {
 			if (success) {
 				NSArray *votes = [FDVote createMutableWithData:votesData andExtra:totalVoted];
 				for (FDVote *vote in votes) {
@@ -618,8 +623,8 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 				[_tableView reloadData];
 			}
 		}];
-	} else {//TODO: photoID
-		[[FDAFHTTPClient shared] voteTag:vote.ID toPhoto:@(1) withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData, NSNumber *totalVoted) {
+	} else {
+		[[FDAFHTTPClient shared] voteTag:vote.ID toPhoto:_photo.ID withCompletionBlock:^(BOOL success, NSString *message, NSArray *votesData, NSNumber *totalVoted) {
 			if (success) {
 				NSArray *votes = [FDVote createMutableWithData:votesData andExtra:totalVoted];
 				_segmentedControlAttributes[title][keyOfDataSource] = votes;
