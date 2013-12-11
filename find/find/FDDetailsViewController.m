@@ -47,7 +47,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		[self setLeftBarButtonItemAsBackButton];
+		[self setLeftBarButtonItemAsBackButtonToRoot];
     }
     return self;
 }
@@ -94,6 +94,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
     _growingTextView.internalTextView.scrollIndicatorInsets = UIEdgeInsetsMake(5, 0, 5, 0);
     _growingTextView.backgroundColor = [UIColor randomColor];
     _growingTextView.placeholder = NSLocalizedString(@"Comment This Photo", nil);
+	_growingTextView.hidden = YES;
 	[_containerView addSubview:_growingTextView];
 	
 	_titleOfPhotos = NSLocalizedString(@"Photos", nil);
@@ -110,10 +111,15 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	} else {
 		_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[_titleOfComments, _titleOfTags, _titleOfRegions, _titleOfGifts, _titleOfFollowers]];
 	}
-	_segmentedControl.selectedSegmentIndex = 1;
+	_segmentedControl.selectedSegmentIndex = 0;
 	_segmentedControl.backgroundColor = _tableView.backgroundColor;
 	_segmentedControl.tintColor = [UIColor grayColor];
 	[_segmentedControl addTarget:self action:@selector(selectedSegment:) forControlEvents:UIControlEventValueChanged];
+	
+	NSString *firstTitle = [_segmentedControl titleForSegmentAtIndex:_segmentedControl.selectedSegmentIndex];
+	if ([firstTitle isEqualToString:_titleOfComments]) {
+		_containerView.hidden = NO;//隐藏输入框
+	}
 	
 	Class photoCellClass = [FDPhotoCell class];
 	Class commentCellClass = [FDCommentCell class];
@@ -131,6 +137,14 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	
 	if (_bMemberDetails) {
 		_segmentedControlAttributes[_titleOfPhotos] = [@{keyOfClass : photoCellClass} mutableCopy];
+		
+		UISwipeGestureRecognizer *leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(anotherPhoto:)];
+		leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+		[self.view addGestureRecognizer:leftSwipeGestureRecognizer];
+		
+		UISwipeGestureRecognizer *rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(anotherPhoto:)];
+		rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+		[self.view addGestureRecognizer:rightSwipeGestureRecognizer];
 	}
 }
 
@@ -185,6 +199,43 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
+- (void)anotherPhoto:(UISwipeGestureRecognizer *)swipeGestureRecognizer
+{
+	NSInteger step = 0;
+	if (swipeGestureRecognizer.direction == UISwipeGestureRecognizerDirectionRight) {
+		NSLog(@"prev photo");
+		step = -1;
+	} else if (swipeGestureRecognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
+		NSLog(@"next photo");
+		step = 1;
+	}
+	
+	NSArray *photos = _segmentedControlAttributes[_titleOfPhotos][keyOfDataSource];
+	FDPhoto *anotherPhoto = nil;
+	for	(int i = 0; i < photos.count; i++) {
+		FDPhoto *photo = photos[i];
+		if (photo.ID.integerValue == _photo.ID.integerValue) {
+			NSInteger index = step + i;
+			if (index >= 0 && index < photos.count) {
+				anotherPhoto = photos[index];
+			}
+			break;
+		}
+	}
+	
+	if (anotherPhoto) {
+		[self pushToAnotherPhoto:anotherPhoto];
+	}
+}
+
+- (void)pushToAnotherPhoto:(FDPhoto *)photo
+{
+	FDDetailsViewController *detailsViewController = [[FDDetailsViewController alloc] init];
+	detailsViewController.hidesBottomBarWhenPushed = YES;
+	detailsViewController.photo = photo;
+	[self.navigationController pushViewController:detailsViewController animated:NO];
+}
+
 - (void)fetchPhotos:(dispatch_block_t)block
 {
 	//TODO: @(1)
@@ -196,7 +247,11 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 			NSArray *tweets = [FDTweet createMutableWithData:tweetsData];
 			NSMutableArray *photos = [NSMutableArray array];
 			for (FDTweet *tweet in tweets) {
-				[photos addObjectsFromArray:tweet.photos];
+				for (FDPhoto *photo in tweet.photos) {
+					if (photo.ID.integerValue != _photo.ID.integerValue) {//过滤掉当前这张照片
+						[photos addObject:photo];
+					}
+				}
 			}
 			_segmentedControlAttributes[_titleOfPhotos][keyOfDataSource] = photos;
 			if (block) block ();
@@ -420,7 +475,10 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	}
 	if (indexPath.section != kSectionOfPhoto) {
 		NSString *title = [self titleForSelectedSegment];
-		if ([title isEqualToString:_titleOfComments]) {
+		if ([title isEqualToString:_titleOfPhotos]) {
+			FDPhoto *photo = _segmentedControlAttributes[_titleOfPhotos][keyOfDataSource][indexPath.row];
+			[self pushToAnotherPhoto:photo];
+		} else if ([title isEqualToString:_titleOfComments]) {
 			FDCommentCell *cell = (FDCommentCell *)[tableView cellForRowAtIndexPath:indexPath];
 			[cell showOrHideMoreActions];
 		}

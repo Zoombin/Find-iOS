@@ -104,7 +104,7 @@
 - (void)collectionView:(PSUICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	FDDetailsViewController *detailsViewController = [[FDDetailsViewController alloc] init];
-	//detailsViewController.hidesBottomBarWhenPushed = YES;
+	detailsViewController.hidesBottomBarWhenPushed = YES;
 	FDTweet *tweet = _tweets[indexPath.row];
 	if (tweet.photos.count) {
 		detailsViewController.photo = tweet.photos[0];

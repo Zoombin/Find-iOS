@@ -58,7 +58,7 @@
 	if (_user == user) return;
 	_user = user;
 	_avatar.imagePath = _user.avatarPath;
-	//_avatar.userID = _user.ID;
+	//_avatar.userID = _user.ID;//TODO:
 	_nameLabel.text = _user.nickname;
 }
 
