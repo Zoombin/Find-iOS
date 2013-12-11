@@ -1,6 +1,0 @@
-[submodule "find/Libraries/GTMBase64"]
-	path = find/Libraries/GTMBase64
-	url = https://github.com/isaced/GTMBase64.git
-[submodule "find/Libraries/LNToolkit"]
-	path = find/Libraries/LNToolkit
-	url = https://github.com/lognllc/LNToolkit.git
