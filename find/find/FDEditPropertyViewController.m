@@ -72,13 +72,6 @@ static NSInteger heightOfMap = 150;
 	
 	_mapView = [[MKMapView alloc] init];
 	_mapView.userInteractionEnabled = NO;
-	
-	[[FDAFHTTPClient shared] candidatesWithCompletionBlock:^(BOOL success, NSString *message, NSNumber *published, NSArray *usersData) {
-		if (success) {
-			_candidates = [FDUser createMutableWithData:usersData];
-			[self.tableView reloadData];
-		}
-	}];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -94,7 +87,13 @@ static NSInteger heightOfMap = 150;
 		}
 		_segmentedControl.selectedSegmentIndex = index;
 		self.navigationItem.titleView = _segmentedControl;
-
+		
+		if (_segmentedControl.selectedSegmentIndex == FDInformationLevelPartly) {
+			[self fetchCandidatesWithBlock:^{
+				[self.tableView reloadData];
+			}];
+		}
+		
 		if (_privacyInfo.type == FDInformationTypeAddress) {
 			_locationManager = [[CLLocationManager alloc] init];
 			_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -102,6 +101,16 @@ static NSInteger heightOfMap = 150;
 			[_locationManager startUpdatingLocation];
 		}
 	}
+}
+
+- (void)fetchCandidatesWithBlock:(dispatch_block_t)block
+{
+	[[FDAFHTTPClient shared] candidatesWithCompletionBlock:^(BOOL success, NSString *message, NSNumber *published, NSArray *usersData) {
+		if (success) {
+			_candidates = [FDUser createMutableWithData:usersData];
+		}
+		if (block) block ();
+	}];
 }
 
 - (void)privacyLevelChanged:(id)sender
@@ -114,6 +123,9 @@ static NSInteger heightOfMap = 150;
 			if (index == FDInformationLevelPartly) {
 				_numberOfSections = 2;
 				_searchBar.hidden = NO;
+				[self fetchCandidatesWithBlock:^{
+					[self.tableView reloadData];
+				}];
 			} else {
 				_numberOfSections = 1;
 				_searchBar.hidden = YES;
@@ -205,11 +217,6 @@ static NSInteger heightOfMap = 150;
 	if (section == sectionOfEdit) {
 		return [_cellClass numberOfRows];
 	}
-//	NSInteger index = _segmentedControl.selectedSegmentIndex;
-//	if (index == 1) {//部分可见
-//		return _candidates.count;
-//	}
-//	return 0;
 	return _candidates.count;
 }
 
@@ -347,13 +354,25 @@ static NSInteger heightOfMap = 150;
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
 	[searchBar resignFirstResponder];
-	//TODO: should search now
-//	[self displayHUD:NSLocalizedString(@"Searching", nil)];
-//	[[FDAFHTTPClient shared] themeListWithCompletionBlock:^(BOOL success, NSString *message, NSArray *themesData) {
-//		_candidates = [FDUser createTest:30];
-//		[self hideHUD:YES];
-//		[self.tableView reloadData];
-//	}];
+
+	[self displayHUD:NSLocalizedString(@"Searching", nil)];
+	[[FDAFHTTPClient shared] searchUserByKeyword:searchBar.text withCompletionBlock:^(BOOL success, NSString *message, NSArray *usersData) {
+		[self hideHUD:YES];
+		if (success) {
+			[self displayHUDTitle:NSLocalizedString(@"Search Result", nil) message:[NSString stringWithFormat:@"搜索到%d个结果", usersData.count] duration:1];
+			_candidates = [FDUser createMutableWithData:usersData];
+			[self.tableView reloadData];
+		}
+	}];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+	if (searchText == nil || [searchText isEqualToString:@""]) {
+		[self fetchCandidatesWithBlock:^{
+			[self.tableView reloadData];
+		}];
+	}
 }
 
 #pragma mark - CLLocationManagerDelegate

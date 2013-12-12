@@ -93,6 +93,8 @@
 //获取推荐的用户（公开，私密信息的时候用到）
 - (void)candidatesWithCompletionBlock:(void (^)(BOOL success, NSString *message, NSNumber *published, NSArray *usersData))block;
 
+- (void)searchUserByKeyword:(NSString *)keyword withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *usersData))block;
+
 //test gzip
 - (void)test;
 

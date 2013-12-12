@@ -69,7 +69,11 @@ UIPickerViewDataSource
 {
     [super viewDidLoad];
 	
-	_bMyself = [_userID integerValue] == [[[FDAFHTTPClient shared] userID] integerValue];
+	if (!_userID) {
+		_bMyself = YES;
+	} else {
+		_bMyself = [_userID integerValue] == [[[FDAFHTTPClient shared] userID] integerValue];
+	}
 	
 	_tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
 	_tableView.backgroundColor = [UIColor clearColor];
