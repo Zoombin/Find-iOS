@@ -147,20 +147,6 @@ static NSString *token;
 //TEST gzip
 - (void)test
 {
-//			NSString *token = @"token=MzA2MXwzMDg3fDMwOTF8MzEwNnwzMDYxfDMwNTJ8MzA1M3wzMTA2fDMwNjJ8MzA2OHwzMDg3fDMwMzV8MzA2M3wzMDUzfDMwNTB8MzEwNHwzMDgzfDMwNjd8MzAzN3wzMDkwfDMwODJ8MzAzNHwzMDMyfDMwNTh8MzA2MXwzMDQ5fDMwNDV8MzA0NXwyOTg0fA==";
-//	
-//	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"http://121.199.14.43/a.php" parameters:nil];
-//	[request setValue:token forHTTPHeaderField:@"Cookie"];
-//	AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject)
-//										 {
-//											 NSLog(@"oauthAuthorize Success: %@",    [operation.response allHeaderFields]);
-//											 
-//										 }
-//																	  failure:^(AFHTTPRequestOperation *operation, NSError *error)
-//										 {
-//											 NSLog(@"oauthAuthorize Fail: %@",operation.responseString);
-//										 }];
-//	[self enqueueHTTPRequestOperation:operation];
 }
 
 - (void)infoOfPhoto:(NSString *)photoInfoUrlString completionBlockWithSuccess:(void (^)(NSDictionary *infoAttributes))success

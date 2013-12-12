@@ -10,6 +10,6 @@
 
 @interface FDProfileViewController : FDViewController
 
-@property (nonatomic, assign) BOOL bMyself;//是我自己的资料还是别人的资料
+@property (nonatomic, strong) NSNumber *userID;
 
 @end

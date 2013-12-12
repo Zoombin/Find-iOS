@@ -46,7 +46,7 @@ UIPickerViewDataSource
 @property (readwrite) FDAvatarView *avatar;
 @property (readwrite) NSInteger selectedPickerRow;
 @property (readwrite) UILabel *signatureLabel;
-
+@property (readwrite) BOOL bMyself;//是我自己的资料还是别人的资料
 @property (readwrite) NSString *age;
 @property (readwrite) NSString *height;
 @property (readwrite) NSString *weight;
@@ -69,7 +69,7 @@ UIPickerViewDataSource
 {
     [super viewDidLoad];
 	
-	_bMyself = YES;
+	_bMyself = [_userID integerValue] == [[[FDAFHTTPClient shared] userID] integerValue];
 	
 	_tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
 	_tableView.backgroundColor = [UIColor clearColor];
@@ -359,8 +359,7 @@ UIPickerViewDataSource
 
 - (void)fetchProfile:(dispatch_block_t)block
 {
-	NSNumber *userID = _bMyself ? nil : @(2);//TODO: test
-	[[FDAFHTTPClient shared] profileOfUser:userID withCompletionBlock:^(BOOL success, NSString *message, NSDictionary *userProfileAttributes) {
+	[[FDAFHTTPClient shared] profileOfUser:_userID withCompletionBlock:^(BOOL success, NSString *message, NSDictionary *userProfileAttributes) {
 		if (success) {
 			_userProfile = [FDUserProfile createWithAttributes:userProfileAttributes];
 		}
@@ -468,8 +467,8 @@ UIPickerViewDataSource
 			if (privacyInfo) {
 				UILabel *privacyInfoLabel = (UILabel *)[cell viewWithTag:tagOfPrivacyLabel];
 				if (!privacyInfoLabel) {
-					privacyInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, 120, cell.bounds.size.height)];
-					//privacyInfoLabel.backgroundColor = [UIColor randomColor];
+					privacyInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, 0, 120, cell.bounds.size.height)];
+					privacyInfoLabel.backgroundColor = [UIColor randomColor];
 					privacyInfoLabel.font = [UIFont fdThemeFontOfSize:14];
 					privacyInfoLabel.textAlignment = NSTextAlignmentCenter;
 					privacyInfoLabel.tag = tagOfPrivacyLabel;

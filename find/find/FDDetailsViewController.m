@@ -336,7 +336,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 {
 	FDProfileViewController *profileViewController = [[FDProfileViewController alloc] init];
 	profileViewController.hidesBottomBarWhenPushed = YES;
-	profileViewController.bMyself = _photo.userID.integerValue == [[[FDAFHTTPClient shared] userID] integerValue];
+	profileViewController.userID = _photo.userID;
 	[self.navigationController pushViewController:profileViewController animated:YES];
 }
 
