@@ -471,7 +471,7 @@ UIPickerViewDataSource
 			if (privacyInfo) {
 				UILabel *privacyInfoLabel = (UILabel *)[cell viewWithTag:tagOfPrivacyLabel];
 				if (!privacyInfoLabel) {
-					privacyInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, 0, 120, cell.bounds.size.height)];
+					privacyInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, 120, cell.bounds.size.height)];
 					privacyInfoLabel.backgroundColor = [UIColor randomColor];
 					privacyInfoLabel.font = [UIFont fdThemeFontOfSize:14];
 					privacyInfoLabel.textAlignment = NSTextAlignmentCenter;
