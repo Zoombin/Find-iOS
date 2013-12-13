@@ -10,6 +10,7 @@
 #import "FDPhotoCollectionViewCell.h"
 #import "FDAddTweetCollectionViewCell.h"
 #import "FDWebViewController.h"
+#import "FDAskForMoreCollectionSupplementaryView.h"
 
 static NSInteger indexOfAlertDetails = 1;
 
@@ -21,7 +22,8 @@ UIActionSheetDelegate,
 PSUICollectionViewDelegate,
 PSUICollectionViewDataSource,
 FDAddTweetCollectionViewCellDelegate,
-CLLocationManagerDelegate
+CLLocationManagerDelegate,
+FDAskForMoreCollectionSupplementaryViewDelegate
 >
 
 @property (readwrite) PSUICollectionView *photosCollectionView;
@@ -29,6 +31,7 @@ CLLocationManagerDelegate
 @property (readwrite) CLLocationManager *locationManager;
 @property (readwrite) CLLocation *location;
 @property (readwrite) NSString *address;
+@property (readwrite) NSInteger tweetsCount;
 
 @end
 
@@ -46,6 +49,8 @@ CLLocationManagerDelegate
 		} else {
 			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Camera"] tag:0];
 		}
+		
+		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshMyTweets)];
     }
     return self;
 }
@@ -55,11 +60,14 @@ CLLocationManagerDelegate
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor whiteColor];
 	
+	_tweetsCount = 2;
+	
 	_photosCollectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSUICollectionViewFlowLayout smallSquaresLayout]];
 	_photosCollectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_photosCollectionView.backgroundColor = [UIColor clearColor];
 	[_photosCollectionView registerClass:[FDPhotoCollectionViewCell class] forCellWithReuseIdentifier:kFDPhotoCollectionViewCellIdentifier];
 	[_photosCollectionView registerClass:[FDAddTweetCollectionViewCell class] forCellWithReuseIdentifier:kFDAddTweetCollectionViewCellIdentifier];
+	[_photosCollectionView registerClass:[FDAskForMoreCollectionSupplementaryView class] forSupplementaryViewOfKind:PSTCollectionElementKindSectionFooter withReuseIdentifier:kFDAskForMoreCollectionSupplementaryViewIdentifier];
 	_photosCollectionView.delegate = self;
 	_photosCollectionView.dataSource = self;
 	[self.view addSubview:_photosCollectionView];
@@ -89,9 +97,10 @@ CLLocationManagerDelegate
 - (void)fetchTweets:(dispatch_block_t)block
 {
 	if ([[FDAFHTTPClient shared] isSessionValid]) {
-		[[FDAFHTTPClient shared] tweetsPublished:nil limit:@(20) withCompletionBlock:^(BOOL success, NSString *message, NSNumber *published, NSArray *tweetsData) {
+		[[FDAFHTTPClient shared] tweetsPublished:nil limit:@(_tweetsCount) withCompletionBlock:^(BOOL success, NSString *message, NSNumber *published, NSArray *tweetsData) {
 			if (success) {
 				_tweets = [FDTweet createMutableWithData:tweetsData];
+				_tweetsCount = _tweets.count;
 			}
 			if (block) block ();
 		}];
@@ -178,6 +187,25 @@ CLLocationManagerDelegate
 	//cell.delegate = self;
 }
 
+- (PSUICollectionReusableView *)collectionView:(PSUICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+	NSString *identifier = nil;
+	if ([kind isEqualToString:PSTCollectionElementKindSectionFooter]) {
+		identifier = kFDAskForMoreCollectionSupplementaryViewIdentifier;
+	}
+    PSUICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
+	if ([supplementaryView isKindOfClass:[FDAskForMoreCollectionSupplementaryView class]]) {
+		FDAskForMoreCollectionSupplementaryView *askForMoreView = (FDAskForMoreCollectionSupplementaryView *)supplementaryView;
+		askForMoreView.delegate = self;
+	}
+    return supplementaryView;
+}
+
+- (CGSize)collectionView:(PSUICollectionView *)collectionView layout:(PSUICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
+{
+	return CGSizeMake(_photosCollectionView.frame.size.width, [FDAskForMoreCollectionSupplementaryView height]);
+}
+
 - (void)collectionView:(PSUICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	//	FDPhotoDetailsViewController *photoDetailsViewController = [[FDPhotoDetailsViewController alloc] init];
@@ -235,6 +263,7 @@ CLLocationManagerDelegate
 			if (success) {
 				[[FDAFHTTPClient shared] tweetPhotos:@[path] atLocation:_location address:_address withCompletionBlock:^(BOOL success, NSString *message) {
 					[self displayHUDTitle:@"Upload successfully" message:nil duration:1.0];
+					_tweetsCount++;
 					[self fetchTweets:^{
 						[_photosCollectionView reloadData];
 					}];
@@ -289,6 +318,17 @@ CLLocationManagerDelegate
 		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
 		[self.navigationController presentViewController:navigationController animated:YES completion:nil];
 	}
+}
+
+#pragma mark - FDAskForMoreCollectionSupplementaryViewDelegate
+
+- (void)askForMore
+{
+	NSLog(@"ask for more");
+	_tweetsCount += 2;
+	[self fetchTweets:^{
+		[_photosCollectionView reloadData];
+	}];
 }
 
 @end

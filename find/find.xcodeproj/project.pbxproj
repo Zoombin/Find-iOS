@@ -94,6 +94,7 @@
 		77DBC8CD181FA5B500F0A7A8 /* FDImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DBC8CC181FA5B500F0A7A8 /* FDImageView.m */; };
 		77DBC8D21820C42B00F0A7A8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77DBC8D01820C42B00F0A7A8 /* Localizable.strings */; };
 		77DE2D1118581B3100157234 /* FDPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DE2D1018581B3100157234 /* FDPhotoCell.m */; };
+		77DFCD2E185AB37C008DDDB1 /* FDAskForMoreCollectionSupplementaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DFCD2D185AB37C008DDDB1 /* FDAskForMoreCollectionSupplementaryView.m */; };
 		77E94B48182A2F140017FF8E /* FDVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E94B47182A2F140017FF8E /* FDVote.m */; };
 		77E94B4B182A3E1B0017FF8E /* FDVote+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E94B4A182A3E1B0017FF8E /* FDVote+Test.m */; };
 		77EC53DA182B45990042B7B3 /* FDGiftsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EC53D9182B45990042B7B3 /* FDGiftsCell.m */; };
@@ -288,6 +289,8 @@
 		77DBC8D31820C43400F0A7A8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		77DE2D0F18581B3100157234 /* FDPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDPhotoCell.h; path = find/FDPhotoCell.h; sourceTree = "<group>"; };
 		77DE2D1018581B3100157234 /* FDPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDPhotoCell.m; path = find/FDPhotoCell.m; sourceTree = "<group>"; };
+		77DFCD2C185AB37C008DDDB1 /* FDAskForMoreCollectionSupplementaryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDAskForMoreCollectionSupplementaryView.h; path = find/FDAskForMoreCollectionSupplementaryView.h; sourceTree = "<group>"; };
+		77DFCD2D185AB37C008DDDB1 /* FDAskForMoreCollectionSupplementaryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDAskForMoreCollectionSupplementaryView.m; path = find/FDAskForMoreCollectionSupplementaryView.m; sourceTree = "<group>"; };
 		77E94B46182A2F140017FF8E /* FDVote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDVote.h; path = find/FDVote.h; sourceTree = "<group>"; };
 		77E94B47182A2F140017FF8E /* FDVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDVote.m; path = find/FDVote.m; sourceTree = "<group>"; };
 		77E94B49182A3E1B0017FF8E /* FDVote+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FDVote+Test.h"; path = "Test/FDVote+Test.h"; sourceTree = "<group>"; };
@@ -660,6 +663,8 @@
 				77C0C96317D18D7C008C7FC7 /* FDPhotoCollectionViewCell.m */,
 				777A6937184F261A00B903C1 /* FDAddTweetCollectionViewCell.h */,
 				777A6938184F261A00B903C1 /* FDAddTweetCollectionViewCell.m */,
+				77DFCD2C185AB37C008DDDB1 /* FDAskForMoreCollectionSupplementaryView.h */,
+				77DFCD2D185AB37C008DDDB1 /* FDAskForMoreCollectionSupplementaryView.m */,
 			);
 			name = CollectionViewCells;
 			sourceTree = "<group>";
@@ -850,6 +855,7 @@
 				7786EDFF181E189F0059868E /* FDPhotosViewController.m in Sources */,
 				77A5F7F417CB2F760073E7F9 /* FDCameraViewController.m in Sources */,
 				77EC53DA182B45990042B7B3 /* FDGiftsCell.m in Sources */,
+				77DFCD2E185AB37C008DDDB1 /* FDAskForMoreCollectionSupplementaryView.m in Sources */,
 				770D86C418584566001CCA47 /* UIViewController+HUD.m in Sources */,
 				770D869818584515001CCA47 /* UIImage+LogN.m in Sources */,
 				77052A361834B150000C2BDF /* FDUserCell.m in Sources */,
