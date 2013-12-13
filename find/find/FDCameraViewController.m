@@ -13,6 +13,7 @@
 #import "FDAskForMoreCollectionSupplementaryView.h"
 
 static NSInteger indexOfAlertDetails = 1;
+static NSInteger numberOfTweetsPerLine = 3;
 
 @interface FDCameraViewController ()
 <
@@ -60,7 +61,9 @@ FDAskForMoreCollectionSupplementaryViewDelegate
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor whiteColor];
 	
-	_tweetsCount = 2;
+	NSInteger firstLoadNumber = 20;
+	_tweetsCount = firstLoadNumber;
+	[self fixAskMoreTweetsCount];
 	
 	_photosCollectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSUICollectionViewFlowLayout smallSquaresLayout]];
 	_photosCollectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -71,7 +74,7 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 	_photosCollectionView.delegate = self;
 	_photosCollectionView.dataSource = self;
 	[self.view addSubview:_photosCollectionView];
-	
+
 	[self fetchTweets:^{
 		[_photosCollectionView reloadData];
 	}];
@@ -92,6 +95,14 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 	[self fetchTweets:^{
 		[_photosCollectionView reloadData];
 	}];
+}
+
+- (void)fixAskMoreTweetsCount
+{
+	NSInteger m = (_tweetsCount + 1) % numberOfTweetsPerLine;//+1 means add tweet button
+	if (m != 0) {
+		_tweetsCount += numberOfTweetsPerLine - m;
+	}
 }
 
 - (void)fetchTweets:(dispatch_block_t)block
@@ -325,7 +336,9 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 - (void)askForMore
 {
 	NSLog(@"ask for more");
-	_tweetsCount += 2;
+	NSInteger erveryAskNumber = 21;
+	_tweetsCount += erveryAskNumber;
+	[self fixAskMoreTweetsCount];
 	[self fetchTweets:^{
 		[_photosCollectionView reloadData];
 	}];
