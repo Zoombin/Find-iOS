@@ -151,8 +151,13 @@
 		photosViewController.hidesBottomBarWhenPushed = YES;
 		photosViewController.themeID = theme.ID;
 		[self.navigationController pushViewController:photosViewController animated:YES];
-	} else if ([theme.type isEqualToString:kThemeTypeIdentifierUser]) {
-		[self.navigationController pushViewController:[[FDDetailsViewController alloc] init] animated:YES];
+	} else if ([theme.type isEqualToString:kThemeTypeIdentifierUser]) {//TODO: should display users?
+		//[self.navigationController pushViewController:[[FDDetailsViewController alloc] init] animated:YES];
+		
+		FDPhotosViewController *photosViewController = [[FDPhotosViewController alloc] init];
+		photosViewController.hidesBottomBarWhenPushed = YES;
+		photosViewController.themeID = theme.ID;
+		[self.navigationController pushViewController:photosViewController animated:YES];
 	}
 }
 

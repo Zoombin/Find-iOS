@@ -8,8 +8,9 @@
 
 #import "FDThemeItemView.h"
 #import "FDThemeSection.h"
+#import "FDThemeCell.h"
 
-#define kCornerRadius 20
+#define kCornerRadius 22.2
 
 @implementation FDThemeItemView
 {
@@ -24,8 +25,8 @@
 		
 		imageView = [[UIImageView alloc] init];
 		imageView.contentMode = UIViewContentModeScaleAspectFit;
-		imageView.layer.borderColor = [[UIColor fdSeparateLineColor] CGColor];
-		imageView.layer.borderWidth = 1;
+		//imageView.layer.borderColor = [[UIColor fdSeparateLineColor] CGColor];
+		//imageView.layer.borderWidth = 1;
 		imageView.layer.masksToBounds = YES;
 		[self addSubview:imageView];
 		
@@ -46,7 +47,7 @@
 		CGSize size = CGSizeMake(72, 72);
 		CGPoint start = CGPointMake((self.bounds.size.width - size.width) / 2, 5);
 
-		imageView.frame = CGRectMake(start.x, start.y, 70, 70);
+		imageView.frame = CGRectMake(start.x, start.y, size.width, size.height);
 		imageView.layer.cornerRadius = kCornerRadius;
 
 		start = CGPointMake(CGRectGetMinX(imageView.frame), CGRectGetMaxY(imageView.frame) + 5);
@@ -70,7 +71,7 @@
 		[self addSubview:subtitleLabel];
 
 	} else if ([_theme.style isEqualToString:kThemeStyleIdentifierBrand]) {
-		CGSize size = CGSizeMake(150, 72);
+		CGSize size = CGSizeMake(150, 75);
 		CGPoint start = CGPointMake((self.bounds.size.width - size.width) / 2, (self.bounds.size.height - size.height) / 2);
 		imageView.frame = CGRectMake(start.x, start.y, size.width, size.height);
 		imageView.layer.cornerRadius = kCornerRadius;
@@ -78,7 +79,6 @@
 
 	if (_theme.imagePath) {
 		[imageView setImageWithURL:[NSURL URLWithString:_theme.imagePath]];
-		//[imageView setImage:[UIImage imageFromColor:[UIColor randomColor]]];
 	}
 }
 

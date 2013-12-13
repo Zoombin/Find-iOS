@@ -18,7 +18,7 @@ NSString *kThemeCellAttributeKeyAutoScrollEnabled = @"kThemeCellAttributeKeyAuto
 NSString *kThemeCellAttributeKeyHeaderTitle = @"kThemeCellAttributeKeyHeaderTitle";
 NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSeparateLine";
 
-#define kAutoScrollTimeInterval 4.0
+#define kAutoScrollTimeInterval 5.0
 
 @interface FDThemeCell () <UIScrollViewDelegate, FDThemeItemViewDelegate, FDThemeHeaderViewDelegate>
 
@@ -155,7 +155,7 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 	static NSDictionary *attributesOfIconStyle;
 	if (!attributesOfIconStyle) {
 		NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-		CGRect rect = CGRectMake(0, 0, 320, 130);
+		CGRect rect = CGRectMake(0, 0, 320, 150);
 		attributes[kThemeCellAttributeKeyBounds] = NSStringFromCGRect(rect);
 		attributes[kThemeCellAttributeKeyItemWidth] = @(95);
 		attributes[kThemeCellAttributeKeyShowsHorizontalScrollIndicator] = @(NO);
