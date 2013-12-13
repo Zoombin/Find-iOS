@@ -134,7 +134,10 @@
 		cell.delegate = self;
 	}
 	FDThemeSection *themeSection = [self themeSectionInSection:indexPath.section];
-	NSDictionary *attributes = [FDThemeCell attributesOfStyle:themeSection.style];
+	NSMutableDictionary *attributes = [[FDThemeCell attributesOfStyle:themeSection.style] mutableCopy];
+	if ([themeSection.style isEqualToString:kThemeStyleIdentifierIcon]) {
+		attributes[kThemeCellAttributeKeyHeaderTitle] = themeSection.title;
+	}
 	cell.attributes = attributes;
 	cell.themeSection = themeSection;
 	return cell;

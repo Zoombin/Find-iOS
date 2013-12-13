@@ -159,7 +159,6 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 		attributes[kThemeCellAttributeKeyBounds] = NSStringFromCGRect(rect);
 		attributes[kThemeCellAttributeKeyItemWidth] = @(95);
 		attributes[kThemeCellAttributeKeyShowsHorizontalScrollIndicator] = @(NO);
-		attributes[kThemeCellAttributeKeyHeaderTitle] = @"热门城市";//TODO: should implement here
 		attributesOfIconStyle = [NSDictionary dictionaryWithDictionary:attributes];
 	}
 	return attributesOfIconStyle;
