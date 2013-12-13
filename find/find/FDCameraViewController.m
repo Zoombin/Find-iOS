@@ -64,14 +64,9 @@ CLLocationManagerDelegate
 	_photosCollectionView.dataSource = self;
 	[self.view addSubview:_photosCollectionView];
 	
-	if ([[FDAFHTTPClient shared] isSessionValid]) {
-		[[FDAFHTTPClient shared] tweetsPublished:nil limit:@(20) withCompletionBlock:^(BOOL success, NSString *message, NSNumber *published, NSArray *tweetsData) {
-			if (success) {
-				_tweets = [FDTweet createMutableWithData:tweetsData];
-				[_photosCollectionView reloadData];
-			}
-		}];
-	}
+	[self fetchTweets:^{
+		[_photosCollectionView reloadData];
+	}];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -79,15 +74,28 @@ CLLocationManagerDelegate
 	[super viewDidAppear:animated];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)addTweet
 {
 	[self choosePickerWithDelegate:self];
+}
+
+- (void)refreshMyTweets
+{
+	[self fetchTweets:^{
+		[_photosCollectionView reloadData];
+	}];
+}
+
+- (void)fetchTweets:(dispatch_block_t)block
+{
+	if ([[FDAFHTTPClient shared] isSessionValid]) {
+		[[FDAFHTTPClient shared] tweetsPublished:nil limit:@(20) withCompletionBlock:^(BOOL success, NSString *message, NSNumber *published, NSArray *tweetsData) {
+			if (success) {
+				_tweets = [FDTweet createMutableWithData:tweetsData];
+			}
+			if (block) block ();
+		}];
+	}
 }
 
 - (void)parseToAddressWithLocation:(CLLocation *)loation
@@ -132,6 +140,13 @@ CLLocationManagerDelegate
 			NSLog(@"_address: %@", _address);
 		}
 	}];
+}
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - PSUICollectionViewDelegate
@@ -219,8 +234,10 @@ CLLocationManagerDelegate
 		[[ZBQNAFHTTPClient shared] uploadData:imageData name:path withCompletionBlock:^(BOOL success) {
 			if (success) {
 				[[FDAFHTTPClient shared] tweetPhotos:@[path] atLocation:_location address:_address withCompletionBlock:^(BOOL success, NSString *message) {
-					[self displayHUDTitle:@"Upload successfully" message:nil];
-					
+					[self displayHUDTitle:@"Upload successfully" message:nil duration:1.0];
+					[self fetchTweets:^{
+						[_photosCollectionView reloadData];
+					}];
 				}];
 			} else {
 				[self hideHUD:YES];
