@@ -29,7 +29,6 @@
 {
     [super viewDidLoad];
 	_tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-	_tableView.backgroundColor = [UIColor clearColor];
 	_tableView.delegate = self;
 	_tableView.dataSource = self;
 	[self.view addSubview:_tableView];
