@@ -10,7 +10,7 @@
 #import "FDAroundViewController.h"
 #import "FDDiscoveryViewController.h"
 #import "FDHostViewController.h"
-#import "FDCameraViewController.h"
+#import "FDAlbumViewController.h"
 #import "FDMeViewController.h"
 #import "FDAppDelegate+Appearance.h"
 
@@ -59,7 +59,7 @@
 	NSMutableArray *viewControllers = [NSMutableArray array];
 	[viewControllers addObject:[FDDiscoveryViewController new]];
 	[viewControllers addObject:[FDAroundViewController new]];
-	[viewControllers addObject:[FDCameraViewController new]];
+	[viewControllers addObject:[FDAlbumViewController new]];
 	[viewControllers addObject:[FDMeViewController new]];
 	[viewControllers addObject:[FDTestAccountsViewController new]];
 //	[viewControllers addObject:[FDHostViewController new]];

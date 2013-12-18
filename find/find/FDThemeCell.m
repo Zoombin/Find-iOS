@@ -97,15 +97,15 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 		_scrollView.frame = frame;
 	}
 	
-	if ([_attributes[kThemeCellAttributeKeyHasSeparateLine] boolValue]) {
-		UIView *line = [[UIView alloc] initWithFrame:CGRectMake(self.bounds.origin.x, 0, self.bounds.size.width, 1)];
-		line.backgroundColor = [UIColor fdSeparateLineColor];
-		[self addSubview:line];
-		
-		UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(self.bounds.origin.x, CGRectGetHeight(_scrollView.bounds) - 1, self.bounds.size.width, 1)];
-		bottomLine.backgroundColor = [UIColor fdSeparateLineColor];
-		[self addSubview:bottomLine];
-	}
+//	if ([_attributes[kThemeCellAttributeKeyHasSeparateLine] boolValue]) {
+//		UIView *line = [[UIView alloc] initWithFrame:CGRectMake(self.bounds.origin.x, 0, self.bounds.size.width, 1)];
+//		line.backgroundColor = [UIColor fdSeparateLineColor];
+//		[self addSubview:line];
+//		
+//		UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(self.bounds.origin.x, CGRectGetHeight(_scrollView.bounds) - 1, self.bounds.size.width, 1)];
+//		bottomLine.backgroundColor = [UIColor fdSeparateLineColor];
+//		[self addSubview:bottomLine];
+//	}
 }
 
 - (void)scrollToNext

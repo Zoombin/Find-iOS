@@ -75,7 +75,7 @@
 		77A5F7D417CB22960073E7F9 /* findTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7D317CB22960073E7F9 /* findTests.m */; };
 		77A5F7EE17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7ED17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m */; };
 		77A5F7F117CB2F410073E7F9 /* FDHostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F017CB2F410073E7F9 /* FDHostViewController.m */; };
-		77A5F7F417CB2F760073E7F9 /* FDCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F317CB2F760073E7F9 /* FDCameraViewController.m */; };
+		77A5F7F417CB2F760073E7F9 /* FDAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F317CB2F760073E7F9 /* FDAlbumViewController.m */; };
 		77A5F7F717CB30400073E7F9 /* FDMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A5F7F617CB30400073E7F9 /* FDMeViewController.m */; };
 		77A5F89017CD95E80073E7F9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A5F88F17CD95E80073E7F9 /* CFNetwork.framework */; };
 		77AD927E17DEC88800D2FEBC /* FDAFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AD927D17DEC88800D2FEBC /* FDAFHTTPClient.m */; };
@@ -248,8 +248,8 @@
 		77A5F7ED17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FDAppDelegate+Appearance.m"; path = "find/FDAppDelegate+Appearance.m"; sourceTree = "<group>"; };
 		77A5F7EF17CB2F410073E7F9 /* FDHostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDHostViewController.h; sourceTree = "<group>"; };
 		77A5F7F017CB2F410073E7F9 /* FDHostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDHostViewController.m; sourceTree = "<group>"; };
-		77A5F7F217CB2F760073E7F9 /* FDCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDCameraViewController.h; sourceTree = "<group>"; };
-		77A5F7F317CB2F760073E7F9 /* FDCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDCameraViewController.m; sourceTree = "<group>"; };
+		77A5F7F217CB2F760073E7F9 /* FDAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDAlbumViewController.h; sourceTree = "<group>"; };
+		77A5F7F317CB2F760073E7F9 /* FDAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDAlbumViewController.m; sourceTree = "<group>"; };
 		77A5F7F517CB30400073E7F9 /* FDMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDMeViewController.h; sourceTree = "<group>"; };
 		77A5F7F617CB30400073E7F9 /* FDMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDMeViewController.m; sourceTree = "<group>"; };
 		77A5F88F17CD95E80073E7F9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -467,8 +467,8 @@
 				77A5F7BE17CB22960073E7F9 /* FDDiscoveryViewController.m */,
 				77A5F7EF17CB2F410073E7F9 /* FDHostViewController.h */,
 				77A5F7F017CB2F410073E7F9 /* FDHostViewController.m */,
-				77A5F7F217CB2F760073E7F9 /* FDCameraViewController.h */,
-				77A5F7F317CB2F760073E7F9 /* FDCameraViewController.m */,
+				77A5F7F217CB2F760073E7F9 /* FDAlbumViewController.h */,
+				77A5F7F317CB2F760073E7F9 /* FDAlbumViewController.m */,
 				7786EDFD181E189F0059868E /* FDPhotosViewController.h */,
 				7786EDFE181E189F0059868E /* FDPhotosViewController.m */,
 				7734ACE117D8893F003E7BB6 /* FDDetailsViewController.h */,
@@ -853,7 +853,7 @@
 				77DA107017E97EB0001F44DF /* FDCommentCell.m in Sources */,
 				7734ACE317D8893F003E7BB6 /* FDDetailsViewController.m in Sources */,
 				7786EDFF181E189F0059868E /* FDPhotosViewController.m in Sources */,
-				77A5F7F417CB2F760073E7F9 /* FDCameraViewController.m in Sources */,
+				77A5F7F417CB2F760073E7F9 /* FDAlbumViewController.m in Sources */,
 				77EC53DA182B45990042B7B3 /* FDGiftsCell.m in Sources */,
 				77DFCD2E185AB37C008DDDB1 /* FDAskForMoreCollectionSupplementaryView.m in Sources */,
 				770D86C418584566001CCA47 /* UIViewController+HUD.m in Sources */,

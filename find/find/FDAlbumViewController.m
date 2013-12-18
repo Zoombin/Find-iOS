@@ -1,12 +1,12 @@
 //
-//  FDForthViewController.m
+//  FDAlbumViewController.m
 //  find
 //
 //  Created by zhangbin on 8/26/13.
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "FDCameraViewController.h"
+#import "FDAlbumViewController.h"
 #import "FDPhotoCollectionViewCell.h"
 #import "FDAddTweetCollectionViewCell.h"
 #import "FDWebViewController.h"
@@ -15,7 +15,7 @@
 static NSInteger indexOfAlertDetails = 1;
 static NSInteger numberOfTweetsPerLine = 3;
 
-@interface FDCameraViewController ()
+@interface FDAlbumViewController ()
 <
 UINavigationControllerDelegate,
 UIImagePickerControllerDelegate,
@@ -36,13 +36,13 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 
 @end
 
-@implementation FDCameraViewController
+@implementation FDAlbumViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        NSString *identifier = NSLocalizedString(@"Camera", nil);
+        NSString *identifier = NSLocalizedString(@"Album", nil);
 		self.title = identifier;
 		
 		if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {

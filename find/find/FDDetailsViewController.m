@@ -228,7 +228,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 - (void)pushToAnotherPhoto:(FDPhoto *)photo
 {
 	FDDetailsViewController *detailsViewController = [[FDDetailsViewController alloc] init];
-	detailsViewController.hidesBottomBarWhenPushed = YES;
+	//detailsViewController.hidesBottomBarWhenPushed = YES;
 	detailsViewController.photo = photo;
 	[self.navigationController pushViewController:detailsViewController animated:NO];
 }
@@ -335,7 +335,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 - (void)pushToProfile
 {
 	FDProfileViewController *profileViewController = [[FDProfileViewController alloc] init];
-	profileViewController.hidesBottomBarWhenPushed = YES;
+	//profileViewController.hidesBottomBarWhenPushed = YES;
 	profileViewController.userID = _photo.userID;
 	[self.navigationController pushViewController:profileViewController animated:YES];
 }

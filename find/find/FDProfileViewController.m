@@ -257,7 +257,7 @@ UIPickerViewDataSource
 - (void)pushEditPropertyViewControllerWithIdentifier:(NSString *)identifier
 {
 	FDEditPropertyViewController *editPropertyViewController = [[FDEditPropertyViewController alloc] initWithStyle:UITableViewStylePlain];
-	editPropertyViewController.hidesBottomBarWhenPushed = YES;
+	//editPropertyViewController.hidesBottomBarWhenPushed = YES;
 	editPropertyViewController.identifier = identifier;
 	
 	if ([identifier isEqualToString:kProfileNickname]) {
@@ -345,7 +345,7 @@ UIPickerViewDataSource
 - (void)pushToSettings
 {
 	FDSettingsViewController *settingsViewController = [[FDSettingsViewController alloc] init];
-	settingsViewController.hidesBottomBarWhenPushed = YES;
+	//settingsViewController.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:settingsViewController animated:YES];
 }
 

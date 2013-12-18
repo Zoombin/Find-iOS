@@ -1,5 +1,5 @@
 //
-//  FDForthViewController.h
+//  FDAlbumViewController.h
 //  find
 //
 //  Created by zhangbin on 8/26/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FDCameraViewController : FDViewController
+@interface FDAlbumViewController : FDViewController
 
 @end

@@ -13,7 +13,7 @@
 #import "FDSettingsViewController.h"
 #import "FDMeCell.h"
 #import "FDSessionInvalidCell.h"
-#import "FDCameraViewController.h"
+#import "FDAlbumViewController.h"
 
 NSString *kMyProfile = @"kMyProfile";
 NSString *kMyAlbum = @"kMyAlbum";
@@ -77,7 +77,7 @@ NSString *kSettings = @"kSettings";
 	section++;
 	
 	sectionData = @[
-					@{kIdentifier : kMyAlbum, kIcon : @"IconAlbum", kTitle : NSLocalizedString(@"My Album", nil), kNeedSigninAlert : @(YES), kPushTargetClass : NSStringFromClass([FDCameraViewController class])},
+					@{kIdentifier : kMyAlbum, kIcon : @"IconAlbum", kTitle : NSLocalizedString(@"My Album", nil), kNeedSigninAlert : @(YES), kPushTargetClass : NSStringFromClass([FDAlbumViewController class])},
 					
 					@{kIdentifier : kMyWealth, kIcon : @"IconWealth", kTitle : NSLocalizedString(@"My Properties", nil), kNeedSigninAlert : @(YES)},
 					
@@ -222,7 +222,7 @@ NSString *kSettings = @"kSettings";
 	Class class = NSClassFromString(_dataSourceDictionary[@(indexPath.section)][indexPath.row][kPushTargetClass]);
 	if (class) {
 		UIViewController *viewController = [[class alloc] init];
-		viewController.hidesBottomBarWhenPushed = YES;
+		//viewController.hidesBottomBarWhenPushed = YES;
 		[self.navigationController pushViewController:viewController animated:YES];
 		return;
 	}
