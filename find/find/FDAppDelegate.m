@@ -51,10 +51,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	[self test];
-	
-	[[FDAFHTTPClient shared] test];
-	
+	if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+		[application setStatusBarStyle:UIStatusBarStyleLightContent];
+	} else {
+		[application setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+	}
 	[self customizeAppearance];
 	
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -68,25 +69,17 @@
 	[viewControllers addObject:[FDTestAccountsViewController new]];
 //	[viewControllers addObject:[FDHostViewController new]];
 //	[viewControllers addObject:[FDTestPhotoUploadViewController new]];
-
-
-	NSMutableArray *naviControllers = [NSMutableArray array];
+	
+	NSMutableArray *navigationControllers = [NSMutableArray array];
 	for (UIViewController *viewController in viewControllers) {
-		[naviControllers addObject:[[UINavigationController alloc] initWithRootViewController:viewController]];
+		[navigationControllers addObject:[[UINavigationController alloc] initWithRootViewController:viewController]];
 	}
 	
 	_tabBarController = [[UITabBarController alloc] init];
-	_tabBarController.viewControllers = naviControllers;
+	_tabBarController.viewControllers = navigationControllers;
 	_tabBarController.selectedIndex = 0;
 	
 	self.window.rootViewController = _tabBarController;
-	
-	if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-		[application setStatusBarStyle:UIStatusBarStyleLightContent];
-	} else {
-		[application setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-	}
-
 	[self.window makeKeyAndVisible];
     return YES;
 }

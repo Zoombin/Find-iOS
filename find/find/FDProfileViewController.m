@@ -654,5 +654,15 @@ UIPickerViewDataSource
 	}];
 }
 
+#pragma mark - UINavigationControllerDelegate
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+	if ([navigationController isKindOfClass:[UIImagePickerController class]] &&
+        ((UIImagePickerController *)navigationController).sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
+        [[UIApplication sharedApplication] setStatusBarHidden:NO];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
+    }
+}
 
 @end
