@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FDTestAccountsViewController : FDViewController
+@interface FDTestAccountsViewController : UIViewController
 
 @end

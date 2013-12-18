@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FDAlbumViewController : FDViewController
+@interface FDAlbumViewController : UIViewController
 
 @end

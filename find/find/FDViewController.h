@@ -10,9 +10,4 @@
 #import "ZBViewController.h"
 
 @interface FDViewController : UIViewController
-
-- (void)startCameraWithDelegate:(id<UINavigationControllerDelegate, UIImagePickerControllerDelegate>)delegate allowsEditing:(BOOL)allowsEditing;
-- (void)startPhotoLibraryWithDelegate:(id<UINavigationControllerDelegate, UIImagePickerControllerDelegate>)delegate allowsEditing:(BOOL)allowsEditing;
-- (void)choosePickerWithDelegate:(id<UIActionSheetDelegate>)delegate;
-
 @end

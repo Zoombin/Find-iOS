@@ -6,9 +6,7 @@
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "FDViewController.h"
-
-@interface FDPhotosViewController : FDViewController
+@interface FDPhotosViewController : UIViewController
 
 @property (nonatomic, strong) NSNumber *themeID;
 

@@ -87,7 +87,8 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 
 - (void)addTweet
 {
-	[self choosePickerWithDelegate:self];
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles:@"Snap a New", @"Pick From Photo Library", nil];
+	[actionSheet showInView:self.view];
 }
 
 - (void)refreshMyTweets
@@ -250,9 +251,18 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
 	if (buttonIndex == 0) {
-		[self startCameraWithDelegate:self allowsEditing:NO];
+		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+			UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+			imagePickerController.delegate = self;
+			imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+			[self presentViewController:imagePickerController animated:YES completion:nil];
+		}
 	} else if (buttonIndex == 1) {
-		[self startPhotoLibraryWithDelegate:self allowsEditing:NO];
+		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+			UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+			imagePickerController.delegate = self;
+			[self presentViewController:imagePickerController animated:YES completion:nil];
+		}
 	}
 }
 

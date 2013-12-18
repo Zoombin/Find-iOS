@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FDProfileViewController : FDViewController
+@interface FDProfileViewController : UIViewController
 
 @property (nonatomic, strong) NSNumber *userID;
 

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FDTestPhotoUploadViewController : FDViewController
+@interface FDTestPhotoUploadViewController : UIViewController
 
 @end

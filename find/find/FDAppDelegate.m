@@ -15,10 +15,14 @@
 #import "FDAppDelegate+Appearance.h"
 
 @import iAd.ADBannerView;
+
+@interface FDAppDelegate ()
+
+@property (readwrite) UITabBarController *tabBarController;
+
+@end
+
 @implementation FDAppDelegate
-{
-	UITabBarController *tabBarController;
-}
 
 - (void)test
 {
@@ -71,11 +75,11 @@
 		[naviControllers addObject:[[UINavigationController alloc] initWithRootViewController:viewController]];
 	}
 	
-	tabBarController = [[UITabBarController alloc] init];
-	tabBarController.viewControllers = naviControllers;
-	tabBarController.selectedIndex = 0;
+	_tabBarController = [[UITabBarController alloc] init];
+	_tabBarController.viewControllers = naviControllers;
+	_tabBarController.selectedIndex = 0;
 	
-	self.window.rootViewController = tabBarController;
+	self.window.rootViewController = _tabBarController;
 	
 	if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
 		[application setStatusBarStyle:UIStatusBarStyleLightContent];

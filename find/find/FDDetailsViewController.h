@@ -10,7 +10,7 @@
 #import "FDUser.h"
 #import "FDPhoto.h"
 
-@interface FDDetailsViewController : FDViewController
+@interface FDDetailsViewController : UIViewController
 
 @property (nonatomic, strong) FDPhoto *photo;
 

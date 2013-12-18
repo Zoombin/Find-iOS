@@ -302,7 +302,8 @@ UIPickerViewDataSource
 
 - (void)editAvatar
 {
-	[self choosePickerWithDelegate:self];
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles:@"Snap a New", @"Pick From Photo Library", nil];
+	[actionSheet showInView:self.view];
 }
 
 - (void)editGender
@@ -604,9 +605,20 @@ UIPickerViewDataSource
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
 	if (buttonIndex == 0) {
-		[self startCameraWithDelegate:self allowsEditing:YES];
+		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+			UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+			imagePickerController.delegate = self;
+			imagePickerController.allowsEditing = NO;
+			imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+			[self presentViewController:imagePickerController animated:YES completion:nil];
+		}
 	} else if (buttonIndex == 1) {
-		[self startPhotoLibraryWithDelegate:self allowsEditing:YES];
+		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+			UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+			imagePickerController.delegate = self;
+			imagePickerController.allowsEditing = YES;
+			[self presentViewController:imagePickerController animated:YES completion:nil];
+		}
 	}
 }
 
