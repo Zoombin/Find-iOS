@@ -16,13 +16,12 @@
 
 @interface FDDiscoveryViewController () <UITableViewDataSource, UITableViewDelegate, FDThemeCellDelegate>
 
+@property (readwrite) UITableView *tableView;
+@property (readwrite) NSArray *themeSections;
+
 @end
 
 @implementation FDDiscoveryViewController
-{
-	UITableView *discoveryTableView;
-	NSArray *themeSections;
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,7 +39,6 @@
 			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:normalImage tag:0];
 			[self.tabBarItem setFinishedSelectedImage:selectedImage withFinishedUnselectedImage:normalImage];
 		}
-		//[self.tabBarItem fdStyle];
     }
     return self;
 }
@@ -50,16 +48,16 @@
 {
     [super viewDidLoad];
 	
-	discoveryTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+	_tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
 	//discoveryTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-	discoveryTableView.delegate = self;
-	discoveryTableView.dataSource = self;
-	[self.view addSubview:discoveryTableView];
+	_tableView.delegate = self;
+	_tableView.dataSource = self;
+	[self.view addSubview:_tableView];
 	
 	[[FDAFHTTPClient shared] themeListWithCompletionBlock:^(BOOL success, NSString *message, NSArray *themesData) {
 		if (success) {
-			themeSections = [FDThemeSection createMutableWithData:themesData];
-			[discoveryTableView reloadData];
+			_themeSections = [FDThemeSection createMutableWithData:themesData];
+			[_tableView reloadData];
 		} else {
 			[self displayHUDTitle:nil message:message];
 		}
@@ -79,7 +77,7 @@
 
 - (FDThemeSection *)themeSectionInSection:(NSInteger)section
 {
-	for (FDThemeSection *themeSection in themeSections) {
+	for (FDThemeSection *themeSection in _themeSections) {
 		if (themeSection.ordered.integerValue == section) {
 			return themeSection;
 		}
@@ -102,7 +100,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 	NSInteger count = 0;
-	for (FDThemeSection *section in themeSections) {
+	for (FDThemeSection *section in _themeSections) {
 		count += section.isEmpty ? 0 : 1;
 	}
 	return count;
