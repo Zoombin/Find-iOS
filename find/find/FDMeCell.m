@@ -41,6 +41,7 @@
 		frame.size.height = 30;
 		
 		_nicknameLabel = [[UILabel alloc] initWithFrame:frame];
+		_nicknameLabel.backgroundColor = [UIColor clearColor];
 		//_nicknameLabel.backgroundColor = [UIColor randomColor];//TODO: test
 		_nicknameLabel.font = [UIFont fdThemeFontOfSize:15];
 		[self.contentView addSubview:_nicknameLabel];
@@ -51,6 +52,7 @@
 		frame.size.height = 15;
 		
 		_signatureLabel = [[UILabel alloc] initWithFrame:frame];
+		_signatureLabel.backgroundColor = [UIColor clearColor];
 		//_signatureLabel.backgroundColor = [UIColor randomColor];//TODO: test
 		_signatureLabel.font = [UIFont fdThemeFontOfSize:9];
 		[self.contentView addSubview:_signatureLabel];
@@ -59,12 +61,14 @@
 		frame.size.height = 15;
 		
 		_shapeLabel = [[UILabel alloc] initWithFrame:frame];
+		_shapeLabel.backgroundColor = [UIColor clearColor];
 		//_shapeLabel.backgroundColor = [UIColor randomColor];//TODO: test
 		_shapeLabel.font = [UIFont fdThemeFontOfSize:9];
 		[self.contentView addSubview:_shapeLabel];
 		
 		frame.origin.y = CGRectGetMaxY(_shapeLabel.frame);
 		_privacyLabel = [[UILabel alloc] initWithFrame:frame];
+		_privacyLabel.backgroundColor = [UIColor clearColor];
 		//_privacyLabel.backgroundColor = [UIColor randomColor];//TODO: test
 		_privacyLabel.font = [UIFont fdThemeFontOfSize:9];
 		[self.contentView addSubview:_privacyLabel];

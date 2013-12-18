@@ -454,6 +454,7 @@ UIPickerViewDataSource
 				if (!label) {
 					CGFloat widthOfLabel = [identifier isEqualToString:kProfileSignature] ? 210 : 85;
 					label = [[UILabel alloc] initWithFrame:CGRectMake(tableView.bounds.size.width - widthOfLabel - rightMargin, 0, widthOfLabel, cell.bounds.size.height)];
+					label.backgroundColor = [UIColor clearColor];
 					//label.backgroundColor = [UIColor randomColor];
 					label.textAlignment = NSTextAlignmentRight;
 					label.numberOfLines = 0;
@@ -473,7 +474,8 @@ UIPickerViewDataSource
 				UILabel *privacyInfoLabel = (UILabel *)[cell viewWithTag:tagOfPrivacyLabel];
 				if (!privacyInfoLabel) {
 					privacyInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, 120, cell.bounds.size.height)];
-					privacyInfoLabel.backgroundColor = [UIColor randomColor];
+					privacyInfoLabel.backgroundColor = [UIColor clearColor];
+					privacyInfoLabel.backgroundColor = [UIColor randomColor];//TODO
 					privacyInfoLabel.font = [UIFont fdThemeFontOfSize:14];
 					privacyInfoLabel.textAlignment = NSTextAlignmentCenter;
 					privacyInfoLabel.tag = tagOfPrivacyLabel;
@@ -658,10 +660,11 @@ UIPickerViewDataSource
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-	if ([navigationController isKindOfClass:[UIImagePickerController class]] &&
-        ((UIImagePickerController *)navigationController).sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
-        [[UIApplication sharedApplication] setStatusBarHidden:NO];
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
+	if ([navigationController isKindOfClass:[UIImagePickerController class]]) {
+		if (((UIImagePickerController *)navigationController).sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
+			[[UIApplication sharedApplication] setStatusBarHidden:NO];
+			[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
+		}
     }
 }
 

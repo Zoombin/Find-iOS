@@ -20,11 +20,15 @@
     if (self) {
 		NSString *identifier = NSLocalizedString(@"Host", nil);
 		self.title = identifier;
+
+		UIImage *normalImage = [UIImage imageNamed:@"Host"];
+		UIImage *selectedImage = [UIImage imageNamed:@"HostHighlighted"];
 		
 		if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-			[self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"HostHighlighted"] withFinishedUnselectedImage:[UIImage imageNamed:@"Host"]];
+			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:normalImage selectedImage:selectedImage];
 		} else {
-			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Host"] tag:0];
+			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:normalImage tag:0];
+			[self.tabBarItem setFinishedSelectedImage:selectedImage withFinishedUnselectedImage:normalImage];
 		}
     }
     return self;

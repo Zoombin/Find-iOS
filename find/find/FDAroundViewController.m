@@ -28,10 +28,14 @@
 		NSString *identifier = NSLocalizedString(@"Around", nil);
 		self.title = identifier;
 		
+		UIImage *normalImage = [UIImage imageNamed:@"Around"];
+		UIImage *selectedImage = [UIImage imageNamed:@"AroundHighlighted"];
+		
 		if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-			[self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"AroundHighlighted"] withFinishedUnselectedImage:[UIImage imageNamed:@"Around"]];
+			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:normalImage selectedImage:selectedImage];
 		} else {
-			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Around"] tag:0];
+			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:normalImage tag:0];
+			[self.tabBarItem setFinishedSelectedImage:selectedImage withFinishedUnselectedImage:normalImage];
 		}
     }
     return self;

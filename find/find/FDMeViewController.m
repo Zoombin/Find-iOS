@@ -39,11 +39,15 @@ NSString *kSettings = @"kSettings";
     if (self) {
 		NSString *identifier = NSLocalizedString(@"Me", nil);
 		self.title = identifier;
+
+		UIImage *normalImage = [UIImage imageNamed:@"Me"];
+		UIImage *selectedImage = [UIImage imageNamed:@"MeHighlighted"];
 		
 		if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-			[self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"MeHighlighted"] withFinishedUnselectedImage:[UIImage imageNamed:@"Me"]];
+			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:normalImage selectedImage:selectedImage];
 		} else {
-			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Me"] tag:0];
+			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:normalImage tag:0];
+			[self.tabBarItem setFinishedSelectedImage:selectedImage withFinishedUnselectedImage:normalImage];
 		}
     }
     return self;

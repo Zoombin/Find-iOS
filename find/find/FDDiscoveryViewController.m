@@ -31,11 +31,16 @@
 		NSString *identifier = NSLocalizedString(@"Discovery", nil);
 		self.title = identifier;
 		
+		UIImage *normalImage = [UIImage imageNamed:@"Discovery"];
+		UIImage *selectedImage = [UIImage imageNamed:@"DiscoveryHighlighted"];
+		
 		if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-			[self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"DiscoveryHighlighted"] withFinishedUnselectedImage:[UIImage imageNamed:@"Discovery"]];
+			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:normalImage selectedImage:selectedImage];
 		} else {
-			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Discovery"] tag:0];
+			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:normalImage tag:0];
+			[self.tabBarItem setFinishedSelectedImage:selectedImage withFinishedUnselectedImage:normalImage];
 		}
+		//[self.tabBarItem fdStyle];
     }
     return self;
 }

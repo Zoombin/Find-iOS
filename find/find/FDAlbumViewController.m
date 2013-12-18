@@ -45,10 +45,14 @@ FDAskForMoreCollectionSupplementaryViewDelegate
         NSString *identifier = NSLocalizedString(@"Album", nil);
 		self.title = identifier;
 		
+		UIImage *normalImage = [UIImage imageNamed:@"Camera"];
+		UIImage *selectedImage = [UIImage imageNamed:@"CameraHighlighted"];
+		
 		if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-			[self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"CameraHighlighted"] withFinishedUnselectedImage:[UIImage imageNamed:@"Camera"]];
+			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:normalImage selectedImage:selectedImage];
 		} else {
-			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:[UIImage imageNamed:@"Camera"] tag:0];
+			self.tabBarItem = [[UITabBarItem alloc] initWithTitle:identifier image:normalImage tag:0];
+			[self.tabBarItem setFinishedSelectedImage:selectedImage withFinishedUnselectedImage:normalImage];
 		}
 		
 		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshMyTweets)];
@@ -358,11 +362,11 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-	if ([navigationController isKindOfClass:[UIImagePickerController class]] &&
-        ((UIImagePickerController *)navigationController).sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
-        [[UIApplication sharedApplication] setStatusBarHidden:NO];
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
+	if ([navigationController isKindOfClass:[UIImagePickerController class]]) {
+		if (((UIImagePickerController *)navigationController).sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
+			[[UIApplication sharedApplication] setStatusBarHidden:NO];
+			[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
+		}
     }
 }
-
 @end
