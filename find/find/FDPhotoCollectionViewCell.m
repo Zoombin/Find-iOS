@@ -33,26 +33,21 @@
 		_photoView.userInteractionEnabled = YES;
 		[self.contentView addSubview:_photoView];
 		
-		start = CGPointMake(5, CGRectGetMaxY(_photoView.frame));
+		start = CGPointMake(0, CGRectGetMaxY(_photoView.frame) - 20);
 		
-		_distanceIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Location"]];
+		_distanceIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Around"]];
 		_distanceIcon.contentMode = UIViewContentModeScaleAspectFit;
-		_distanceIcon.frame = CGRectMake(start.x, start.y, 22, 27);
+		_distanceIcon.frame = CGRectMake(start.x, start.y, 17, 17);
 		[self.contentView addSubview:_distanceIcon];
 		
-		start = CGPointMake(CGRectGetMaxX(_distanceIcon.frame), CGRectGetMaxY(_photoView.frame));
+		start = CGPointMake(CGRectGetMaxX(_distanceIcon.frame), CGRectGetMinY(_distanceIcon.frame));
 		
 		_distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(start.x, start.y, self.bounds.size.width - start.x, self.bounds.size.height - start.y)];
 		_distanceLabel.backgroundColor = [UIColor clearColor];
-		_distanceLabel.font = [UIFont fdThemeFontOfSize:18];
+		_distanceLabel.font = [UIFont fdThemeFontOfSize:13];
+		_distanceLabel.textColor = [UIColor fdThemeRed];
 		_distanceLabel.adjustsFontSizeToFitWidth = YES;
 		[self.contentView addSubview:_distanceLabel];
-		
-		start = CGPointMake(CGRectGetMaxX(self.bounds) - [FDLikesView size].width, CGRectGetMaxY(_photoView.frame) - 7);
-		
-		_likesView = [[FDLikesView alloc] initWithFrame:CGRectMake(start.x, start.y, [FDLikesView size].width, [FDLikesView size].height)];
-		_likesView.delegate = self;
-		[self.contentView addSubview:_likesView];
     }
     return self;
 }
@@ -104,12 +99,17 @@
 
 - (void)setPhotoInfo
 {
+	CGPoint start = CGPointMake(CGRectGetMaxX(self.bounds) - [FDLikesView size].width, CGRectGetMaxY(_photoView.frame) - 35);
+
+	_likesView = [[FDLikesView alloc] initWithFrame:CGRectMake(start.x, start.y, [FDLikesView size].width, [FDLikesView size].height)];
+	_likesView.delegate = self;
+	[self.contentView addSubview:_likesView];
 	_likesView.likes = _photo.likes;
 	_likesView.liked = _photo.liked;
 	
 	//TODO: for test. displaying photo id
-	NSString *displayedInfo = [NSString stringWithFormat:@"%@ pid: %@", [_tweet.distance printableDistance], _photo.ID];
-	//NSString *displayedInfo = [_tweet.distance printableDistance];
+	//NSString *displayedInfo = [NSString stringWithFormat:@"%@ pid: %@", [_tweet.distance printableDistance], _photo.ID];
+	NSString *displayedInfo = [_tweet.distance printableDistance];
 	_distanceLabel.text = displayedInfo;
 }
 
@@ -133,6 +133,9 @@
 	_photo = nil;
 	_tweet = nil;
 	_photoView.image = nil;
+	_likesView.likes = nil;
+	_likesView.liked = nil;
+	[_likesView removeFromSuperview];
 }
 
 @end

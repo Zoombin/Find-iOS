@@ -18,7 +18,7 @@
 
 + (CGSize)aroundPhotoSize
 {
-	return CGSizeMake(150, 180);
+	return CGSizeMake(150, 150);
 }
 
 + (CGSize)tweetPhotoSize

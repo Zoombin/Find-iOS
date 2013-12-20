@@ -53,14 +53,14 @@
 		
 		likesLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, heartSize.width, heartSize.height)];
 		likesLabel.adjustsFontSizeToFitWidth = YES;
-		likesLabel.textColor = [UIColor whiteColor];
+		likesLabel.textColor = [UIColor fdThemeRed];
 		likesLabel.textAlignment = NSTextAlignmentCenter;
 		likesLabel.backgroundColor = [UIColor clearColor];
 		likesLabel.font = [UIFont fdThemeFontOfSize:12];
 		[heartView addSubview:likesLabel];
 		
-		//UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(willLikeOrUnlike)];
-		//[self addGestureRecognizer:tap];
+		UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(willLikeOrUnlike)];
+		[self addGestureRecognizer:tap];
     }
     return self;
 }
@@ -75,6 +75,7 @@
 {
 	_liked = liked;
 	heartView.image = _liked.boolValue ? [[self class] heartRed] : [[self class] heartGray];
+	likesLabel.textColor = _liked.boolValue ? [UIColor whiteColor] : [UIColor fdThemeRed];
 }
 
 - (void)willLikeOrUnlike
