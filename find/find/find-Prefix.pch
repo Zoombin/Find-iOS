@@ -67,6 +67,9 @@
 #define IGNORE_RULES_OF_APP_STORE
 //#undef IGNORE_RULES_OF_APP_STORE
 
+//TEST
+#import "FDTest.h"
+
 #define ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER @"ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER"
 
 #define kIdentifier @"kIdentifier"
@@ -79,8 +82,7 @@
 #define kPresentTargetClass @"kPresentTargetClass"
 #define kHeightOfCell @"kHeightOfCell"
 
-//TEST
-#import "FDTest.h"
+#define APP_SCHEME @"com.zoombin.find"
 
 //Tokens
 //30135878@qq.com

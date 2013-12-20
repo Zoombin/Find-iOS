@@ -307,6 +307,7 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 		 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
+	if (_location) return;
 	if (locations.count) {
 		NSLog(@"first location: %@", [locations[0] coordinateString]);
 		_location = locations[0];
@@ -318,6 +319,7 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 //ios6
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
+	if (_location) return;
 	_location = newLocation;
 	[self parseToAddressWithLocation:_location];
 	[manager stopUpdatingLocation];
