@@ -65,7 +65,7 @@ FDAskForMoreCollectionSupplementaryViewDelegate
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor whiteColor];
 	
-	NSInteger firstLoadNumber = 20;
+	NSInteger firstLoadNumber = 2;
 	_tweetsCount = firstLoadNumber;
 	[self fixAskMoreTweetsCount];
 	
@@ -186,7 +186,6 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 	return _tweets.count + 1;
 }
 
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (PSUICollectionViewCell *)collectionView:(PSUICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (indexPath.row == 0) {
@@ -230,6 +229,14 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 	//		photoDetailsViewController.photo = tweet.photos[0];
 	//	}
 	//	[self.navigationController pushViewController:photoDetailsViewController animated:YES];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+	float endScrolling = scrollView.contentOffset.y + scrollView.frame.size.height;
+    if (endScrolling >= scrollView.contentSize.height) {
+		NSLog(@"scrollViewDidEndDecelerating");
+	}
 }
 
 #pragma mark - FDAddTweetCollectionViewCellDelegate
@@ -286,7 +293,7 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 	[picker dismissViewControllerAnimated:YES completion:^{
 		UIImage *image = info[UIImagePickerControllerOriginalImage];
 		NSString *path = [NSString photoPathWithUserID:[[FDAFHTTPClient shared] userID]];
-		NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+		NSData *imageData = UIImageJPEGRepresentation(image, 0.1);
 		[[ZBQNAFHTTPClient shared] uploadData:imageData name:path withCompletionBlock:^(BOOL success) {
 			if (success) {
 				[[FDAFHTTPClient shared] tweetPhotos:@[path] atLocation:_location address:_address withCompletionBlock:^(BOOL success, NSString *message) {
@@ -355,7 +362,7 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 - (void)askForMore
 {
 	NSLog(@"ask for more");
-	NSInteger erveryAskNumber = 21;
+	NSInteger erveryAskNumber = 2;
 	_tweetsCount += erveryAskNumber;
 	[self fixAskMoreTweetsCount];
 	[self fetchTweets:^{

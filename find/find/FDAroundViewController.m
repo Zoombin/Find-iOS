@@ -11,7 +11,6 @@
 #import "FDUser.h"
 #import "FDLikesView.h"
 #import "FDDetailsViewController.h"
-#import "FDAskForMoreCollectionSupplementaryView.h"
 
 @interface FDAroundViewController () <PSUICollectionViewDelegate, PSUICollectionViewDataSource, FDPhotoCollectionViewCellDelegate, CLLocationManagerDelegate>
 
@@ -51,11 +50,12 @@
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor whiteColor];
 
-	_photosCollectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSUICollectionViewFlowLayout aroundPhotoLayout]];
+	CGRect frame = self.view.bounds;
+	frame.size.height += 30;//故意的，这样拉不到底，用户会尝试去拉到底，然后就会刷新
+	_photosCollectionView = [[PSUICollectionView alloc] initWithFrame:frame collectionViewLayout:[PSUICollectionViewFlowLayout aroundPhotoLayout]];
 	_photosCollectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_photosCollectionView.backgroundColor = [UIColor clearColor];
 	[_photosCollectionView registerClass:[FDPhotoCollectionViewCell class] forCellWithReuseIdentifier:kFDPhotoCollectionViewCellIdentifier];
-	[_photosCollectionView registerClass:[FDAskForMoreCollectionSupplementaryView class] forSupplementaryViewOfKind:PSTCollectionElementKindSectionFooter withReuseIdentifier:kFDAskForMoreCollectionSupplementaryViewIdentifier];
 	_photosCollectionView.delegate = self;
 	_photosCollectionView.dataSource = self;
 	[self.view addSubview:_photosCollectionView];
@@ -76,10 +76,11 @@
 	}
 	[_spinner startAnimating];
 	NSInteger currentCount = _tweets.count;
-	[[FDAFHTTPClient shared] aroundPhotosAtLocation:_location limit:@(_tweets.count + 30) distance:nil withCompletionBlock:^(BOOL success, NSString *message, NSArray *tweetsData, NSNumber *distance) {
+	[[FDAFHTTPClient shared] aroundPhotosAtLocation:_location limit:@(_tweets.count + 8) distance:nil withCompletionBlock:^(BOOL success, NSString *message, NSArray *tweetsData, NSNumber *distance) {
 		if (success) {
 			if (tweetsData.count == currentCount) {
 				_noMore = YES;
+				_photosCollectionView.frame = self.view.bounds;
 			}
 			_tweets = [FDTweet createMutableWithData:tweetsData];
 			[_photosCollectionView reloadData];
@@ -91,7 +92,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - FDPhotoCollectionViewCellDelegate
@@ -119,7 +119,6 @@
 	return _tweets.count;
 }
 
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (PSUICollectionViewCell *)collectionView:(PSUICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	FDPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFDPhotoCollectionViewCellIdentifier forIndexPath:indexPath];
@@ -140,49 +139,15 @@
 	[self.navigationController pushViewController:detailsViewController animated:YES];
 }
 
-- (PSUICollectionReusableView *)collectionView:(PSUICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-	NSString *identifier = nil;
-	if ([kind isEqualToString:PSTCollectionElementKindSectionFooter]) {
-		identifier = kFDAskForMoreCollectionSupplementaryViewIdentifier;
-	}
-    PSUICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
-	if ([supplementaryView isKindOfClass:[FDAskForMoreCollectionSupplementaryView class]]) {
-		FDAskForMoreCollectionSupplementaryView *askForMoreView = (FDAskForMoreCollectionSupplementaryView *)supplementaryView;
-	}
-    return supplementaryView;
-}
-
-//- (CGSize)collectionView:(PSUICollectionView *)collectionView layout:(PSUICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
-//{
-//	return CGSizeMake(_photosCollectionView.frame.size.width, [FDAskForMoreCollectionSupplementaryView height]);
-//}
-
 #pragma mark - UIScrollViewDelegate
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-//	if (scrollView.contentOffset.y > scrollView.bounds.origin.y) {
-//		NSLog(@"hello");
-//	}
-//	NSLog(@"scrollView.contentOffset.y: %f", scrollView.contentOffset.y);
-//	NSLog(@"bounds: %@", NSStringFromCGRect(scrollView.bounds));
-////	if (scrollView.contentOffset.y < CGRectGetHeight(scrollView.bounds)) {
-////		//NSLog(@"contentOffset less than bounds");
-////		//self.preShopCollectionViewController.collection = self.preCollection;
-////	} else if (scrollView.contentOffset.y == CGRectGetHeight(scrollView.bounds)) {
-////		//self.nextShopCollectionViewController.collection = self.nextCollection;
-////		NSLog(@"scrollView.contentOffset.y: %f", scrollView.contentOffset.y);
-////	}
-}
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-	if (scrollView.contentOffset.y == scrollView.bounds.origin.y) {
+	float endScrolling = scrollView.contentOffset.y + scrollView.frame.size.height;
+    if (endScrolling >= scrollView.contentSize.height) {
 		[self fetchAroundPhotos];
 	}
 }
-
 
 #pragma mark - CLLocationManagerDelegate
 

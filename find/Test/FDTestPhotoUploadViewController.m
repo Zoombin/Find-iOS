@@ -260,7 +260,7 @@
 - (void)testUpload
 {
 	UIImage *screenshot = [self captureView:self.view];
-	NSData *imageData = UIImageJPEGRepresentation(screenshot, 1);
+	NSData *imageData = UIImageJPEGRepresentation(screenshot, 0.1);
 	
 	
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
