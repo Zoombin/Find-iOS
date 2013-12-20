@@ -88,6 +88,7 @@
 - (void)collectionView:(PSUICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	FDDetailsViewController *detailsViewController = [[FDDetailsViewController alloc] init];
+	detailsViewController.hidesBottomBarWhenPushed = YES;
 	FDPhoto *photo = _photos[indexPath.row];
 	detailsViewController.photo = photo;
 	[self.navigationController pushViewController:detailsViewController animated:YES];

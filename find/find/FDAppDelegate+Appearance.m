@@ -23,8 +23,11 @@
 	[appearance setTitleTextAttributes:@{UITextAttributeTextColor : [UIColor whiteColor]}];
 	
 #pragma mark - UITabBar Appearance
+	appearance = [UITabBar appearance];
 	if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
-		appearance = [UITabBar appearance];
+		[appearance setBackgroundImage:[UIImage imageFromColor:[UIColor whiteColor]]];
+		[appearance setSelectionIndicatorImage:[[UIImage alloc] init]];
+	} else {
 		[appearance setBackgroundImage:[UIImage imageFromColor:[UIColor whiteColor]]];
 		[appearance setSelectionIndicatorImage:[[UIImage alloc] init]];
 	}

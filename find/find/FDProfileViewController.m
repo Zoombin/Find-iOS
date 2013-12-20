@@ -610,8 +610,11 @@ UIPickerViewDataSource
 		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
 			UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
 			imagePickerController.delegate = self;
-			imagePickerController.allowsEditing = NO;
+			imagePickerController.allowsEditing = YES;
 			imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+			if ([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront]) {
+				imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+			}
 			[self presentViewController:imagePickerController animated:YES completion:nil];
 		}
 	} else if (buttonIndex == 1) {

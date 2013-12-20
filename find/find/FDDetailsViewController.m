@@ -228,7 +228,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 - (void)pushToAnotherPhoto:(FDPhoto *)photo
 {
 	FDDetailsViewController *detailsViewController = [[FDDetailsViewController alloc] init];
-	//detailsViewController.hidesBottomBarWhenPushed = YES;
+	detailsViewController.hidesBottomBarWhenPushed = YES;
 	detailsViewController.photo = photo;
 	[self.navigationController pushViewController:detailsViewController animated:NO];
 }

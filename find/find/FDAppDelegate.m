@@ -59,7 +59,7 @@
 	[self customizeAppearance];
 	
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor colorWithRed:239/255.0f green:239/255.0f blue:244/255.0f alpha:1.0f];
 	
 	NSMutableArray *viewControllers = [NSMutableArray array];
 	[viewControllers addObject:[FDDiscoveryViewController new]];
