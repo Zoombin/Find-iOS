@@ -197,7 +197,7 @@ static NSInteger heightOfMap = 150;
 	annotation.coordinate = location.coordinate;
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDelegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

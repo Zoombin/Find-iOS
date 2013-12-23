@@ -47,6 +47,7 @@
 #import "CLLocation+NSDictionary.h"
 #import "UIViewController+HUD.h"
 #import "UIColor+Random.h"
+#import	"NSString+ZBUtilites.h"
 
 //Cocoapods
 #import "UIImageView+AFNetworking.h"

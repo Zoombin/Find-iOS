@@ -122,6 +122,11 @@
 		77F8898B180B888100D6A45D /* YouYuan.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77F88989180B888100D6A45D /* YouYuan.ttf */; };
 		77F913D71867D9E9007CCFD2 /* FDPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F913D61867D9E9007CCFD2 /* FDPrice.m */; };
 		77F913DA1867DB57007CCFD2 /* FDStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F913D91867DB57007CCFD2 /* FDStuff.m */; };
+		77F9141E186826BD007CCFD2 /* FDIdentityAccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F9141D186826BD007CCFD2 /* FDIdentityAccountCell.m */; };
+		77F91421186826E5007CCFD2 /* FDIdentityPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F91420186826E5007CCFD2 /* FDIdentityPasswordCell.m */; };
+		77F914241868270B007CCFD2 /* FDIdentityPasswordConfirmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F914231868270B007CCFD2 /* FDIdentityPasswordConfirmCell.m */; };
+		77F9142718682732007CCFD2 /* FDIdentityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F9142618682732007CCFD2 /* FDIdentityCell.m */; };
+		77F9142A1868297B007CCFD2 /* FDIdentityFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F914291868297B007CCFD2 /* FDIdentityFooter.m */; };
 		77FE43431801040F00B1B5D3 /* FDTestAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FE43421801040F00B1B5D3 /* FDTestAccountsViewController.m */; };
 		77FE434918012BB000B1B5D3 /* FDUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FE434818012BB000B1B5D3 /* FDUserProfile.m */; };
 /* End PBXBuildFile section */
@@ -360,6 +365,16 @@
 		77F913D61867D9E9007CCFD2 /* FDPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDPrice.m; path = find/FDPrice.m; sourceTree = "<group>"; };
 		77F913D81867DB57007CCFD2 /* FDStuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDStuff.h; path = find/FDStuff.h; sourceTree = "<group>"; };
 		77F913D91867DB57007CCFD2 /* FDStuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDStuff.m; path = find/FDStuff.m; sourceTree = "<group>"; };
+		77F9141C186826BD007CCFD2 /* FDIdentityAccountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDIdentityAccountCell.h; path = find/FDIdentityAccountCell.h; sourceTree = "<group>"; };
+		77F9141D186826BD007CCFD2 /* FDIdentityAccountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDIdentityAccountCell.m; path = find/FDIdentityAccountCell.m; sourceTree = "<group>"; };
+		77F9141F186826E5007CCFD2 /* FDIdentityPasswordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDIdentityPasswordCell.h; path = find/FDIdentityPasswordCell.h; sourceTree = "<group>"; };
+		77F91420186826E5007CCFD2 /* FDIdentityPasswordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDIdentityPasswordCell.m; path = find/FDIdentityPasswordCell.m; sourceTree = "<group>"; };
+		77F914221868270B007CCFD2 /* FDIdentityPasswordConfirmCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDIdentityPasswordConfirmCell.h; path = find/FDIdentityPasswordConfirmCell.h; sourceTree = "<group>"; };
+		77F914231868270B007CCFD2 /* FDIdentityPasswordConfirmCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDIdentityPasswordConfirmCell.m; path = find/FDIdentityPasswordConfirmCell.m; sourceTree = "<group>"; };
+		77F9142518682732007CCFD2 /* FDIdentityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDIdentityCell.h; path = find/FDIdentityCell.h; sourceTree = "<group>"; };
+		77F9142618682732007CCFD2 /* FDIdentityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDIdentityCell.m; path = find/FDIdentityCell.m; sourceTree = "<group>"; };
+		77F914281868297B007CCFD2 /* FDIdentityFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDIdentityFooter.h; path = find/FDIdentityFooter.h; sourceTree = "<group>"; };
+		77F914291868297B007CCFD2 /* FDIdentityFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDIdentityFooter.m; path = find/FDIdentityFooter.m; sourceTree = "<group>"; };
 		77FE43411801040F00B1B5D3 /* FDTestAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDTestAccountsViewController.h; path = Test/FDTestAccountsViewController.h; sourceTree = "<group>"; };
 		77FE43421801040F00B1B5D3 /* FDTestAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDTestAccountsViewController.m; path = Test/FDTestAccountsViewController.m; sourceTree = "<group>"; };
 		77FE434718012BB000B1B5D3 /* FDUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDUserProfile.h; path = find/FDUserProfile.h; sourceTree = "<group>"; };
@@ -787,6 +802,16 @@
 		77DE2D0E18581A9000157234 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				77F914281868297B007CCFD2 /* FDIdentityFooter.h */,
+				77F914291868297B007CCFD2 /* FDIdentityFooter.m */,
+				77F9142518682732007CCFD2 /* FDIdentityCell.h */,
+				77F9142618682732007CCFD2 /* FDIdentityCell.m */,
+				77F9141C186826BD007CCFD2 /* FDIdentityAccountCell.h */,
+				77F9141D186826BD007CCFD2 /* FDIdentityAccountCell.m */,
+				77F9141F186826E5007CCFD2 /* FDIdentityPasswordCell.h */,
+				77F91420186826E5007CCFD2 /* FDIdentityPasswordCell.m */,
+				77F914221868270B007CCFD2 /* FDIdentityPasswordConfirmCell.h */,
+				77F914231868270B007CCFD2 /* FDIdentityPasswordConfirmCell.m */,
 				774EC43A186420ED00E4FB0A /* FDStuffCell.h */,
 				774EC43B186420ED00E4FB0A /* FDStuffCell.m */,
 				77DE2D0F18581B3100157234 /* FDPhotoCell.h */,
@@ -967,6 +992,7 @@
 				77A5F7BF17CB22960073E7F9 /* FDDiscoveryViewController.m in Sources */,
 				774EC43918641F5C00E4FB0A /* SBJsonWriter.m in Sources */,
 				770D86C318584566001CCA47 /* UIDevice+ZBUtilites.m in Sources */,
+				77F9142718682732007CCFD2 /* FDIdentityCell.m in Sources */,
 				770D86BD18584566001CCA47 /* NSString+BundleExtensions.m in Sources */,
 				77C0C91D17CE19A8008C7FC7 /* FDTestPhotoUploadViewController.m in Sources */,
 				77DA107017E97EB0001F44DF /* FDCommentCell.m in Sources */,
@@ -983,6 +1009,7 @@
 				7798B32B1844C9F100CCA964 /* FDSettingsViewController.m in Sources */,
 				777A6939184F261A00B903C1 /* FDAddTweetCollectionViewCell.m in Sources */,
 				77A5F7BC17CB22960073E7F9 /* FDAroundViewController.m in Sources */,
+				77F9141E186826BD007CCFD2 /* FDIdentityAccountCell.m in Sources */,
 				77A5F7EE17CB2C7C0073E7F9 /* FDAppDelegate+Appearance.m in Sources */,
 				77A5F7F717CB30400073E7F9 /* FDMeViewController.m in Sources */,
 				77042964181676E30087F7BF /* PSUICollectionViewFlowLayout+FDLayout.m in Sources */,
@@ -1007,8 +1034,10 @@
 				7734ACD117D85605003E7BB6 /* FDUser+Test.m in Sources */,
 				77F5CD4F17E966BC006D931F /* FDSigninViewController.m in Sources */,
 				77DA107A17E97FA9001F44DF /* FDComment.m in Sources */,
+				77F91421186826E5007CCFD2 /* FDIdentityPasswordCell.m in Sources */,
 				770D86BE18584566001CCA47 /* NSString+ZBUtilites.m in Sources */,
 				777A692D184DDFBF00B903C1 /* FDWebViewController.m in Sources */,
+				77F9142A1868297B007CCFD2 /* FDIdentityFooter.m in Sources */,
 				778671C317E806BF001FDB67 /* FDLikesView.m in Sources */,
 				774EC43418641F5C00E4FB0A /* NSObject+SBJSON.m in Sources */,
 				770D86BA18584566001CCA47 /* CLLocation+NSString.m in Sources */,
@@ -1051,6 +1080,7 @@
 				77052A331834798B000C2BDF /* FDLabelEditCell.m in Sources */,
 				774EC42118641EDF00E4FB0A /* AlixPayOrder.m in Sources */,
 				770D86C518584566001CCA47 /* UIViewController+ZBUtilites.m in Sources */,
+				77F914241868270B007CCFD2 /* FDIdentityPasswordConfirmCell.m in Sources */,
 				77C0242D17F3FB46009634CA /* FDAvatarView.m in Sources */,
 				772B3D42182F92B9004B1653 /* UITableViewCell+Find.m in Sources */,
 				770D86BB18584566001CCA47 /* MBProgressHUD+Appearance.m in Sources */,

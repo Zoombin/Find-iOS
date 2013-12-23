@@ -8,8 +8,21 @@
 
 #import "FDSignupViewController.h"
 #import "FDSigninViewController.h"
+#import "FDIdentityAccountCell.h"
+#import "FDIdentityPasswordCell.h"
+#import "FDIdentityPasswordConfirmCell.h"
+#import "FDIdentityFooter.h"
 
-@interface FDSignupViewController ()
+#define kIndexRowOfAccount 0
+#define kIndexRowOfPassword 1
+#define kIndexRowOfPasswordConfirm 2
+
+@interface FDSignupViewController () <UITableViewDataSource, UITableViewDelegate, FDIentityFooterDelegate, UITextFieldDelegate>
+
+@property (readwrite) UITableView *tableView;
+@property (readwrite) UITextField *accountTextField;
+@property (readwrite) UITextField *passwordTextField;
+@property (readwrite) UITextField *passwordConfirmTextField;
 
 @end
 
@@ -20,7 +33,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.view.backgroundColor = [UIColor grayColor];
-		self.title = NSLocalizedString(@"Signup", nil);
+		self.title = NSLocalizedString(@"注册", nil);
 		
 		[self setLeftBarButtonItemAsBackButton];
     }
@@ -30,21 +43,111 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	_tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+	_tableView.dataSource = self;
+	_tableView.delegate = self;
+	[self.view addSubview:_tableView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	
-//	FDSigninViewController *signinViewController = [[FDSigninViewController alloc] init];
-//	[self.navigationController pushViewController:signinViewController animated:YES];
+	if (_accountTextField) {
+		[_accountTextField becomeFirstResponder];
+	}
+}
+
+- (void)signup
+{
+	if ([_accountTextField.text areAllCharactersSpace] || [_passwordTextField.text areAllCharactersSpace] || [_passwordConfirmTextField.text areAllCharactersSpace]) {
+		[self displayHUDTitle:NSLocalizedString(@"注册信息不能为空", nil) message:nil duration:1];
+		return;
+	}
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UITableViewDelegate
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	return 3;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	NSString *identifier;
+	Class class;
+	UIReturnKeyType returnKeyType;
+	if (indexPath.row == kIndexRowOfAccount) {
+		identifier = kFDIdentityAccountCellIdentifier;
+		class = [FDIdentityAccountCell class];
+		returnKeyType = UIReturnKeyNext;
+	} else if (indexPath.row == kIndexRowOfPassword) {
+		identifier = kFDIdentityPasswordCellIdentifier;
+		class = [FDIdentityPasswordCell class];
+		returnKeyType = UIReturnKeyNext;
+	} else {
+		identifier = kFDIdentityPasswordConfirmCellIdentifier;
+		class = [FDIdentityPasswordConfirmCell class];
+		returnKeyType = UIReturnKeyJoin;
+	}
+	FDIdentityCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+	if (!cell) {
+		cell = [[class alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		cell.inputField.delegate = self;
+		cell.inputField.enablesReturnKeyAutomatically = YES;
+	}
+	if (indexPath.row == kIndexRowOfAccount) _accountTextField = cell.inputField;
+	else if (indexPath.row == kIndexRowOfPassword) _passwordTextField = cell.inputField;
+	else _passwordConfirmTextField = cell.inputField;
+	cell.inputField.returnKeyType = returnKeyType;
+	cell.tag = indexPath.row;
+	return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+	return [FDIdentityFooter height];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+	FDIdentityFooter *footer = [[FDIdentityFooter alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, [FDIdentityFooter height])];
+	footer.delegate = self;
+	return footer;
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+	if ([textField.text areAllCharactersSpace]) return NO;
+	if (textField == _accountTextField) {
+		[_passwordTextField becomeFirstResponder];
+	} else if (textField == _passwordTextField) {
+		[_passwordConfirmTextField becomeFirstResponder];
+	} else if (textField == _passwordConfirmTextField){
+		[self signup];
+	}
+	return YES;
+}
+
+#pragma mark - FDIdentityFooterDelegate
+
+- (void)forgotPasswordTapped
+{
+	
+}
+
+- (void)gotoSigninTapped
+{
+	FDSigninViewController *signinViewController = [[FDSigninViewController alloc] init];
+	[self.navigationController pushViewController:signinViewController animated:YES];
 }
 
 @end
