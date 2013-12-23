@@ -49,7 +49,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		[self setLeftBarButtonItemAsBackButtonToRoot];
+		//[self setLeftBarButtonItemAsBackButtonToRoot];
 		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ProfileInfo"] style:UIBarButtonItemStylePlain target:self action:@selector(pushToProfile)];
     }
     return self;
