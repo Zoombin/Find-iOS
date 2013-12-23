@@ -70,7 +70,7 @@
 {
 	if (_noMore) return;
 	if (!_spinner) {
-		_spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+		_spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
 		_spinner.center = CGPointMake(self.view.center.x, CGRectGetMaxY(self.view.bounds) - 25);
 		[self.view addSubview:_spinner];
 	}

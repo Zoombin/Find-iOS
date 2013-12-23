@@ -7,6 +7,14 @@
 //
 
 #import "FDStuffCell.h"
+#import "FDAvatarView.h"
+
+@interface FDStuffCell ()
+
+@property (readwrite) FDAvatarView *avatar;
+@property (readwrite) UILabel *priceLabel;
+
+@end
 
 @implementation FDStuffCell
 
@@ -14,7 +22,15 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor = [UIColor randomColor];
+        //self.backgroundColor = [UIColor randomColor];
+		
+		_priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 0, 80, self.bounds.size.height)];
+		//_priceLabel.backgroundColor = [UIColor randomColor];
+		_priceLabel.numberOfLines = 0;
+		_priceLabel.lineBreakMode = NSLineBreakByWordWrapping;
+		_priceLabel.font = [UIFont fdThemeFontOfSize:13];
+		_priceLabel.textAlignment = NSTextAlignmentRight;
+		[self.contentView addSubview:_priceLabel];
     }
     return self;
 }
@@ -22,8 +38,29 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
+}
 
-    // Configure the view for the selected state
+- (void)prepareForReuse
+{
+	[super prepareForReuse];
+	_stuff = nil;
+	_priceLabel.text = nil;
+	self.textLabel.text = nil;
+	self.imageView.image = nil;
+}
+
+- (void)setStuff:(FDStuff *)stuff
+{
+	_stuff = stuff;
+	if (_stuff.iconPath) {
+		[[[UIImageView alloc] init] setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_stuff.iconPath]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+			self.imageView.image = image;
+		} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+			
+		}];
+	}
+	self.textLabel.text = _stuff.name;
+	_priceLabel.text = [_stuff.price printablePrice];
 }
 
 @end

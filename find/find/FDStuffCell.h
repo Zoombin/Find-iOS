@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FDStuff.h"
+
+static NSString *kFDStuffCellIdentifier = @"kFDStuffCellIdentifier";
 
 @interface FDStuffCell : UITableViewCell
+
+@property (nonatomic, strong) FDStuff *stuff;
 
 @end

@@ -120,6 +120,8 @@
 		77F88986180B875300D6A45D /* UIFont+Find.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F88985180B875300D6A45D /* UIFont+Find.m */; };
 		77F8898A180B888100D6A45D /* FZBWKSJW--GB1-0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77F88988180B888100D6A45D /* FZBWKSJW--GB1-0.ttf */; };
 		77F8898B180B888100D6A45D /* YouYuan.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77F88989180B888100D6A45D /* YouYuan.ttf */; };
+		77F913D71867D9E9007CCFD2 /* FDPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F913D61867D9E9007CCFD2 /* FDPrice.m */; };
+		77F913DA1867DB57007CCFD2 /* FDStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F913D91867DB57007CCFD2 /* FDStuff.m */; };
 		77FE43431801040F00B1B5D3 /* FDTestAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FE43421801040F00B1B5D3 /* FDTestAccountsViewController.m */; };
 		77FE434918012BB000B1B5D3 /* FDUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FE434818012BB000B1B5D3 /* FDUserProfile.m */; };
 /* End PBXBuildFile section */
@@ -354,6 +356,10 @@
 		77F88985180B875300D6A45D /* UIFont+Find.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIFont+Find.m"; path = "find/UIFont+Find.m"; sourceTree = "<group>"; };
 		77F88988180B888100D6A45D /* FZBWKSJW--GB1-0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FZBWKSJW--GB1-0.ttf"; sourceTree = "<group>"; };
 		77F88989180B888100D6A45D /* YouYuan.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = YouYuan.ttf; sourceTree = "<group>"; };
+		77F913D51867D9E9007CCFD2 /* FDPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDPrice.h; path = find/FDPrice.h; sourceTree = "<group>"; };
+		77F913D61867D9E9007CCFD2 /* FDPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDPrice.m; path = find/FDPrice.m; sourceTree = "<group>"; };
+		77F913D81867DB57007CCFD2 /* FDStuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDStuff.h; path = find/FDStuff.h; sourceTree = "<group>"; };
+		77F913D91867DB57007CCFD2 /* FDStuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDStuff.m; path = find/FDStuff.m; sourceTree = "<group>"; };
 		77FE43411801040F00B1B5D3 /* FDTestAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDTestAccountsViewController.h; path = Test/FDTestAccountsViewController.h; sourceTree = "<group>"; };
 		77FE43421801040F00B1B5D3 /* FDTestAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDTestAccountsViewController.m; path = Test/FDTestAccountsViewController.m; sourceTree = "<group>"; };
 		77FE434718012BB000B1B5D3 /* FDUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDUserProfile.h; path = find/FDUserProfile.h; sourceTree = "<group>"; };
@@ -703,6 +709,10 @@
 		77DA107117E97F3D001F44DF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				77F913D81867DB57007CCFD2 /* FDStuff.h */,
+				77F913D91867DB57007CCFD2 /* FDStuff.m */,
+				77F913D51867D9E9007CCFD2 /* FDPrice.h */,
+				77F913D61867D9E9007CCFD2 /* FDPrice.m */,
 				774628CD183CA0530088BD61 /* FDInformation.h */,
 				774628CE183CA0530088BD61 /* FDInformation.m */,
 				7798B3261844979400CCA964 /* FDAddress.h */,
@@ -1027,6 +1037,7 @@
 				770D869718584515001CCA47 /* UIColor+Hex.m in Sources */,
 				77FE434918012BB000B1B5D3 /* FDUserProfile.m in Sources */,
 				778671BD17E705D6001FDB67 /* CLLocation+Test.m in Sources */,
+				77F913D71867D9E9007CCFD2 /* FDPrice.m in Sources */,
 				77CB749518235FB800063B88 /* NSString+Qiniu.m in Sources */,
 				774EC42218641EDF00E4FB0A /* AlixPayResult.m in Sources */,
 				77F88986180B875300D6A45D /* UIFont+Find.m in Sources */,
@@ -1036,6 +1047,7 @@
 				77C0C96717D198F6008C7FC7 /* FDPhoto.m in Sources */,
 				77C0C96417D18D7C008C7FC7 /* FDPhotoCollectionViewCell.m in Sources */,
 				770D86B918584566001CCA47 /* CLLocation+NSDictionary.m in Sources */,
+				77F913DA1867DB57007CCFD2 /* FDStuff.m in Sources */,
 				77052A331834798B000C2BDF /* FDLabelEditCell.m in Sources */,
 				774EC42118641EDF00E4FB0A /* AlixPayOrder.m in Sources */,
 				770D86C518584566001CCA47 /* UIViewController+ZBUtilites.m in Sources */,

@@ -10,6 +10,8 @@
 
 @interface FDWebViewController ()
 
+@property (readwrite) UIWebView	*webView;
+
 @end
 
 @implementation FDWebViewController
@@ -26,7 +28,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	_webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+	[_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_path]]];
+	[self.view addSubview:_webView];
 }
 
 - (void)didReceiveMemoryWarning

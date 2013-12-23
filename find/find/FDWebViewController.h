@@ -10,4 +10,6 @@
 
 @interface FDWebViewController : UIViewController
 
+@property (nonatomic, strong) NSString *path;
+
 @end

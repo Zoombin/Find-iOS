@@ -22,5 +22,6 @@ typedef NS_ENUM(NSInteger, FDPrivatizeStyle) {
 + (instancetype)randomDigitalStringOfLength:(NSUInteger)length;
 - (BOOL)interestingPlace;
 - (instancetype)privatizeWithStyle:(FDPrivatizeStyle)style;
++ (instancetype)generateAlipayTradeNO;
 
 @end

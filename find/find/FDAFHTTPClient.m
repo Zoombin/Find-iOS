@@ -643,7 +643,25 @@ static NSString *token;
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		if (block) block (NO, [FDErrorMessage messageNetworkError], nil);
 	}];
+}
+
+- (void)stuffsList:(BOOL)bVirtual withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *stuffsData))block
+{
+	NSString *path = [NSString stringWithFormat:@"shop/%@", bVirtual ? @"v" : @"e"];
 	
+	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]], data[responseKeyData]);
+		}
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		if (block) block (NO, [FDErrorMessage messageNetworkError], nil);
+	}];
+}
+
+- (void)exchangeRealStuff:(NSNumber *)stuffID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+{
+	NSLog(@"exchange: %@", stuffID);
 }
 
 @end
