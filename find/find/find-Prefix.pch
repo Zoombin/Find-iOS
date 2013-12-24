@@ -85,6 +85,7 @@
 #define kNeedSigninAlert @"kNeedSigninAlert"
 #define kPresentTargetClass @"kPresentTargetClass"
 #define kHeightOfCell @"kHeightOfCell"
+#define kWebViewPath @"kWebViewPath"
 
 #define APP_SCHEME @"com.zoombin.find"
 

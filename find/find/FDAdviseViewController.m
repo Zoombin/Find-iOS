@@ -1,26 +1,24 @@
 //
-//  FDWebViewController.m
+//  FDAdviseViewController.m
 //  find
 //
-//  Created by zhangbin on 12/3/13.
+//  Created by zhangbin on 12/24/13.
 //  Copyright (c) 2013 ZoomBin. All rights reserved.
 //
 
-#import "FDWebViewController.h"
+#import "FDAdviseViewController.h"
 
-@interface FDWebViewController ()
-
-@property (readwrite) UIWebView	*webView;
+@interface FDAdviseViewController ()
 
 @end
 
-@implementation FDWebViewController
+@implementation FDAdviseViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		[self setLeftBarButtonItemAsBackButton];
+		self.title = NSLocalizedString(@"意见与反馈", nil);
     }
     return self;
 }
@@ -28,11 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-	
-	_webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
-	[_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_path]]];
-	[self.view addSubview:_webView];
+	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning

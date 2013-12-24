@@ -492,15 +492,14 @@ UIPickerViewDataSource
 		cell.textLabel.text = title;
 		cell.textLabel.font = [UIFont fdThemeFontOfSize:16];
 	}
-	
+
+	cell.textLabel.text = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kTitle];
+	cell.textLabel.font = [UIFont fdThemeFontOfSize:16];
+
 	NSString *iconName = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kIcon];
 	if (iconName) {
 		cell.imageView.image = [UIImage imageNamed:iconName];
-		NSString *title = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kTitle];
-		cell.textLabel.text = title;
-		cell.textLabel.font = [UIFont fdThemeFontOfSize:16];
-	}
-	
+	}	
 	return cell;
 }
 

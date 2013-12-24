@@ -128,6 +128,7 @@
 		77F9142718682732007CCFD2 /* FDIdentityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F9142618682732007CCFD2 /* FDIdentityCell.m */; };
 		77F9142A1868297B007CCFD2 /* FDIdentityFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F914291868297B007CCFD2 /* FDIdentityFooter.m */; };
 		77F9142D186925BE007CCFD2 /* FDForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F9142C186925BE007CCFD2 /* FDForgotPasswordViewController.m */; };
+		77F914301869C88E007CCFD2 /* FDAdviseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F9142F1869C88E007CCFD2 /* FDAdviseViewController.m */; };
 		77FE43431801040F00B1B5D3 /* FDTestAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FE43421801040F00B1B5D3 /* FDTestAccountsViewController.m */; };
 		77FE434918012BB000B1B5D3 /* FDUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FE434818012BB000B1B5D3 /* FDUserProfile.m */; };
 /* End PBXBuildFile section */
@@ -378,6 +379,8 @@
 		77F914291868297B007CCFD2 /* FDIdentityFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDIdentityFooter.m; path = find/FDIdentityFooter.m; sourceTree = "<group>"; };
 		77F9142B186925BE007CCFD2 /* FDForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDForgotPasswordViewController.h; sourceTree = "<group>"; };
 		77F9142C186925BE007CCFD2 /* FDForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDForgotPasswordViewController.m; sourceTree = "<group>"; };
+		77F9142E1869C88E007CCFD2 /* FDAdviseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDAdviseViewController.h; sourceTree = "<group>"; };
+		77F9142F1869C88E007CCFD2 /* FDAdviseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDAdviseViewController.m; sourceTree = "<group>"; };
 		77FE43411801040F00B1B5D3 /* FDTestAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDTestAccountsViewController.h; path = Test/FDTestAccountsViewController.h; sourceTree = "<group>"; };
 		77FE43421801040F00B1B5D3 /* FDTestAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDTestAccountsViewController.m; path = Test/FDTestAccountsViewController.m; sourceTree = "<group>"; };
 		77FE434718012BB000B1B5D3 /* FDUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDUserProfile.h; path = find/FDUserProfile.h; sourceTree = "<group>"; };
@@ -617,6 +620,8 @@
 				77F9142C186925BE007CCFD2 /* FDForgotPasswordViewController.m */,
 				77A5F7C017CB22960073E7F9 /* Images.xcassets */,
 				77A5F7A917CB22960073E7F9 /* Supporting Files */,
+				77F9142E1869C88E007CCFD2 /* FDAdviseViewController.h */,
+				77F9142F1869C88E007CCFD2 /* FDAdviseViewController.m */,
 			);
 			path = find;
 			sourceTree = "<group>";
@@ -1020,6 +1025,7 @@
 				77A5F7F717CB30400073E7F9 /* FDMeViewController.m in Sources */,
 				77042964181676E30087F7BF /* PSUICollectionViewFlowLayout+FDLayout.m in Sources */,
 				77A5F7B317CB22960073E7F9 /* FDAppDelegate.m in Sources */,
+				77F914301869C88E007CCFD2 /* FDAdviseViewController.m in Sources */,
 				77A5F7AF17CB22960073E7F9 /* main.m in Sources */,
 				77DE2D1118581B3100157234 /* FDPhotoCell.m in Sources */,
 				77B5F10F186198CE0017ADF2 /* UITabBarItem+Find.m in Sources */,
