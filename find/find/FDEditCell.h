@@ -13,6 +13,7 @@
 @property (nonatomic, weak) id<UITextFieldDelegate, UITextViewDelegate> delegate;
 @property (nonatomic, strong) NSString *content;
 @property (nonatomic, assign) UIKeyboardType keyboardType;
+@property (nonatomic, assign) UIReturnKeyType returnKeyType;
 
 - (NSString *)identifier;
 - (UIView *)footerWithText:(NSString *)text;

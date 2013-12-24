@@ -23,7 +23,8 @@
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
 		
 		_textView = [[UITextView alloc] initWithFrame:CGRectMake(self.indentationWidth, 0, self.bounds.size.width - 2 * self.indentationWidth, [[self class] height])];
-		_textView.backgroundColor = [UIColor lightGrayColor];
+		_textView.enablesReturnKeyAutomatically = YES;
+		//_textView.backgroundColor = [UIColor lightGrayColor];
 		_textView.returnKeyType = UIReturnKeyDone;
 		_textView.font = [UIFont fdThemeFontOfSize:13];
 		[self.contentView addSubview:_textView];
@@ -71,6 +72,11 @@
 - (void)setKeyboardType:(UIKeyboardType)keyboardType
 {
 	_textView.keyboardType = keyboardType;
+}
+
+- (void)setReturnKeyType:(UIReturnKeyType)returnKeyType
+{
+	_textView.returnKeyType = returnKeyType;
 }
 
 - (NSString *)content
