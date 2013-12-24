@@ -8,13 +8,6 @@
 
 #import "FDIdentityFooter.h"
 
-@interface FDIdentityFooter ()
-
-@property (readwrite) UIButton *forgotPasswordButton;
-@property (readwrite) UIButton *gotoSigninButton;
-
-@end
-
 @implementation FDIdentityFooter
 
 - (id)initWithFrame:(CGRect)frame
@@ -32,8 +25,9 @@
 		[_forgotPasswordButton addTarget:self action:@selector(forgotPassword) forControlEvents:UIControlEventTouchUpInside];
 		_forgotPasswordButton.showsTouchWhenHighlighted = YES;
 		[_forgotPasswordButton setTitle:NSLocalizedString(@"忘记密码？", nil) forState:UIControlStateNormal];
-		_forgotPasswordButton.titleLabel.font = [UIFont fdThemeFontOfSize:11];
+		_forgotPasswordButton.titleLabel.font = [UIFont fdThemeFontOfSize:13];
 		[_forgotPasswordButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+		[_forgotPasswordButton setTitleColor:[UIColor fdThemeRed] forState:UIControlStateHighlighted];
 		[self addSubview:_forgotPasswordButton];
 		
 		_gotoSigninButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -42,22 +36,14 @@
 		_gotoSigninButton.titleLabel.textAlignment = NSTextAlignmentRight;
 		_gotoSigninButton.showsTouchWhenHighlighted = YES;
 		[_gotoSigninButton setTitle:NSLocalizedString(@"已经注册去登录", nil) forState:UIControlStateNormal];
-		_gotoSigninButton.titleLabel.font = [UIFont fdThemeFontOfSize:11];
+		_gotoSigninButton.titleLabel.font = [UIFont fdThemeFontOfSize:13];
 		[_gotoSigninButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+		[_gotoSigninButton setTitleColor:[UIColor fdThemeRed] forState:UIControlStateHighlighted];
 		[_gotoSigninButton addTarget:self action:@selector(gotoSignin) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:_gotoSigninButton];
     }
     return self;
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 + (CGFloat)height
 {

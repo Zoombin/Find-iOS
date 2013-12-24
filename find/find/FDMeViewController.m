@@ -15,6 +15,7 @@
 #import "FDSessionInvalidCell.h"
 #import "FDAlbumViewController.h"
 
+NSString *kLogin = @"kLogin";
 NSString *kMyProfile = @"kMyProfile";
 NSString *kMyAlbum = @"kMyAlbum";
 NSString *kMyWealth = @"kMyWealth";
@@ -28,6 +29,8 @@ NSString *kSettings = @"kSettings";
 @property (readwrite) FDUserProfile *userProfile;
 @property (readwrite) UITableView *tableView;
 @property (readwrite) NSMutableDictionary *dataSourceDictionary;
+@property (readwrite) NSArray *meSectionData;
+@property (readwrite) NSArray *loginSectionData;
 
 @end
 
@@ -68,14 +71,17 @@ NSString *kSettings = @"kSettings";
 	NSInteger section = 0;
 	NSArray *sectionData;
 	
+	_meSectionData = @[
+					   @{kIdentifier : kMyProfile, kCellClass : [FDMeCell class], kTitle : NSLocalizedString(@"My Profile", nil), kHeightOfCell : @([FDMeCell height]), kPushTargetClass : NSStringFromClass([FDProfileViewController class])},
+					   ];
+	_loginSectionData = @[
+						  @{kIdentifier : kLogin, kCellClass : [FDSessionInvalidCell class], kHeightOfCell : @([FDSessionInvalidCell height]), kPresentTargetClass : NSStringFromClass([FDSignupViewController class])},
+						  ];
+	
 	if ([[FDAFHTTPClient shared] isSessionValid]) {
-		sectionData = @[
-						@{kIdentifier : kMyProfile, kCellClass : [FDMeCell class], kTitle : NSLocalizedString(@"My Profile", nil), kHeightOfCell : @([FDMeCell height]), kPushTargetClass : NSStringFromClass([FDProfileViewController class])},
-						];
+		sectionData = _meSectionData;
 	} else {
-		sectionData = @[
-						@{kIdentifier : kMyProfile, kCellClass : [FDSessionInvalidCell class], kHeightOfCell : @([FDSessionInvalidCell height]), kPresentTargetClass : NSStringFromClass([FDSignupViewController class])},
-						];
+		sectionData = _loginSectionData;
 	}
 	_dataSourceDictionary[@(section)] = sectionData;
 	section++;
@@ -107,11 +113,6 @@ NSString *kSettings = @"kSettings";
 	[self displayHUD:NSLocalizedString(@"Loading...", nil)];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchProfileThenReloadTableView) name:ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-	[super viewDidAppear:animated];
 	
 	[self fetchProfile:^{
 		[self hideHUD:YES];
@@ -119,8 +120,14 @@ NSString *kSettings = @"kSettings";
 	}];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+}
+
 - (void)fetchProfileThenReloadTableView
 {
+	_dataSourceDictionary[@(0)] = _meSectionData;
 	[self fetchProfile:^{
 		[_tableView reloadData];
 	}];
@@ -173,14 +180,12 @@ NSString *kSettings = @"kSettings";
 	NSString *identifier = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kIdentifier];
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 	if (!cell) {
-		if ([identifier isEqualToString:kMyProfile]) {
-			if ([[FDAFHTTPClient shared] isSessionValid]) {
-				cell = (FDMeCell *)[[FDMeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-				cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-			} else {
-				cell = (FDSessionInvalidCell *)[[FDSessionInvalidCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-				cell.accessoryType = UITableViewCellAccessoryNone;
-			}
+		if ([identifier isEqualToString:kLogin]) {
+			cell = (FDSessionInvalidCell *)[[FDSessionInvalidCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+			cell.accessoryType = UITableViewCellAccessoryNone;
+		} else if ([identifier isEqualToString:kMyProfile]) {
+			cell = (FDMeCell *)[[FDMeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		} else {
 			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

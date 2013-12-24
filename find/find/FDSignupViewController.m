@@ -17,7 +17,7 @@
 #define kIndexRowOfPassword 1
 #define kIndexRowOfPasswordConfirm 2
 
-@interface FDSignupViewController () <UITableViewDataSource, UITableViewDelegate, FDIentityFooterDelegate, UITextFieldDelegate>
+@interface FDSignupViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, FDIentityFooterDelegate>
 
 @property (readwrite) UITableView *tableView;
 @property (readwrite) UITextField *accountTextField;
@@ -34,7 +34,6 @@
     if (self) {
         self.view.backgroundColor = [UIColor grayColor];
 		self.title = NSLocalizedString(@"注册", nil);
-		
 		[self setLeftBarButtonItemAsBackButton];
     }
     return self;
@@ -59,10 +58,31 @@
 
 - (void)signup
 {
-	if ([_accountTextField.text areAllCharactersSpace] || [_passwordTextField.text areAllCharactersSpace] || [_passwordConfirmTextField.text areAllCharactersSpace]) {
+	if (_accountTextField.text == nil || _passwordTextField.text == nil || _passwordConfirmTextField.text == nil || [_accountTextField.text areAllCharactersSpace] || [_passwordTextField.text areAllCharactersSpace] || [_passwordConfirmTextField.text areAllCharactersSpace]) {
 		[self displayHUDTitle:NSLocalizedString(@"注册信息不能为空", nil) message:nil duration:1];
 		return;
 	}
+	
+	if (![_passwordTextField.text isEqualToString:_passwordConfirmTextField.text]) {
+		[self displayHUDTitle:NSLocalizedString(@"两次输入密码不同", nil) message:nil duration:1];
+		return;
+	}
+	
+	[self displayHUD:NSLocalizedString(@"注册中...", nil)];
+	[[FDAFHTTPClient shared] signupAtLocation:nil username:_accountTextField.text password:_passwordTextField.text withCompletionBlock:^(BOOL success, NSString *message) {
+		if (success) {
+			[self displayHUD:NSLocalizedString(@"注册成功", nil)];
+			[self performSelector:@selector(dismiss) withObject:nil afterDelay:1];
+			[[NSNotificationCenter defaultCenter] postNotificationName:ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
+		} else {
+			[self displayHUDTitle:NSLocalizedString(@"错误", nil) message:message duration:3];
+		}
+	}];
+}
+
+- (void)dismiss
+{
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -118,6 +138,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
 	FDIdentityFooter *footer = [[FDIdentityFooter alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, [FDIdentityFooter height])];
+	footer.forgotPasswordButton.hidden = YES;
 	footer.delegate = self;
 	return footer;
 }
@@ -138,11 +159,6 @@
 }
 
 #pragma mark - FDIdentityFooterDelegate
-
-- (void)forgotPasswordTapped
-{
-	
-}
 
 - (void)gotoSigninTapped
 {

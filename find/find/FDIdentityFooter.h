@@ -10,6 +10,7 @@
 
 @protocol FDIentityFooterDelegate <NSObject>
 
+@optional
 - (void)forgotPasswordTapped;
 - (void)gotoSigninTapped;
 
@@ -18,6 +19,8 @@
 @interface FDIdentityFooter : UIView
 
 @property (nonatomic, weak) id<FDIentityFooterDelegate> delegate;
+@property (nonatomic, strong) UIButton *forgotPasswordButton;
+@property (nonatomic, strong) UIButton *gotoSigninButton;
 
 + (CGFloat)height;
 

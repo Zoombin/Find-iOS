@@ -26,6 +26,8 @@
 
 - (void)test
 {
+	NSString *string = @" ";
+	NSLog(@"%d", [string areAllCharactersSpace]);
 //	NSNumber *number = @(1379575567);//2013-09-19 15:26 = 1379575567
 //	NSLog(@"number: %@", [number printableTimestamp]);
 
@@ -51,6 +53,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	[self test];
 	if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
 		[application setStatusBarStyle:UIStatusBarStyleLightContent];
 	} else {

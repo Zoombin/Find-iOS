@@ -357,6 +357,7 @@ UIPickerViewDataSource
 
 - (void)fetchProfileThenReloadTableView
 {
+	
 	[self fetchProfile:^{
 		[_tableView reloadData];
 	}];

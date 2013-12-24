@@ -16,6 +16,7 @@
     if (self) {
 		self.textLabel.text = NSLocalizedString(@"密码", nil);
 		self.inputField.placeholder = NSLocalizedString(@"请填写密码", nil);
+		self.inputField.secureTextEntry = YES;
     }
     return self;
 }

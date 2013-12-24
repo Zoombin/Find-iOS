@@ -43,7 +43,7 @@ static NSString *token;
 
 - (BOOL)isSessionValid
 {
-	return NO;//TODO: force valid, need delete this code
+//	return NO;//TODO: force valid, need delete this code
 	return (token != nil);
 }
 
