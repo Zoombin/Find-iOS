@@ -100,13 +100,13 @@
 	return snows;
 }
 
-//生成alipay订单号，时间+随机码+ios+alipay
-+ (instancetype)generateAlipayTradeNO
+//生成alipay订单号，时间+随机码+ios+alipay+商品编号ID
++ (instancetype)generateAlipayTradeNOWithStuffID:(NSNumber *)stuffID
 {
 	NSDate *date = [NSDate date];
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	dateFormatter.dateFormat = @"yyyy-MM-dd-HH-mm-ss";
-	return [NSString stringWithFormat:@"%@-%@-%@-%@", [dateFormatter stringFromDate:date], [self randomDigitalStringOfLength:4], @"ios", @"alipay"];
+	return [NSString stringWithFormat:@"%@-%@-%@-%@-%@", [dateFormatter stringFromDate:date], [self randomDigitalStringOfLength:4], @"ios", @"alipay", stuffID];
 }
 
 @end

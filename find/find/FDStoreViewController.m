@@ -165,28 +165,13 @@
     AlixPayOrder *order = [[AlixPayOrder alloc] init];
     order.partner = PartnerID;
     order.seller = SellerID;
-    order.tradeNO = [NSString generateAlipayTradeNO];//订单ID（由商家自行制定）
+    order.tradeNO = [NSString generateAlipayTradeNOWithStuffID:stuff.ID];//订单ID（由商家自行制定）
 	order.productName = stuff.name;
 	order.productDescription = stuff.describe;
 	order.amount = [NSString stringWithFormat:@"%.2f", stuff.price.RMB.floatValue];
-	order.notifyURL =  @"http%3A%2F%2Fwwww.zoombin.com";//回调URL
+	order.notifyURL =  @"http://121.199.14.43/pay/alipay/notfiy";//回调URL//TODO: should use base url
 	return [order description];
 }
-
-////TODO: 需要指定一个规则，显示订单号，时间+随机码+ios
-//- (NSString *)generateTradeNO
-//{
-//	const int N = 15;
-//	NSString *sourceString = @"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-//	NSMutableString *result = [[NSMutableString alloc] init] ;
-//	srand(time(0));
-//	for (int i = 0; i < N; i++) {
-//		unsigned index = rand() % [sourceString length];
-//		NSString *s = [sourceString substringWithRange:NSMakeRange(index, 1)];
-//		[result appendString:s];
-//	}
-//	return result;
-//}
 
 -(NSString*)doRsa:(NSString*)orderInfo
 {
