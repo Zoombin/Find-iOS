@@ -51,8 +51,12 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	if (_accountTextField) {
+	if ([_accountTextField.text isEqualToString:@""]) {
 		[_accountTextField becomeFirstResponder];
+	} else if ([_passwordTextField.text isEqualToString:@""]) {
+		[_passwordTextField becomeFirstResponder];
+	} else {
+		[_passwordConfirmTextField becomeFirstResponder];
 	}
 }
 
@@ -91,6 +95,11 @@
 }
 
 #pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+	return 15;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

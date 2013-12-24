@@ -15,10 +15,10 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, [[self class] height])];
-		label.text = NSLocalizedString(@"Tap to signin/signup.", nil);
+		label.text = NSLocalizedString(@"尚未登录，戳我登录", nil);
 		label.textAlignment = NSTextAlignmentCenter;
 		label.font = [UIFont fdThemeFontOfSize:16];
-		label.backgroundColor = [UIColor randomColor];
+		//label.backgroundColor = [UIColor randomColor];
 		[self.contentView addSubview:label];
     }
     return self;
