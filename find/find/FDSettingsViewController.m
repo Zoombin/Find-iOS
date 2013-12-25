@@ -71,6 +71,9 @@
 	
 	_dataSource[section] = @{kIcon: @"IconAdvise", kTitle : NSLocalizedString(@"意见与反馈", nil), kPushTargetClass : NSStringFromClass([FDAdviseViewController class])};
 	section++;
+	
+	_dataSource[section] = @{kIcon: @"IconAdvise", kTitle : NSLocalizedString(@"修改密码", nil), kPushTargetClass : NSStringFromClass([FDAdviseViewController class])};
+	section++;
 }
 
 - (void)willSignout

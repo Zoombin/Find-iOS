@@ -31,6 +31,7 @@
 		770D86C518584566001CCA47 /* UIViewController+ZBUtilites.m in Sources */ = {isa = PBXBuildFile; fileRef = 770D86B318584566001CCA47 /* UIViewController+ZBUtilites.m */; };
 		770D86C618584566001CCA47 /* ZBTextValidate.m in Sources */ = {isa = PBXBuildFile; fileRef = 770D86B518584566001CCA47 /* ZBTextValidate.m */; };
 		770D86C718584566001CCA47 /* ZBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770D86B718584566001CCA47 /* ZBViewController.m */; };
+		771453E7186AA1B000CCE7A8 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 771453E4186AA1B000CCE7A8 /* libWeChatSDK.a */; };
 		772AF353182752E000714745 /* find.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 772AF352182752E000714745 /* find.storyboard */; };
 		772B3D42182F92B9004B1653 /* UITableViewCell+Find.m in Sources */ = {isa = PBXBuildFile; fileRef = 772B3D41182F92B9004B1653 /* UITableViewCell+Find.m */; };
 		77338E7F18090184006DEC3D /* FDErrorMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 77338E7E18090184006DEC3D /* FDErrorMessage.m */; };
@@ -191,6 +192,9 @@
 		770D86B518584566001CCA47 /* ZBTextValidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBTextValidate.m; sourceTree = "<group>"; };
 		770D86B618584566001CCA47 /* ZBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBViewController.h; sourceTree = "<group>"; };
 		770D86B718584566001CCA47 /* ZBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBViewController.m; sourceTree = "<group>"; };
+		771453E4186AA1B000CCE7A8 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		771453E5186AA1B000CCE7A8 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		771453E6186AA1B000CCE7A8 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		772AF352182752E000714745 /* find.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = find.storyboard; sourceTree = "<group>"; };
 		772B3D40182F92B9004B1653 /* UITableViewCell+Find.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableViewCell+Find.h"; path = "find/UITableViewCell+Find.h"; sourceTree = "<group>"; };
 		772B3D41182F92B9004B1653 /* UITableViewCell+Find.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableViewCell+Find.m"; path = "find/UITableViewCell+Find.m"; sourceTree = "<group>"; };
@@ -397,6 +401,7 @@
 				777A6933184E0BCE00B903C1 /* MapKit.framework in Frameworks */,
 				774EC42518641EDF00E4FB0A /* libssl.a in Frameworks */,
 				774EC42418641EDF00E4FB0A /* libcrypto.a in Frameworks */,
+				771453E7186AA1B000CCE7A8 /* libWeChatSDK.a in Frameworks */,
 				77A5F89017CD95E80073E7F9 /* CFNetwork.framework in Frameworks */,
 				774EC42018641EDF00E4FB0A /* AlixPaylib_arc.a in Frameworks */,
 				774EC42318641EDF00E4FB0A /* AlipayRsaLib.a in Frameworks */,
@@ -481,6 +486,16 @@
 				770D86B718584566001CCA47 /* ZBViewController.m */,
 			);
 			path = ZBUtilities;
+			sourceTree = "<group>";
+		};
+		771453E3186AA1B000CCE7A8 /* WeChatSDK_1.4.2.1 */ = {
+			isa = PBXGroup;
+			children = (
+				771453E4186AA1B000CCE7A8 /* libWeChatSDK.a */,
+				771453E5186AA1B000CCE7A8 /* WXApi.h */,
+				771453E6186AA1B000CCE7A8 /* WXApiObject.h */,
+			);
+			path = WeChatSDK_1.4.2.1;
 			sourceTree = "<group>";
 		};
 		774EC41018641EDF00E4FB0A /* Alipay */ = {
@@ -661,6 +676,7 @@
 		77A5F7DD17CB2AB00073E7F9 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				771453E3186AA1B000CCE7A8 /* WeChatSDK_1.4.2.1 */,
 				774EC41018641EDF00E4FB0A /* Alipay */,
 				770D869A18584566001CCA47 /* ZBUtilities */,
 				770D868C18584509001CCA47 /* LNToolkit */,
@@ -1240,6 +1256,7 @@
 					"$(inherited)",
 					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/Alipay",
 					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/Alipay/RSA",
+					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/WeChatSDK_1.4.2.1",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1BF3F5F9-E69A-4135-AEAB-FF041F33D413";
@@ -1263,6 +1280,7 @@
 					"$(inherited)",
 					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/Alipay",
 					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/Alipay/RSA",
+					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/WeChatSDK_1.4.2.1",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1BF3F5F9-E69A-4135-AEAB-FF041F33D413";

@@ -84,6 +84,9 @@
 	
 	self.window.rootViewController = _tabBarController;
 	[self.window makeKeyAndVisible];
+	
+	[WXApi registerApp:@"wx5d8e3647ea5ebc6b" withDescription:@"demo 2.0"];
+	
     return YES;
 }
 

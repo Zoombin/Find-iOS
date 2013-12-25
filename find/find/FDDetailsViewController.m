@@ -23,6 +23,13 @@ static NSInteger kHeightOfSegmentedControl = 30;
 static NSString *keyOfClass = @"keyOfClass";
 static NSString *keyOfDataSource = @"keyOfDataSource";
 
+#define kTagOfShareActionSheet ('shar')
+#define kTagOfReportActionSheet ('repo')
+
+static NSInteger kIndexOfShareWithGroupButton = 0;
+static NSInteger kIndexOfShareWithFriendButton = 1;
+static NSInteger kIndexOfFavoriteButton = 2;
+
 @interface FDDetailsViewController () <UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource, FDCommentCellDelegate, HPGrowingTextViewDelegate, FDVoteCellDelegate, FDGiftsCellDelegate>
 
 @property (readwrite) UITableView *tableView;
@@ -40,6 +47,8 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 @property (readwrite) NSString *titleOfGifts;
 @property (readwrite) NSString *titleOfFollowers;
 @property (readwrite) NSArray *allPhotos;
+@property (readwrite) UIImage *currentImage;
+@property (readwrite) UIImage *thumbImage;
 
 @end
 
@@ -142,6 +151,8 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 		rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
 		[self.view addGestureRecognizer:rightSwipeGestureRecognizer];
 	}
+
+	
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -351,7 +362,9 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 
 - (void)share
 {
-	NSLog(@"share");
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"分享", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"取消", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"分享到朋友圈", nil), NSLocalizedString(@"分享给朋友", nil), NSLocalizedString(@"收藏到我的微信", nil) , nil];
+	actionSheet.tag = kTagOfShareActionSheet;
+	[actionSheet showInView:self.view];
 }
 
 - (void)didReceiveMemoryWarning
@@ -407,6 +420,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 			imageView.contentMode = UIViewContentModeTop | UIViewContentModeCenter | UIViewContentModeScaleAspectFit;
 			[imageView setImageWithURLRequest:request placeholderImage:nil success:nil failure:nil];
 			[[[UIImageView alloc] init] setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+				_currentImage = image;
 				imageView.image = image;
 				CGRect newFrame = imageView.frame;
 				if (image.size.width < imageView.bounds.size.width) {
@@ -538,16 +552,40 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	if (buttonIndex == kIndexOfReportButtonInActionSheet) {
-		if (_reportCommentID) {
-			[[FDAFHTTPClient shared] reportComment:_reportCommentID withCompletionBlock:^(BOOL success, NSString *message) {
-				if (success) {
-					[self displayHUDTitle:nil message:NSLocalizedString(@"Report successfully, we will handle it ASAP!", nil)];
-				} else {
-					[self displayHUDTitle:nil message:message];
-				}
-			}];
+	if (actionSheet.tag == kTagOfReportActionSheet) {
+		if (buttonIndex == kIndexOfReportButtonInActionSheet) {
+			if (_reportCommentID) {
+				[[FDAFHTTPClient shared] reportComment:_reportCommentID withCompletionBlock:^(BOOL success, NSString *message) {
+					if (success) {
+						[self displayHUDTitle:nil message:NSLocalizedString(@"Report successfully, we will handle it ASAP!", nil)];
+					} else {
+						[self displayHUDTitle:nil message:message];
+					}
+				}];
+			}
 		}
+	} else if (actionSheet.tag == kTagOfShareActionSheet) {
+		enum WXScene scene = WXSceneTimeline;
+		if (buttonIndex == kIndexOfShareWithGroupButton) {
+			
+		} else if (buttonIndex == kIndexOfShareWithFriendButton) {
+			scene = WXSceneSession;
+		} else if (buttonIndex == kIndexOfFavoriteButton) {
+			scene = WXSceneFavorite;
+		}
+
+		WXMediaMessage *message = [WXMediaMessage message];
+		message.title = @"挑美女，享服务，来点评";
+		message.description = @"这是一条测试数据和测试图片";
+		[message setThumbImage:_thumbImage];
+		WXWebpageObject *ext = [WXWebpageObject object];
+		ext.webpageUrl = _photo.urlString;
+		message.mediaObject = ext;
+		SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
+		req.bText = NO;
+		req.message = message;
+		req.scene = scene;
+		[WXApi sendReq:req];
 	}
 }
 
@@ -639,6 +677,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 {
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Report Bad Comment", nil), nil];
 	[actionSheet showInView:self.view];
+	actionSheet.tag = kTagOfReportActionSheet;
 	_reportCommentID = comment.ID;
 }
 
