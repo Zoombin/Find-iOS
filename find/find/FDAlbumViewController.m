@@ -10,7 +10,6 @@
 #import "FDPhotoCollectionViewCell.h"
 #import "FDAddTweetCollectionViewCell.h"
 #import "FDWebViewController.h"
-#import "FDAskForMoreCollectionSupplementaryView.h"
 
 static NSInteger indexOfAlertDetails = 1;
 static NSInteger numberOfTweetsPerLine = 3;
@@ -23,8 +22,7 @@ UIActionSheetDelegate,
 PSUICollectionViewDelegate,
 PSUICollectionViewDataSource,
 FDAddTweetCollectionViewCellDelegate,
-CLLocationManagerDelegate,
-FDAskForMoreCollectionSupplementaryViewDelegate
+CLLocationManagerDelegate
 >
 
 @property (readwrite) PSUICollectionView *photosCollectionView;
@@ -33,6 +31,8 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 @property (readwrite) CLLocation *location;
 @property (readwrite) NSString *address;
 @property (readwrite) NSInteger tweetsCount;
+@property (readwrite) BOOL noMore;
+@property (readwrite) UIActivityIndicatorView *spinner;
 
 @end
 
@@ -55,7 +55,7 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 			[self.tabBarItem setFinishedSelectedImage:selectedImage withFinishedUnselectedImage:normalImage];
 		}
 		
-		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshMyTweets)];
+		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(fetchTweets)];
     }
     return self;
 }
@@ -63,25 +63,23 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.view.backgroundColor = [UIColor whiteColor];
+	//self.view.backgroundColor = [UIColor whiteColor];
 	
-	NSInteger firstLoadNumber = 2;
-	_tweetsCount = firstLoadNumber;
-	[self fixAskMoreTweetsCount];
-	
-	_photosCollectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[PSUICollectionViewFlowLayout smallSquaresLayout]];
+	CGRect frame = self.view.bounds;
+	frame.size.height += 30;//故意的，这样拉不到底，用户会尝试去拉到底，然后就会刷新
+	_photosCollectionView = [[PSUICollectionView alloc] initWithFrame:frame collectionViewLayout:[PSUICollectionViewFlowLayout smallSquaresLayout]];
 	_photosCollectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_photosCollectionView.backgroundColor = [UIColor clearColor];
 	[_photosCollectionView registerClass:[FDPhotoCollectionViewCell class] forCellWithReuseIdentifier:kFDPhotoCollectionViewCellIdentifier];
 	[_photosCollectionView registerClass:[FDAddTweetCollectionViewCell class] forCellWithReuseIdentifier:kFDAddTweetCollectionViewCellIdentifier];
-	[_photosCollectionView registerClass:[FDAskForMoreCollectionSupplementaryView class] forSupplementaryViewOfKind:PSTCollectionElementKindSectionFooter withReuseIdentifier:kFDAskForMoreCollectionSupplementaryViewIdentifier];
 	_photosCollectionView.delegate = self;
 	_photosCollectionView.dataSource = self;
 	[self.view addSubview:_photosCollectionView];
 
-	[self fetchTweets:^{
-		[_photosCollectionView reloadData];
-	}];
+	NSInteger firstLoadNumber = 14;
+	_tweetsCount = firstLoadNumber;
+	[self fixAskMoreTweetsCount];
+	[self fetchTweets];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -95,11 +93,34 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 	[actionSheet showFromTabBar:self.tabBarController.tabBar];
 }
 
-- (void)refreshMyTweets
+- (void)fetchTweets
 {
-	[self fetchTweets:^{
-		[_photosCollectionView reloadData];
-	}];
+	if (_noMore) return;
+	if (!_spinner) {
+		_spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+		_spinner.center = CGPointMake(self.view.center.x, CGRectGetMaxY(self.view.bounds) - 25);
+		_spinner.backgroundColor = [UIColor randomColor];
+		[self.view addSubview:_spinner];
+	}
+	//[self.view bringSubviewToFront:_spinner];
+	[_spinner startAnimating];
+	NSInteger currentCount = _tweets.count;
+	_tweetsCount += 9;
+	[self fixAskMoreTweetsCount];
+	if ([[FDAFHTTPClient shared] isSessionValid]) {
+		[[FDAFHTTPClient shared] tweetsPublished:nil limit:@(_tweetsCount) withCompletionBlock:^(BOOL success, NSString *message, NSNumber *published, NSArray *tweetsData) {
+			if (success) {
+				if (tweetsData.count == currentCount) {
+					_noMore = YES;
+					_photosCollectionView.frame = self.view.bounds;
+				}
+				_tweets = [FDTweet createMutableWithData:tweetsData];
+				_tweetsCount = _tweets.count;
+				[_photosCollectionView reloadData];
+			}
+			[_spinner stopAnimating];
+		}];
+	}
 }
 
 - (void)fixAskMoreTweetsCount
@@ -107,19 +128,6 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 	NSInteger m = (_tweetsCount + 1) % numberOfTweetsPerLine;//+1 means add tweet button
 	if (m != 0) {
 		_tweetsCount += numberOfTweetsPerLine - m;
-	}
-}
-
-- (void)fetchTweets:(dispatch_block_t)block
-{
-	if ([[FDAFHTTPClient shared] isSessionValid]) {
-		[[FDAFHTTPClient shared] tweetsPublished:nil limit:@(_tweetsCount) withCompletionBlock:^(BOOL success, NSString *message, NSNumber *published, NSArray *tweetsData) {
-			if (success) {
-				_tweets = [FDTweet createMutableWithData:tweetsData];
-				_tweetsCount = _tweets.count;
-			}
-			if (block) block ();
-		}];
 	}
 }
 
@@ -202,25 +210,6 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 	//cell.delegate = self;
 }
 
-- (PSUICollectionReusableView *)collectionView:(PSUICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-	NSString *identifier = nil;
-	if ([kind isEqualToString:PSTCollectionElementKindSectionFooter]) {
-		identifier = kFDAskForMoreCollectionSupplementaryViewIdentifier;
-	}
-    PSUICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
-	if ([supplementaryView isKindOfClass:[FDAskForMoreCollectionSupplementaryView class]]) {
-		FDAskForMoreCollectionSupplementaryView *askForMoreView = (FDAskForMoreCollectionSupplementaryView *)supplementaryView;
-		askForMoreView.delegate = self;
-	}
-    return supplementaryView;
-}
-
-- (CGSize)collectionView:(PSUICollectionView *)collectionView layout:(PSUICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
-{
-	return CGSizeMake(_photosCollectionView.frame.size.width, [FDAskForMoreCollectionSupplementaryView height]);
-}
-
 - (void)collectionView:(PSUICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	//	FDPhotoDetailsViewController *photoDetailsViewController = [[FDPhotoDetailsViewController alloc] init];
@@ -235,7 +224,7 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 {
 	float endScrolling = scrollView.contentOffset.y + scrollView.frame.size.height;
     if (endScrolling >= scrollView.contentSize.height) {
-		NSLog(@"scrollViewDidEndDecelerating");
+		[self fetchTweets];
 	}
 }
 
@@ -299,9 +288,7 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 				[[FDAFHTTPClient shared] tweetPhotos:@[path] atLocation:_location address:_address withCompletionBlock:^(BOOL success, NSString *message) {
 					[self displayHUDTitle:@"Upload successfully" message:nil duration:1.0];
 					_tweetsCount++;
-					[self fetchTweets:^{
-						[_photosCollectionView reloadData];
-					}];
+					[self fetchTweets];
 				}];
 			} else {
 				[self hideHUD:YES];
@@ -355,19 +342,6 @@ FDAskForMoreCollectionSupplementaryViewDelegate
 		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
 		[self.navigationController presentViewController:navigationController animated:YES completion:nil];
 	}
-}
-
-#pragma mark - FDAskForMoreCollectionSupplementaryViewDelegate
-
-- (void)askForMore
-{
-	NSLog(@"ask for more");
-	NSInteger erveryAskNumber = 2;
-	_tweetsCount += erveryAskNumber;
-	[self fixAskMoreTweetsCount];
-	[self fetchTweets:^{
-		[_photosCollectionView reloadData];
-	}];
 }
 
 #pragma mark - UINavigationControllerDelegate

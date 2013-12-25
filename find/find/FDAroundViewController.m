@@ -48,7 +48,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.view.backgroundColor = [UIColor whiteColor];
+	//self.view.backgroundColor = [UIColor whiteColor];
 
 	CGRect frame = self.view.bounds;
 	frame.size.height += 30;//故意的，这样拉不到底，用户会尝试去拉到底，然后就会刷新
@@ -84,8 +84,8 @@
 			}
 			_tweets = [FDTweet createMutableWithData:tweetsData];
 			[_photosCollectionView reloadData];
-			[_spinner stopAnimating];
 		}
+		[_spinner stopAnimating];
 	}];
 }
 
