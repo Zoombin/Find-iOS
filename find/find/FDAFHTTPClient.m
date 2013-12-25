@@ -675,4 +675,19 @@ static NSString *token;
 	NSLog(@"exchange: %@", stuffID);
 }
 
+- (void)changePassword:(NSString *)newPassword newPasswordConfirm:(NSString *)newPasswordConfirm oldPassword:(NSString *)oldPassword withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+{
+	NSString *path = [NSString stringWithFormat:@"editpwd"];
+	
+	[self postPath:path parameters:@{@"password" : newPassword, @"apassword" : newPasswordConfirm, @"opassword" : oldPassword} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]]);
+		}
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		if (block) block (NO, [FDErrorMessage messageNetworkError]);
+	}];
+}
+
+
 @end

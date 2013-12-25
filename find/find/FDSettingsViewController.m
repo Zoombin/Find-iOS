@@ -9,6 +9,7 @@
 #import "FDSettingsViewController.h"
 #import "FDWebViewController.h"
 #import "FDAdviseViewController.h"
+#import "FDChangePasswordViewController.h"
 
 @interface FDSettingsViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
@@ -72,7 +73,7 @@
 	_dataSource[section] = @{kIcon: @"IconAdvise", kTitle : NSLocalizedString(@"意见与反馈", nil), kPushTargetClass : NSStringFromClass([FDAdviseViewController class])};
 	section++;
 	
-	_dataSource[section] = @{kIcon: @"IconAdvise", kTitle : NSLocalizedString(@"修改密码", nil), kPushTargetClass : NSStringFromClass([FDAdviseViewController class])};
+	_dataSource[section] = @{kIcon: @"IconAdvise", kTitle : NSLocalizedString(@"修改密码", nil), kPushTargetClass : NSStringFromClass([FDChangePasswordViewController class])};
 	section++;
 }
 

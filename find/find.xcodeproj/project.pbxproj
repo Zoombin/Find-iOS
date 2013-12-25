@@ -32,6 +32,7 @@
 		770D86C618584566001CCA47 /* ZBTextValidate.m in Sources */ = {isa = PBXBuildFile; fileRef = 770D86B518584566001CCA47 /* ZBTextValidate.m */; };
 		770D86C718584566001CCA47 /* ZBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770D86B718584566001CCA47 /* ZBViewController.m */; };
 		771453E7186AA1B000CCE7A8 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 771453E4186AA1B000CCE7A8 /* libWeChatSDK.a */; };
+		771453EA186AB90C00CCE7A8 /* FDChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771453E9186AB90C00CCE7A8 /* FDChangePasswordViewController.m */; };
 		772AF353182752E000714745 /* find.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 772AF352182752E000714745 /* find.storyboard */; };
 		772B3D42182F92B9004B1653 /* UITableViewCell+Find.m in Sources */ = {isa = PBXBuildFile; fileRef = 772B3D41182F92B9004B1653 /* UITableViewCell+Find.m */; };
 		77338E7F18090184006DEC3D /* FDErrorMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 77338E7E18090184006DEC3D /* FDErrorMessage.m */; };
@@ -195,6 +196,8 @@
 		771453E4186AA1B000CCE7A8 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		771453E5186AA1B000CCE7A8 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		771453E6186AA1B000CCE7A8 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		771453E8186AB90C00CCE7A8 /* FDChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDChangePasswordViewController.h; sourceTree = "<group>"; };
+		771453E9186AB90C00CCE7A8 /* FDChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDChangePasswordViewController.m; sourceTree = "<group>"; };
 		772AF352182752E000714745 /* find.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = find.storyboard; sourceTree = "<group>"; };
 		772B3D40182F92B9004B1653 /* UITableViewCell+Find.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableViewCell+Find.h"; path = "find/UITableViewCell+Find.h"; sourceTree = "<group>"; };
 		772B3D41182F92B9004B1653 /* UITableViewCell+Find.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableViewCell+Find.m"; path = "find/UITableViewCell+Find.m"; sourceTree = "<group>"; };
@@ -631,6 +634,8 @@
 				7798B32A1844C9F100CCA964 /* FDSettingsViewController.m */,
 				777A692B184DDFBF00B903C1 /* FDWebViewController.h */,
 				777A692C184DDFBF00B903C1 /* FDWebViewController.m */,
+				771453E8186AB90C00CCE7A8 /* FDChangePasswordViewController.h */,
+				771453E9186AB90C00CCE7A8 /* FDChangePasswordViewController.m */,
 				77F9142B186925BE007CCFD2 /* FDForgotPasswordViewController.h */,
 				77F9142C186925BE007CCFD2 /* FDForgotPasswordViewController.m */,
 				77A5F7C017CB22960073E7F9 /* Images.xcassets */,
@@ -1049,6 +1054,7 @@
 				77E94B4B182A3E1B0017FF8E /* FDVote+Test.m in Sources */,
 				77C0C8E017CDE32C008C7FC7 /* ZBQNAFHTTPClient.m in Sources */,
 				77B6397F1810E14F00AE8526 /* FDThemeHeaderView.m in Sources */,
+				771453EA186AB90C00CCE7A8 /* FDChangePasswordViewController.m in Sources */,
 				774628CF183CA0530088BD61 /* FDInformation.m in Sources */,
 				777E5E1E17D97A98005AFB67 /* FDThemeCell.m in Sources */,
 				77C0C8DD17CDDE6A008C7FC7 /* ZBQNPutPolicy.m in Sources */,

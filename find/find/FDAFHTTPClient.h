@@ -103,6 +103,9 @@
 //申请兑换实体礼物
 - (void)exchangeRealStuff:(NSNumber *)stuffID withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
 
+//修改密码
+- (void)changePassword:(NSString *)newPassword newPasswordConfirm:(NSString *)newPasswordConfirm oldPassword:(NSString *)oldPassword withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
+
 //test gzip
 - (void)test;
 
