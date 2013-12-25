@@ -111,6 +111,7 @@ CLLocationManagerDelegate
 		[[FDAFHTTPClient shared] tweetsPublished:nil limit:@(_tweetsCount) withCompletionBlock:^(BOOL success, NSString *message, NSNumber *published, NSArray *tweetsData) {
 			if (success) {
 				if (tweetsData.count == currentCount) {
+					[self displayHUDTitle:NSLocalizedString(@"已经显示全部", nil) message:nil duration:0.5];
 					_noMore = YES;
 					_photosCollectionView.frame = self.view.bounds;
 				}

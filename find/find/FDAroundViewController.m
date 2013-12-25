@@ -87,6 +87,7 @@
 	[[FDAFHTTPClient shared] aroundPhotosAtLocation:_location limit:@(_tweets.count + 8) distance:nil withCompletionBlock:^(BOOL success, NSString *message, NSArray *tweetsData, NSNumber *distance) {
 		if (success) {
 			if (tweetsData.count == currentCount) {
+				[self displayHUDTitle:NSLocalizedString(@"已经显示全部", nil) message:nil duration:0.5];
 				_noMore = YES;
 				_photosCollectionView.frame = self.view.bounds;
 			}
