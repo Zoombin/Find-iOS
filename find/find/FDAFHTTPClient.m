@@ -105,6 +105,10 @@ static NSString *token;
 - (void)signout
 {
 	token = nil;
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:userDefaultKeyUserID];
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:userDefaultKeyAccount];
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:userDefaultKeyToken];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)printResponseObject:(id)responseObject

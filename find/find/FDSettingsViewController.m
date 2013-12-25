@@ -38,20 +38,6 @@
 	_tableView.delegate = self;
 	[self.view addSubview:_tableView];
 	
-	UIView *tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _tableView.bounds.size.width, 55)];
-	
-	UIButton *signoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	[signoutButton setTitle:NSLocalizedString(@"退出登录", nil) forState:UIControlStateNormal];
-	signoutButton.showsTouchWhenHighlighted = YES;
-	[signoutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	[signoutButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-	[signoutButton setBackgroundColor:[UIColor fdThemeRed]];
-	signoutButton.frame = CGRectMake(10, 10, tableFooterView.bounds.size.width - 2 * 10, 35);
-	[signoutButton addTarget:self action:@selector(willSignout) forControlEvents:UIControlEventTouchUpInside];
-	[tableFooterView addSubview:signoutButton];
-	
-	_tableView.tableFooterView = tableFooterView;
-	
 	_dataSource = [NSMutableArray array];
 	
 	NSInteger section = 0;
@@ -73,8 +59,24 @@
 	_dataSource[section] = @{kIcon: @"IconAdvise", kTitle : NSLocalizedString(@"意见与反馈", nil), kPushTargetClass : NSStringFromClass([FDAdviseViewController class])};
 	section++;
 	
-	_dataSource[section] = @{kIcon: @"IconAdvise", kTitle : NSLocalizedString(@"修改密码", nil), kPushTargetClass : NSStringFromClass([FDChangePasswordViewController class])};
-	section++;
+	if ([[FDAFHTTPClient shared] isSessionValid]) {
+		_dataSource[section] = @{kIcon: @"IconAdvise", kTitle : NSLocalizedString(@"修改密码", nil), kPushTargetClass : NSStringFromClass([FDChangePasswordViewController class])};
+		section++;
+		
+		UIView *tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _tableView.bounds.size.width, 55)];
+		
+		UIButton *signoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		[signoutButton setTitle:NSLocalizedString(@"退出登录", nil) forState:UIControlStateNormal];
+		signoutButton.showsTouchWhenHighlighted = YES;
+		[signoutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+		[signoutButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+		[signoutButton setBackgroundColor:[UIColor fdThemeRed]];
+		signoutButton.frame = CGRectMake(10, 10, tableFooterView.bounds.size.width - 2 * 10, 35);
+		[signoutButton addTarget:self action:@selector(willSignout) forControlEvents:UIControlEventTouchUpInside];
+		[tableFooterView addSubview:signoutButton];
+		
+		_tableView.tableFooterView = tableFooterView;
+	}
 }
 
 - (void)willSignout
@@ -85,9 +87,11 @@
 
 - (void)signout
 {
-	//[[FDAFHTTPClient shared] signout];
-	NSLog(@"signout");
-	//TODO: should have notifications
+	[[FDAFHTTPClient shared] signout];
+	[[NSNotificationCenter defaultCenter] postNotificationName:SIGNOUT_NOTIFICATION_IDENTIFIER object:nil];
+	_tableView.tableFooterView = nil;
+	[_dataSource removeLastObject];//修改密码
+	[_tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning

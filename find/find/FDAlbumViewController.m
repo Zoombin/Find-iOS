@@ -76,6 +76,8 @@ CLLocationManagerDelegate
 	_photosCollectionView.dataSource = self;
 	[self.view addSubview:_photosCollectionView];
 
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSignout) name:SIGNOUT_NOTIFICATION_IDENTIFIER object:nil];
+	
 	NSInteger firstLoadNumber = 14;
 	_tweetsCount = firstLoadNumber;
 	[self fixAskMoreTweetsCount];
@@ -176,11 +178,22 @@ CLLocationManagerDelegate
 	}];
 }
 
+- (void)didSignout
+{
+	_tweets = nil;
+	_tweetsCount = 0;
+	_noMore = NO;
+	[_photosCollectionView reloadData];
+}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:SIGNOUT_NOTIFICATION_IDENTIFIER object:nil];
 }
 
 #pragma mark - PSUICollectionViewDelegate
@@ -206,9 +219,9 @@ CLLocationManagerDelegate
 		[cell hideDetails];
 		FDTweet *tweet = _tweets[indexPath.row - 1];
 		cell.tweet = tweet;
+		//cell.delegate = self;
 		return cell;
 	}
-	//cell.delegate = self;
 }
 
 - (void)collectionView:(PSUICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

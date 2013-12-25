@@ -113,6 +113,7 @@ NSString *kSettings = @"kSettings";
 	[self displayHUD:NSLocalizedString(@"Loading...", nil)];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchProfileThenReloadTableView) name:ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSignout) name:SIGNOUT_NOTIFICATION_IDENTIFIER object:nil];
 	
 	[self fetchProfile:^{
 		[self hideHUD:YES];
@@ -123,6 +124,13 @@ NSString *kSettings = @"kSettings";
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
+}
+
+- (void)didSignout
+{
+	_userProfile = nil;
+	_dataSource[0] = _loginSectionData;
+	[_tableView reloadData];
 }
 
 - (void)fetchProfileThenReloadTableView
@@ -151,6 +159,7 @@ NSString *kSettings = @"kSettings";
 - (void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:SIGNOUT_NOTIFICATION_IDENTIFIER object:nil];
 }
 
 #pragma mark - UITableViewDelegate
