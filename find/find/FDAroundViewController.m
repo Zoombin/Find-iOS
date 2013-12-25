@@ -64,6 +64,10 @@
 	_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	_locationManager.delegate = self;
 	[_locationManager startUpdatingLocation];
+	
+#if TARGET_IPHONE_SIMULATOR
+	[self fetchAroundPhotos];
+#endif
 }
 
 - (void)fetchAroundPhotos
@@ -76,6 +80,10 @@
 	}
 	[_spinner startAnimating];
 	NSInteger currentCount = _tweets.count;
+
+#if TARGET_IPHONE_SIMULATOR
+	_location = [CLLocation fakeLocation];
+#endif
 	[[FDAFHTTPClient shared] aroundPhotosAtLocation:_location limit:@(_tweets.count + 8) distance:nil withCompletionBlock:^(BOOL success, NSString *message, NSArray *tweetsData, NSNumber *distance) {
 		if (success) {
 			if (tweetsData.count == currentCount) {
