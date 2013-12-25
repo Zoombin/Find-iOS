@@ -50,7 +50,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
 		[self setLeftBarButtonItemAsBackButton];
-		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ProfileInfo"] style:UIBarButtonItemStylePlain target:self action:@selector(pushToProfile)];
+		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Profile"] style:UIBarButtonItemStylePlain target:self action:@selector(pushToProfile)];
     }
     return self;
 }
@@ -349,6 +349,11 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	}];
 }
 
+- (void)share
+{
+	NSLog(@"share");
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -413,17 +418,30 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 				imageView.frame = newFrame;
 				_heightOfPhoto = newFrame.size.height;
 				[tableView reloadData];
+				
+				UIButton *reportButton = [UIButton buttonWithType:UIButtonTypeCustom];
+				reportButton.frame = CGRectMake(CGRectGetWidth(imageView.frame) - 35, 5, 30, 30);
+				[reportButton setImage:[UIImage imageNamed:@"Report"] forState:UIControlStateNormal];
+				[reportButton setImage:[UIImage imageNamed:@"ReportHighlighted"] forState:UIControlStateHighlighted];
+				[reportButton addTarget:self action:@selector(report) forControlEvents:UIControlEventTouchUpInside];
+				[imageView addSubview:reportButton];
+				
+				UIButton *profileButton = [UIButton buttonWithType:UIButtonTypeCustom];
+				profileButton.frame = CGRectMake(5, CGRectGetHeight(imageView.frame) - 55, 50, 50);
+				[profileButton setImage:[UIImage imageNamed:@"Profile"] forState:UIControlStateNormal];
+				[profileButton addTarget:self action:@selector(pushToProfile) forControlEvents:UIControlEventTouchUpInside];
+				[imageView addSubview:profileButton];
+				
+				UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
+				shareButton.frame = CGRectMake(CGRectGetMinX(profileButton.frame), CGRectGetMinY(profileButton.frame) - 55, 50, 50);
+				[shareButton setImage:[UIImage imageNamed:@"Share"] forState:UIControlStateNormal];
+				[shareButton addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
+				[imageView addSubview:shareButton];
+				
 			} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
 				
 			}];
 			[cell.contentView addSubview:imageView];
-			
-			UIButton *reportButton = [UIButton buttonWithType:UIButtonTypeCustom];
-			reportButton.frame = CGRectMake(CGRectGetWidth(imageView.frame) - 35, 5, 30, 30);
-			[reportButton setImage:[UIImage imageNamed:@"Report"] forState:UIControlStateNormal];
-			[reportButton setImage:[UIImage imageNamed:@"ReportHighlighted"] forState:UIControlStateHighlighted];
-			[reportButton addTarget:self action:@selector(report) forControlEvents:UIControlEventTouchUpInside];
-			[imageView addSubview:reportButton];
 		}
 		[self maximumContentSize:tableView];
 		return cell;
