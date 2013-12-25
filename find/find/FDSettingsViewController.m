@@ -54,22 +54,22 @@
 	_dataSource = [NSMutableArray array];
 	
 	NSInteger section = 0;
-	_dataSource[section] = @{kIcon: @"IconAlbum", kTitle : NSLocalizedString(@"推送", nil), kPushTargetClass : NSStringFromClass([FDWebViewController class]), kWebViewPath : @"http://www.baidu.com"};
+	_dataSource[section] = @{kIcon: @"IconPush", kTitle : NSLocalizedString(@"推送", nil), kPushTargetClass : NSStringFromClass([FDWebViewController class]), kWebViewPath : @"http://www.baidu.com"};
 	section++;
 	
-	_dataSource[section] = @{kIcon: @"IconAlbum", kTitle : NSLocalizedString(@"定位", nil), kPushTargetClass : NSStringFromClass([FDWebViewController class]), kWebViewPath : @"http://www.google.com"};
+	_dataSource[section] = @{kIcon: @"IconLocal", kTitle : NSLocalizedString(@"定位", nil), kPushTargetClass : NSStringFromClass([FDWebViewController class]), kWebViewPath : @"http://www.google.com"};
 	section++;
 	
-	_dataSource[section] = @{kIcon: @"IconAlbum", kTitle : NSLocalizedString(@"功能介绍", nil), kPushTargetClass : NSStringFromClass([FDWebViewController class]), kWebViewPath : @"http://www.apple.com.cn"};
+	_dataSource[section] = @{kIcon: @"IconIntroduce", kTitle : NSLocalizedString(@"功能介绍", nil), kPushTargetClass : NSStringFromClass([FDWebViewController class]), kWebViewPath : @"http://www.apple.com.cn"};
 	section++;
 	
-	_dataSource[section] = @{kIcon: @"IconAlbum", kTitle : NSLocalizedString(@"系统通知", nil), kPushTargetClass : NSStringFromClass([FDWebViewController class]), kWebViewPath : @"http://www.sina.com"};
+	_dataSource[section] = @{kIcon: @"IconNotice", kTitle : NSLocalizedString(@"系统通知", nil), kPushTargetClass : NSStringFromClass([FDWebViewController class]), kWebViewPath : @"http://www.sina.com"};
 	section++;
 	
-	_dataSource[section] = @{kIcon: @"IconAlbum", kTitle : NSLocalizedString(@"招募合伙人", nil), kPushTargetClass : NSStringFromClass([FDWebViewController class]), kWebViewPath : @"http://www.qq.com"};
+	_dataSource[section] = @{kIcon: @"IconEnroll", kTitle : NSLocalizedString(@"招募合伙人", nil), kPushTargetClass : NSStringFromClass([FDWebViewController class]), kWebViewPath : @"http://www.qq.com"};
 	section++;
 	
-	_dataSource[section] = @{kIcon: @"IconAlbum", kTitle : NSLocalizedString(@"意见与反馈", nil), kPushTargetClass : NSStringFromClass([FDAdviseViewController class])};
+	_dataSource[section] = @{kIcon: @"IconAdvise", kTitle : NSLocalizedString(@"意见与反馈", nil), kPushTargetClass : NSStringFromClass([FDAdviseViewController class])};
 	section++;
 }
 
