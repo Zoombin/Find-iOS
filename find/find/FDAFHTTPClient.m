@@ -463,9 +463,17 @@ static NSString *token;
 	}];
 }
 
+- (void)reportTweet:(NSNumber *)tweetID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+{
+	NSString *path = [NSString stringWithFormat:@"tweet/%@/report", tweetID];
+	[self report:path withCompletionBlock:^(BOOL success, NSString *message) {
+		if (block) block(success, message);
+	}];
+}
+
 - (void)reportPhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
 {
-	NSString *path = [NSString stringWithFormat:@"tweet/%@/report", photoID];
+	NSString *path = [NSString stringWithFormat:@"photo/%@/report", photoID];
 	[self report:path withCompletionBlock:^(BOOL success, NSString *message) {
 		if (block) block(success, message);
 	}];

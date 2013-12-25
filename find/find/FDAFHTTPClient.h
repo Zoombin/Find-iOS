@@ -59,8 +59,10 @@
 
 - (void)themeContent:(NSNumber *)themeID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *themeContentData, NSDictionary *themeAttributes))block;
 
+//举报
 - (void)reportComment:(NSNumber *)commentID withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
 - (void)reportUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
+- (void)reportTweet:(NSNumber *)tweetID withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
 - (void)reportPhoto:(NSNumber *)photoID withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
 
 
