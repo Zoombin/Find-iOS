@@ -342,10 +342,11 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 
 - (void)report
 {
-	NSLog(@"report");
-//	[[FDAFHTTPClient shared] reportPhoto:_photo.ID withCompletionBlock:^(BOOL success, NSString *message) {
-//		
-//	}];
+	[[FDAFHTTPClient shared] reportPhoto:_photo.ID withCompletionBlock:^(BOOL success, NSString *message) {
+		if (success) {
+			[self displayHUDTitle:NSLocalizedString(@"举报成功", nil) message:NSLocalizedString(@"我们会尽快处理!", nil) duration:0.5];
+		}
+	}];
 }
 
 - (void)didReceiveMemoryWarning
