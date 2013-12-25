@@ -82,7 +82,8 @@
 		startPoint.y = CGRectGetMinY(tweetCommentButton.frame);
 		
 		UIButton *reportButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		[reportButton setImage:[UIImage imageNamed:@"Report"] forState:UIControlStateNormal];
+		[reportButton setImage:[UIImage imageNamed:@"ReportComment"] forState:UIControlStateNormal];
+		[reportButton setImage:[UIImage imageNamed:@"ReportCommentHighlighted"] forState:UIControlStateHighlighted];
 //		reportButton.backgroundColor = [UIColor randomColor];
 		reportButton.contentMode = UIViewContentModeCenter;
 		reportButton.showsTouchWhenHighlighted = YES;

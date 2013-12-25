@@ -49,7 +49,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		//[self setLeftBarButtonItemAsBackButtonToRoot];
+		[self setLeftBarButtonItemAsBackButton];
 		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ProfileInfo"] style:UIBarButtonItemStylePlain target:self action:@selector(pushToProfile)];
     }
     return self;
@@ -340,6 +340,14 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 	[self.navigationController pushViewController:profileViewController animated:YES];
 }
 
+- (void)report
+{
+	NSLog(@"report");
+//	[[FDAFHTTPClient shared] reportPhoto:_photo.ID withCompletionBlock:^(BOOL success, NSString *message) {
+//		
+//	}];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -389,6 +397,7 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 			cell.selectionStyle = UITableViewCellSelectionStyleNone;
 			NSURLRequest *request = [NSURLRequest requestWithURL:[_photo urlScaleFitWidth:self.view.bounds.size.width * 2]];
 			UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+			imageView.userInteractionEnabled = YES;
 			imageView.contentMode = UIViewContentModeTop | UIViewContentModeCenter | UIViewContentModeScaleAspectFit;
 			[imageView setImageWithURLRequest:request placeholderImage:nil success:nil failure:nil];
 			[[[UIImageView alloc] init] setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
@@ -407,6 +416,13 @@ static NSString *keyOfDataSource = @"keyOfDataSource";
 				
 			}];
 			[cell.contentView addSubview:imageView];
+			
+			UIButton *reportButton = [UIButton buttonWithType:UIButtonTypeCustom];
+			reportButton.frame = CGRectMake(CGRectGetWidth(imageView.frame) - 35, 5, 30, 30);
+			[reportButton setImage:[UIImage imageNamed:@"Report"] forState:UIControlStateNormal];
+			[reportButton setImage:[UIImage imageNamed:@"ReportHighlighted"] forState:UIControlStateHighlighted];
+			[reportButton addTarget:self action:@selector(report) forControlEvents:UIControlEventTouchUpInside];
+			[imageView addSubview:reportButton];
 		}
 		[self maximumContentSize:tableView];
 		return cell;
