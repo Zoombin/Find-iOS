@@ -37,7 +37,7 @@ UIPickerViewDataSource
 
 @property (readwrite) FDUserProfile *userProfile;
 @property (readwrite) UITableView *tableView;
-@property (readwrite) NSMutableDictionary *dataSourceDictionary;
+@property (readwrite) NSMutableArray *dataSource;
 @property (readwrite) UIPickerView *pickerView;
 @property (readwrite) NSMutableDictionary *pickerDataSource;
 @property (readwrite) NSString *identifierOfSelectedCell;
@@ -81,7 +81,7 @@ UIPickerViewDataSource
 	_tableView.dataSource = self;
 	[self.view addSubview:_tableView];
 	
-	_dataSourceDictionary = [NSMutableDictionary dictionary];
+	_dataSource = [NSMutableArray array];
 	_pickerDataSource = [NSMutableDictionary dictionary];
 	
 	NSInteger section = 0;
@@ -96,13 +96,13 @@ UIPickerViewDataSource
 				  
 				  @{kIdentifier : kProfileGender, kIcon : @"IconGender", kTitle : NSLocalizedString(@"Gender", nil)},
 				  ];
-	_dataSourceDictionary[@(section)] = sectionData;
+	_dataSource[section] = sectionData;
 	section++;
 	
 	sectionData = @[
 				  @{kIdentifier : kProfileShape, kHeightOfCell : @(33)},
 					];
-	_dataSourceDictionary[@(section)] = sectionData;
+	_dataSource[section] = sectionData;
 	section++;
 	
 	sectionData = @[
@@ -115,7 +115,7 @@ UIPickerViewDataSource
 				  @{kIdentifier : kProfileAddress, kIcon : @"IconLocation", kTitle : NSLocalizedString(@"Address", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
 				  
 				  ];
-	_dataSourceDictionary[@(section)] = sectionData;
+	_dataSource[section] = sectionData;
 	section++;
 
 
@@ -412,17 +412,17 @@ UIPickerViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return _dataSourceDictionary.allKeys.count;
+	return _dataSource.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [_dataSourceDictionary[@(section)] count];
+	return [_dataSource[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSString *identifier = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kIdentifier];
+	NSString *identifier = _dataSource[indexPath.section][indexPath.row][kIdentifier];
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 	static CGFloat rightMargin;
 	rightMargin = _bMyself ? 35 : 15;
@@ -434,7 +434,7 @@ UIPickerViewDataSource
 	
 	if ([identifier isEqualToString:kProfileAvatar]) {
 		CGSize avatarSize = [FDAvatarView bigSize];
-		NSNumber *heightOfCell = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kHeightOfCell];
+		NSNumber *heightOfCell = _dataSource[indexPath.section][indexPath.row][kHeightOfCell];
 		CGRect frame = CGRectMake(tableView.bounds.size.width - avatarSize.width - rightMargin, (heightOfCell.floatValue - avatarSize.height) / 2, avatarSize.width, avatarSize.height);
 		_avatar = [[FDAvatarView alloc] initWithFrame:frame];
 		_avatar.imagePath = _userProfile.avatarPath;
@@ -476,7 +476,7 @@ UIPickerViewDataSource
 				if (!privacyInfoLabel) {
 					privacyInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, 120, cell.bounds.size.height)];
 					privacyInfoLabel.backgroundColor = [UIColor clearColor];
-					privacyInfoLabel.backgroundColor = [UIColor randomColor];//TODO
+					//privacyInfoLabel.backgroundColor = [UIColor randomColor];//TODO
 					privacyInfoLabel.font = [UIFont fdThemeFontOfSize:14];
 					privacyInfoLabel.textAlignment = NSTextAlignmentCenter;
 					privacyInfoLabel.tag = tagOfPrivacyLabel;
@@ -487,16 +487,16 @@ UIPickerViewDataSource
 		}
 	}
 		
-	NSString *title = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kTitle];
+	NSString *title = _dataSource[indexPath.section][indexPath.row][kTitle];
 	if (title) {
 		cell.textLabel.text = title;
 		cell.textLabel.font = [UIFont fdThemeFontOfSize:16];
 	}
 
-	cell.textLabel.text = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kTitle];
+	cell.textLabel.text = _dataSource[indexPath.section][indexPath.row][kTitle];
 	cell.textLabel.font = [UIFont fdThemeFontOfSize:16];
 
-	NSString *iconName = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kIcon];
+	NSString *iconName = _dataSource[indexPath.section][indexPath.row][kIcon];
 	if (iconName) {
 		cell.imageView.image = [UIImage imageNamed:iconName];
 	}	
@@ -505,7 +505,7 @@ UIPickerViewDataSource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSNumber *height = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kHeightOfCell];
+	NSNumber *height = _dataSource[indexPath.section][indexPath.row][kHeightOfCell];
 	if (height) {
 		return height.floatValue;
 	}
@@ -537,13 +537,13 @@ UIPickerViewDataSource
 		_shapeSegmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment;
 		return;
 	}
-	NSString *identifier = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kIdentifier];
+	NSString *identifier = _dataSource[indexPath.section][indexPath.row][kIdentifier];
 	if (!_pickerDataSource[identifier]) {
 		[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	}
 	
 	if (_bMyself) {
-		SEL action = NSSelectorFromString(_dataSourceDictionary[@(indexPath.section)][indexPath.row][kAction]);
+		SEL action = NSSelectorFromString(_dataSource[indexPath.section][indexPath.row][kAction]);
 		if (action) {
 			[self performSelector:action withObject:identifier afterDelay:0];
 		}

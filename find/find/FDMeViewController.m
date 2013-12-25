@@ -28,7 +28,7 @@ NSString *kSettings = @"kSettings";
 
 @property (readwrite) FDUserProfile *userProfile;
 @property (readwrite) UITableView *tableView;
-@property (readwrite) NSMutableDictionary *dataSourceDictionary;
+@property (readwrite) NSMutableArray *dataSource;
 @property (readwrite) NSArray *meSectionData;
 @property (readwrite) NSArray *loginSectionData;
 
@@ -66,13 +66,13 @@ NSString *kSettings = @"kSettings";
 	_tableView.dataSource = self;
 	[self.view addSubview:_tableView];
 	
-	_dataSourceDictionary = [NSMutableDictionary dictionary];
+	_dataSource = [NSMutableArray array];
 	
 	NSInteger section = 0;
 	NSArray *sectionData;
 	
 	_meSectionData = @[
-					   @{kIdentifier : kMyProfile, kCellClass : [FDMeCell class], kTitle : NSLocalizedString(@"My Profile", nil), kHeightOfCell : @([FDMeCell height]), kPushTargetClass : NSStringFromClass([FDProfileViewController class])},
+					   @{kIdentifier : kMyProfile, kCellClass : [FDMeCell class], kHeightOfCell : @([FDMeCell height]), kPushTargetClass : NSStringFromClass([FDProfileViewController class])},
 					   ];
 	_loginSectionData = @[
 						  @{kIdentifier : kLogin, kCellClass : [FDSessionInvalidCell class], kHeightOfCell : @([FDSessionInvalidCell height]), kPresentTargetClass : NSStringFromClass([FDSignupViewController class])},
@@ -83,11 +83,11 @@ NSString *kSettings = @"kSettings";
 	} else {
 		sectionData = _loginSectionData;
 	}
-	_dataSourceDictionary[@(section)] = sectionData;
+	_dataSource[section] = sectionData;
 	section++;
 	
 	sectionData = @[
-					@{kIdentifier : kMyAlbum, kIcon : @"IconAlbum", kTitle : NSLocalizedString(@"My Album", nil), kNeedSigninAlert : @(YES), kPushTargetClass : NSStringFromClass([FDAlbumViewController class])},
+					@{kIdentifier : kMyAlbum, kIcon : @"IconAlbum", kTitle : NSLocalizedString(@"My Album", nil), kPushTargetClass : NSStringFromClass([FDAlbumViewController class])},
 					
 					@{kIdentifier : kMyWealth, kIcon : @"IconWealth", kTitle : NSLocalizedString(@"My Properties", nil), kNeedSigninAlert : @(YES)},
 					
@@ -95,19 +95,19 @@ NSString *kSettings = @"kSettings";
 					
 					@{kIdentifier : kMyMessages, kIcon : @"IconMessages", kTitle : NSLocalizedString(@"My Messages", nil), kNeedSigninAlert : @(YES)},
 				  ];
-	_dataSourceDictionary[@(section)] = sectionData;
+	_dataSource[section] = sectionData;
 	section++;
 	
 	sectionData = @[
 				  @{kIdentifier : kStore, kIcon : @"IconStore", kTitle : NSLocalizedString(@"Store", nil), kPushTargetClass : NSStringFromClass([FDStoreViewController class])},
 				  ];
-	_dataSourceDictionary[@(section)] = sectionData;
+	_dataSource[section] = sectionData;
 	section++;
 	
 	sectionData = @[
 				  @{kIdentifier : kSettings, kIcon : @"IconSettings", kTitle : NSLocalizedString(@"Settings", nil), kPushTargetClass : NSStringFromClass([FDSettingsViewController class])},
 				  ];
-	_dataSourceDictionary[@(section)] = sectionData;
+	_dataSource[section] = sectionData;
 	section++;
 	
 	[self displayHUD:NSLocalizedString(@"Loading...", nil)];
@@ -127,7 +127,7 @@ NSString *kSettings = @"kSettings";
 
 - (void)fetchProfileThenReloadTableView
 {
-	_dataSourceDictionary[@(0)] = _meSectionData;
+	_dataSource[0] = _meSectionData;
 	[self fetchProfile:^{
 		[_tableView reloadData];
 	}];
@@ -167,17 +167,17 @@ NSString *kSettings = @"kSettings";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return _dataSourceDictionary.allKeys.count;
+	return _dataSource.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [_dataSourceDictionary[@(section)] count];
+	return [_dataSource[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSString *identifier = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kIdentifier];
+	NSString *identifier = _dataSource[indexPath.section][indexPath.row][kIdentifier];
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 	if (!cell) {
 		if ([identifier isEqualToString:kLogin]) {
@@ -199,10 +199,10 @@ NSString *kSettings = @"kSettings";
 		}
 	}
 	
-	cell.textLabel.text = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kTitle];
+	cell.textLabel.text = _dataSource[indexPath.section][indexPath.row][kTitle];
 	cell.textLabel.font = [UIFont fdThemeFontOfSize:16];
 	
-	NSString *iconName = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kIcon];
+	NSString *iconName = _dataSource[indexPath.section][indexPath.row][kIcon];
 	if (iconName) {
 		cell.imageView.image = [UIImage imageNamed:iconName];
 	}
@@ -211,7 +211,7 @@ NSString *kSettings = @"kSettings";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSNumber *height = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kHeightOfCell];
+	NSNumber *height = _dataSource[indexPath.section][indexPath.row][kHeightOfCell];
 	if (height) {
 		return height.floatValue;
 	}
@@ -222,13 +222,13 @@ NSString *kSettings = @"kSettings";
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
-	NSNumber *needSigninAlert = _dataSourceDictionary[@(indexPath.section)][indexPath.row][kNeedSigninAlert];
+	NSNumber *needSigninAlert = _dataSource[indexPath.section][indexPath.row][kNeedSigninAlert];
 	if (needSigninAlert.boolValue && ![[FDAFHTTPClient shared] isSessionValid]) {
-		[self displayHUDTitle:NSLocalizedString(@"Need Signin", nil) message:NSLocalizedString(@"You have to signin first!", nil)];
+		[self displayHUDTitle:NSLocalizedString(@"需要登录", nil) message:NSLocalizedString(@"需要登录后才能继续！", nil)];
 		return;
 	}
 	
-	Class class = NSClassFromString(_dataSourceDictionary[@(indexPath.section)][indexPath.row][kPushTargetClass]);
+	Class class = NSClassFromString(_dataSource[indexPath.section][indexPath.row][kPushTargetClass]);
 	if (class) {
 		UIViewController *viewController = [[class alloc] init];
 		//viewController.hidesBottomBarWhenPushed = YES;
@@ -236,7 +236,7 @@ NSString *kSettings = @"kSettings";
 		return;
 	}
 	
-	class = NSClassFromString(_dataSourceDictionary[@(indexPath.section)][indexPath.row][kPresentTargetClass]);
+	class = NSClassFromString(_dataSource[indexPath.section][indexPath.row][kPresentTargetClass]);
 	if (class) {
 		UIViewController *viewController = [[class alloc] init];
 		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
