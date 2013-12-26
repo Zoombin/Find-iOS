@@ -60,7 +60,7 @@
 	section++;
 	
 	if ([[FDAFHTTPClient shared] isSessionValid]) {
-		_dataSource[section] = @{kIcon: @"IconAdvise", kTitle : NSLocalizedString(@"修改密码", nil), kPushTargetClass : NSStringFromClass([FDChangePasswordViewController class])};
+		_dataSource[section] = @{kIcon: @"IconChangePassword", kTitle : NSLocalizedString(@"修改密码", nil), kPushTargetClass : NSStringFromClass([FDChangePasswordViewController class])};
 		section++;
 		
 		UIView *tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _tableView.bounds.size.width, 55)];
