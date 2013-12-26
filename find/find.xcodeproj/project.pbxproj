@@ -36,6 +36,8 @@
 		772AF353182752E000714745 /* find.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 772AF352182752E000714745 /* find.storyboard */; };
 		772B3D42182F92B9004B1653 /* UITableViewCell+Find.m in Sources */ = {isa = PBXBuildFile; fileRef = 772B3D41182F92B9004B1653 /* UITableViewCell+Find.m */; };
 		77338E7F18090184006DEC3D /* FDErrorMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 77338E7E18090184006DEC3D /* FDErrorMessage.m */; };
+		77343058186BC79A0091FCB1 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77343055186BC79A0091FCB1 /* libMobClickLibrary.a */; };
+		77343059186BC79A0091FCB1 /* libMobClickLibrary_armv6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77343056186BC79A0091FCB1 /* libMobClickLibrary_armv6.a */; };
 		7734ACCE17D85368003E7BB6 /* FDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACCD17D85368003E7BB6 /* FDUser.m */; };
 		7734ACD117D85605003E7BB6 /* FDUser+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACD017D85605003E7BB6 /* FDUser+Test.m */; };
 		7734ACD417D8562F003E7BB6 /* FDPhoto+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACD317D8562F003E7BB6 /* FDPhoto+Test.m */; };
@@ -203,6 +205,9 @@
 		772B3D41182F92B9004B1653 /* UITableViewCell+Find.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableViewCell+Find.m"; path = "find/UITableViewCell+Find.m"; sourceTree = "<group>"; };
 		77338E7D18090184006DEC3D /* FDErrorMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDErrorMessage.h; path = find/FDErrorMessage.h; sourceTree = "<group>"; };
 		77338E7E18090184006DEC3D /* FDErrorMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDErrorMessage.m; path = find/FDErrorMessage.m; sourceTree = "<group>"; };
+		77343055186BC79A0091FCB1 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		77343056186BC79A0091FCB1 /* libMobClickLibrary_armv6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary_armv6.a; sourceTree = "<group>"; };
+		77343057186BC79A0091FCB1 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		7734ACCC17D85368003E7BB6 /* FDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDUser.h; path = find/FDUser.h; sourceTree = "<group>"; };
 		7734ACCD17D85368003E7BB6 /* FDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDUser.m; path = find/FDUser.m; sourceTree = "<group>"; };
 		7734ACCF17D85605003E7BB6 /* FDUser+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FDUser+Test.h"; path = "Test/FDUser+Test.h"; sourceTree = "<group>"; };
@@ -400,6 +405,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77343059186BC79A0091FCB1 /* libMobClickLibrary_armv6.a in Frameworks */,
 				774EC40F18641EAF00E4FB0A /* Security.framework in Frameworks */,
 				777A6933184E0BCE00B903C1 /* MapKit.framework in Frameworks */,
 				774EC42518641EDF00E4FB0A /* libssl.a in Frameworks */,
@@ -409,6 +415,7 @@
 				774EC42018641EDF00E4FB0A /* AlixPaylib_arc.a in Frameworks */,
 				774EC42318641EDF00E4FB0A /* AlipayRsaLib.a in Frameworks */,
 				77A5F7A517CB22960073E7F9 /* CoreGraphics.framework in Frameworks */,
+				77343058186BC79A0091FCB1 /* libMobClickLibrary.a in Frameworks */,
 				45D1109202E547CCB807D5B8 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,6 +506,16 @@
 				771453E6186AA1B000CCE7A8 /* WXApiObject.h */,
 			);
 			path = WeChatSDK_1.4.2.1;
+			sourceTree = "<group>";
+		};
+		77343054186BC79A0091FCB1 /* UMAnalytics_Sdk_2.2.1.OpenUDID */ = {
+			isa = PBXGroup;
+			children = (
+				77343055186BC79A0091FCB1 /* libMobClickLibrary.a */,
+				77343056186BC79A0091FCB1 /* libMobClickLibrary_armv6.a */,
+				77343057186BC79A0091FCB1 /* MobClick.h */,
+			);
+			path = UMAnalytics_Sdk_2.2.1.OpenUDID;
 			sourceTree = "<group>";
 		};
 		774EC41018641EDF00E4FB0A /* Alipay */ = {
@@ -681,6 +698,7 @@
 		77A5F7DD17CB2AB00073E7F9 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				77343054186BC79A0091FCB1 /* UMAnalytics_Sdk_2.2.1.OpenUDID */,
 				771453E3186AA1B000CCE7A8 /* WeChatSDK_1.4.2.1 */,
 				774EC41018641EDF00E4FB0A /* Alipay */,
 				770D869A18584566001CCA47 /* ZBUtilities */,
@@ -1263,6 +1281,7 @@
 					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/Alipay",
 					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/Alipay/RSA",
 					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/WeChatSDK_1.4.2.1",
+					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/UMAnalytics_Sdk_2.2.1.OpenUDID",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1BF3F5F9-E69A-4135-AEAB-FF041F33D413";
@@ -1287,6 +1306,7 @@
 					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/Alipay",
 					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/Alipay/RSA",
 					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/WeChatSDK_1.4.2.1",
+					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/UMAnalytics_Sdk_2.2.1.OpenUDID",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1BF3F5F9-E69A-4135-AEAB-FF041F33D413";
