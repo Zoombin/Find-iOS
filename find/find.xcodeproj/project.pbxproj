@@ -38,6 +38,11 @@
 		77338E7F18090184006DEC3D /* FDErrorMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 77338E7E18090184006DEC3D /* FDErrorMessage.m */; };
 		77343058186BC79A0091FCB1 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77343055186BC79A0091FCB1 /* libMobClickLibrary.a */; };
 		77343059186BC79A0091FCB1 /* libMobClickLibrary_armv6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77343056186BC79A0091FCB1 /* libMobClickLibrary_armv6.a */; };
+		7734305D186BCBBC0091FCB1 /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7734305C186BCBBC0091FCB1 /* libPushSDK.a */; };
+		7734305F186BCD530091FCB1 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7734305E186BCD530091FCB1 /* CoreFoundation.framework */; };
+		77343061186BCD5F0091FCB1 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77343060186BCD5F0091FCB1 /* CoreTelephony.framework */; };
+		77343063186BCD680091FCB1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77343062186BCD680091FCB1 /* SystemConfiguration.framework */; };
+		77343065186BCDA10091FCB1 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77343064186BCDA10091FCB1 /* PushConfig.plist */; };
 		7734ACCE17D85368003E7BB6 /* FDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACCD17D85368003E7BB6 /* FDUser.m */; };
 		7734ACD117D85605003E7BB6 /* FDUser+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACD017D85605003E7BB6 /* FDUser+Test.m */; };
 		7734ACD417D8562F003E7BB6 /* FDPhoto+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734ACD317D8562F003E7BB6 /* FDPhoto+Test.m */; };
@@ -208,6 +213,13 @@
 		77343055186BC79A0091FCB1 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		77343056186BC79A0091FCB1 /* libMobClickLibrary_armv6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary_armv6.a; sourceTree = "<group>"; };
 		77343057186BC79A0091FCB1 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		7734305B186BCBBC0091FCB1 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
+		7734305C186BCBBC0091FCB1 /* libPushSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPushSDK.a; sourceTree = "<group>"; };
+		7734305E186BCD530091FCB1 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		77343060186BCD5F0091FCB1 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		77343062186BCD680091FCB1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		77343064186BCDA10091FCB1 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
+		77343066186BD38A0091FCB1 /* find.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = find.entitlements; sourceTree = "<group>"; };
 		7734ACCC17D85368003E7BB6 /* FDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDUser.h; path = find/FDUser.h; sourceTree = "<group>"; };
 		7734ACCD17D85368003E7BB6 /* FDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDUser.m; path = find/FDUser.m; sourceTree = "<group>"; };
 		7734ACCF17D85605003E7BB6 /* FDUser+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FDUser+Test.h"; path = "Test/FDUser+Test.h"; sourceTree = "<group>"; };
@@ -405,10 +417,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77343063186BCD680091FCB1 /* SystemConfiguration.framework in Frameworks */,
+				77343061186BCD5F0091FCB1 /* CoreTelephony.framework in Frameworks */,
+				7734305F186BCD530091FCB1 /* CoreFoundation.framework in Frameworks */,
 				77343059186BC79A0091FCB1 /* libMobClickLibrary_armv6.a in Frameworks */,
 				774EC40F18641EAF00E4FB0A /* Security.framework in Frameworks */,
 				777A6933184E0BCE00B903C1 /* MapKit.framework in Frameworks */,
 				774EC42518641EDF00E4FB0A /* libssl.a in Frameworks */,
+				7734305D186BCBBC0091FCB1 /* libPushSDK.a in Frameworks */,
 				774EC42418641EDF00E4FB0A /* libcrypto.a in Frameworks */,
 				771453E7186AA1B000CCE7A8 /* libWeChatSDK.a in Frameworks */,
 				77A5F89017CD95E80073E7F9 /* CFNetwork.framework in Frameworks */,
@@ -518,6 +534,16 @@
 			path = UMAnalytics_Sdk_2.2.1.OpenUDID;
 			sourceTree = "<group>";
 		};
+		7734305A186BCBBC0091FCB1 /* JPush */ = {
+			isa = PBXGroup;
+			children = (
+				77343064186BCDA10091FCB1 /* PushConfig.plist */,
+				7734305B186BCBBC0091FCB1 /* APService.h */,
+				7734305C186BCBBC0091FCB1 /* libPushSDK.a */,
+			);
+			path = JPush;
+			sourceTree = "<group>";
+		};
 		774EC41018641EDF00E4FB0A /* Alipay */ = {
 			isa = PBXGroup;
 			children = (
@@ -604,6 +630,9 @@
 		77A5F7A117CB22960073E7F9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				77343062186BCD680091FCB1 /* SystemConfiguration.framework */,
+				77343060186BCD5F0091FCB1 /* CoreTelephony.framework */,
+				7734305E186BCD530091FCB1 /* CoreFoundation.framework */,
 				774EC40E18641EAF00E4FB0A /* Security.framework */,
 				777A6932184E0BCE00B903C1 /* MapKit.framework */,
 				77A5F88F17CD95E80073E7F9 /* CFNetwork.framework */,
@@ -619,6 +648,7 @@
 		77A5F7A817CB22960073E7F9 /* find */ = {
 			isa = PBXGroup;
 			children = (
+				77343066186BD38A0091FCB1 /* find.entitlements */,
 				7734ACE417D895D1003E7BB6 /* FDViewController.h */,
 				7734ACE517D895D1003E7BB6 /* FDViewController.m */,
 				77F5CD5017E966DB006D931F /* FDSignupViewController.h */,
@@ -698,6 +728,7 @@
 		77A5F7DD17CB2AB00073E7F9 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				7734305A186BCBBC0091FCB1 /* JPush */,
 				77343054186BC79A0091FCB1 /* UMAnalytics_Sdk_2.2.1.OpenUDID */,
 				771453E3186AA1B000CCE7A8 /* WeChatSDK_1.4.2.1 */,
 				774EC41018641EDF00E4FB0A /* Alipay */,
@@ -948,6 +979,11 @@
 				TargetAttributes = {
 					77A5F79E17CB22960073E7F9 = {
 						DevelopmentTeam = 7Y7NSKD85B;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+						};
 					};
 					77A5F7C517CB22960073E7F9 = {
 						TestTargetID = 77A5F79E17CB22960073E7F9;
@@ -980,6 +1016,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77F8898A180B888100D6A45D /* FZBWKSJW--GB1-0.ttf in Resources */,
+				77343065186BCDA10091FCB1 /* PushConfig.plist in Resources */,
 				77DBC8D21820C42B00F0A7A8 /* Localizable.strings in Resources */,
 				77A5F7C117CB22960073E7F9 /* Images.xcassets in Resources */,
 				77A5F7AD17CB22960073E7F9 /* InfoPlist.strings in Resources */,
@@ -1282,9 +1319,10 @@
 					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/Alipay/RSA",
 					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/WeChatSDK_1.4.2.1",
 					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/UMAnalytics_Sdk_2.2.1.OpenUDID",
+					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/JPush",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1BF3F5F9-E69A-4135-AEAB-FF041F33D413";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1307,9 +1345,10 @@
 					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/Alipay/RSA",
 					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/WeChatSDK_1.4.2.1",
 					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/UMAnalytics_Sdk_2.2.1.OpenUDID",
+					"/Users/zhangbin/Documents/Git/Find-iOS/find/Libraries/JPush",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1BF3F5F9-E69A-4135-AEAB-FF041F33D413";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
