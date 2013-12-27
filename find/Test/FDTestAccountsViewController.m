@@ -24,7 +24,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		self.title = @"Accounts";
+		self.title = NSLocalizedString(@"帐号", nil);
 		accountsAndPassword = @{@"30135878@qq.com": @"123456", @"001@test.com": @"111111", @"003@test.com" : @"qweqwe"};
     }
     return self;

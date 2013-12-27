@@ -42,7 +42,7 @@ CLLocationManagerDelegate
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        NSString *identifier = NSLocalizedString(@"Album", nil);
+        NSString *identifier = NSLocalizedString(@"相册", nil);
 		self.title = identifier;
 		
 		UIImage *normalImage = [UIImage imageNamed:@"Camera"];
@@ -91,7 +91,7 @@ CLLocationManagerDelegate
 
 - (void)addTweet
 {
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles:@"Snap a New", @"Pick From Photo Library", nil];
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"取消", nil) destructiveButtonTitle:nil otherButtonTitles:@"拍一张", @"从相册选取", nil];
 	[actionSheet showFromTabBar:self.tabBarController.tabBar];
 }
 
@@ -256,7 +256,7 @@ CLLocationManagerDelegate
 		}
 		[self addTweet];
 	} else {
-		[self displayHUDTitle:NSLocalizedString(@"Need Login", nil) message:NSLocalizedString(@"You must login first.", nil)];
+		[self displayHUDTitle:NSLocalizedString(@"需要登录", nil) message:NSLocalizedString(@"登录后才能操作", nil)];
 	}
 }
 
@@ -292,7 +292,7 @@ CLLocationManagerDelegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-	[self displayHUD:NSLocalizedString(@"Uploading", nil)];
+	[self displayHUD:NSLocalizedString(@"上传中...", nil)];
 	[picker dismissViewControllerAnimated:YES completion:^{
 		UIImage *image = info[UIImagePickerControllerOriginalImage];
 		NSString *path = [NSString photoPathWithUserID:[[FDAFHTTPClient shared] userID]];
@@ -300,7 +300,7 @@ CLLocationManagerDelegate
 		[[ZBQNAFHTTPClient shared] uploadData:imageData name:path withCompletionBlock:^(BOOL success) {
 			if (success) {
 				[[FDAFHTTPClient shared] tweetPhotos:@[path] atLocation:_location address:_address withCompletionBlock:^(BOOL success, NSString *message) {
-					[self displayHUDTitle:@"Upload successfully" message:nil duration:1.0];
+					[self displayHUDTitle:@"上传成功" message:nil duration:1.0];
 					_tweetsCount++;
 					[self fetchTweets];
 				}];
@@ -341,7 +341,7 @@ CLLocationManagerDelegate
 	_address = nil;
 	
 	if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Location Service Is Not Available", nil) message:NSLocalizedString(@"You need open location service in Settings.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:NSLocalizedString(@"View Details", nil), nil];
+		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"定位服务不可用", nil) message:NSLocalizedString(@"去设置定位服务", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"确定", nil) otherButtonTitles:NSLocalizedString(@"详情", nil), nil];
 		alertView.delegate = self;
 		[alertView show];
 	}

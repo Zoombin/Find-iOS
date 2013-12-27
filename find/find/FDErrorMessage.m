@@ -43,8 +43,8 @@ static NSDictionary *errorMessageMap;
 							@(DOLIKE) : @"喜欢",
 							@(DOUNLIKE) : @"不喜欢",
 							@(TAG_DONOT_EXISTS) : @"标签不存在！",
-							@(DOFOLLOW) : NSLocalizedString(@"Follow", @"关注后返回的结果"),
-							@(DOUNFOLLOW) : NSLocalizedString(@"Unfollow", @"取消关注后返回的结果")
+							@(DOFOLLOW) : NSLocalizedString(@"已关注", @"关注后返回的结果"),
+							@(DOUNFOLLOW) : NSLocalizedString(@"取消关注", @"取消关注后返回的结果")
  							};
 	}
 	

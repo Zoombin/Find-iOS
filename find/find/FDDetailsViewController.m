@@ -86,7 +86,7 @@ static NSInteger kIndexOfFavoriteButton = 2;
 	[self.view addSubview:_containerView];
 	
 	_sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	[_sendButton setTitle:NSLocalizedString(@"Send", nil) forState:UIControlStateNormal];
+	[_sendButton setTitle:NSLocalizedString(@"发送", nil) forState:UIControlStateNormal];
 	_sendButton.backgroundColor = [UIColor randomColor];
 	_sendButton.frame = CGRectMake(fullSize.width - 50, 0, 50, _containerView.frame.size.height);
 	_sendButton.titleLabel.font = [UIFont fdThemeFontOfSize:13];
@@ -106,15 +106,15 @@ static NSInteger kIndexOfFavoriteButton = 2;
 	_growingTextView.delegate = self;
     _growingTextView.internalTextView.scrollIndicatorInsets = UIEdgeInsetsMake(5, 0, 5, 0);
     _growingTextView.backgroundColor = [UIColor randomColor];
-    _growingTextView.placeholder = NSLocalizedString(@"Comment This Photo", nil);
+    _growingTextView.placeholder = NSLocalizedString(@"评论此照片", nil);
 	[_containerView addSubview:_growingTextView];
 	
-	_titleOfPhotos = NSLocalizedString(@"Photos", nil);
-	_titleOfComments = NSLocalizedString(@"Comments", nil);
-	_titleOfTags = NSLocalizedString(@"Tags", nil);
-	_titleOfRegions = NSLocalizedString(@"Regions", nil);
-	_titleOfGifts = NSLocalizedString(@"Gifts", nil);
-	_titleOfFollowers = NSLocalizedString(@"Followers", nil);
+	_titleOfPhotos = NSLocalizedString(@"照片", nil);
+	_titleOfComments = NSLocalizedString(@"评论", nil);
+	_titleOfTags = NSLocalizedString(@"标签", nil);
+	_titleOfRegions = NSLocalizedString(@"最美", nil);
+	_titleOfGifts = NSLocalizedString(@"礼物", nil);
+	_titleOfFollowers = NSLocalizedString(@"粉丝", nil);
 	
 	if (_photo.userID) {
 		_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[_titleOfPhotos, _titleOfComments, _titleOfTags, _titleOfRegions, _titleOfGifts, _titleOfFollowers]];
@@ -557,7 +557,7 @@ static NSInteger kIndexOfFavoriteButton = 2;
 			if (_reportCommentID) {
 				[[FDAFHTTPClient shared] reportComment:_reportCommentID withCompletionBlock:^(BOOL success, NSString *message) {
 					if (success) {
-						[self displayHUDTitle:nil message:NSLocalizedString(@"Report successfully, we will handle it ASAP!", nil)];
+						[self displayHUDTitle:nil message:NSLocalizedString(@"举报成功，我们会尽快处理！", nil)];
 					} else {
 						[self displayHUDTitle:nil message:message];
 					}
@@ -675,7 +675,7 @@ static NSInteger kIndexOfFavoriteButton = 2;
 
 - (void)willReport:(FDComment *)comment
 {
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Report Bad Comment", nil), nil];
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"取消", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"举报此评论", nil), nil];
 	[actionSheet showInView:self.view];
 	actionSheet.tag = kTagOfReportActionSheet;
 	_reportCommentID = comment.ID;

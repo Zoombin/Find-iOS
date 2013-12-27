@@ -27,7 +27,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		NSString *identifier = NSLocalizedString(@"Discovery", nil);
+		NSString *identifier = NSLocalizedString(@"发现", nil);
 		self.title = identifier;
 		
 		UIImage *normalImage = [UIImage imageNamed:@"Discovery"];

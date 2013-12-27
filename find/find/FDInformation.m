@@ -79,11 +79,11 @@ static NSString *address = @"address";
 - (NSString *)displayPrivacyType
 {
 	if ([self isPublic]) {
-		return NSLocalizedString(@"Public", nil);
+		return NSLocalizedString(@"公开", nil);
 	} else if ([self isPartly]) {
-		return NSLocalizedString(@"Partly", nil);
+		return NSLocalizedString(@"部分人可见", nil);
 	}
-	return NSLocalizedString(@"Private", nil);
+	return NSLocalizedString(@"隐藏", nil);
 }
 
 - (NSString *)display

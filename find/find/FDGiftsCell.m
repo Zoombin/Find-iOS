@@ -82,7 +82,7 @@ static NSInteger minimumQuantityOfGift = 1;
 //		size = CGSizeMake(50, 30);
 		
 		UILabel *giftDiamondLabel = [[UILabel alloc] initWithFrame:CGRectMake(start.x, start.y, size.width, size.height)];
-		giftDiamondLabel.text = NSLocalizedString(@"Gift Diamonds", nil);
+		giftDiamondLabel.text = NSLocalizedString(@"送钻石", nil);
 		giftDiamondLabel.textColor = [UIColor fdThemeRed];
 		giftDiamondLabel.textAlignment = NSTextAlignmentCenter;
 		giftDiamondLabel.adjustsFontSizeToFitWidth = YES;
@@ -103,7 +103,7 @@ static NSInteger minimumQuantityOfGift = 1;
 		_giftDiamondButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		_giftDiamondButton.frame = CGRectMake(start.x, start.y, size.width, size.height);
 		_giftDiamondButton.showsTouchWhenHighlighted = YES;
-		[_giftDiamondButton setTitle:NSLocalizedString(@"Gift", nil) forState:UIControlStateNormal];
+		[_giftDiamondButton setTitle:NSLocalizedString(@"赠送", nil) forState:UIControlStateNormal];
 		_giftDiamondButton.backgroundColor = [UIColor randomColor];
 		[self.contentView addSubview:_giftDiamondButton];
 		
@@ -117,7 +117,7 @@ static NSInteger minimumQuantityOfGift = 1;
 		start = CGPointMake(CGRectGetMinX(giftDiamondLabel.frame), CGRectGetMaxY(_diamondStepper.frame) + gap);
 
 		UILabel *giftFlowerLabel = [[UILabel alloc] initWithFrame:CGRectMake(start.x, start.y, size.width, size.height)];
-		giftFlowerLabel.text = NSLocalizedString(@"Gift Flowers", nil);
+		giftFlowerLabel.text = NSLocalizedString(@"送鲜花", nil);
 		giftFlowerLabel.textColor = [UIColor fdThemeRed];
 		giftFlowerLabel.textAlignment = NSTextAlignmentCenter;
 		giftFlowerLabel.adjustsFontSizeToFitWidth = YES;
@@ -138,7 +138,7 @@ static NSInteger minimumQuantityOfGift = 1;
 		_giftFlowerButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		_giftFlowerButton.frame = CGRectMake(start.x, start.y, size.width, size.height);
 		_giftFlowerButton.showsTouchWhenHighlighted = YES;
-		[_giftFlowerButton setTitle:NSLocalizedString(@"Gift", nil) forState:UIControlStateNormal];
+		[_giftFlowerButton setTitle:NSLocalizedString(@"赠送", nil) forState:UIControlStateNormal];
 		_giftFlowerButton.backgroundColor = [UIColor randomColor];
 		[self.contentView addSubview:_giftFlowerButton];
 		

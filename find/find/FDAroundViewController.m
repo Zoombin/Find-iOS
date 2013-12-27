@@ -29,7 +29,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		NSString *identifier = NSLocalizedString(@"Around", nil);
+		NSString *identifier = NSLocalizedString(@"附近", nil);
 		self.title = identifier;
 		
 		UIImage *normalImage = [UIImage imageNamed:@"Around"];
@@ -181,7 +181,7 @@
 {
 	[manager stopUpdatingLocation];
 	if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Location Service Is Not Available", nil) message:NSLocalizedString(@"You need open location service in Settings.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:NSLocalizedString(@"View Details", nil), nil];
+		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"定位服务不可用", nil) message:NSLocalizedString(@"去设置定位服务", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"确定", nil) otherButtonTitles:NSLocalizedString(@"详情", nil), nil];
 		alertView.delegate = self;
 		[alertView show];
 	}

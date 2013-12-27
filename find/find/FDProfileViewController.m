@@ -60,7 +60,7 @@ UIPickerViewDataSource
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.navigationController.title = NSLocalizedString(@"Profile", nil);
+        self.navigationController.title = NSLocalizedString(@"个人资料", nil);
     }
     return self;
 }
@@ -88,13 +88,13 @@ UIPickerViewDataSource
 	NSArray *sectionData;
 	
 	sectionData = @[
-				  @{kIdentifier : kProfileAvatar, kIcon : @"IconAvatar", kTitle : NSLocalizedString(@"Avatar", nil), kAction : NSStringFromSelector(@selector(editAvatar)), kHeightOfCell : @([FDMeCell height])},
+				  @{kIdentifier : kProfileAvatar, kIcon : @"IconAvatar", kTitle : NSLocalizedString(@"头像", nil), kAction : NSStringFromSelector(@selector(editAvatar)), kHeightOfCell : @([FDMeCell height])},
 				  
-				  @{kIdentifier : kProfileNickname, kIcon : @"IconNickname", kTitle : NSLocalizedString(@"Nickname", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
+				  @{kIdentifier : kProfileNickname, kIcon : @"IconNickname", kTitle : NSLocalizedString(@"昵称", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
 				  
-				  @{kIdentifier : kProfileSignature, kIcon : @"IconSignature", kTitle : NSLocalizedString(@"Signature", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
+				  @{kIdentifier : kProfileSignature, kIcon : @"IconSignature", kTitle : NSLocalizedString(@"签名", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
 				  
-				  @{kIdentifier : kProfileGender, kIcon : @"IconGender", kTitle : NSLocalizedString(@"Gender", nil)},
+				  @{kIdentifier : kProfileGender, kIcon : @"IconGender", kTitle : NSLocalizedString(@"性别", nil)},
 				  ];
 	_dataSource[section] = sectionData;
 	section++;
@@ -106,13 +106,13 @@ UIPickerViewDataSource
 	section++;
 	
 	sectionData = @[
-				  @{kIdentifier : kProfileMobile, kIcon : @"IconMobile", kTitle : NSLocalizedString(@"Mobile", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
+				  @{kIdentifier : kProfileMobile, kIcon : @"IconMobile", kTitle : NSLocalizedString(@"手机", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
 				  
 				  @{kIdentifier : kProfileQQ, kIcon : @"IconQQ", kTitle : NSLocalizedString(@"QQ", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
 				  
-				  @{kIdentifier : kProfileWeixin, kIcon : @"IconWeixin", kTitle : NSLocalizedString(@"Weixin", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
+				  @{kIdentifier : kProfileWeixin, kIcon : @"IconWeixin", kTitle : NSLocalizedString(@"微信", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
 				  
-				  @{kIdentifier : kProfileAddress, kIcon : @"IconLocation", kTitle : NSLocalizedString(@"Address", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
+				  @{kIdentifier : kProfileAddress, kIcon : @"IconLocation", kTitle : NSLocalizedString(@"位置", nil), kAction : NSStringFromSelector(@selector(pushEditPropertyViewControllerWithIdentifier:))},
 				  
 				  ];
 	_dataSource[section] = sectionData;
@@ -166,8 +166,8 @@ UIPickerViewDataSource
 	[self hidePickerViewAnimated:NO];
 	
 	if (!_genderSegmentedControl) {
-		NSString *female = NSLocalizedString(@"Female", nil);
-		NSString *male = NSLocalizedString(@"Male", nil);
+		NSString *female = NSLocalizedString(@"女", nil);
+		NSString *male = NSLocalizedString(@"男", nil);
 		_genderSegmentedControl = [[UISegmentedControl alloc] initWithItems:@[female, male]];
 		_genderSegmentedControl.tintColor = [UIColor fdThemeRed];
 		_genderSegmentedControl.selectedSegmentIndex = 0;
@@ -176,17 +176,17 @@ UIPickerViewDataSource
 	}
 	
 	if (!_shapeSegmentedControl) {
-		_age = NSLocalizedString(@"Age", nil);
-		_height = NSLocalizedString(@"Height", nil);
-		_weight = NSLocalizedString(@"Weight", nil);
-		_chest = NSLocalizedString(@"Chest", nil);
+		_age = NSLocalizedString(@"年龄", nil);
+		_height = NSLocalizedString(@"身高", nil);
+		_weight = NSLocalizedString(@"体重", nil);
+		_chest = NSLocalizedString(@"胸围", nil);
 		_shapeSegmentedControl = [[UISegmentedControl alloc] initWithItems:@[_age, _height, _weight, _chest]];
 		_shapeSegmentedControl.tintColor = [UIColor fdThemeRed];
 		[_shapeSegmentedControl addTarget:self action:@selector(editShape) forControlEvents:UIControlEventValueChanged];
 		_shapeSegmentedControl.userInteractionEnabled = _bMyself;
 	}
 	
-	[self displayHUD:NSLocalizedString(@"Loading...", nil)];
+	[self displayHUD:NSLocalizedString(@"加载中...", nil)];
 	[self fetchProfile:^{
 		[self hideHUD:YES];
 		[self refreshGenderSegmentedControl];
@@ -263,39 +263,39 @@ UIPickerViewDataSource
 	if ([identifier isEqualToString:kProfileNickname]) {
 		editPropertyViewController.cellClass = [FDLabelEditCell class];
 		editPropertyViewController.content = _userProfile.nickname;
-		editPropertyViewController.footerText = NSLocalizedString(@"Place input your nickname", nil);
-		editPropertyViewController.title = NSLocalizedString(@"Nickname", nil);
+		editPropertyViewController.footerText = NSLocalizedString(@"请填写昵称", nil);
+		editPropertyViewController.title = NSLocalizedString(@"昵称", nil);
 	} else if ([identifier isEqualToString:kProfileSignature]) {
 		editPropertyViewController.cellClass = [FDTextViewEditCell class];
 		editPropertyViewController.content = _userProfile.signature;
-		editPropertyViewController.footerText = NSLocalizedString(@"Place input your signature", nil);
-		editPropertyViewController.title = NSLocalizedString(@"Signature", nil);
+		editPropertyViewController.footerText = NSLocalizedString(@"请填写签名", nil);
+		editPropertyViewController.title = NSLocalizedString(@"签名", nil);
 	} else if ([identifier isEqualToString:kProfileMobile]) {
 		editPropertyViewController.cellClass = [FDLabelEditCell class];
 		editPropertyViewController.content = [_userProfile.mobileInformation valueString];
 		editPropertyViewController.privacyInfo = _userProfile.mobileInformation;
-		editPropertyViewController.footerText = NSLocalizedString(@"Place input your mobile", nil);
-		editPropertyViewController.title = NSLocalizedString(@"Mobile", nil);
+		editPropertyViewController.footerText = NSLocalizedString(@"请填写手机号", nil);
+		editPropertyViewController.title = NSLocalizedString(@"手机", nil);
 		editPropertyViewController.keyboardType = UIKeyboardTypeNumberPad;
 	} else if ([identifier isEqualToString:kProfileQQ] ) {
 		editPropertyViewController.cellClass = [FDLabelEditCell class];
 		editPropertyViewController.content = [_userProfile.qqInformation valueString];
 		editPropertyViewController.privacyInfo = _userProfile.qqInformation;
-		editPropertyViewController.footerText = NSLocalizedString(@"Place input your QQ", nil);
+		editPropertyViewController.footerText = NSLocalizedString(@"请填写QQ号", nil);
 		editPropertyViewController.title = NSLocalizedString(@"QQ", nil);
 		editPropertyViewController.keyboardType = UIKeyboardTypeNumberPad;
 	} else if ([identifier isEqualToString:kProfileWeixin]) {
 		editPropertyViewController.cellClass = [FDLabelEditCell class];
 		editPropertyViewController.content = [_userProfile.weixinInformation valueString];
 		editPropertyViewController.privacyInfo = _userProfile.weixinInformation;
-		editPropertyViewController.footerText = NSLocalizedString(@"Place input your Weixin", nil);
-		editPropertyViewController.title = NSLocalizedString(@"Weixin", nil);
+		editPropertyViewController.footerText = NSLocalizedString(@"请填写微信号", nil);
+		editPropertyViewController.title = NSLocalizedString(@"微信", nil);
 	} else if ([identifier isEqualToString:kProfileAddress]) {
 		editPropertyViewController.cellClass = [FDLabelEditCell class];
 		editPropertyViewController.content = [_userProfile.addressInformation valueString];
 		editPropertyViewController.privacyInfo = _userProfile.addressInformation;
-		editPropertyViewController.footerText = NSLocalizedString(@"Place input your address", nil);
-		editPropertyViewController.title = NSLocalizedString(@"Address", nil);
+		editPropertyViewController.footerText = NSLocalizedString(@"请填写地址", nil);
+		editPropertyViewController.title = NSLocalizedString(@"地址", nil);
 	}
 	[self.navigationController pushViewController:editPropertyViewController animated:YES];
 }
@@ -382,7 +382,7 @@ UIPickerViewDataSource
 			[self refreshShapeSegmentedControl];
 			[_tableView reloadData];
 		} else {
-			[self displayHUDTitle:NSLocalizedString(@"Update Failed", nil) message:message duration:1];
+			[self displayHUDTitle:NSLocalizedString(@"更新失败", nil) message:message duration:1];
 		}
 	}];
 }
@@ -636,7 +636,7 @@ UIPickerViewDataSource
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-	[self displayHUD:NSLocalizedString(@"Uploading Avatar", nil)];
+	[self displayHUD:NSLocalizedString(@"头像上传中...", nil)];
 	[picker dismissViewControllerAnimated:YES completion:^{
 		UIImage *image = info[UIImagePickerControllerEditedImage];
 		NSString *path = [NSString avatarPathWithUserID:[[FDAFHTTPClient shared] userID]];
@@ -645,7 +645,7 @@ UIPickerViewDataSource
 			if (success) {
 				[[FDAFHTTPClient shared] editAvatarPath:path withCompletionBlock:^(BOOL success, NSString *message) {
 					if (success) {
-						[self displayHUDTitle:nil message:NSLocalizedString(@"Update Succeed!", nil) duration:1];
+						[self displayHUDTitle:nil message:NSLocalizedString(@"更新成功", nil) duration:1];
 						_userProfile.avatarPath = path;
 						_avatar.image = image;
 					} else {

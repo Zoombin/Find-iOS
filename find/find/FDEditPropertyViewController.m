@@ -57,9 +57,9 @@ static NSInteger heightOfMap = 150;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
-	NSString *public = NSLocalizedString(@"Public", nil);
-	NSString *partly = NSLocalizedString(@"Partly", nil);
-	NSString *private = NSLocalizedString(@"Private", nil);
+	NSString *public = NSLocalizedString(@"公开", nil);
+	NSString *partly = NSLocalizedString(@"部分人可见", nil);
+	NSString *private = NSLocalizedString(@"隐藏", nil);
 	_segmentedControl = [[UISegmentedControl alloc] initWithItems:@[public, partly, private]];
 	_segmentedControl.frame = CGRectMake(0, 0, 180, 30);
 	_segmentedControl.tintColor = [UIColor whiteColor];
@@ -175,7 +175,7 @@ static NSInteger heightOfMap = 150;
 	}
 	[[FDAFHTTPClient shared] editProfile:parameters withCompletionBlock:^(BOOL success, NSString *message) {
 		if (success) {
-			[self displayHUDTitle:NSLocalizedString(@"Updated", nil) message:nil];
+			[self displayHUDTitle:NSLocalizedString(@"更新成功", nil) message:nil];
 			[self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.0f];
 			[[NSNotificationCenter defaultCenter] postNotificationName:ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
 		}
@@ -355,11 +355,11 @@ static NSInteger heightOfMap = 150;
 {
 	[searchBar resignFirstResponder];
 
-	[self displayHUD:NSLocalizedString(@"Searching", nil)];
+	[self displayHUD:NSLocalizedString(@"搜索中...", nil)];
 	[[FDAFHTTPClient shared] searchUserByKeyword:searchBar.text withCompletionBlock:^(BOOL success, NSString *message, NSArray *usersData) {
 		[self hideHUD:YES];
 		if (success) {
-			[self displayHUDTitle:NSLocalizedString(@"Search Result", nil) message:[NSString stringWithFormat:@"搜索到%d个结果", usersData.count] duration:1];
+			[self displayHUDTitle:NSLocalizedString(@"搜索结果", nil) message:[NSString stringWithFormat:@"搜索到%d个结果", usersData.count] duration:1];
 			_candidates = [FDUser createMutableWithData:usersData];
 			[self.tableView reloadData];
 		}
@@ -398,7 +398,7 @@ static NSInteger heightOfMap = 150;
     [manager stopUpdatingLocation];
 	
 	if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Location Service Is Not Available", nil) message:NSLocalizedString(@"You need open location service in Settings.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:NSLocalizedString(@"View Details", nil), nil];
+		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"定位服务不可用", nil) message:NSLocalizedString(@"请设置定位服务", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"确定", nil) otherButtonTitles:NSLocalizedString(@"详情", nil), nil];
 		alertView.delegate = self;
 		[alertView show];
 	}

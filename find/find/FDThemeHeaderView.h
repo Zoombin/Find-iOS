@@ -10,7 +10,7 @@
 
 @protocol FDThemeHeaderViewDelegate <NSObject>
 
-- (void)didTapShowAll;
+//- (void)didTapShowAll;
 
 @end
 

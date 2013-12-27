@@ -40,7 +40,7 @@ NSString *kSettings = @"kSettings";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		NSString *identifier = NSLocalizedString(@"Me", nil);
+		NSString *identifier = NSLocalizedString(@"我", nil);
 		self.title = identifier;
 
 		UIImage *normalImage = [UIImage imageNamed:@"Me"];
@@ -87,30 +87,30 @@ NSString *kSettings = @"kSettings";
 	section++;
 	
 	sectionData = @[
-					@{kIdentifier : kMyAlbum, kIcon : @"IconAlbum", kTitle : NSLocalizedString(@"My Album", nil), kPushTargetClass : NSStringFromClass([FDAlbumViewController class])},
+					@{kIdentifier : kMyAlbum, kIcon : @"IconAlbum", kTitle : NSLocalizedString(@"我的相册", nil), kPushTargetClass : NSStringFromClass([FDAlbumViewController class])},
 					
-					@{kIdentifier : kMyWealth, kIcon : @"IconWealth", kTitle : NSLocalizedString(@"My Properties", nil), kNeedSigninAlert : @(YES)},
+					@{kIdentifier : kMyWealth, kIcon : @"IconWealth", kTitle : NSLocalizedString(@"我的财产", nil), kNeedSigninAlert : @(YES)},
 					
-					@{kIdentifier : kMyInterests, kIcon : @"IconInterests", kTitle : NSLocalizedString(@"My Interests", nil), kNeedSigninAlert : @(YES)},
+					@{kIdentifier : kMyInterests, kIcon : @"IconInterests", kTitle : NSLocalizedString(@"我的关注", nil), kNeedSigninAlert : @(YES)},
 					
-					@{kIdentifier : kMyMessages, kIcon : @"IconMessages", kTitle : NSLocalizedString(@"My Messages", nil), kNeedSigninAlert : @(YES)},
+					@{kIdentifier : kMyMessages, kIcon : @"IconMessages", kTitle : NSLocalizedString(@"我的消息", nil), kNeedSigninAlert : @(YES)},
 				  ];
 	_dataSource[section] = sectionData;
 	section++;
 	
 	sectionData = @[
-				  @{kIdentifier : kStore, kIcon : @"IconStore", kTitle : NSLocalizedString(@"Store", nil), kPushTargetClass : NSStringFromClass([FDStoreViewController class])},
+				  @{kIdentifier : kStore, kIcon : @"IconStore", kTitle : NSLocalizedString(@"商店", nil), kPushTargetClass : NSStringFromClass([FDStoreViewController class])},
 				  ];
 	_dataSource[section] = sectionData;
 	section++;
 	
 	sectionData = @[
-				  @{kIdentifier : kSettings, kIcon : @"IconSettings", kTitle : NSLocalizedString(@"Settings", nil), kPushTargetClass : NSStringFromClass([FDSettingsViewController class])},
+				  @{kIdentifier : kSettings, kIcon : @"IconSettings", kTitle : NSLocalizedString(@"设置", nil), kPushTargetClass : NSStringFromClass([FDSettingsViewController class])},
 				  ];
 	_dataSource[section] = sectionData;
 	section++;
 	
-	[self displayHUD:NSLocalizedString(@"Loading...", nil)];
+	[self displayHUD:NSLocalizedString(@"加载中...", nil)];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchProfileThenReloadTableView) name:ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSignout) name:SIGNOUT_NOTIFICATION_IDENTIFIER object:nil];

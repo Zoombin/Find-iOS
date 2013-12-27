@@ -212,12 +212,12 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 	[_delegate didSelectTheme:theme inThemeSection:_themeSection];
 }
 
-#pragma mark - FDThemeHeaderViewDelegate
-
-- (void)didTapShowAll
-{
-	[_delegate didSelectShowAllInThemeSection:_themeSection];
-}
+//#pragma mark - FDThemeHeaderViewDelegate
+//
+//- (void)didTapShowAll
+//{
+//	[_delegate didSelectShowAllInThemeSection:_themeSection];
+//}
 
 
 

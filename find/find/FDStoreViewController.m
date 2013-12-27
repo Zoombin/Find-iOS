@@ -45,8 +45,8 @@
 	[self.view addSubview:_tableView];
 	
 #ifdef IGNORE_RULES_OF_APP_STORE
-	NSString *stuffs = NSLocalizedString(@"Stuffs", nil);
-	NSString *records = NSLocalizedString(@"Records", nil);
+	NSString *stuffs = NSLocalizedString(@"商品", nil);
+	NSString *records = NSLocalizedString(@"记录", nil);
 	UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[stuffs, records]];
 	segmentedControl.tintColor = [UIColor whiteColor];
 	segmentedControl.selectedSegmentIndex = 0;

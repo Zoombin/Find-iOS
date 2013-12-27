@@ -103,8 +103,8 @@
 	_nicknameLabel.text = _profile.nickname;
 	_signatureLabel.text = _profile.signature;
 	//_shapeLabel.text = [NSString stringWithFormat:@"%@/%@/%@/%@", NSLocalizedString(@"Age", nil), NSLocalizedString(@"Height", nil), NSLocalizedString(@"Weight", nil), NSLocalizedString(@"Chest", nil)];
-	_privacyLabel.text = [NSString stringWithFormat:@"%@/%@/%@/%@", NSLocalizedString(@"Mobile", nil), NSLocalizedString(@"QQ", nil), NSLocalizedString(@"Weixin", nil), NSLocalizedString(@"Address", nil)];
-	_shapeLabel.text = [NSString stringWithFormat:@"%@%@/%@%@/%@%@/%@%@", NSLocalizedString(@"Age", nil), [_profile.age printableAge], NSLocalizedString(@"Height", nil), [_profile.height printableHeight], NSLocalizedString(@"Weight", nil), [_profile.weight printableWeight], NSLocalizedString(@"Chest", nil), [_profile.chest printableChest]];
+	_privacyLabel.text = [NSString stringWithFormat:@"%@/%@/%@/%@", NSLocalizedString(@"手机", nil), NSLocalizedString(@"QQ", nil), NSLocalizedString(@"微信", nil), NSLocalizedString(@"位置", nil)];
+	_shapeLabel.text = [NSString stringWithFormat:@"%@%@/%@%@/%@%@/%@%@", NSLocalizedString(@"Age", nil), [_profile.age printableAge], NSLocalizedString(@"身高", nil), [_profile.height printableHeight], NSLocalizedString(@"体重", nil), [_profile.weight printableWeight], NSLocalizedString(@"胸围", nil), [_profile.chest printableChest]];
 	//_privacyLabel.text = [NSString stringWithFormat:@"%@%@/%@%@/%@%@/%@%@", NSLocalizedString(@"Mobile", nil), [_profile.mobileInformation displayPrivacyType], NSLocalizedString(@"QQ", nil), [_profile.qqInformation displayPrivacyType], NSLocalizedString(@"Weixin", nil), [_profile.weixinInformation displayPrivacyType], NSLocalizedString(@"Address", nil), [_profile.addressInformation displayPrivacyType]];
 }
 

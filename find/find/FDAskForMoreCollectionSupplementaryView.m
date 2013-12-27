@@ -23,7 +23,7 @@
 		self.backgroundColor = [UIColor clearColor];
 		
 		_moreLabel = [[UILabel alloc] initWithFrame:self.bounds];
-		_moreLabel.text = NSLocalizedString(@"Click For More", nil);
+		_moreLabel.text = NSLocalizedString(@"点击查看更多", nil);
 		_moreLabel.textColor = [UIColor grayColor];
 		_moreLabel.textAlignment = NSTextAlignmentCenter;
 		_moreLabel.userInteractionEnabled = YES;

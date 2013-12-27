@@ -18,7 +18,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		NSString *identifier = NSLocalizedString(@"Host", nil);
+		NSString *identifier = NSLocalizedString(@"主播", nil);
 		self.title = identifier;
 
 		UIImage *normalImage = [UIImage imageNamed:@"Host"];
