@@ -341,8 +341,7 @@ CLLocationManagerDelegate
 	_address = nil;
 	
 	if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"定位服务不可用", nil) message:NSLocalizedString(@"去设置定位服务", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"确定", nil) otherButtonTitles:NSLocalizedString(@"详情", nil), nil];
-		alertView.delegate = self;
+		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"定位服务不可用", nil) message:NSLocalizedString(@"请去系统设置中开启定位服务", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"知道了", nil) otherButtonTitles:NSLocalizedString(@"教程", nil), nil];
 		[alertView show];
 	}
 }

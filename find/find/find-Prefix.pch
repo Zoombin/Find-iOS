@@ -38,6 +38,7 @@
 #import "FDAddress.h"
 #import "NSString+Find.h"
 #import	"UITabBarItem+Find.h"
+#import	"UIAlertView+Find.h"
 
 //ZBUtilities
 #import "UIViewController+ZBUtilites.h"
