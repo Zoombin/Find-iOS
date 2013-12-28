@@ -18,8 +18,9 @@ static NSInteger sectionOfUser = 1;
 static NSInteger indexOfAlertDetails = 1;
 static NSInteger heightOfMap = 150;
 
-@interface FDEditPropertyViewController () <UITextViewDelegate, UITextFieldDelegate, UISearchBarDelegate, UISearchDisplayDelegate, CLLocationManagerDelegate, UIAlertViewDelegate>
+@interface FDEditPropertyViewController () <UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, UITextFieldDelegate, UISearchBarDelegate, UISearchDisplayDelegate, CLLocationManagerDelegate, UIAlertViewDelegate>
 
+@property (readwrite) UITableView *tableView;
 @property (readwrite) UISegmentedControl *segmentedControl;
 @property (readwrite) UISearchBar *searchBar;
 @property (readwrite) NSArray *candidates;
@@ -32,17 +33,12 @@ static NSInteger heightOfMap = 150;
 
 @implementation FDEditPropertyViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
 		self.view.backgroundColor = [UIColor clearColor];
-		[self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-		
 		[self setLeftBarButtonItemAsBackButton];
-		[self.navigationController popToRootViewControllerAnimated:YES];
-		
-		_numberOfSections = 1;
     }
     return self;
 }
@@ -50,12 +46,23 @@ static NSInteger heightOfMap = 150;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	
+	_numberOfSections = 1;
+	
+	_tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+	_tableView.dataSource = self;
+	_tableView.delegate = self;
+	[self.view addSubview:_tableView];
+	
+	UIView *tableHeader = [[UIView alloc] init];//[[[_cellClass alloc] init] footerWithText:_footerText];
+	tableHeader.backgroundColor = [UIColor redColor];
+	tableHeader.frame = CGRectMake(0, 0, _tableView.bounds.size.width, 30);
+	_tableView.contentInset = UIEdgeInsetsMake(30, 0, 0, 0);
+    _tableView.scrollIndicatorInsets = UIEdgeInsetsMake(30, 0, 0, 0);
+	
+//	UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
+//	[tableHeader addGestureRecognizer:tapGestureRecognizer];
+	_tableView.tableHeaderView = tableHeader;
 	
 	NSString *public = NSLocalizedString(@"公开", nil);
 	NSString *partly = NSLocalizedString(@"部分人可见", nil);
@@ -90,7 +97,7 @@ static NSInteger heightOfMap = 150;
 		
 		if (_segmentedControl.selectedSegmentIndex == FDInformationLevelPartly) {
 			[self fetchCandidatesWithBlock:^{
-				[self.tableView reloadData];
+				[_tableView reloadData];
 			}];
 		}
 		
@@ -124,13 +131,13 @@ static NSInteger heightOfMap = 150;
 				_numberOfSections = 2;
 				_searchBar.hidden = NO;
 				[self fetchCandidatesWithBlock:^{
-					[self.tableView reloadData];
+					[_tableView reloadData];
 				}];
 			} else {
 				_numberOfSections = 1;
 				_searchBar.hidden = YES;
 			}
-			[self.tableView reloadData];
+			[_tableView reloadData];
 		} else {
 			[self displayHUDTitle:nil message:message];
 		}
@@ -204,25 +211,12 @@ static NSInteger heightOfMap = 150;
 	return _numberOfSections;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-	if (section == sectionOfEdit) {
-		return 25;
-	}
-	return 44;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	if (section == sectionOfEdit) {
 		return [_cellClass numberOfRows];
 	}
 	return _candidates.count;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	return [_cellClass height];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -248,19 +242,32 @@ static NSInteger heightOfMap = 150;
 	}
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (section == sectionOfEdit) {
-		UIView *view = [[[_cellClass alloc] init] footerWithText:_footerText];
-		UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
-		[view addGestureRecognizer:tapGestureRecognizer];
-		return view;
-	}
-	if (section == sectionOfUser) {
-		return _searchBar;
-	}
-	return nil;
+	return [_cellClass height];
 }
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//	if (section == sectionOfEdit) {
+//		return 0;
+//	}
+//	return 44;
+//}
+
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+////	if (section == sectionOfEdit) {
+////		UIView *view = [[[_cellClass alloc] init] footerWithText:_footerText];
+////		UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
+////		[view addGestureRecognizer:tapGestureRecognizer];
+////		return view;
+////	}
+//	if (section == sectionOfUser) {
+//		return _searchBar;
+//	}
+//	return nil;
+//}
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
@@ -361,7 +368,7 @@ static NSInteger heightOfMap = 150;
 		if (success) {
 			[self displayHUDTitle:NSLocalizedString(@"搜索结果", nil) message:[NSString stringWithFormat:@"搜索到%d个结果", usersData.count] duration:1];
 			_candidates = [FDUser createMutableWithData:usersData];
-			[self.tableView reloadData];
+			[_tableView reloadData];
 		}
 	}];
 }
@@ -370,7 +377,7 @@ static NSInteger heightOfMap = 150;
 {
 	if (searchText == nil || [searchText isEqualToString:@""]) {
 		[self fetchCandidatesWithBlock:^{
-			[self.tableView reloadData];
+			[_tableView reloadData];
 		}];
 	}
 }

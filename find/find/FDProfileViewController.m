@@ -256,7 +256,7 @@ UIPickerViewDataSource
 
 - (void)pushEditPropertyViewControllerWithIdentifier:(NSString *)identifier
 {
-	FDEditPropertyViewController *editPropertyViewController = [[FDEditPropertyViewController alloc] initWithStyle:UITableViewStylePlain];
+	FDEditPropertyViewController *editPropertyViewController = [[FDEditPropertyViewController alloc] init];
 	//editPropertyViewController.hidesBottomBarWhenPushed = YES;
 	editPropertyViewController.identifier = identifier;
 	

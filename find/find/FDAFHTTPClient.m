@@ -44,9 +44,9 @@ static NSString *token;
 - (BOOL)isSessionValid
 {
 	//return NO;//TODO: force valid, need delete this code
-//	if ([self userID].integerValue == 1) {
-//		return YES;
-//	}
+	if ([self userID].integerValue == 1) {
+		return YES;
+	}
 	return (token != nil);
 }
 

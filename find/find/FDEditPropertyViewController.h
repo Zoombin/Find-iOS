@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FDInformation.h"
 
-@interface FDEditPropertyViewController : UITableViewController
+@interface FDEditPropertyViewController : UIViewController
 
 @property (nonatomic, strong) Class cellClass;
 @property (nonatomic, strong) NSString *identifier;
