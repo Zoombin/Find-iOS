@@ -112,8 +112,7 @@
 	
 	FDThemeSection *themeSection = [self themeSectionInSection:indexPath.section];
 	NSDictionary *attributes = [FDThemeCell attributesOfStyle:themeSection.style];
-	height += CGRectFromString(attributes[kThemeCellAttributeKeyBounds]).size.height;
-
+	height += [attributes[kThemeCellAttributeKeyHeight] floatValue];
 	if (attributes[kThemeCellAttributeKeyHeaderTitle]) {
 		height += [FDThemeHeaderView height];
 	}

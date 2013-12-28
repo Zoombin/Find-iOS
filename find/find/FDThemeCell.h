@@ -8,7 +8,7 @@
 
 #import "FDThemeSection.h"
 
-extern NSString *kThemeCellAttributeKeyBounds;
+extern NSString *kThemeCellAttributeKeyHeight;
 extern NSString *kThemeCellAttributeKeyItemWidth;
 extern NSString *kThemeCellAttributeKeyPagingEnabled;
 extern NSString *kThemeCellAttributeKeyShowsHorizontalScrollIndicator;

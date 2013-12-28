@@ -110,6 +110,7 @@
 	[[FDAFHTTPClient shared] likeOrUnlikePhoto:photo.ID withCompletionBlock:^(BOOL success, NSString *message, NSNumber *liked, NSNumber *likes) {
 		if (success) {
 			photoCell.photo.likes = likes;
+			photoCell.photo.liked = liked;
 			photoCell.likesView.likes = likes;
 			photoCell.likesView.liked = liked;
 		}

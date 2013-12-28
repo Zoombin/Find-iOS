@@ -10,7 +10,7 @@
 #import "FDThemeItemView.h"
 #import "FDThemeHeaderView.h"
 
-NSString *kThemeCellAttributeKeyBounds = @"kThemeCellAttributeKeyBounds";
+NSString *kThemeCellAttributeKeyHeight = @"kThemeCellAttributeKeyHeight";
 NSString *kThemeCellAttributeKeyItemWidth = @"kThemeCellAttributeKeyItemWidth";
 NSString *kThemeCellAttributeKeyPagingEnabled = @"kThemeCellAttributeKeyPagingEnabled";
 NSString *kThemeCellAttributeKeyShowsHorizontalScrollIndicator = @"kThemeCellAttributeKeyShowsHorizontalScrollIndicator";
@@ -68,8 +68,8 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 {
 	if (_attributes == attributes) return;
 	_attributes = attributes;
-	if (_attributes[kThemeCellAttributeKeyBounds]) {
-		_scrollView.frame = CGRectFromString(_attributes[kThemeCellAttributeKeyBounds]);
+	if (_attributes[kThemeCellAttributeKeyHeight]) {
+		_scrollView.frame = CGRectMake(0, 0, self.bounds.size.width, [_attributes[kThemeCellAttributeKeyHeight] floatValue]);
 	}
 	
 	if (_attributes[kThemeCellAttributeKeyPagingEnabled]) {
@@ -140,8 +140,7 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 	static NSDictionary *attributesOfSlideStyle;
 	if (!attributesOfSlideStyle) {
 		NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-		CGRect rect = CGRectMake(0, 0, 320, 130);
-		attributes[kThemeCellAttributeKeyBounds] = NSStringFromCGRect(rect);
+		attributes[kThemeCellAttributeKeyHeight] = @(130);
 		attributes[kThemeCellAttributeKeyItemWidth] = @(320);
 		attributes[kThemeCellAttributeKeyPagingEnabled] = @(YES);
 		//attributes[kThemeCellAttributeKeyAutoScrollEnabled] = @(YES);//TODO: should auto scroll, stop now for testing
@@ -155,8 +154,7 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 	static NSDictionary *attributesOfIconStyle;
 	if (!attributesOfIconStyle) {
 		NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-		CGRect rect = CGRectMake(0, 0, 320, 150);
-		attributes[kThemeCellAttributeKeyBounds] = NSStringFromCGRect(rect);
+		attributes[kThemeCellAttributeKeyHeight] = @(150);
 		attributes[kThemeCellAttributeKeyItemWidth] = @(95);
 		attributes[kThemeCellAttributeKeyShowsHorizontalScrollIndicator] = @(NO);
 		attributesOfIconStyle = [NSDictionary dictionaryWithDictionary:attributes];
@@ -169,8 +167,7 @@ NSString *kThemeCellAttributeKeyHasSeparateLine = @"kThemeCellAttributeKeyHasSep
 	static NSDictionary *attributesOfBrandStyle;
 	if (!attributesOfBrandStyle) {
 		NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-		CGRect rect = CGRectMake(0, 0, 320, 110);
-		attributes[kThemeCellAttributeKeyBounds] = NSStringFromCGRect(rect);
+		attributes[kThemeCellAttributeKeyHeight] = @(110);
 		attributes[kThemeCellAttributeKeyItemWidth] = @(180);
 		attributes[kThemeCellAttributeKeyShowsHorizontalScrollIndicator] = @(NO);
 		attributes[kThemeCellAttributeKeyHasSeparateLine] = @(YES);
