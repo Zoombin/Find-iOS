@@ -14,7 +14,6 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
     }
     return self;
 }
@@ -30,18 +29,6 @@
 {
 	static NSString *identifier = @"FDEditCellIdentifer";
 	return identifier;
-}
-
-- (UIView *)footerWithText:(NSString *)text
-{
-	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 30)];
-	label.numberOfLines = 0;
-	label.text = text;
-	label.font = [UIFont fdThemeFontOfSize:13];
-	label.textAlignment = NSTextAlignmentCenter;
-	label.userInteractionEnabled = YES;
-	label.backgroundColor = [UIColor randomColor];
-	return label;
 }
 
 - (void)becomeFirstResponder

@@ -256,47 +256,58 @@ UIPickerViewDataSource
 
 - (void)pushEditPropertyViewControllerWithIdentifier:(NSString *)identifier
 {
-	FDEditPropertyViewController *editPropertyViewController = [[FDEditPropertyViewController alloc] init];
-	//editPropertyViewController.hidesBottomBarWhenPushed = YES;
-	editPropertyViewController.identifier = identifier;
+	Class cellClass;
+	NSString *content;
+	NSString *footerText;
+	NSString *title;
+	FDInformation *information;
+	UIKeyboardType keyboardType;
 	
 	if ([identifier isEqualToString:kProfileNickname]) {
-		editPropertyViewController.cellClass = [FDLabelEditCell class];
-		editPropertyViewController.content = _userProfile.nickname;
-		editPropertyViewController.footerText = NSLocalizedString(@"请填写昵称", nil);
-		editPropertyViewController.title = NSLocalizedString(@"昵称", nil);
+		cellClass = [FDLabelEditCell class];
+		content = _userProfile.nickname;
+		footerText = NSLocalizedString(@"请填写昵称", nil);
+		title = NSLocalizedString(@"昵称", nil);
 	} else if ([identifier isEqualToString:kProfileSignature]) {
-		editPropertyViewController.cellClass = [FDTextViewEditCell class];
-		editPropertyViewController.content = _userProfile.signature;
-		editPropertyViewController.footerText = NSLocalizedString(@"请填写签名", nil);
-		editPropertyViewController.title = NSLocalizedString(@"签名", nil);
+		cellClass = [FDTextViewEditCell class];
+		content = _userProfile.signature;
+		footerText = NSLocalizedString(@"请填写签名", nil);
+		title = NSLocalizedString(@"签名", nil);
 	} else if ([identifier isEqualToString:kProfileMobile]) {
-		editPropertyViewController.cellClass = [FDLabelEditCell class];
-		editPropertyViewController.content = [_userProfile.mobileInformation valueString];
-		editPropertyViewController.privacyInfo = _userProfile.mobileInformation;
-		editPropertyViewController.footerText = NSLocalizedString(@"请填写手机号", nil);
-		editPropertyViewController.title = NSLocalizedString(@"手机", nil);
-		editPropertyViewController.keyboardType = UIKeyboardTypeNumberPad;
+		cellClass = [FDLabelEditCell class];
+		content = [_userProfile.mobileInformation valueString];
+		information = _userProfile.mobileInformation;
+		footerText = NSLocalizedString(@"请填写手机号", nil);
+		title = NSLocalizedString(@"手机", nil);
+		keyboardType = UIKeyboardTypeNumberPad;
 	} else if ([identifier isEqualToString:kProfileQQ] ) {
-		editPropertyViewController.cellClass = [FDLabelEditCell class];
-		editPropertyViewController.content = [_userProfile.qqInformation valueString];
-		editPropertyViewController.privacyInfo = _userProfile.qqInformation;
-		editPropertyViewController.footerText = NSLocalizedString(@"请填写QQ号", nil);
-		editPropertyViewController.title = NSLocalizedString(@"QQ", nil);
-		editPropertyViewController.keyboardType = UIKeyboardTypeNumberPad;
+		cellClass = [FDLabelEditCell class];
+		content = [_userProfile.qqInformation valueString];
+		information = _userProfile.qqInformation;
+		footerText = NSLocalizedString(@"请填写QQ号", nil);
+		title = NSLocalizedString(@"QQ", nil);
+		keyboardType = UIKeyboardTypeNumberPad;
 	} else if ([identifier isEqualToString:kProfileWeixin]) {
-		editPropertyViewController.cellClass = [FDLabelEditCell class];
-		editPropertyViewController.content = [_userProfile.weixinInformation valueString];
-		editPropertyViewController.privacyInfo = _userProfile.weixinInformation;
-		editPropertyViewController.footerText = NSLocalizedString(@"请填写微信号", nil);
-		editPropertyViewController.title = NSLocalizedString(@"微信", nil);
+		cellClass = [FDLabelEditCell class];
+		content = [_userProfile.weixinInformation valueString];
+		information = _userProfile.weixinInformation;
+		footerText = NSLocalizedString(@"请填写微信号", nil);
+		title = NSLocalizedString(@"微信", nil);
 	} else if ([identifier isEqualToString:kProfileAddress]) {
-		editPropertyViewController.cellClass = [FDLabelEditCell class];
-		editPropertyViewController.content = [_userProfile.addressInformation valueString];
-		editPropertyViewController.privacyInfo = _userProfile.addressInformation;
-		editPropertyViewController.footerText = NSLocalizedString(@"请填写地址", nil);
-		editPropertyViewController.title = NSLocalizedString(@"地址", nil);
+		cellClass = [FDLabelEditCell class];
+		content = [_userProfile.addressInformation valueString];
+		information = _userProfile.addressInformation;
+		footerText = NSLocalizedString(@"请填写地址", nil);
+		title = NSLocalizedString(@"地址", nil);
 	}
+	FDEditPropertyViewController *editPropertyViewController = [[FDEditPropertyViewController alloc] init];
+	editPropertyViewController.cellClass = cellClass;
+	editPropertyViewController.title = title;
+	editPropertyViewController.content = content;
+	editPropertyViewController.footerText = footerText;
+	editPropertyViewController.identifier = identifier;
+	editPropertyViewController.privacyInfo = information;
+	editPropertyViewController.keyboardType = keyboardType;
 	[self.navigationController pushViewController:editPropertyViewController animated:YES];
 }
 

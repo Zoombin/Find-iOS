@@ -16,7 +16,6 @@
 @property (nonatomic, assign) UIReturnKeyType returnKeyType;
 
 - (NSString *)identifier;
-- (UIView *)footerWithText:(NSString *)text;
 - (void)becomeFirstResponder;
 + (CGFloat)height;
 + (CGFloat)heightOfFooter;

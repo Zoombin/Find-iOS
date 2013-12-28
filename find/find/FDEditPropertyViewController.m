@@ -49,19 +49,17 @@ static NSInteger heightOfMap = 150;
 	
 	_numberOfSections = 1;
 	
-	_tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+	_tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+	_tableView.backgroundColor = [UIColor clearColor];
 	_tableView.dataSource = self;
 	_tableView.delegate = self;
 	[self.view addSubview:_tableView];
 	
 	UIView *tableHeader = [[UIView alloc] init];//[[[_cellClass alloc] init] footerWithText:_footerText];
-	tableHeader.backgroundColor = [UIColor redColor];
+	tableHeader.backgroundColor = [UIColor clearColor];
 	tableHeader.frame = CGRectMake(0, 0, _tableView.bounds.size.width, 30);
-	_tableView.contentInset = UIEdgeInsetsMake(30, 0, 0, 0);
-    _tableView.scrollIndicatorInsets = UIEdgeInsetsMake(30, 0, 0, 0);
-	
-//	UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
-//	[tableHeader addGestureRecognizer:tapGestureRecognizer];
+	UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
+	[tableHeader addGestureRecognizer:tapGestureRecognizer];
 	_tableView.tableHeaderView = tableHeader;
 	
 	NSString *public = NSLocalizedString(@"公开", nil);
@@ -74,6 +72,7 @@ static NSInteger heightOfMap = 150;
 	[_segmentedControl addTarget:self action:@selector(privacyLevelChanged:) forControlEvents:UIControlEventValueChanged];
 	
 	_searchBar = [[UISearchBar alloc] init];
+	_searchBar.backgroundColor = [UIColor clearColor];
 	_searchBar.showsCancelButton = YES;
 	_searchBar.delegate = self;
 	
@@ -84,6 +83,16 @@ static NSInteger heightOfMap = 150;
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
+	
+	if (_cellClass) {
+		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 30)];
+		label.numberOfLines = 0;
+		label.text = _footerText;
+		label.font = [UIFont fdThemeFontOfSize:13];
+		label.textAlignment = NSTextAlignmentCenter;
+		label.userInteractionEnabled = YES;
+		[_tableView.tableHeaderView addSubview:label];
+	}
 
 	if (_privacyInfo) {
 		NSInteger index = 0;
@@ -156,7 +165,6 @@ static NSInteger heightOfMap = 150;
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)save
@@ -247,27 +255,21 @@ static NSInteger heightOfMap = 150;
 	return [_cellClass height];
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//	if (section == sectionOfEdit) {
-//		return 0;
-//	}
-//	return 44;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+	if (section == sectionOfEdit) {
+		return 0;
+	}
+	return 44;
+}
 
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-////	if (section == sectionOfEdit) {
-////		UIView *view = [[[_cellClass alloc] init] footerWithText:_footerText];
-////		UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
-////		[view addGestureRecognizer:tapGestureRecognizer];
-////		return view;
-////	}
-//	if (section == sectionOfUser) {
-//		return _searchBar;
-//	}
-//	return nil;
-//}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+	if (section == sectionOfUser) {
+		return _searchBar;
+	}
+	return nil;
+}
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {

@@ -22,7 +22,7 @@
     if (self) {
         _textField = [[UITextField alloc] initWithFrame:CGRectMake(self.indentationWidth, 0, self.bounds.size.width - 2 * self.indentationWidth, [[self class] height])];
 		_textField.enablesReturnKeyAutomatically = YES;
-		_textField.backgroundColor = [UIColor randomColor];
+		//_textField.backgroundColor = [UIColor randomColor];
 		_textField.returnKeyType = UIReturnKeyDone;
 		[self.contentView addSubview:_textField];
     }
