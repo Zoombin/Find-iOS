@@ -48,10 +48,10 @@
 - (void)followOrUnfollowUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSNumber *followed))block;
 
 //查看该用户的粉丝
-- (void)followerListOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray* usersData))block;
+- (void)followersOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray* usersData))block;
 
 //查看该用户关注的人
-- (void)followedListOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message))block;
+- (void)followingOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *usersData))block;
 
 
 //活动(发现界面)

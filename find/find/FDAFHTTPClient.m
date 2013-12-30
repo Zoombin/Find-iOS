@@ -384,7 +384,7 @@ static NSString *token;
 	}];
 }
 
-- (void)followerListOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray* usersData))block
+- (void)followersOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray* usersData))block
 {
 	NSAssert(userID, @"userID must not be nil when fetch follower list of this user!");
 	
@@ -400,17 +400,19 @@ static NSString *token;
 	}];
 }
 
-- (void)followedListOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message))block
+- (void)followingOfUser:(NSNumber *)userID withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *usersData))block
 {
 	NSAssert(userID, @"userID must not be nil when fetch followed list of this user!");
 	
-	//TODO
 	NSString *path = [NSString stringWithFormat:@"member/%@/followed", userID];
 	
 	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-		;
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]], data[responseKeyData]);
+		}
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		if (block) block (NO, [FDErrorMessage messageNetworkError]);
+		if (block) block (NO, [FDErrorMessage messageNetworkError], nil);
 	}];
 }
 

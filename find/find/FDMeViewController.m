@@ -14,6 +14,7 @@
 #import "FDMeCell.h"
 #import "FDSessionInvalidCell.h"
 #import "FDAlbumViewController.h"
+#import "FDFriendsViewController.h"
 
 NSString *kLogin = @"kLogin";
 NSString *kMyProfile = @"kMyProfile";
@@ -91,7 +92,7 @@ NSString *kSettings = @"kSettings";
 					
 					@{kIdentifier : kMyWealth, kIcon : @"IconWealth", kTitle : NSLocalizedString(@"我的财产", nil), kNeedSigninAlert : @(YES)},
 					
-					@{kIdentifier : kMyInterests, kIcon : @"IconInterests", kTitle : NSLocalizedString(@"我的关注", nil), kNeedSigninAlert : @(YES)},
+					@{kIdentifier : kMyInterests, kIcon : @"IconInterests", kTitle : NSLocalizedString(@"我的关注", nil), kNeedSigninAlert : @(YES), kPushTargetClass: NSStringFromClass([FDFriendsViewController class])},
 					
 					@{kIdentifier : kMyMessages, kIcon : @"IconMessages", kTitle : NSLocalizedString(@"我的消息", nil), kNeedSigninAlert : @(YES)},
 				  ];

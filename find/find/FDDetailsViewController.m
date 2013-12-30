@@ -307,7 +307,7 @@ static NSInteger kIndexOfFavoriteButton = 2;
 
 - (void)fetchFollowers:(dispatch_block_t)block
 {
-	[[FDAFHTTPClient shared] followerListOfUser:_photo.userID withCompletionBlock:^(BOOL success, NSString *message, NSArray *usersData) {
+	[[FDAFHTTPClient shared] followersOfUser:_photo.userID withCompletionBlock:^(BOOL success, NSString *message, NSArray *usersData) {
 		if (success) {
 			NSArray *users = [FDUser createMutableWithData:usersData];
 			_segmentedControlAttributes[_titleOfFollowers][keyOfDataSource] = users;

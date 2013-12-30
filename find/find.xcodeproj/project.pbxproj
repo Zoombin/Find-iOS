@@ -118,6 +118,7 @@
 		77DA107A17E97FA9001F44DF /* FDComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DA107817E97FA9001F44DF /* FDComment.m */; };
 		77DBC8CD181FA5B500F0A7A8 /* FDImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DBC8CC181FA5B500F0A7A8 /* FDImageView.m */; };
 		77DBC8D21820C42B00F0A7A8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77DBC8D01820C42B00F0A7A8 /* Localizable.strings */; };
+		77DDB856187143D700A4E070 /* FDFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DDB855187143D700A4E070 /* FDFriendsViewController.m */; };
 		77DE2D1118581B3100157234 /* FDPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DE2D1018581B3100157234 /* FDPhotoCell.m */; };
 		77DFCD2E185AB37C008DDDB1 /* FDAskForMoreCollectionSupplementaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DFCD2D185AB37C008DDDB1 /* FDAskForMoreCollectionSupplementaryView.m */; };
 		77E94B48182A2F140017FF8E /* FDVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E94B47182A2F140017FF8E /* FDVote.m */; };
@@ -367,6 +368,8 @@
 		77DBC8CF1820B7A400F0A7A8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		77DBC8D11820C42B00F0A7A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		77DBC8D31820C43400F0A7A8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		77DDB854187143D700A4E070 /* FDFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDFriendsViewController.h; sourceTree = "<group>"; };
+		77DDB855187143D700A4E070 /* FDFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDFriendsViewController.m; sourceTree = "<group>"; };
 		77DE2D0F18581B3100157234 /* FDPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDPhotoCell.h; path = find/FDPhotoCell.h; sourceTree = "<group>"; };
 		77DE2D1018581B3100157234 /* FDPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDPhotoCell.m; path = find/FDPhotoCell.m; sourceTree = "<group>"; };
 		77DFCD2C185AB37C008DDDB1 /* FDAskForMoreCollectionSupplementaryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDAskForMoreCollectionSupplementaryView.h; path = find/FDAskForMoreCollectionSupplementaryView.h; sourceTree = "<group>"; };
@@ -677,6 +680,8 @@
 				77764B211831EFA20057F8B9 /* FDEditPropertyViewController.m */,
 				770561C81849A4F5007608D3 /* FDStoreViewController.h */,
 				770561C91849A4F5007608D3 /* FDStoreViewController.m */,
+				77DDB854187143D700A4E070 /* FDFriendsViewController.h */,
+				77DDB855187143D700A4E070 /* FDFriendsViewController.m */,
 				7798B3291844C9F100CCA964 /* FDSettingsViewController.h */,
 				7798B32A1844C9F100CCA964 /* FDSettingsViewController.m */,
 				777A692B184DDFBF00B903C1 /* FDWebViewController.h */,
@@ -1078,6 +1083,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77DDB856187143D700A4E070 /* FDFriendsViewController.m in Sources */,
 				77A5F7BF17CB22960073E7F9 /* FDDiscoveryViewController.m in Sources */,
 				774EC43918641F5C00E4FB0A /* SBJsonWriter.m in Sources */,
 				770D86C318584566001CCA47 /* UIDevice+ZBUtilites.m in Sources */,
