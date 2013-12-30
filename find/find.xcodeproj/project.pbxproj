@@ -983,6 +983,9 @@
 							com.apple.iCloud = {
 								enabled = 0;
 							};
+							com.apple.iOS = {
+								enabled = 0;
+							};
 						};
 					};
 					77A5F7C517CB22960073E7F9 = {
