@@ -18,7 +18,6 @@
 @property (readwrite) PSUICollectionView *photosCollectionView;
 @property (readwrite) CLLocationManager *locationManager;
 @property (readwrite) CLLocation *location;
-@property (readwrite) BOOL noMore;
 @property (readwrite) UIActivityIndicatorView *spinner;
 
 @end
@@ -72,7 +71,6 @@
 
 - (void)fetchAroundPhotos
 {
-	if (_noMore) return;
 	if (!_spinner) {
 		_spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
 		_spinner.center = CGPointMake(self.view.center.x, CGRectGetMaxY(self.view.bounds) - 25);
@@ -87,8 +85,6 @@
 	[[FDAFHTTPClient shared] aroundPhotosAtLocation:_location limit:@(_tweets.count + 8) distance:nil withCompletionBlock:^(BOOL success, NSString *message, NSArray *tweetsData, NSNumber *distance) {
 		if (success) {
 			if (tweetsData.count == currentCount) {
-				[self displayHUDTitle:NSLocalizedString(@"已经显示全部", nil) message:nil duration:0.5];
-				_noMore = YES;
 				_photosCollectionView.frame = self.view.bounds;
 			}
 			_tweets = [FDTweet createMutableWithData:tweetsData];

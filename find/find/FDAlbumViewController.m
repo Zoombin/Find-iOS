@@ -302,6 +302,7 @@ CLLocationManagerDelegate
 				[[FDAFHTTPClient shared] tweetPhotos:@[path] atLocation:_location address:_address withCompletionBlock:^(BOOL success, NSString *message) {
 					[self displayHUDTitle:@"上传成功" message:nil duration:1.0];
 					_tweetsCount++;
+					_noMore = NO;
 					[self fetchTweets];
 				}];
 			} else {
