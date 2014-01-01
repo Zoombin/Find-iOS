@@ -313,7 +313,7 @@ UIPickerViewDataSource
 
 - (void)editAvatar
 {
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles:@"Snap a New", @"Pick From Photo Library", nil];
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"取消", nil) destructiveButtonTitle:nil otherButtonTitles:@"拍一张", @"从相册选取", nil];
 	[actionSheet showFromTabBar:self.tabBarController.tabBar];
 }
 
