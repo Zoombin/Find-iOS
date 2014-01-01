@@ -67,7 +67,7 @@
 		if (success) {
 			[self displayHUD:NSLocalizedString(@"登录成功", nil)];
 			[self performSelector:@selector(dismiss) withObject:nil afterDelay:1];
-			[[NSNotificationCenter defaultCenter] postNotificationName:ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
+			[[NSNotificationCenter defaultCenter] postNotificationName:ME_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
 		} else {
 			[self displayHUDTitle:NSLocalizedString(@"错误", nil) message:message duration:3];
 		}

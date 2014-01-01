@@ -135,7 +135,7 @@ static NSInteger heightOfMap = 150;
 	NSString *key = [FDUserProfile apiParameterPrivacyLevelKeyWithIdentifier:_identifier];
 	[[FDAFHTTPClient shared] editProfile:@{key : @(index)} withCompletionBlock:^(BOOL success, NSString *message) {
 		if (success) {
-			[[NSNotificationCenter defaultCenter] postNotificationName:ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
+			[[NSNotificationCenter defaultCenter] postNotificationName:ME_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
 			if (index == FDInformationLevelPartly) {
 				_numberOfSections = 2;
 				_searchBar.hidden = NO;
@@ -192,7 +192,7 @@ static NSInteger heightOfMap = 150;
 		if (success) {
 			[self displayHUDTitle:NSLocalizedString(@"更新成功", nil) message:nil];
 			[self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.0f];
-			[[NSNotificationCenter defaultCenter] postNotificationName:ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
+			[[NSNotificationCenter defaultCenter] postNotificationName:ME_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
 		}
 	}];
 }

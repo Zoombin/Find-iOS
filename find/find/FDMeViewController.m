@@ -113,7 +113,7 @@ NSString *kSettings = @"kSettings";
 	
 	[self displayHUD:NSLocalizedString(@"加载中...", nil)];
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchProfileThenReloadTableView) name:ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchProfileThenReloadTableView) name:ME_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSignout) name:SIGNOUT_NOTIFICATION_IDENTIFIER object:nil];
 	
 	[self fetchProfile:^{
@@ -159,7 +159,7 @@ NSString *kSettings = @"kSettings";
 
 - (void)dealloc
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:ME_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:SIGNOUT_NOTIFICATION_IDENTIFIER object:nil];
 }
 

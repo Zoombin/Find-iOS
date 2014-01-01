@@ -31,7 +31,7 @@
 		
 		start = CGPointMake(CGRectGetMaxX(_avatar.frame) + 5, 0);
 		_nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(start.x, start.y, self.bounds.size.width - start.x, self.bounds.size.height)];
-		_nameLabel.backgroundColor = [UIColor randomColor];//TODO
+		//_nameLabel.backgroundColor = [UIColor randomColor];//TODO
 		_nameLabel.font = [UIFont fdThemeFontOfSize:9];
 		[self.contentView addSubview:_nameLabel];
     }
@@ -58,7 +58,7 @@
 	if (_user == user) return;
 	_user = user;
 	_avatar.imagePath = _user.avatarPath;
-	//_avatar.userID = _user.ID;//TODO:
+	_avatar.userID = _user.ID;
 	_nameLabel.text = _user.nickname;
 }
 

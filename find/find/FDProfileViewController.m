@@ -194,7 +194,7 @@ UIPickerViewDataSource
 		[_tableView reloadData];
 	}];
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchProfileThenReloadTableView) name:ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchProfileThenReloadTableView) name:ME_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
 }
 
 - (void)refreshGenderSegmentedControl
@@ -406,7 +406,7 @@ UIPickerViewDataSource
 
 - (void)dealloc
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:ME_PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:ME_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
 }
 
 #pragma mark - UITableViewDelegate
