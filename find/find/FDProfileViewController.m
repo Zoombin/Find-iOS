@@ -194,7 +194,7 @@ UIPickerViewDataSource
 		[_tableView reloadData];
 	}];
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchProfileThenReloadTableView) name:ME_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchProfileThenReloadTableView) name:PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
 }
 
 - (void)refreshGenderSegmentedControl
@@ -324,6 +324,7 @@ UIPickerViewDataSource
 	[[FDAFHTTPClient shared] editProfile:@{kProfileGender : gender} withCompletionBlock:^(BOOL success, NSString *message) {
 		if (success) {
 			_userProfile.bFemale = _genderSegmentedControl.selectedSegmentIndex == FDGenderTypeFemale ? YES : NO;
+			[[NSNotificationCenter defaultCenter] postNotificationName:ME_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
 		} else {
 			[self displayHUDTitle:nil message:message];
 			_genderSegmentedControl.selectedSegmentIndex = _userProfile.bFemale ? FDGenderTypeFemale : FDGenderTypeMale;
@@ -392,6 +393,7 @@ UIPickerViewDataSource
 			[_userProfile setValue:value withIdentifier:identifier];
 			[self refreshShapeSegmentedControl];
 			[_tableView reloadData];
+			[[NSNotificationCenter defaultCenter] postNotificationName:ME_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
 		} else {
 			[self displayHUDTitle:NSLocalizedString(@"更新失败", nil) message:message duration:1];
 		}
@@ -406,7 +408,7 @@ UIPickerViewDataSource
 
 - (void)dealloc
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:ME_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
 }
 
 #pragma mark - UITableViewDelegate
@@ -659,6 +661,7 @@ UIPickerViewDataSource
 						[self displayHUDTitle:nil message:NSLocalizedString(@"更新成功", nil) duration:1];
 						_userProfile.avatarPath = path;
 						_avatar.image = image;
+						[[NSNotificationCenter defaultCenter] postNotificationName:ME_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
 					} else {
 						[self displayHUDTitle:nil message:message];
 					}

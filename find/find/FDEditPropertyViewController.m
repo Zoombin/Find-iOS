@@ -136,6 +136,7 @@ static NSInteger heightOfMap = 150;
 	[[FDAFHTTPClient shared] editProfile:@{key : @(index)} withCompletionBlock:^(BOOL success, NSString *message) {
 		if (success) {
 			[[NSNotificationCenter defaultCenter] postNotificationName:ME_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
+			[[NSNotificationCenter defaultCenter] postNotificationName:PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
 			if (index == FDInformationLevelPartly) {
 				_numberOfSections = 2;
 				_searchBar.hidden = NO;
@@ -193,6 +194,7 @@ static NSInteger heightOfMap = 150;
 			[self displayHUDTitle:NSLocalizedString(@"更新成功", nil) message:nil];
 			[self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.0f];
 			[[NSNotificationCenter defaultCenter] postNotificationName:ME_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
+			[[NSNotificationCenter defaultCenter] postNotificationName:PROFILE_NEED_REFRESH_NOTIFICATION_IDENTIFIER object:nil];
 		}
 	}];
 }
@@ -273,7 +275,7 @@ static NSInteger heightOfMap = 150;
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if (_privacyInfo.type == FDInformationTypeAddress) {
+    if (_privacyInfo.type == FDInformationTypeAddress && section == 0) {
 		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, heightOfMap)];
 		view.backgroundColor = [UIColor clearColor];
 		_mapView.frame = CGRectMake(_cellInstance.indentationWidth, 0, view.bounds.size.width - 2 * _cellInstance.indentationWidth, view.bounds.size.height);
