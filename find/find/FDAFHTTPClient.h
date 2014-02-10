@@ -97,8 +97,11 @@
 
 - (void)searchUserByKeyword:(NSString *)keyword withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *usersData))block;
 
-//商店的商品，virtual表示是否是虚拟商品还是实物，有实物的礼物
-- (void)stuffsList:(BOOL)bVirtual withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *stuffsData))block;
+//充值套餐
+- (void)goldsWithCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *goldsData))block;
+
+//商店实体礼物
+- (void)stuffsWithCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *stuffsData))block;
 
 //申请兑换实体礼物
 - (void)exchangeRealStuff:(NSNumber *)stuffID withCompletionBlock:(void (^)(BOOL success, NSString *message))block;

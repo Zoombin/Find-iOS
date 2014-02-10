@@ -17,6 +17,7 @@
 	stuff.name = attributes[@"name"];
 	stuff.iconPath = attributes[@"pic"];
 	stuff.describe = attributes[@"intro"];
+	stuff.quantity = attributes[@"num"];
 	stuff.detailsURLString = @"http://www.baidu.com";//TODO: test
 	
 	NSDictionary *priceAttributes = attributes[@"price"];

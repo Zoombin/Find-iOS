@@ -15,7 +15,8 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *iconPath;
 @property (nonatomic, strong) NSString *describe;
-@property (nonatomic, strong) NSNumber *bReal;//实物，非虚拟商品，鲜花/钻石是虚拟的
+@property (nonatomic, strong) NSNumber *bReal;//实物，非虚拟币
+@property (nonatomic, strong) NSNumber *quantity;
 @property (nonatomic, strong) NSString *detailsURLString;//TODO:
 @property (nonatomic, strong) FDPrice *price;
 

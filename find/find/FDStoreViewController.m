@@ -67,16 +67,21 @@
 
 - (void)fetchStuffs:(BOOL)bVirtual
 {
-	[[FDAFHTTPClient shared] stuffsList:bVirtual withCompletionBlock:^(BOOL success, NSString *message, NSArray *stuffsData) {
-		if (success) {
-			if (bVirtual) {
-				_stuffs[@(kSectionIndexOfVirtualStuff)] = [FDStuff createMutableWithData:stuffsData];
-			} else {
+	if (bVirtual) {
+		[[FDAFHTTPClient shared] goldsWithCompletionBlock:^(BOOL success, NSString *message, NSArray *goldsData) {
+			if (success) {
+				_stuffs[@(kSectionIndexOfVirtualStuff)] = [FDStuff createMutableWithData:goldsData];
+			}
+			[_tableView reloadData];
+		}];
+	} else {
+		[[FDAFHTTPClient shared] stuffsWithCompletionBlock:^(BOOL success, NSString *message, NSArray *stuffsData) {
+			if (success) {
 				_stuffs[@(kSectionIndexOfRealStuff)] = [FDStuff createMutableWithData:stuffsData];
 			}
 			[_tableView reloadData];
-		}
-	}];
+		}];
+	}
 }
 
 - (void)didReceiveMemoryWarning
@@ -96,12 +101,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-	return 0;
+	return 15;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-	return 0;
+	return 3;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -120,10 +125,14 @@
 	if (!cell) {
 		cell = [[FDStuffCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFDStuffCellIdentifier];
 		cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+	}
+	FDStuff *stuff = _stuffs[@(indexPath.section)][indexPath.row];
+	if (!stuff.bReal) {
+		cell.accessoryType = UITableViewCellAccessoryNone;
+	} else {
 		cell.accessoryType = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? UITableViewCellAccessoryDetailButton :UITableViewCellAccessoryDisclosureIndicator;
 	}
 	cell.imageView.image = [UIImage imageNamed:@"Placeholder"];
-	FDStuff *stuff = _stuffs[@(indexPath.section)][indexPath.row];
 	cell.stuff = stuff;
 	return cell;
 }

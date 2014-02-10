@@ -31,6 +31,8 @@
 		_priceLabel.font = [UIFont fdThemeFontOfSize:13];
 		_priceLabel.textAlignment = NSTextAlignmentRight;
 		[self.contentView addSubview:_priceLabel];
+		
+		self.textLabel.font = [UIFont fdThemeFontOfSize:14];
     }
     return self;
 }

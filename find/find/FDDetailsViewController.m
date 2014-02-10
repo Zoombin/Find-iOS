@@ -47,7 +47,6 @@ static NSInteger kIndexOfFavoriteButton = 2;
 @property (readwrite) NSString *titleOfGifts;
 @property (readwrite) NSString *titleOfFollowers;
 @property (readwrite) NSArray *allPhotos;
-@property (readwrite) UIImage *currentImage;
 @property (readwrite) UIImage *thumbImage;
 
 @end
@@ -414,23 +413,23 @@ static NSInteger kIndexOfFavoriteButton = 2;
 		if (!cell) {
 			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PhotoCell"];
 			cell.selectionStyle = UITableViewCellSelectionStyleNone;
-			NSURLRequest *request = [NSURLRequest requestWithURL:[_photo urlScaleFitWidth:self.view.bounds.size.width * 2]];
+			NSURLRequest *request = [NSURLRequest requestWithURL:[_photo url]];
+			//NSURLRequest *request = [NSURLRequest requestWithURL:[_photo urlScaleFitWidth:self.view.bounds.size.width * 2]];
 			UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
 			imageView.userInteractionEnabled = YES;
-			imageView.contentMode = UIViewContentModeTop | UIViewContentModeCenter | UIViewContentModeScaleAspectFit;
+			imageView.contentMode = UIViewContentModeScaleAspectFit;
 			[imageView setImageWithURLRequest:request placeholderImage:nil success:nil failure:nil];
 			[[[UIImageView alloc] init] setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-				_currentImage = image;
 				imageView.image = image;
-				CGRect newFrame = imageView.frame;
-				if (image.size.width < imageView.bounds.size.width) {
-					CGFloat ratio = imageView.bounds.size.width / image.size.width;
-					newFrame.size.height = image.size.height * ratio;
-				} else {
-					newFrame.size.height = image.size.height;
-				}
-				imageView.frame = newFrame;
-				_heightOfPhoto = newFrame.size.height;
+//				CGRect newFrame = imageView.frame;
+//				if (image.size.width < imageView.bounds.size.width) {
+//					CGFloat ratio = imageView.bounds.size.width / image.size.width;
+//					newFrame.size.height = image.size.height * ratio;
+//				} else {
+//					newFrame.size.height = image.size.height;
+//				}
+//				imageView.frame = newFrame;
+				_heightOfPhoto = imageView.frame.size.height;
 				[tableView reloadData];
 				
 				UIButton *reportButton = [UIButton buttonWithType:UIButtonTypeCustom];

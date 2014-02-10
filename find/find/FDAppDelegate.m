@@ -53,7 +53,7 @@
 	[viewControllers addObject:[FDAroundViewController new]];
 	[viewControllers addObject:[FDAlbumViewController new]];
 	[viewControllers addObject:[FDMeViewController new]];
-	[viewControllers addObject:[FDTestAccountsViewController new]];
+//	[viewControllers addObject:[FDTestAccountsViewController new]];
 //	[viewControllers addObject:[FDHostViewController new]];
 //	[viewControllers addObject:[FDTestPhotoUploadViewController new]];
 	

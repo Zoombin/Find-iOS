@@ -662,9 +662,23 @@ static NSString *token;
 	}];
 }
 
-- (void)stuffsList:(BOOL)bVirtual withCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *stuffsData))block
+- (void)goldsWithCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *goldsData))block
 {
-	NSString *path = [NSString stringWithFormat:@"shop/%@", bVirtual ? @"v" : @"e"];
+	NSString *path = [NSString stringWithFormat:@"shop/money"];
+	
+	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+		if ([data isKindOfClass:[NSDictionary class]]) {
+			if (block) block ([data[responseKeyStatus] boolValue], [FDErrorMessage messageFromData:data[responseKeyMsg]], data[responseKeyData]);
+		}
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		if (block) block (NO, [FDErrorMessage messageNetworkError], nil);
+	}];
+}
+
+- (void)stuffsWithCompletionBlock:(void (^)(BOOL success, NSString *message, NSArray *stuffsData))block
+{
+	NSString *path = [NSString stringWithFormat:@"shop"];
 	
 	[self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];

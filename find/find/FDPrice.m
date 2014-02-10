@@ -17,8 +17,8 @@
 	if (price.RMB) {
 		price.bRMB = @(YES);
 	}
-	price.flowers = attributes[@"flowers"];
-	price.diamonds = attributes[@"diamonds"];
+	price.flowers = attributes[@"rose"];
+	price.diamonds = attributes[@"diamond"];
 	return price;
 }
 
